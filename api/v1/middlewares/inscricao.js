@@ -1,5 +1,5 @@
-const mailClient = require('../../../../lib/sendMail');
-const config = require('../../../../config.json');
+const mailClient = require('../../../lib/sendMail');
+const config = require('../../../config.json');
 
 module.exports.enviarEmailInscricao = (req, res) => {
   const body = `
