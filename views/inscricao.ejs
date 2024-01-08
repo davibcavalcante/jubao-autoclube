@@ -3,15 +3,25 @@
   <head>
     <title>Inscreva-se</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="text/javascript" src="/javascripts/inscricao.js"></script>
   </head>
   <body>
     <h1>Faça sua inscrição</h1>
-    <form method="POST" enctype="application/x-www-form-urlencoded" name="EmailForm">
+<br>
+    <hr>
+    <form method="POST" enctype="application/x-www-form-urlencoded" onsubmit="return validateForm()" name="EmailForm">
       <label for="name">Name:</label><br>
       <input type="text" id="name" name="name"><br>
-      <label for="ContactCommentt">Message:</label><br>
-      <textarea id="ContactComment" name="ContactComment" rows="6″ cols="20"></textarea>
-      <input type="submit" value="Send">
-      </form>
+      <label for="contactComment">Message:</label><br>
+      <textarea id="contactComment" name="contactComment" rows="6″ cols="20"></textarea>
+      <h2>Exemplo #1: Post via Form</h2>
+      <p>Neste exemplo, o formulário HTML é enviado diretamente via post. A validação é feita no método <strong>validateForm()</strong> no arquivo inscricao.js. A validação é chamada no evento <strong>onsubmit</strong> do form.</p>
+      <input type="submit" value="Enviar via Post">
+
+      <h2>Exemplo #2: Post via API</h2>
+      <p>Neste exemplo, os dados coletados no formulário são enviados para uma rest API via post. A validação é feita no método <strong>validateData()</strong> no arquivo inscricao.js. A validação é chamada no método <strong>sendData()</strong>.</p>
+      <input type="button" value="Enviar via API" onclick="sendData()">
+    </form>
+  </body>
   </body>
 </html>
