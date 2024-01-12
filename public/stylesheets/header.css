@@ -1,0 +1,133 @@
+header {
+    background-color: var(--main-color);
+    padding: 15px 20px;
+    position: relative;
+}
+
+.mobile-header {
+    display: flex;
+    align-items: center;
+}
+
+.mobile-header .menu-hamburguer {
+    width: 30px;
+    height: 30px;
+}
+
+.mobile-header a {
+    display: block;
+    margin: auto;
+}
+
+.social-list, .background-desktop-header, .desktop-logo-container {
+    display: none;
+}
+
+.pages-list {
+    color: white;
+    background-color: var(--main-color);
+    font: 300 1em var(--alternative-font), sans-serif;
+
+    width: 100%;
+    padding: 0 10px;
+
+    list-style-type: none;
+    position: absolute;
+    top: 100%;
+    left: -100%;
+    z-index: 6;
+    transition: .5s;
+}
+
+.pages-list.active {
+    left: 0;
+}
+
+.pages-list a {
+    color: white;
+    text-decoration: none;
+}
+
+.pages-list li {
+    margin: 15px 0;
+    border: 1px solid white;
+    border-left: none;
+    border-top: none;
+    border-bottom-right-radius: 10px;
+}
+
+.associations-container {
+    background-color: var(--main-color);
+    width: 100%;
+    padding: 10px 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    position: absolute;
+    left: 0;
+}
+
+.associations-container .logo-jubao {
+    width: 130px;
+}
+
+.associations-container .logo-faugo {
+    width: 80px;
+}
+
+.associations-container .logo-cba {
+    width: 50px;
+}
+
+@media screen and (min-width: 992px) {
+    header {
+        background-color: var(--header-color);
+    }
+
+    .mobile-header, .associations-container {
+        display: none;
+    }
+
+    .desktop-logo-container {
+        display: block;
+    }
+
+    .desktop-logo-container img {
+        width: 200px;
+    }
+
+    header nav {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .pages-list {
+        background-color: transparent;
+        position: static;
+        width: fit-content;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .pages-list li {
+        border: none;
+    }
+
+    .pages-list a:hover {
+        text-decoration: underline;
+    }
+
+    .social-list {
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+}
