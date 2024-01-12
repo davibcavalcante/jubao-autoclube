@@ -1,11 +1,323 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome <%= user %></p>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script async src="//www.instagram.com/embed.js"></script>
+    <script src="https://kit.fontawesome.com/3954e72066.js" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/slide-header.css">
+    <link rel="stylesheet" href="/stylesheets/index.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <title>Site Jubão</title>
+</head>
+<body>
+    <header>
+        <section class="mobile-header">
+            <img src="/imagens/mobile/menu-hamburguer.png" alt="Ícone Menu Hamburguer" class="menu-hamburguer">
+            <a href="#">
+                <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube" class="logo-jubao">
+            </a>
+        </section>
+        <nav>
+            <section class="desktop-logo-container">
+                <a href="#">
+                    <img src="/imagens/desktop/jubao-logo.png" alt="Logo JubãoFe Autoclube">
+                </a>
+            </section>
+            <ul class="pages-list">
+                <li>
+                    <a href="/inscricao" rel="next" target="_self">Inscrições</a>
+                </li>
+                <li>
+                    <a href="/#news-container" id="link-news">Notícias</a>
+                </li>
+                <li>
+                    <a href="/fotos" rel="next" target="_self">Galeria de Fotos</a>
+                </li>
+                <li>
+                    <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
+                </li>
+                <section class="associations-container">
+                    <img src="/imagens/mobile/faugo-logo.png" alt="Logo da FAUGO" class="logo-faugo">
+                    <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube" class="logo-jubao">
+                    <img src="/imagens/mobile/cba.png" alt="Logo da CBA" class="logo-cba">
+                </section>
+            </ul>
+            <ul class="social-list">
+                <li>
+                    <a href="https://www.instagram.com/rallydojubao/" rel="external" target="_blank">
+                        <img src="/imagens/desktop/instagram-logo.png" alt="Logo dos Instagram">
+                    </a>
+                </li>
+                <li>
+                    <a href="#" rel="external" target="_blank">
+                        <img src="/imagens/desktop/email-logo.png" alt="Logo do Email">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/@JubaoFe" rel="external" target="_blank">
+                        <img src="/imagens/desktop/youtube-logo.png" alt="Logo do Youtube">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="background-desktop-header">
+        <section class="images-container main">
+            <section class="info-header">
+                <section class="cup-name-container">
+                    <h1><%= cupName %></h1>
+                    <h2>INSCRIÇÕES ABERTAS</h2>
+                </section>
+                <section class="flex-info-container">
+                    <section class="class-container">
+                        <h1>CATEGORIAS:</h1>
+                        <section class="class-flex">
+                            <ul class="first-class">
+                                <li>INICIANTE</li>
+                                <li>LIGHT</li>
+                            </ul>
+                            <ul class="second-class">
+                                <li>GRADUADO</li>
+                                <li>TURISTA</li>
+                                <li>MASTER</li>
+                            </ul>
+                        </section>
+                    </section>
+                </section>
+                <section class="flex-container">
+                    <section class="button-container">
+                        <a href="inscricao.html" class="inscricao-btn">INSCREVER-SE</a>
+                    </section>
+                    <section class="associations-info-container">
+                        <img src="imagens/desktop/cba.png" alt="Logo da CBA" class="logo-info-cba">
+                        <img src="imagens/desktop/faugo-logo.png" alt="Logo da FAUGO" class="logo-info-faugo">
+                    </section>
+                </section>
+            </section>
+            <div class="prev-button-container">
+                <button class="prev-image-btn">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </div>
+            <div class="next-button-container">
+                <button class="next-image-btn">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <section class="images-container alternative">
+            <div class="prev-button-container">
+                <button class="prev-image-btn">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </div>
+            <div class="next-button-container">
+                <button class="next-image-btn">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+    </section>
+
+    <section class="desktop-container">
+        <section class="news-jubao-container">
+            <section class="banner-container">
+                <picture>
+                    <source media="(min-width: 992px)" srcset="imagens/desktop/novidades-bg.jpg">
+                    <img src="imagens/mobile/novidades-bg.jpg" alt="Banner de Novidades">
+                </picture>
+                <section class="info-banner-container">
+                    <section class="text-container">
+                        <h1 class="info-main"><span class="light-text">CONFIRA E</span> SE INSCREVA</h1>
+                        <h2 class="info-alternative">EM NOSSOS RALLYS</h2>
+                    </section>
+                    <section class="buttons-container">
+                        <a href="fotos.html">VER FOTOS</a>
+                        <a href="inscricao.html">INSCRIÇÃO</a>
+                    </section>
+                </section>
+            </section>
+        </section>
+
+        <section class="poeiracast-container">
+            <picture class="assista-poeiracast">
+                <a href="https://youtube.com/playlist?list=PLvEEtPflTXtiOXjWysawlsLv7UeaY27xz&si=uyFUgOtCOiwgMxM9" rel="external" target="_blank">
+                    <source media="(min-width: 992px)" srcset="imagens/desktop/youtube-acompanhe.png">
+                    <img src="imagens/mobile/youtube-acompanhe.png" alt="Mensagem para acompanhar o Podcast 'Poeira Cast no Youtube'">
+                </a>
+            </picture>
+            <p>Vídeo recentes</p>
+            <section class="position-relative-container">
+                <section class="video-container">
+                    <section class="poeiracast-video-container">
+                        <img src="/imagens/mobile/youtube-video.png" alt="">
+                    </section>
+                    <section class="poeiracast-video-container">
+                        <img src="/imagens/mobile/youtube-video.png" alt="">
+                    </section>
+                    <section class="poeiracast-video-container">
+                        <img src="/imagens/mobile/youtube-video.png" alt="">
+                    </section>
+                </section>
+                <section class="nav-video-buttons-container">
+                    <button class="prev-video-btn">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <button class="next-video-btn">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </section>
+            </section>
+            <div class="div"></div>
+        </section>
+    </section>
+
+    <section class="news-container" id="news-container">
+        <section class="gradient-background"></section>
+        <section class="title-container">
+            <h1>
+                <span class="light-text">ÚLTIMAS</span> NOTÍCIAS
+            </h1>
+        </section>
+        <section class="main-news-desktop">
+            <div class="main-new new">
+                <section class="new-image-container">
+                    <img src="<%= mainNew.url %>" alt="">
+                </section>
+                <section class="info">
+                    <p><%= mainNew.date %></p>
+                    <h1><%= mainNew.title %></h1>
+                </section>
+            </div>
+            <div class="second-new new">
+                <section class="new-image-container">
+                    <img src="<%= secondaryNew.url %>" alt="">
+                </section>
+                <section class="info">
+                    <p><%= secondaryNew.date %></p>
+                    <h1><%= secondaryNew.title %></h1>
+                </section>
+            </div>
+        </section>
+        <section class="other-news">
+            <div class="new">
+                <section class="new-image-container">
+                    <img src="<%= otherNews[0].url %>" alt="">
+                </section>
+                <section class="info">
+                    <p><%= otherNews[0].date %></p>
+                    <h1><%= otherNews[0].title %></h1>
+                </section>
+            </div>
+            <div class="new">
+                <section class="new-image-container">
+                    <img src="<%= otherNews[1].url %>" alt="">
+                </section>
+                <section class="info">
+                    <p><%= otherNews[1].date %></p>
+                    <h1><%= otherNews[1].title %></h1>
+                </section>
+            </div>
+            <div class="new">
+                <section class="new-image-container">
+                    <img src="<%= otherNews[2].url %>" alt="">
+                </section>
+                <section class="info">
+                    <p><%= otherNews[2].date %></p>
+                    <h1><%= otherNews[2].title %></h1>
+                </section>
+            </div>
+            <div class="new">
+                <section class="new-image-container">
+                    <img src="<%= otherNews[3].url %>" alt="">
+                </section>
+                <section class="info">
+                    <p><%= otherNews[3].date %></p>
+                    <h1><%= otherNews[3].title %></h1>
+                </section>
+            </div>
+        </section>
+    </section>
+
+    <footer>
+        <section class="desktop-footer">
+            <section class="logo-container">
+                <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube">
+            </section>
+            <section class="contato-container">
+                <h1>INFORMAÇÕES DE CONTATO:</h1>
+                <section class="info-contato">
+                    <p>
+                        TELEFONE: 21 2221-4895 <br>
+                        OUVIDORIA: ouvidoria@jubaofe.org.br <br>
+                        SALA DE IMPRENSA: comunicacao@jubaofe.org.br <br>
+                        MARKETING: marketing@cba.org.br
+                    </p>
+                </section>
+            </section>
+            <section class="acessos-container">
+                <h1>OUTROS ACESSOS:</h1>
+                <ul>
+                    <li>
+                        <a href="/inscricao">Inscrições</a>
+                    </li>
+                    <li>
+                        <a href="/fotos">Galeria de Fotos</a>
+                    </li>
+                    <li>
+                        <a href="/quem-somos">Quem Somos</a>
+                    </li>
+                    <li>
+                        <a href="/#news-container">Notícias</a>
+                    </li>
+                </ul>
+            </section>
+            <section class="redes-container">
+                <h1>SIGA NOS:</h1>
+                <ul>
+                    <li>
+                        <a href="https://www.youtube.com/@JubaoFe" rel="external" target="_blank">
+                            <img src="/imagens/mobile/youtube-logo.png" alt="Ícone do Youtube">
+                            <span>Youtube</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="/imagens/mobile/email-logo.png" alt="Ícone do Email">
+                            <span>jubaocontato@gmail.com</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/rallydojubao/" rel="external" target="_blank">
+                            <img src="/imagens/mobile/instagram-logo.png" alt="Ícone do Instagram">
+                            <span>Instagram</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <section class="associations-footer">
+                <img src="/imagens/desktop/cba.png" alt="Logo CBA">
+                <img src="/imagens/desktop/faugo-logo.png" alt="Logo FAUGO">
+            </section>
+        </section>
+        <p class="copy">
+            &copy; JubãoFe Autoclube Todos os Direitos Reservados
+        </p>
+    </footer>
+
+    <script src="/javascripts/menu.js"></script>
+    <script src="/javascripts/index.js"></script>
+    <script src="/javascripts/youtube.js"></script>
+    <script src="/javascripts/news.js"></script>
+</body>
 </html>

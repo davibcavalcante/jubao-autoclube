@@ -1,0 +1,162 @@
+@media screen and (min-width: 992px) {
+    .background-desktop-header {
+        display: flex;
+        position: relative;
+        transition: .5s;
+    }
+
+    .images-container {
+        background-color: var(--background-color);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        min-width: 100vw;
+        height: 80vh;
+        display: flex;
+        transition: .5s;
+        position: relative;
+    }
+
+    .images-container.main {
+        background-image: url(../imagens/desktop/principal-header-bg.jpg);
+    }
+
+    .images-container.alternative {
+        background-image: url(../imagens/desktop/alternative-header-bg.jpg);
+    }
+    
+    .info-header {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.4);
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 5px 12px 18px rgba(0, 0, 0, 0.08);
+    
+        position: absolute;
+        left: 7%;
+        top: 40%;
+        transform: translateY(-60%);
+    }
+    
+    .cup-name-container {
+        margin-bottom: 15px;
+    }
+    
+    .cup-name-container h1 {
+        font: normal 3.2vw var(--title-font), sans-serif;
+        text-wrap: nowrap;
+    }
+    
+    .cup-name-container h2 {
+        font: normal 2vw var(--main-font), sans-serif;
+        letter-spacing: 0.41em;
+        text-wrap: nowrap;
+    }
+    
+    .flex-info-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+    }
+    
+    .class-container h1 {
+        font: 500 1.6em var(--main-font), sans-serif;
+        letter-spacing: 0.15em;
+        margin-bottom: 5px;
+    }
+    
+    .class-flex {
+        font: 300 1em var(--main-font), sans-serif;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .class-flex li {
+        margin-bottom: 5px;
+    }
+    
+    .first-class {
+        list-style-type: none;
+        padding-right: 20px;
+        border-right: 1px solid white;
+    }
+    
+    .second-class {
+        list-style-type: none;
+    }
+    
+    .associations-info-container {
+        width: 30%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .associations-info-container .logo-info-cba {
+        width: 25%;
+    }
+    
+    .associations-info-container .logo-info-faugo {
+        width: 65%;
+    }
+
+    .flex-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+    }
+    
+    .inscricao-btn {
+        color: var(--main-color);
+        background-color: white;
+        text-decoration: none;
+        text-align: center;
+        font-family: var(--alternative-font), sans-serif;
+        font-size: 1.5em;
+        font-weight: 500;
+    
+        border: 1px solid white;
+        border-radius: 5px;
+        box-shadow: 2px 5px 8px rgba(0, 0, 0, 0.05);
+        
+        display: block;
+        margin-top: 20px;
+        width: 220px;
+        height: 40px;
+    
+        cursor: pointer;
+        transition: .3s;
+    }
+    
+    .inscricao-btn:hover {
+        transform: scale(1.05);
+    }
+    
+    .prev-button-container {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+    }
+    
+    .next-button-container {
+        position: absolute;
+        top: 50%;
+        right: 25px;
+    }
+    
+    .next-button-container button, .prev-button-container button {
+        color: var(--main-color);
+        background-color: transparent;
+        border: 1px solid white;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        transition: .5s;
+    }
+    
+    .next-button-container button:hover, .prev-button-container button:hover {
+        transform: scale(1.1);
+    }
+}

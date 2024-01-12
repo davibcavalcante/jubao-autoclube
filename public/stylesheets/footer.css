@@ -1,0 +1,178 @@
+footer {
+    color: white;
+    background-color: var(--main-color);
+    font-family: var(--alternative-font), sans-serif;
+    width: 100%;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid white;
+}
+
+.contato-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.contato-container h1 {
+    font-size: 1em;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+.contato-container p {
+    font-size: .8em;
+    font-weight: 300;
+}
+
+.acessos-container {
+    display: none;
+}
+
+.redes-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+    margin-top: 20px;
+    padding: 0 10px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    height: 50px;
+}
+
+.redes-container h1 {
+    font-weight: 300;
+}
+
+.redes-container ul {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.redes-container img {
+    width: 30px;
+}
+
+.redes-container span {
+    display: none;
+}
+
+.redes-container li {
+    height: 30px;
+}
+
+.associations-footer {
+    display: none;
+}
+
+.copy {
+    text-align: center;
+    font-weight: 300;
+    font-size: .7em;
+    border-top: 1px solid white;
+    padding: 3px 0;
+}
+
+@media screen and (min-width: 992px) {
+    .desktop-footer {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 200px;
+    }
+
+    .desktop-footer h1 {
+        font-size: 1.5em;
+    }
+
+    .logo-container {
+        border: none;
+    }
+
+    .logo-container img {
+        width: 180px;
+    }
+
+    .contato-container {
+        text-align: left;
+        align-self: flex-start;
+    }
+
+    .acessos-container {
+        display: block;
+        align-self: flex-start;
+        margin-top: 10px;
+    }
+
+    .acessos-container h1 {
+        font-weight: 300;
+        margin-bottom: 10px;
+    }
+
+    .acessos-container ul {
+        list-style-type: none;
+    }
+
+    .acessos-container a {
+        color: white; 
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: .8em;
+        font-weight: 300;
+    }
+
+    .associations-footer {
+        display: block;
+    }
+
+    .redes-container {
+        display: block;
+        border: none;
+        align-self: flex-start;
+        margin-top: 10px;
+    }
+
+    .redes-container ul {
+        flex-direction: column;
+        align-items: start;
+        margin-top: 10px;
+    }
+
+    .redes-container span {
+        display: block;
+        font-size: .8em;
+        text-transform: uppercase;
+    }
+
+    .redes-container a {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .redes-container a:hover, .acessos-container a:hover {
+        text-decoration: underline;
+    }
+
+    .associations-footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 0 10px;
+    }
+
+    .copy {
+        font-size: 1em;
+    }
+}
