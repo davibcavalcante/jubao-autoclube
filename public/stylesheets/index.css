@@ -129,28 +129,61 @@ body {
 }
 
 .position-relative-container {
+    display: flex;
+    justify-content: center;
     position: relative;
 }
 
 .video-container {
-    width: 100%;
-    margin: 0 auto 20px auto;
-    padding: 20px;
-
+    margin: auto;
+    width: 85%;
+    margin: 20px 0;
     position: relative;
+    overflow-x: hidden;
+}
+
+.slide-video-container {
+    width: 100%;
+    margin: auto;
     display: flex;
-    align-items: center;
     transition: .5s;
 }
 
-.video-container img {
-    margin: auto;
-    width: 85%;
+.poeiracast-video-container {
+    position: relative;
+    min-width: 100%;
 }
 
-.poeiracast-video-container {
-    min-width: 100%;
+.poeiracast-video-container img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.info-container {
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    padding: 5px 10px;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.info-container h1 {
+    color: white;
+    font: normal 1.2em var(--main-font), sans-serif;
+}
+
+.info-container button {
+    color: white;
+    background-color: transparent;
+    font-size: 1.2em;
+    border: none;
 }
 
 .div {
@@ -173,6 +206,7 @@ body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    cursor: pointer;
 }
 
 .prev-video-btn {
@@ -314,31 +348,22 @@ body {
         transform: scale(1.05);
     }
 
+    .assista-poeiracast {
+        width: 15%;
+    }
+
     .poeiracast-container {
         display: flex;
         flex-direction: column;
         position: relative;
     }
 
-    .assista-poeiracast {
-        width: 15%;
-    }
-
-    .video-container {
-        width: 100%;
-    }
-
-    .video-container::after {
-        content:  'Vídeo recentes';
-        color: var(--news-bg-color);
-        font: normal 1em var(--main-font), sans-serif;
-        position: absolute;
-        bottom: -10px;
+    .slide-video-container {
+        gap: 10px;
     }
 
     .poeiracast-video-container {
-        min-width: 33%;
-        overflow-x: visible;
+        min-width: calc((100% / 3) - 10px);
         justify-content: space-between;
         order: 1;
     }

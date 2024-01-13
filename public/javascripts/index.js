@@ -2,7 +2,7 @@ const viewWidth = window.innerWidth
 const timer = 3000
 
 const background = document.querySelector('.background-desktop-header')
-const videoContainer = document.querySelector('.video-container')
+const videoContainer = document.querySelector('.slide-video-container')
 
 const prevButtons = document.querySelectorAll('.prev-image-btn')
 const nextButtons = document.querySelectorAll('.next-image-btn')
@@ -28,7 +28,7 @@ let currentBackground = 1
 let imagesLength = 2
 
 let currentVideo = 1
-let videosLength = 3
+let videosLength = 5
 let moveDirection = 1
 
 function moveBackground(e) {
@@ -48,11 +48,11 @@ function moveBackground(e) {
 function moveVideo(e) {
     if (e.clientX > 150) {
         if (currentVideo < videosLength) {
-            moveNextVideo(90)
+            moveNextVideo(100)
         }
     } else {
         if (currentVideo > 1) {
-            movePrevVideo(90)
+            movePrevVideo(100)
         }
     }
 }
@@ -60,21 +60,25 @@ function moveVideo(e) {
 const interval = setInterval(() => {
     if (viewWidth < 992) return
 
-    if (currentVideo < videosLength && moveDirection === 1) {
-        moveNextVideo(33);
-    } else if (currentVideo >= videosLength) {
-        moveDirection = -1;
-        movePrevVideo(33);
-    } else if (currentVideo > 1 && moveDirection === -1) {
-        movePrevVideo(33);
-    } else if (currentVideo <= 1) {
-        moveDirection = 1;
-        moveNextVideo(33);
+    if (moveDirection === 1) {
+        if (currentVideo + 2 < videosLength) {
+            moveNextVideo(33)
+        } else {
+            moveDirection = -1
+            movePrevVideo(33)
+        }
+    } else if (moveDirection === -1) {
+        if (currentVideo > 1) {
+            movePrevVideo(33)
+        } else {
+            moveDirection = 1
+            moveNextVideo(33)
+        }
     }
 }, timer)
 
 function moveNextVideo(moveValue) {
-    videoContainer.style.transform = `translateX(-${moveValue * currentVideo}%)`
+    videoContainer.style.transform = `translateX(-${(moveValue * currentVideo)}%)`
     currentVideo++
 }
 
