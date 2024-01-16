@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://kit.fontawesome.com/3954e72066.js" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/album.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <title>Album</title>
+</head>
+<body>
+    <p id="album-of-year" class="hidden"><%= albumOfYear %></p>
+    <header>
+        <section class="mobile-header">
+            <img src="/imagens/mobile/menu-hamburguer.png" alt="Ícone Menu Hamburguer" class="menu-hamburguer">
+            <a href="/">
+                <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube" class="logo-jubao">
+            </a>
+        </section>
+        <nav>
+            <section class="desktop-logo-container">
+                <a href="/">
+                    <img src="/imagens/desktop/jubao-logo.png" alt="Logo JubãoFe Autoclube">
+                </a>
+            </section>
+            <ul class="pages-list">
+                <li>
+                    <a href="/inscricao" rel="next" target="_self">Inscrições</a>
+                </li>
+                <li>
+                    <a href="/#news-container" id="link-news">Notícias</a>
+                </li>
+                <li>
+                    <a href="#" rel="next" target="_self">Galeria de Fotos</a>
+                </li>
+                <li>
+                    <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
+                </li>
+                <section class="associations-container">
+                    <img src="/imagens/mobile/faugo-logo.png" alt="Logo da FAUGO" class="logo-faugo">
+                    <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube" class="logo-jubao">
+                    <img src="/imagens/mobile/cba.png" alt="Logo da CBA" class="logo-cba">
+                </section>
+            </ul>
+            <ul class="social-list">
+                <li>
+                    <a href="https://www.instagram.com/rallydojubao/" rel="external" target="_blank">
+                        <img src="/imagens/desktop/instagram-logo.png" alt="Logo dos Instagram">
+                    </a>
+                </li>
+                <li>
+                    <a href="#" rel="external" target="_blank">
+                        <img src="/imagens/desktop/email-logo.png" alt="Logo do Email">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/@JubaoFe" rel="external" target="_blank">
+                        <img src="/imagens/desktop/youtube-logo.png" alt="Logo do Youtube">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="background-container">
+        <div class="low-fade">
+
+        </div>
+        <div class="high-fade">
+            <h1>Fotos - <%= albumOfYear %> </h1>
+            <p>
+                Cada imagem é uma janela para vivências únicas e marcantes. Essas fotos não apenas capturam corridas emocionantes, mas também destacam os momentos de camaradagem, celebrações e histórias que tornam este projeto verdadeiramente especial. É um convite para mergulhar em uma jornada visual repleta de diversidade e significado, onde a paixão pela velocidade se entrelaça com experiências inesquecíveis.
+            </p>
+
+            <p class="additional-info">
+                omos transportados para um mundo onde a paixão pelos ralis se entrelaça com a camaradagem entre os participantes. Cada foto não é apenas um instantâneo visual, mas uma narrativa vívida de encontros, celebrações e desafios superados.
+            </p>
+
+            <p class="additional-info">
+                Em cada imagem, há o reflexo do carinho e dedicação dos organizadores e participantes, que fazem deste projeto mais do que uma simples competição automobilística. É uma celebração da comunidade, da amizade e das histórias que se desdobram a cada curva, a cada celebração.
+            </p>
+        </div>
+    </section>
+
+    <main>
+        <section class="photo-container">
+
+        </section>
+    </main>
+
+    <footer>
+        <section class="desktop-footer">
+            <section class="logo-container">
+                <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube">
+            </section>
+            <section class="contato-container">
+                <h1>INFORMAÇÕES DE CONTATO:</h1>
+                <section class="info-contato">
+                    <p>
+                        TELEFONE: 21 2221-4895 <br>
+                        OUVIDORIA: ouvidoria@jubaofe.org.br <br>
+                        SALA DE IMPRENSA: comunicacao@jubaofe.org.br <br>
+                        MARKETING: marketing@cba.org.br
+                    </p>
+                </section>
+            </section>
+            <section class="acessos-container">
+                <h1>OUTROS ACESSOS:</h1>
+                <ul>
+                    <li>
+                        <a href="/inscricao">Inscrições</a>
+                    </li>
+                    <li>
+                        <a href="#">Galeria de Fotos</a>
+                    </li>
+                    <li>
+                        <a href="/quem-somos">Quem Somos</a>
+                    </li>
+                    <li>
+                        <a href="/#news-container">Notícias</a>
+                    </li>
+                </ul>
+            </section>
+            <section class="redes-container">
+                <h1>SIGA NOS:</h1>
+                <ul>
+                    <li>
+                        <a href="https://www.youtube.com/@JubaoFe" rel="external" target="_blank">
+                            <img src="/imagens/mobile/youtube-logo.png" alt="Ícone do Youtube">
+                            <span>Youtube</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="/imagens/mobile/email-logo.png" alt="Ícone do Email">
+                            <span>jubaocontato@gmail.com</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/rallydojubao/" rel="external" target="_blank">
+                            <img src="/imagens/mobile/instagram-logo.png" alt="Ícone do Instagram">
+                            <span>Instagram</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <section class="associations-footer">
+                <img src="/imagens/desktop/cba.png" alt="Logo CBA">
+                <img src="/imagens/desktop/faugo-logo.png" alt="Logo FAUGO">
+            </section>
+        </section>
+        <p class="copy">
+            &copy; JubãoFe Autoclube Todos os Direitos Reservados
+        </p>
+    </footer>
+
+    <script src="/javascripts/menu.js"></script>
+    <script src="/javascripts/photos.js"></script>
+</body>
+</html>
