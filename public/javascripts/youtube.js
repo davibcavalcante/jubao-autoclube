@@ -6,7 +6,6 @@ async function recentsVideos() {
 }
 
 function createVideos(data) {
-    console.log(data)
     data.forEach((video) => {
         const videoData = {
             thumbnail: video.snippet.thumbnails.maxres.url,

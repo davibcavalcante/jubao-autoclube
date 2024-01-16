@@ -86,7 +86,7 @@ footer {
         display: flex;
         justify-content: space-around;
         align-items: center;
-        height: 200px;
+        height: auto;
     }
 
     .desktop-footer h1 {
@@ -95,6 +95,7 @@ footer {
 
     .logo-container {
         border: none;
+        width: 15%;
     }
 
     .logo-container img {
@@ -104,12 +105,14 @@ footer {
     .contato-container {
         text-align: left;
         align-self: flex-start;
+        width: 20%;
     }
 
     .acessos-container {
         display: block;
         align-self: flex-start;
         margin-top: 10px;
+        width: 20%;
     }
 
     .acessos-container h1 {
@@ -129,15 +132,12 @@ footer {
         font-weight: 300;
     }
 
-    .associations-footer {
-        display: block;
-    }
-
     .redes-container {
         display: block;
         border: none;
         align-self: flex-start;
         margin-top: 10px;
+        width: 20%;
     }
 
     .redes-container ul {
@@ -162,6 +162,11 @@ footer {
 
     .redes-container a:hover, .acessos-container a:hover {
         text-decoration: underline;
+    }
+
+    .associations-footer {
+        display: block;
+        width: 17%;
     }
 
     .associations-footer {

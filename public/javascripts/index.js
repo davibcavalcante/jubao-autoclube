@@ -28,7 +28,7 @@ let currentBackground = 1
 let imagesLength = 2
 
 let currentVideo = 1
-let videosLength = 5
+let videosLength = 10
 let moveDirection = 1
 
 function moveBackground(e) {
@@ -62,17 +62,17 @@ const interval = setInterval(() => {
 
     if (moveDirection === 1) {
         if (currentVideo + 2 < videosLength) {
-            moveNextVideo(33)
+            moveNextVideo(33.33)
         } else {
             moveDirection = -1
-            movePrevVideo(33)
+            movePrevVideo(33.33)
         }
     } else if (moveDirection === -1) {
         if (currentVideo > 1) {
-            movePrevVideo(33)
+            movePrevVideo(33.33)
         } else {
             moveDirection = 1
-            moveNextVideo(33)
+            moveNextVideo(33.33)
         }
     }
 }, timer)

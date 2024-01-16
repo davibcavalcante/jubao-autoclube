@@ -6,13 +6,13 @@
 
 :root {
     --background-color: #ffe8c6;
+
     --main-color: #f25c05;
     --main-color-low-fade: #f25c055b;
     --main-color-high-fade: #f25c05e0;
+
     --alternative-color: #140703;
-    --header-color: #FF945E;
-    --news-bg-color: #2f2f2f;
-    --form-bg-color: #1c0a03;
+
     --main-font: 'Montserrat';
     --alternative-font: 'Poppins';
     --title-font: 'IntroHead';
@@ -62,6 +62,8 @@ header {
 
 .high-fade p {
     font: normal .9em var(--main-font), sans-serif;
+    text-align: justify;
+    hyphens: auto;
     line-height: 1.2em;
     margin-bottom: 7px;
 }
@@ -109,22 +111,21 @@ header {
     }
 
     .low-fade {
-        height: 80vh;
-        width: 50%;
+        height: auto;
+        width: 60%;
     }
 
     .high-fade {
-        height: 80vh;
-        width: 50%;
+        min-height: 60vh;
+        width: 40%;
         padding: 15px 30px;
     }
 
     .high-fade h1 {
-        font-size: 5em;
+        font-size: 2.5em;
     }
 
     .high-fade p {
-        max-width: 70%;
         font-size: 1.2em;
     }
 

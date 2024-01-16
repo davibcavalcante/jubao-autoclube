@@ -147,7 +147,8 @@ main {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 20px;
         max-width: 1200px;
-        margin: 15px 0;
+        margin: 20px;
+        flex: 1;
     }
 
     .album {
@@ -156,5 +157,11 @@ main {
         border-radius: 10px;
         overflow: hidden;
         margin: 0;
+        cursor: pointer;
+        transition: .5s;
+    }
+
+    .album:hover {
+        transform: scale(1.02) translate(-5px, -10px);
     }
 }
