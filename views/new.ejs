@@ -11,22 +11,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/stylesheets/header.css">
-    <link rel="stylesheet" href="/stylesheets/album.css">
+    <link rel="stylesheet" href="/stylesheets/slide-header.css">
+    <link rel="stylesheet" href="/stylesheets/new.css">
     <link rel="stylesheet" href="/stylesheets/footer.css">
-    <title>Album</title>
+    <title>Document</title>
 </head>
 <body>
-    <p id="album-of-year" class="hidden"><%= albumOfYear %></p>
     <header>
         <section class="mobile-header">
             <img src="/imagens/mobile/menu-hamburguer.png" alt="Ícone Menu Hamburguer" class="menu-hamburguer">
-            <a href="/">
+            <a href="#">
                 <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube" class="logo-jubao">
             </a>
         </section>
         <nav>
             <section class="desktop-logo-container">
-                <a href="/">
+                <a href="#">
                     <img src="/imagens/desktop/jubao-logo.png" alt="Logo JubãoFe Autoclube">
                 </a>
             </section>
@@ -35,7 +35,7 @@
                     <a href="/inscricao" rel="next" target="_self">Inscrições</a>
                 </li>
                 <li>
-                    <a href="/news" id="link-news">Notícias</a>
+                    <a href="/#news-container" id="link-news">Notícias</a>
                 </li>
                 <li>
                     <a href="/fotos" rel="next" target="_self">Galeria de Fotos</a>
@@ -69,32 +69,6 @@
         </nav>
     </header>
 
-    <section class="background-container">
-        <div class="low-fade">
-
-        </div>
-        <div class="high-fade">
-            <h1>Fotos - <%= albumOfYear %> </h1>
-            <p>
-                Cada imagem é uma janela para vivências únicas e marcantes. Essas fotos não apenas capturam corridas emocionantes, mas também destacam os momentos de camaradagem, celebrações e histórias que tornam este projeto verdadeiramente especial. É um convite para mergulhar em uma jornada visual repleta de diversidade e significado, onde a paixão pela velocidade se entrelaça com experiências inesquecíveis.
-            </p>
-
-            <p class="additional-info">
-                omos transportados para um mundo onde a paixão pelos ralis se entrelaça com a camaradagem entre os participantes. Cada foto não é apenas um instantâneo visual, mas uma narrativa vívida de encontros, celebrações e desafios superados.
-            </p>
-
-            <p class="additional-info">
-                Em cada imagem, há o reflexo do carinho e dedicação dos organizadores e participantes, que fazem deste projeto mais do que uma simples competição automobilística. É uma celebração da comunidade, da amizade e das histórias que se desdobram a cada curva, a cada celebração.
-            </p>
-        </div>
-    </section>
-
-    <main>
-        <section class="photo-container">
-
-        </section>
-    </main>
-
     <footer>
         <section class="desktop-footer">
             <section class="logo-container">
@@ -124,7 +98,7 @@
                         <a href="/quem-somos">Quem Somos</a>
                     </li>
                     <li>
-                        <a href="/news">Notícias</a>
+                        <a href="/#news-container">Notícias</a>
                     </li>
                 </ul>
             </section>
@@ -160,8 +134,5 @@
             &copy; JubãoFe Autoclube Todos os Direitos Reservados
         </p>
     </footer>
-
-    <script src="/javascripts/menu.js"></script>
-    <script src="/javascripts/photos.js"></script>
 </body>
 </html>

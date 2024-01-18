@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script async src="//www.instagram.com/embed.js"></script>
     <script src="https://kit.fontawesome.com/3954e72066.js" crossorigin="anonymous"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,7 +73,7 @@
         <section class="images-container main">
             <section class="info-header">
                 <section class="cup-name-container">
-                    <h1><%= cupName %></h1>
+                    <h1>COPA SOLIDARIEDADE></h1>
                     <h2>INSCRIÇÕES ABERTAS</h2>
                 </section>
                 <section class="flex-info-container">
@@ -184,63 +183,13 @@
             </h1>
         </section>
         <section class="main-news-desktop">
-            <div class="main-new new">
-                <section class="new-image-container">
-                    <img src="<%= mainNew.url %>" alt="">
-                </section>
-                <section class="info">
-                    <p><%= mainNew.date %></p>
-                    <h1><%= mainNew.title %></h1>
-                </section>
-            </div>
-            <div class="second-new new">
-                <section class="new-image-container">
-                    <img src="<%= secondaryNew.url %>" alt="">
-                </section>
-                <section class="info">
-                    <p><%= secondaryNew.date %></p>
-                    <h1><%= secondaryNew.title %></h1>
-                </section>
-            </div>
+            
         </section>
+
         <section class="other-news">
-            <div class="new">
-                <section class="new-image-container">
-                    <img src="<%= otherNews[0].url %>" alt="">
-                </section>
-                <section class="info">
-                    <p><%= otherNews[0].date %></p>
-                    <h1><%= otherNews[0].title %></h1>
-                </section>
-            </div>
-            <div class="new">
-                <section class="new-image-container">
-                    <img src="<%= otherNews[1].url %>" alt="">
-                </section>
-                <section class="info">
-                    <p><%= otherNews[1].date %></p>
-                    <h1><%= otherNews[1].title %></h1>
-                </section>
-            </div>
-            <div class="new">
-                <section class="new-image-container">
-                    <img src="<%= otherNews[2].url %>" alt="">
-                </section>
-                <section class="info">
-                    <p><%= otherNews[2].date %></p>
-                    <h1><%= otherNews[2].title %></h1>
-                </section>
-            </div>
-            <div class="new">
-                <section class="new-image-container">
-                    <img src="<%= otherNews[3].url %>" alt="">
-                </section>
-                <section class="info">
-                    <p><%= otherNews[3].date %></p>
-                    <h1><%= otherNews[3].title %></h1>
-                </section>
-            </div>
+
         </section>
+        <iframe frameborder="0" id="news-iframe" class="hidden"></iframe>
     </section>
 
     <footer>

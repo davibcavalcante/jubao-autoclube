@@ -118,6 +118,7 @@ header {
 
     .pages-list li {
         border: none;
+        font-size: 1.2em;
     }
 
     .pages-list a:hover {
@@ -129,5 +130,13 @@ header {
         display: flex;
         align-items: center;
         gap: 10px;
+    }
+
+    .social-list img {
+        transition: .5s;
+    }
+
+    .social-list img:hover {
+        transform: scale(1.2);
     }
 }

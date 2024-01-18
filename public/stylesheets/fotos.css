@@ -161,7 +161,7 @@ main {
         transition: .5s;
     }
 
-    .album:hover {
-        transform: scale(1.02) translate(-5px, -10px);
+    .album:active {
+        transform: scale(.9);
     }
 }

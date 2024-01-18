@@ -37,6 +37,13 @@ body {
     font-weight: 300;
 }
 
+#news-iframe {
+    width: 100%;
+    height: auto;
+    min-height: 800px;
+    margin: 10px 0;
+}
+
 /* CONFIGURAÇÕES DAS NOVIDADES DO JUBÃO */
 
 .banner-container {
@@ -225,7 +232,7 @@ body {
     padding: 10px 20px;
 
     position: relative;
-    z-index: -2;
+    z-index: 1;
 }
 
 .gradient-background {
@@ -242,18 +249,15 @@ body {
     font: bold 1.3em var(--main-font), sans-serif;
 }
 
-.new {
+.news {
     width: 100%;
     height: auto;
     min-height: 300px;
     margin: 10px 0;
     position: relative;
-
-    display: flex;
-    align-items: end;
 }
 
-.new-image-container {
+.news-image-container {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -262,13 +266,13 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.new-image-container img {
+.news-image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.new .info {
+.news .info {
     width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 5px;
@@ -278,13 +282,37 @@ body {
     z-index: 1;
 }
 
-.new .info p {
+.news .info p {
     font: 300 .6em var(--main-font), sans-serif;
     margin-bottom: 5px;
 }
 
-.new .info h1 {
+.news .info h1 {
     font: normal .85em var(--main-font), sans-serif;
+}
+
+.news a {
+    color: white;
+    text-decoration: none;
+}
+
+.more-news-container {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.more-news-container a {
+    color: white;
+    background-image: linear-gradient(to left, var(--main-color) 20%, transparent);
+    padding: 3px 10px;
+    font: bold 1.3em var(--main-font), sans-serif;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.more-news-container a:hover {
+    text-decoration: underline;
 }
 
 @media screen and (min-width: 992px) {
@@ -371,12 +399,13 @@ body {
     .news-container {
         background-repeat: no-repeat;
         background-size: cover;
-        overflow: hidden;
         height: auto;
     }
 
     .title-container > h1 {
         font-size: 2.5em;
+        background-image: linear-gradient(to right, var(--main-color) 20%, transparent);
+        width: fit-content;
     }
 
     .main-news-desktop, .other-news {
@@ -384,26 +413,30 @@ body {
         justify-content: space-between;
         align-items: center;
     }
-    
-    .main-new {
-        width: 68%;
+
+    .news {
+        cursor: pointer;
+    }
+
+    .main-news {
+        width: 69%;
         height: 50vh;
     }
 
-    .second-new {
+    .main-news img {
+        object-position: center;
+    }
+
+    .secondary-news {
         width: 30%;
         height: 50vh;
     }
 
-    .new {
-        cursor: pointer;
-    }
-
-    .other-news .new {
+    .other-news .news {
         width: 24%;
     }
 
-    .new .info {
-        width: 100%;
+    .more-news-container a {
+        font-size: 2em;
     }
 }

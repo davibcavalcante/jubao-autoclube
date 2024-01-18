@@ -1,0 +1,86 @@
+<!--
+            <div class="main-new new">
+                <section class="new-image-container">
+                    <a href="<%= news[0].external %>" >
+                        <img src="<%= news[0].url %>" alt="">
+                    </a>
+                </section>
+                <section class="info">
+                    <a href="/new/<%= encodeURIComponent(news[0].url) %>/<%= news[0].date %>/<%= news[0].title %>">
+                        <p><%= news[0].date %></p>
+                        <h1><%= news[0].title %></h1>
+                    </a>
+                </section>
+            </div>
+            <div class="secondary-new new">
+                <section class="new-image-container">
+                    <a href="/new/<%= encodeURIComponent(news[1].url) %>/<%= news[1].date %>/<%= news[1].title %>">
+                        <img src="<%= news[1].url %>" alt="">
+                    </a>
+                </section>
+                <section class="info">
+                    <a href="/new/<%= encodeURIComponent(news[1].url) %>/<%= news[1].date %>/<%= news[1].title %>">
+                        <p><%= news[1].date %></p>
+                        <h1><%= news[1].title %></h1>
+                    </a>
+                </section>
+            </div>
+        </section>
+        <section class="other-news">
+            <div class="new">
+                <section class="new-image-container">
+                    <a href="/new/<%= encodeURIComponent(news[2].url) %>/<%= news[2].date %>/<%= news[2].title %>">
+                        <img src="<%= news[2].url %>" alt="">
+                    </a>
+                </section>
+                <section class="info">
+                    <a href="/new/<%= encodeURIComponent(news[2].url) %>/<%= news[2].date %>/<%= news[2].title %>">
+                        <p><%= news[2].date %></p>
+                        <h1><%= news[2].title %></h1>
+                    </a>
+                </section>
+            </div>
+            <div class="new">
+                <section class="new-image-container">
+                    <a href="/new/<%= encodeURIComponent(news[3].url) %>/<%= news[3].date %>/<%= news[3].title %>">
+                        <img src="<%= news[3].url %>" alt="">
+                    </a>
+                </section>
+                <section class="info">
+                    <a href="/new/<%= encodeURIComponent(news[3].url) %>/<%= news[3].date %>/<%= news[3].title %>">
+                        <p><%= news[3].date %></p>
+                        <h1><%= news[3].title %></h1>
+                    </a>
+                </section>
+            </div>
+            <div class="new">
+                <section class="new-image-container">
+                    <a href="/new/<%= encodeURIComponent(news[4].url) %>/<%= news[4].date %>/<%= news[4].title %>">
+                        <img src="<%= news[4].url %>" alt="">
+                    </a>
+                </section>
+                <section class="info">
+                    <a href="/new/<%= encodeURIComponent(news[4].url) %>/<%= news[4].date %>/<%= news[4].title %>">
+                        <p><%= news[4].date %></p>
+                        <h1><%= news[4].title %></h1>
+                    </a>
+                </section>
+            </div>
+            <div class="new">
+                <section class="new-image-container">
+                    <a href="/new/<%= encodeURIComponent(news[5].url) %>/<%= news[5].date %>/<%= news[5].title %>">
+                        <img src="<%= news[5].url %>" alt="">
+                    </a>
+                </section>
+                <section class="info">
+                    <a href="/new/<%= encodeURIComponent(news[5].url) %>/<%= news[5].date %>/<%= news[5].title %>">
+                        <p><%= news[5].date %></p>
+                        <h1><%= news[5].title %></h1>
+                    </a>
+                </section>
+            </div>
+        </section>
+        <section class="more-news-container">
+            <a href="/more-news"><span class="light-text">Mais</span> Notícias</a>
+        </section>
+        -->

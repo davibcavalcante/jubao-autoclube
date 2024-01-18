@@ -15,24 +15,27 @@ router.get('/inscricao', (req, res, next) => {
 });
 
 router.get('/quem-somos', (req, res, next) => {
-  res.render('quem-somos')
+  res.render('quem-somos');
 });
 
 router.get('/fotos', (req, res, next) => {
-  res.render('fotos')
-})
+  res.render('fotos');
+});
 
 router.get('/album/:year', (req, res, next) => {
-  const albumOfYear = albumDataMiddlewares.getYear(req)
-  res.render('album', { albumOfYear })
-})
+  const albumOfYear = albumDataMiddlewares.getYear(req);
+  res.render('album', { albumOfYear });
+});
 
 router.post('/inscricao', inscricaoMiddlewares.enviarEmailInscricao);
 
-
 /* home page. (deixar essa rota por último) */
+router.get('/news', (req, res, next) => {
+  res.render('index')
+})
+
 router.get('/', (req, res, next) => {
-  res.render('index', newsDataMiddlewares.getNewsData);
+  res.render('index');
 });
 
 module.exports = router;

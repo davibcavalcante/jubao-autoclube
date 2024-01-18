@@ -1,5 +1,6 @@
 @media screen and (min-width: 992px) {
     .background-desktop-header {
+        overflow-x: hidden;
         display: flex;
         position: relative;
         transition: .5s;
