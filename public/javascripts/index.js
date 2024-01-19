@@ -1,7 +1,7 @@
 const viewWidth = window.innerWidth
 const timer = 3000
 
-const background = document.querySelector('.background-desktop-header')
+const background = document.querySelector('.slide-background-container')
 const videoContainer = document.querySelector('.slide-video-container')
 
 const prevButtons = document.querySelectorAll('.prev-image-btn')

@@ -35,7 +35,7 @@
                     <a href="/inscricao" rel="next" target="_self">Inscrições</a>
                 </li>
                 <li>
-                    <a href="/#news-container" id="link-news">Notícias</a>
+                    <a href="/portal-noticias">Notícias</a>
                 </li>
                 <li>
                     <a href="/fotos" rel="next" target="_self">Galeria de Fotos</a>
@@ -70,61 +70,62 @@
     </header>
 
     <section class="background-desktop-header">
-        <section class="images-container main">
-            <section class="info-header">
-                <section class="cup-name-container">
-                    <h1>COPA SOLIDARIEDADE></h1>
-                    <h2>INSCRIÇÕES ABERTAS</h2>
-                </section>
-                <section class="flex-info-container">
-                    <section class="class-container">
-                        <h1>CATEGORIAS:</h1>
-                        <section class="class-flex">
-                            <ul class="first-class">
-                                <li>INICIANTE</li>
-                                <li>LIGHT</li>
-                            </ul>
-                            <ul class="second-class">
-                                <li>GRADUADO</li>
-                                <li>TURISTA</li>
-                                <li>MASTER</li>
-                            </ul>
+        <section class="slide-background-container">
+            <section class="images-container main">
+                <section class="info-header">
+                    <section class="cup-name-container">
+                        <h1><%= cup %></h1>
+                        <h2>INSCRIÇÕES ABERTAS</h2>
+                    </section>
+                    <section class="flex-info-container">
+                        <section class="class-container">
+                            <h1>CATEGORIAS:</h1>
+                            <section class="class-flex">
+                                <ul class="first-class">
+                                    <li><%= categories.c1 %></li>
+                                    <li><%= categories.c2 %></li>
+                                </ul>
+                                <ul class="second-class">
+                                    <li><%= categories.c3 %></li>
+                                    <li><%= categories.c4 %></li>
+                                    <li><%= categories.c5 %></li>
+                                </ul>
+                            </section>
+                        </section>
+                    </section>
+                    <section class="flex-container">
+                        <section class="button-container">
+                            <a href="/inscricao" class="inscricao-btn">INSCREVER-SE</a>
+                        </section>
+                        <section class="associations-info-container">
+                            <img src="imagens/desktop/cba.png" alt="Logo da CBA" class="logo-info-cba">
+                            <img src="imagens/desktop/faugo-logo.png" alt="Logo da FAUGO" class="logo-info-faugo">
                         </section>
                     </section>
                 </section>
-                <section class="flex-container">
-                    <section class="button-container">
-                        <a href="/inscricao" class="inscricao-btn">INSCREVER-SE</a>
-                    </section>
-                    <section class="associations-info-container">
-                        <img src="imagens/desktop/cba.png" alt="Logo da CBA" class="logo-info-cba">
-                        <img src="imagens/desktop/faugo-logo.png" alt="Logo da FAUGO" class="logo-info-faugo">
-                    </section>
-                </section>
+                <div class="prev-button-container">
+                    <button class="prev-image-btn">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                </div>
+                <div class="next-button-container">
+                    <button class="next-image-btn">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
             </section>
-            <div class="prev-button-container">
-                <button class="prev-image-btn">
-                    <i class="fa-solid fa-arrow-left"></i>
-                </button>
-            </div>
-            <div class="next-button-container">
-                <button class="next-image-btn">
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </div>
-        </section>
-
-        <section class="images-container alternative">
-            <div class="prev-button-container">
-                <button class="prev-image-btn">
-                    <i class="fa-solid fa-arrow-left"></i>
-                </button>
-            </div>
-            <div class="next-button-container">
-                <button class="next-image-btn">
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </div>
+            <section class="images-container alternative">
+                <div class="prev-button-container">
+                    <button class="prev-image-btn">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                </div>
+                <div class="next-button-container">
+                    <button class="next-image-btn">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
         </section>
     </section>
 
@@ -190,6 +191,9 @@
 
         </section>
         <iframe frameborder="0" id="news-iframe" class="hidden"></iframe>
+        <section class="more-news-container">
+            <a href="/portal-noticias"><span class="light-text">Mais</span> Notícias</a>
+        </section>
     </section>
 
     <footer>
@@ -221,7 +225,7 @@
                         <a href="/quem-somos">Quem Somos</a>
                     </li>
                     <li>
-                        <a href="/#news-container">Notícias</a>
+                        <a href="/portal-noticias">Notícias</a>
                     </li>
                 </ul>
             </section>

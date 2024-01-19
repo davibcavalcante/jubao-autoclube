@@ -291,13 +291,17 @@ cepInputs.forEach((input) => {
 numbersInput.forEach((input) => {
     input.addEventListener('input', (e) => {
         const inputNumber = e.target
-        const numberValue = inputNumber.value
-        const clearNumber = numberValue.replace(/\D/g, '');
+        let numberValue = inputNumber.value.replace(/[^\d]/g, '')
 
-        const regex = /^(\d{2})(\d{1})(\d{4})(\d{4})$/;
-        const numberFormatted = clearNumber.replace(regex, '($1) $2 $3-$4');
+        if (numberValue.length > 2 && numberValue.length <= 6) {
+            numberValue = numberValue.replace(/(\d{2})(\d{1,4})/, '($1) $2')
+        } else if (numberValue.length > 6 && numberValue.length <= 10) {
+            numberValue = numberValue.replace(/(\d{2})(\d{4})(\d{1,4})/, '($1) $2-$3')
+        } else if (numberValue.length > 10) {
+            numberValue = numberValue.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3').substr(0, 15)
+        }
 
-        inputNumber.value = numberFormatted
+        inputNumber.value = numberValue
     })
 })
 

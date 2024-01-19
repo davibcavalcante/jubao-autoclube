@@ -311,10 +311,6 @@ body {
     text-transform: uppercase;
 }
 
-.more-news-container a:hover {
-    text-decoration: underline;
-}
-
 @media screen and (min-width: 992px) {
     .div, .poeiracast-container p, .gradient-background {
         display: none;
@@ -438,5 +434,9 @@ body {
 
     .more-news-container a {
         font-size: 2em;
+    }
+
+    .more-news-container a:hover {
+        text-decoration: underline;
     }
 }

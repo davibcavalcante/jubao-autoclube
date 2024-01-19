@@ -9,14 +9,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/npq0jlq.css">
 
     <link rel="stylesheet" href="/stylesheets/header.css">
-    <link rel="stylesheet" href="/stylesheets/album.css">
+    <link rel="stylesheet" href="/stylesheets/portal-noticias.css">
     <link rel="stylesheet" href="/stylesheets/footer.css">
-    <title>Album</title>
+    <title>Portal de Notícias</title>
 </head>
 <body>
-    <p id="album-of-year" class="hidden"><%= albumOfYear %></p>
     <header>
         <section class="mobile-header">
             <img src="/imagens/mobile/menu-hamburguer.png" alt="Ícone Menu Hamburguer" class="menu-hamburguer">
@@ -35,7 +35,7 @@
                     <a href="/inscricao" rel="next" target="_self">Inscrições</a>
                 </li>
                 <li>
-                    <a href="/portal-noticias" id="link-news">Notícias</a>
+                    <a href="#">Notícias</a>
                 </li>
                 <li>
                     <a href="/fotos" rel="next" target="_self">Galeria de Fotos</a>
@@ -70,29 +70,28 @@
     </header>
 
     <section class="background-container">
-        <div class="low-fade">
+        <section class="low-fade">
 
-        </div>
-        <div class="high-fade">
-            <h1>Fotos - <%= albumOfYear %> </h1>
+        </section>
+        <section class="high-fade">
+            <h1>Portal de Notícias</h1>
             <p>
-                Cada imagem é uma janela para vivências únicas e marcantes. Essas fotos não apenas capturam corridas emocionantes, mas também destacam os momentos de camaradagem, celebrações e histórias que tornam este projeto verdadeiramente especial. É um convite para mergulhar em uma jornada visual repleta de diversidade e significado, onde a paixão pela velocidade se entrelaça com experiências inesquecíveis.
+                Bem-vindo ao nosso universo de notícias, onde a informação é poder e a atualização é constante! Aqui, você encontrará as últimas e mais relevantes notícias, cuidadosamente selecionadas para mantê-lo informado sobre os acontecimentos mais impactantes ao redor do mundo.
             </p>
-
-            <p class="additional-info">
-                omos transportados para um mundo onde a paixão pelos ralis se entrelaça com a camaradagem entre os participantes. Cada foto não é apenas um instantâneo visual, mas uma narrativa vívida de encontros, celebrações e desafios superados.
+            <p class="desktop-text">
+                Adentra conosco nesse espaço vibrante, onde as manchetes ganham vida e as histórias se desdobram diante dos seus olhos. Seja você apaixonado por política, entusiasta de tecnologia, curioso sobre cultura ou ávido por esportes, temos um leque diversificado de notícias para satisfazer todos os gostos.
             </p>
-
-            <p class="additional-info">
-                Em cada imagem, há o reflexo do carinho e dedicação dos organizadores e participantes, que fazem deste projeto mais do que uma simples competição automobilística. É uma celebração da comunidade, da amizade e das histórias que se desdobram a cada curva, a cada celebração.
+            <p class="desktop-text">
+                Embarque nessa jornada informativa e mantenha-se à frente dos acontecimentos. Aqui, a atualidade é a nossa prioridade, e cada artigo é uma porta de entrada para o entendimento mais profundo do que molda o nosso mundo.
             </p>
-        </div>
+        </section>
     </section>
 
     <main>
-        <section class="photo-container">
+        <section class="news-container" id="news-container">
 
         </section>
+        <iframe id="news-iframe" class="hidden" frameborder="0"></iframe>
     </main>
 
     <footer>
@@ -124,7 +123,7 @@
                         <a href="/quem-somos">Quem Somos</a>
                     </li>
                     <li>
-                        <a href="/portal-noticias">Notícias</a>
+                        <a href="#">Notícias</a>
                     </li>
                 </ul>
             </section>
@@ -162,6 +161,6 @@
     </footer>
 
     <script src="/javascripts/menu.js"></script>
-    <script src="/javascripts/photos.js"></script>
+    <script src="/javascripts/news-portal.js"></script>
 </body>
 </html>

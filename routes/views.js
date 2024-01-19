@@ -1,6 +1,5 @@
 const express = require('express');
 const inscricaoMiddlewares = require('../api/v1/middlewares/inscricao');
-const newsDataMiddlewares = require('../api/v1/middlewares/news-data');
 const albumDataMiddlewares = require('../api/v1/middlewares/album')
 const router = express.Router();
 
@@ -27,15 +26,22 @@ router.get('/album/:year', (req, res, next) => {
   res.render('album', { albumOfYear });
 });
 
-router.post('/inscricao', inscricaoMiddlewares.enviarEmailInscricao);
-
-/* home page. (deixar essa rota por último) */
-router.get('/news', (req, res, next) => {
-  res.render('index')
+router.get('/portal-noticias', (req, res, next) => {
+  res.render('portal-noticias')
 })
 
+/* home page. (deixar essa rota por último) */
 router.get('/', (req, res, next) => {
-  res.render('index');
+  res.render('index', {
+    cup: 'COPA SOLIDARIEDADE', 
+    categories: {
+      c1: 'INICIANTE',
+      c2: 'LIGHT',
+      c3: 'GRADUADO',
+      c4: 'TURISTA',
+      c5: 'MASTER'
+    }
+  });
 });
 
 module.exports = router;

@@ -1,11 +1,11 @@
 module.exports.localNews = (title) => {
     const localNewsArray = [
         {
-            title: 'Lucas Moraes vence pela primeira vez no Dakar',
+            title: '<h1>Lucas Moraes vence pela primeira vez no Dakar</h1>',
             subtitle: '<h2>O difícil trecho cronometrado teve 447 km O Toyota GR DKR Hilux EVO T1U #206 percorreu 447 km sob cronômetro</h2>',
             date: '<p><i class="fa-regular fa-clock"></i> 08 Janeiro 2024</p>',
             image: `<img src="https://cba.org.br/upload/noticias/2024/2659/thumb/lucas-moraes-vence-pela-primeira-vez-no-dakar.jpg">`,
-            newscaster: '<p>Fran Oliveira (Institucional), </br> Fernanda Gonçalves (CNK), </br> Américo Teixeira Junior</p>',
+            newscaster: '<p>Fran Oliveira (Institucional), Fernanda Gonçalves (CNK), Américo Teixeira Junior</p>',
             from: '<p>Comunicação CBA</p>',
             text: `<p>O brasileiro Lucas Moraes venceu nesta segunda-feira, 8, a terceira especial – de 12 - da edição 2024 do Rally Dakar, disputado na Arábia Saudita, e entrou para a história como o primeiro representante do país a conquistar uma etapa na geral na categoria Carros.</p>
 
@@ -17,11 +17,11 @@ module.exports.localNews = (title) => {
         },
 
         {
-            title: 'Gaetano Di Mauro foi o grande campeão da temporada 2023 do Imperio Endurance Brasil',
+            title: '<h1>Gaetano Di Mauro foi o grande campeão da temporada 2023 do Imperio Endurance Brasil</h1>',
             subtitle: '<h2>O piloto venceu as Quatro Horas do Velocittá a bordo de um Ligier</h2>',
             date: '<p><i class="fa-regular fa-clock"></i> 11 Dezembro 2023</p>',
             image: `<img src="https://cba.org.br/upload/noticias/2023/2637/thumb/gaetano-di-mauro-foi-o-grande-campeao-da-temporada-2023-do-imperio-endurance-brasil-.png">`,
-            newscaster: '<p>Fran Oliveira (Institucional), </br> Fernanda Gonçalves (CNK), </br> Américo Teixeira Junior</p>',
+            newscaster: '<p>Fran Oliveira (Institucional), Fernanda Gonçalves (CNK), Américo Teixeira Junior</p>',
             from: '<p>Comunicação CBA</p>',
             text: `<p>Di Mauro, que compete na categoria dos carros mais rápidos do Brasil a bordo de um protótipo Ligier, venceu as Quatro Horas do Velocittá, em Mogi Guaçu (SP), ao lado de Guilherme Bottura e Gustavo Kiryla. A conquista do degrau mais alto do pódio, aliada a uma série de tropeços dos seus principais concorrentes ao longo da prova realizada no último sábado, fez o piloto da equipe BTZ saltar da 12ª posição para o topo da tabela classificação, garantindo a ele o título do campeonato.</p>
 
@@ -39,7 +39,7 @@ module.exports.localNews = (title) => {
         },
     ]
 
-    const foundNews = localNewsArray.find(news => news.title === title);
+    const foundNews = localNewsArray.find(news => news.title.replace(/<\/?[^>]+(>|$)/g, '') === title);
 
     if (foundNews) {
         return foundNews;

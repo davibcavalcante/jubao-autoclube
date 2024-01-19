@@ -1,32 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {    
-    if (window.location.href.includes('news')) {
-        setTimeout(() => {
-            const scrollElement = document.querySelector(`#news-container`)
-            if (scrollElement) {
-                const config = {
-                top: scrollElement.offsetTop - 15,
-                behavior: 'smooth'
-                }
-                window.scrollTo(config)
-            }
-        }, 500)
-    }
-
-    const linkNews = document.querySelector('#link-news')
-
-    linkNews.addEventListener('click', (e) => {
-        e.preventDefault()
-        const targetElement = document.querySelector('#news-container')
-    
-        const options = {
-            top: targetElement.offsetTop,
-            behavior: 'smooth'
-        }
-        if (targetElement) {
-            window.scrollTo(options)
-        }
-    })
-
+document.addEventListener('DOMContentLoaded', () => {
     const updateHtml = (news) => {
         const mainNewsDesktop = document.querySelector('.main-news-desktop')
         const otherNewsContainer = document.querySelector('.other-news')
@@ -52,12 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         <body>
                             <section class="header-container">
                                 ${foundNews.date}
-                                <h1>${foundNews.title}</h1>
+                                ${foundNews.title}
                                 ${foundNews.subtitle}
                             </section>
                         
                             <section class="news-container">
-                                ${foundNews.image}
+                                <section class=image-container>
+                                    ${foundNews.image}
+                                    ${foundNews.newscaster}
+                                    ${foundNews.from}
+                                </section>
                                 <section class="text-container">
                                     ${foundNews.text}
                                 </section>

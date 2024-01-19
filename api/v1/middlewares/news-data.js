@@ -1,8 +1,3 @@
-const getCupName = () => {
-    const cup = 'COPA SOLIDARIEDADE';
-    return cup;
-};
-
 const createNews = (url, title, date, external = false) => {
     if (external) {
         return {
@@ -28,6 +23,12 @@ module.exports.getNews = () => {
             'https://cba.org.br/upload/noticias/2024/2659/thumb/lucas-moraes-vence-pela-primeira-vez-no-dakar.jpg',
             'Lucas Moraes vence pela primeira vez no Dakar',
             '08 Janeiro 2024',
+        ),
+
+        createNews(
+            'https://cba.org.br/upload/noticias/2023/2637/thumb/gaetano-di-mauro-foi-o-grande-campeao-da-temporada-2023-do-imperio-endurance-brasil-.png',
+            'Gaetano Di Mauro foi o grande campeão da temporada 2023 do Imperio Endurance Brasil',
+            '11 Dezembro 2023',
         ),
 
         createNews(
