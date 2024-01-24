@@ -13,9 +13,9 @@
 
     --alternative-color: #140703;
 
-    --main-font: 'Montserrat';
-    --alternative-font: 'Poppins';
-    --title-font: 'IntroHead';
+    --main-font: 'Montserrat', sans-serif;
+    --alternative-font: 'Poppins', sans-serif;
+    --title-font: 'IntroHead', sans-serif;
 }
 
 * {
@@ -55,13 +55,13 @@ header {
 }
 
 .high-fade h1 {
-    font: normal 1.5em var(--title-font), sans-serif;
+    font: normal 1.5em var(--title-font);
     line-height: .9em;
     margin-bottom: 10px;
 }
 
 .high-fade p {
-    font: normal .9em var(--main-font), sans-serif;
+    font: normal .9em var(--main-font);
     text-align: justify;
     hyphens: auto;
     line-height: 1.2em;
@@ -96,11 +96,11 @@ header {
 }
 
 .text-container h1 {
-    font: 500 1.3em var(--main-font), sans-serif;
+    font: 500 1.3em var(--main-font);
 }
 
 .text-container p {
-    font: normal .8em var(--main-font), sans-serif;
+    font: normal .8em var(--main-font);
     margin-bottom: 7px;
 }
 

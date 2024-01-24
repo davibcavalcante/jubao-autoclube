@@ -9,13 +9,13 @@
     --main-color: #f25c05;
     --main-color-low-fade: #f25c055b;
     --main-color-high-fade: #f25c05c9;
+
     --alternative-color: #140703;
     --header-color: #FF945E;
-    --news-bg-color: #a5a5a5;
-    --form-bg-color: #1c0a03;
-    --main-font: 'Montserrat';
-    --alternative-font: 'Poppins';
-    --title-font: 'IntroHead';
+
+    --main-font: 'Montserrat', sans-serif;
+    --alternative-font: 'Poppins', sans-serif;
+    --title-font: 'IntroHead', sans-serif;
 }
 
 /* CONFIGURAÇÕES GERAIS */
@@ -57,11 +57,11 @@ body {
 }
 
 .high-fade h1 {
-    font: normal 2em var(--title-font), sans-serif;
+    font: normal 2em var(--title-font);
 }
 
 .high-fade p {
-    font: normal .8em var(--main-font), sans-serif;
+    font: normal .8em var(--main-font);
     text-align: justify;
     hyphens: auto;
     margin-top: 10px;
@@ -70,7 +70,7 @@ body {
 main {
     display: flex;
     justify-content: center;
-    background: var(--background-color) url(../imagens/mobile/news-bg.jpg) no-repeat fixed center center;
+    background: var(--background-color) url(../imagens/mobile/pattern-bg.jpg) no-repeat fixed center center;
     background-size: cover;
 }
 

@@ -1,5 +1,5 @@
 const express = require('express');
-const inscricaoMiddlewares = require('../api/v1/middlewares/inscricao');
+const inscricaoMiddlewares = require('../api/v1/middlewares/inscricao-info');
 const albumDataMiddlewares = require('../api/v1/middlewares/album')
 const router = express.Router();
 
@@ -10,7 +10,7 @@ router.get('/users', (req, res, next) => {
 });
 
 router.get('/inscricao', (req, res, next) => {
-  res.render("inscricao");
+  res.render("inscricao", inscricaoMiddlewares.getInfo);
 });
 
 router.get('/quem-somos', (req, res, next) => {

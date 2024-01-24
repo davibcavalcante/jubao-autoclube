@@ -20,9 +20,9 @@
     --outline-alternative-color: #189456;
     --gradient-color: #7b2e04;
 
-    --main-font: 'Montserrat';
-    --alternative-font: 'Poppins';
-    --title-font: 'IntroHead';
+    --main-font: 'Montserrat', sans-serif;
+    --alternative-font: 'Poppins', sans-serif;
+    --title-font: 'IntroHead', sans-serif;
 }
 
 * {
@@ -80,12 +80,12 @@ span.input-error {
 }
 
 .high-fade h1 {
-    font: normal 2em var(--title-font), sans-serif;
+    font: normal 2em var(--title-font);
     margin-bottom: 10px;
 }
 
 .high-fade p {
-    font: normal .8em var(--main-font), sans-serif;
+    font: normal .8em var(--main-font);
     text-align: justify;
     hyphens: auto;
     margin-bottom: 7px;
@@ -117,7 +117,7 @@ span.input-error {
 .info-high-fade h1 {
     color: white;
     text-align: center;
-    font: normal 1.5em var(--main-font), sans-serif;
+    font: normal 1.5em var(--main-font);
     letter-spacing: .3em;
 }
 
@@ -141,7 +141,7 @@ span.input-error {
 .buttons-container button, .buttons-container a {
     color: white;
     background-color: transparent;
-    font: normal clamp(.8em, 4vw, 1.2em) var(--alternative-font), sans-serif;
+    font: normal clamp(.8em, 4vw, 1.2em) var(--alternative-font);
     text-decoration: none;
     border: 1px solid white;
     border-radius: 10px;
@@ -190,11 +190,11 @@ span.input-error {
 }
 
 .more-info h1 {
-    font: normal 1.5em var(--main-font), sans-serif;
+    font: normal 1.5em var(--main-font);
 }
 
 .more-info p, .more-info li {
-    font: normal 1em var(--main-font), sans-serif;
+    font: normal 1em var(--main-font);
 }
 
 .info-data div {
@@ -245,9 +245,13 @@ span.input-error {
     transform: translateX(calc((-100% * 4) - (15px * 4)));
 }
 
+form.opacity {
+    filter: brightness(.5);
+}
+
 form h1:not(.statement-container h1, .main-title-container h1), form h2:not(.statement-container h2) {
     color: white;
-    font: 500 2em var(--main-font), sans-serif;
+    font: 500 2em var(--main-font);
     text-transform: uppercase;
     margin: 20px 0 10px 0;
 }
@@ -262,7 +266,7 @@ form h2:not(.statement-container h2) {
 
 .main-title-container h1 {
     color: white;
-    font: normal 2em var(--title-font), sans-serif;
+    font: normal 2em var(--title-font);
     letter-spacing: 0.1em;
 }
 
@@ -275,17 +279,17 @@ form h2:not(.statement-container h2) {
 }
 
 .statement-container h1 {
-    font: 600 1.2em var(--main-font), sans-serif;
+    font: 600 1.2em var(--main-font);
     margin-bottom: 5px;
 }
 
 .statement-container h2 {
-    font: 500 1em var(--main-font), sans-serif;
+    font: 500 1em var(--main-font);
     margin-bottom: 10px;
 }
 
 .statement-container p {
-    font: normal .9em var(--main-font), sans-serif;
+    font: normal .9em var(--main-font);
     text-align: justify;
     text-indent: 1em;
     hyphens: auto;
@@ -305,7 +309,7 @@ form h2:not(.statement-container h2) {
 }
 
 .check-container label {
-    font: normal 1em var(--main-font), sans-serif;
+    font: normal 1em var(--main-font);
 }
 
 .input-container {
@@ -315,7 +319,7 @@ form h2:not(.statement-container h2) {
 
 .input-container label {
     color: white;
-    font: normal 1.2em var(--main-font), sans-serif;
+    font: normal 1.2em var(--main-font);
     display: block;
     margin-bottom: 7px;
 }
@@ -351,7 +355,7 @@ form h2:not(.statement-container h2) {
 
 .input-container span {
     color: var(--placeholder-color);
-    font: normal 1em var(--main-font), sans-serif;
+    font: normal 1em var(--main-font);
     padding: 0 10px;
 
     position: absolute;
@@ -417,9 +421,58 @@ form h2:not(.statement-container h2) {
     padding: 3px 10px;
 }
 
+.message-container {
+    color: var(--placeholder-color);
+    background-color: white;
+    text-align: center;
+
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+
+    width: 95vw;
+    margin: auto;
+    padding: 15px 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.message-container h1 {
+    font: 600 1.3em var(--main-font);
+}
+
+.message-container img {
+    width: 50px;
+    height: 50px;
+}
+
+.message-container p {
+    font-family: var(--main-font);
+}
+
+.message-container button {
+    color: white;
+    background-color: var(--main-color);
+    width: 50%;
+    max-width: 240px;
+    height: 30px;
+
+    border-radius: 10px;
+    border: none;
+}
+
 @media screen and (min-width: 992px) {
     body {
-        background: var(--background-color) url(../imagens/mobile/news-bg.jpg) no-repeat fixed center center;
+        background: var(--background-color) url(../imagens/mobile/pattern-bg.jpg) no-repeat fixed center center;
         background-size: cover;
     }
 
@@ -579,5 +632,27 @@ form h2:not(.statement-container h2) {
 
     .submit-btn-container button[type="submit"]:active {
         transform: scale(.98);
+    }
+
+    .message-container {
+        max-width: 600px;
+    }
+
+    .message-container h1 {
+        font-size: 2em;
+        max-width: 80%;
+    }
+
+    .message-container p {
+        max-width: 80%;
+    }
+
+    .message-container img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .message-container button {
+        max-width: none;
     }
 }

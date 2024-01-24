@@ -6,19 +6,17 @@
 
 :root {
     --background-color: #ffe8c6;
+    --alternative-color: #140703;
+    --header-color: #FF945E;
+
     --main-color: #f25c05;
     --main-color-low-fade: #f25c055b;
     --main-color-high-fade: #f25c05c9;
 
-    --alternative-color: #140703;
-    --header-color: #FF945E;
-    --news-bg-color: #a5a5a5;
-    --form-bg-color: #1c0a03;
-
     --news-font: 'myriad-pro', sans-serif;
-    --main-font: 'Montserrat';
-    --alternative-font: 'Poppins';
-    --title-font: 'IntroHead';
+    --main-font: 'Montserrat', sans-serif;
+    --alternative-font: 'Poppins', sans-serif;
+    --title-font: 'IntroHead', sans-serif;
 }
 
 /* CONFIGURAÇÕES GERAIS */
@@ -73,14 +71,14 @@ body {
 }
 
 .high-fade p {
-    font: normal .8em var(--main-font), sans-serif;
+    font: normal .8em var(--main-font);
     text-align: justify;
     hyphens: auto;
     margin-top: 10px;
 }
 
 main {
-    background: var(--background-color) url(../imagens/mobile/news-bg.jpg) no-repeat fixed center center;
+    background: var(--background-color) url(../imagens/mobile/pattern-bg.jpg) no-repeat fixed center center;
     background-size: cover;
     padding: 20px;
 }
@@ -93,7 +91,7 @@ main {
 
 .title-container h1 {
     color: white;
-    font: bold 2em var(--main-font), sans-serif;
+    font: bold 2em var(--main-font);
 }
 
 .news-container {
@@ -115,7 +113,7 @@ main {
 .info {
     color: white;
     background-color: rgba(0, 0, 0, 0.7);
-    font: normal 1em var(--news-font), sans-serif;
+    font: normal 1em var(--news-font);
     text-decoration: none;
 
     padding: 5px;
@@ -132,7 +130,7 @@ main {
 #news-iframe {
     width: 100%;
     height: auto;
-    min-height: 800px;
+    min-height: 600px;
     margin: 10px 0;
 }
 
@@ -178,7 +176,7 @@ main {
     .news {
         background-image: linear-gradient(to right, var(--main-color) 50%, rgba(0, 0, 0, 0.63));
         margin: 0;
-        width: 49%;
+        width: calc(50% - 20px);
         max-width: none;
         display: flex;
         gap: 10px;

@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="https://kit.fontawesome.com/3954e72066.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="/imagens/desktop/favicon.ico" type="image/x-icon">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +14,8 @@
     <link rel="stylesheet" href="/stylesheets/header.css">
     <link rel="stylesheet" href="/stylesheets/inscricao.css">
     <link rel="stylesheet" href="/stylesheets/footer.css">
-    <title>Inscrição</title>
+    
+    <title>Inscrição | JubãoFe</title>
 </head>
 <body>
     <header>
@@ -72,13 +75,9 @@
 
         </div>
         <div class="high-fade">
-            <h1>FINAL <br> COPA SOLIDARIEDADE</h1>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus dolorum optio nulla soluta exercitationem sint eligendi atque, obcaecati odit, repellendus ea cumque veniam illo mollitia repellat aliquid ipsum id iure.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos autem soluta repudiandae quas beatae, consequuntur pariatur, doloremque possimus unde voluptate nulla ratione tempore incidunt earum nihil iusto perspiciatis, eveniet expedita.
-            </p>
+            <h1> <%= cup.stage %> <br> <%= cup.name %></h1>
+            <p><%= cup.description.p1 %></p>
+            <p><%= cup.description.p2 %></p>
         </div>
     </section>
 
@@ -98,17 +97,17 @@
             <section class="info-data">
                 <div class="data">
                     <h1>DATA DE INÍCIO:</h1>
-                    <p>DD/MM/AAAA</p>
+                    <p> <%= cup.date %> </p>
                 </div>
                 <div class="info-largada">
                     <h1>LARGADA & CHEGADA</h1>
-                    <p><i class="fa-solid fa-location-dot"></i> GOIÂNIA</p>
+                    <p><i class="fa-solid fa-location-dot"></i><%= cup.local%> </p>
                 </div>
             </section>
             <section class="info-class">
                 <h1>CATEGORIAS:</h1>
-                <p>C1: INICIANTE | NOVATO</p>
-                <p>C2: TURISMO | GRADUADO | MASTER</p>
+                <p>C1: <%= cup.categories.c1 %> </p>
+                <p>C2: <%= cup.categories.c2 %> </p>
             </section>
             <section class="info-values">
                 <h1>VALORES:</h1>
@@ -116,18 +115,18 @@
                     <div class="c1">
                         <p>C1:
                             <ul>
-                                <li>R$ 350,00 (ATÉ 3 PESSOAS)</li>
-                                <li>ZEQUINHA ADICIONAL: 75,00</li>
-                                <li>DATA LIMITE: DD/MM/AAAA</li>
+                                <li> <%= cup.values.c1.l1 %> </li>
+                                <li> <%= cup.values.c1.l2 %> </li>
+                                <li> <%= cup.values.c1.l3 %> </li>
                             </ul>
                         </p>
                     </div>
                     <div class="c2">
                         <p>C2:
                             <ul>
-                                <li>R$ 400,00 (2 PESSOAS)</li>
-                                <li>GRID MÍNIMO: 05 CARROS POR CATEGORIA</li>
-                                <li>DATA LIMITE: DD/MM/AAAA</li>
+                                <li> <%= cup.values.c2.l1 %> </li>
+                                <li> <%= cup.values.c2.l2 %> </li>
+                                <li> <%= cup.values.c2.l3 %> </li>
                             </ul>
                         </p>
                     </div>
@@ -242,7 +241,7 @@
                     <section class="input-desktop-container">
                         <section class="input-container">
                             <label for="pilot-name-input">NOME:</label>
-                            <input type="text" name="pilot-name" id="pilot-name-input" required>
+                            <input type="text" name="pilot-name" id="pilot-name-input" class="name-input" required>
                             <span class="placeholder">NOME COMPLETO</span>
                         </section>
                         <section class="input-container">
@@ -257,7 +256,7 @@
                         </section>
                         <section class="input-container">
                             <label for="pilot-shirt-input">TAMANHO DA CAMISA:</label>
-                            <select name="pilot-shirt" id="pilot-shirt-input" required>
+                            <select name="pilot-shirt" id="pilot-shirt-input" class="shirt-input" required>
                                 <option value="" disabled selected hidden>SELECIONE...</option>
                                 <option value="P">P</option>
                                 <option value="M">M</option>
@@ -283,7 +282,7 @@
                     <section class="input-desktop-container">
                         <section class="input-container">
                             <label for="pilot-date-input">DATA DE NASCIMENTO:</label>
-                            <input type="date" name="pilot-date" id="pilot-date-input" required>
+                            <input type="date" name="pilot-date" id="pilot-date-input" class="date-input" required>
                         </section>
                         <section class="input-container">
                             <label for="pilot-number-input">NÚMERO:</label>
@@ -297,7 +296,7 @@
                         </section>
                         <section class="input-container">
                             <label for="pilot-email-input">EMAIL:</label>
-                            <input type="email" name="pilot-email" id="pilot-email-input" required>
+                            <input type="email" name="pilot-email" id="pilot-email-input" class="email-input" required>
                             <span class="placeholder">EMAIL</span>
                         </section>
                     </section>
@@ -362,7 +361,7 @@
                     <section class="input-desktop-container">
                         <section class="input-container">
                             <label for="nav-name-input">NOME:</label>
-                            <input type="text" name="nav-name" id="nav-name-input" required>
+                            <input type="text" name="nav-name" id="nav-name-input" class="name-input" required>
                             <span class="placeholder">NOME COMPLETO</span>
                         </section>
                         <section class="input-container">
@@ -372,7 +371,7 @@
                         </section>
                         <section class="input-container">
                             <label for="nav-shirt-input">TAMANHO DA CAMISA:</label>
-                            <select name="nav-shirt" id="nav-shirt-input" required>
+                            <select name="nav-shirt" id="nav-shirt-input" class="shirt-input" required>
                                 <option value="" disabled selected hidden>SELECIONE...</option>
                                 <option value="P">P</option>
                                 <option value="M">M</option>
@@ -398,7 +397,7 @@
                     <section class="input-desktop-container">
                         <section class="input-container">
                             <label for="nav-date-input">DATA DE NASCIMENTO:</label>
-                            <input type="date" name="nav-date" id="nav-date-input" required>
+                            <input type="date" name="nav-date" id="nav-date-input" class="date-input" required>
                         </section>
                         <section class="input-container">
                             <label for="nav-number-input">NÚMERO:</label>
@@ -412,7 +411,7 @@
                         </section>
                         <section class="input-container">
                             <label for="nav-email-input">EMAIL:</label>
-                            <input type="email" name="nav-email" id="nav-email-input" required>
+                            <input type="email" name="nav-email" id="nav-email-input" class="email-input" required>
                             <span class="placeholder">EMAIL</span>
                         </section>
                     </section>
@@ -482,7 +481,7 @@
                     <section class="input-desktop-container">
                         <section class="input-container">
                             <label for="aux1-name-input">NOME:</label>
-                            <input type="text" name="aux1-name" id="aux1-name-input" required>
+                            <input type="text" name="aux1-name" id="aux1-name-input" class="name-input" required>
                             <span class="placeholder">NOME COMPLETO</span>
                         </section>
                         <section class="input-container">
@@ -492,7 +491,7 @@
                         </section>
                         <section class="input-container">
                             <label for="aux1-shirt-input">TAMANHO DA CAMISA:</label>
-                            <select name="aux1-shirt" id="aux1-shirt-input" required>
+                            <select name="aux1-shirt" id="aux1-shirt-input" class="shirt-input" required>
                                 <option value="" disabled selected hidden>SELECIONE...</option>
                                 <option value="P">P</option>
                                 <option value="M">M</option>
@@ -518,7 +517,7 @@
                     <section class="input-desktop-container">
                         <section class="input-container">
                             <label for="aux1-date-input">DATA DE NASCIMENTO:</label>
-                            <input type="date" name="aux1-date" id="aux1-date-input" required>
+                            <input type="date" name="aux1-date" id="aux1-date-input" class="date-input" required>
                         </section>
                         <section class="input-container">
                             <label for="aux1-number-input">NÚMERO:</label>
@@ -532,7 +531,7 @@
                         </section>
                         <section class="input-container">
                             <label for="aux1-email-input">EMAIL:</label>
-                            <input type="email" name="aux1-email" id="aux1-email-input" required>
+                            <input type="email" name="aux1-email" id="aux1-email-input" class="email-input" required>
                             <span class="placeholder">EMAIL</span>
                         </section>
                     </section>
@@ -601,7 +600,7 @@
                     <section class="input-desktop-container">
                         <section class="input-container">
                             <label for="aux2-name-input">NOME:</label>
-                            <input type="text" name="aux2-name" id="aux2-name-input" required>
+                            <input type="text" name="aux2-name" id="aux2-name-input" class="name-input" required>
                             <span class="placeholder">NOME COMPLETO</span>
                         </section>
                         <section class="input-container">
@@ -611,7 +610,7 @@
                         </section>
                         <section class="input-container">
                             <label for="aux2-shirt-input">TAMANHO DA CAMISA:</label>
-                            <select name="aux2-shirt" id="aux2-shirt-input" required>
+                            <select name="aux2-shirt" id="aux2-shirt-input" class="shirt-input" required>
                                 <option value="" disabled selected hidden>SELECIONE...</option>
                                 <option value="P">P</option>
                                 <option value="M">M</option>
@@ -637,7 +636,7 @@
                     <section class="input-desktop-container">
                         <section class="input-container">
                             <label for="aux2-date-input">DATA DE NASCIMENTO:</label>
-                            <input type="date" name="aux2-date" id="aux2-date-input" required>
+                            <input type="date" name="aux2-date" id="aux2-date-input" class="date-input" required>
                         </section>
                         <section class="input-container">
                             <label for="aux2-number-input">NÚMERO:</label>
@@ -651,7 +650,7 @@
                         </section>
                         <section class="input-container">
                             <label for="aux2-email-input">EMAIL:</label>
-                            <input type="email" name="aux2-email" id="aux2-email-input" required>
+                            <input type="email" name="aux2-email" id="aux2-email-input" class="email-input" required>
                             <span class="placeholder">EMAIL</span>
                         </section>
                     </section>
@@ -713,6 +712,13 @@
         </section>
     </form>
 
+    <section class="message-container hidden">
+        <img src="" class="figure">
+        <h1 class="title"></h1>
+        <p class="p-info"></p>
+        <button type="button" class="confirm-btn"></button>
+    </section>
+
     <footer>
         <section class="desktop-footer">
             <section class="logo-container">
@@ -722,10 +728,9 @@
                 <h1>INFORMAÇÕES DE CONTATO:</h1>
                 <section class="info-contato">
                     <p>
-                        TELEFONE: 21 2221-4895 <br>
-                        OUVIDORIA: ouvidoria@jubaofe.org.br <br>
-                        SALA DE IMPRENSA: comunicacao@jubaofe.org.br <br>
-                        MARKETING: marketing@cba.org.br
+                        TELEFONE: (62) 9 9999-9999 <br>
+                        CONTATO: jubaofecontato@gmail.com <br>
+                        INSTAGRAM: @rallydojubao
                     </p>
                 </section>
             </section>

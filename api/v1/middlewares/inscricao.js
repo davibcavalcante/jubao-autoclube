@@ -67,7 +67,7 @@ module.exports.enviarEmailInscricao = (req, res) => {
         'cpf': 'CPF',
         'shirt': 'TAMANHO DA CAMISA',
         'blood': 'TIPO SANGUÍNEO',
-        'year': 'ANO',
+        'year': 'ANO DO VEÍCULO',
         'brand': 'MARCA DO VEÍCULO',
         'model': 'MODELO DO VEÍCULO',
         'traction': 'TRAÇÃO DO VEÍCULO',
@@ -101,9 +101,9 @@ module.exports.enviarEmailInscricao = (req, res) => {
   }
 
   mailClient.sendMail(config.inscricoes.emailDestino, `NOVA INSCRIÇÃO: ${data.team.name}`, body, true).then(result => {
-    res.status(200).send({status: "success", message: "Inscrição feita com sucesso"});
+    res.status(200).send({status: "success", message: "Inscrição realizada com sucesso!"});
   }).catch(error => {
     console.log(error);
-    res.status(500).send({status: "error", message: "falha na inscrição"});
+    res.status(500).send({status: "error", message: "Houve uma falha na inscrição!"});
   });
 }

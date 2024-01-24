@@ -26,7 +26,7 @@ header {
 .pages-list {
     color: white;
     background-color: var(--main-color);
-    font: 300 1em var(--alternative-font), sans-serif;
+    font: 300 1em var(--alternative-font);
 
     width: 100%;
     padding: 0 10px;

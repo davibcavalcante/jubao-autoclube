@@ -5,15 +5,17 @@
 }
 
 :root {
-    --background-color: #ffe8c6;
+    --background-color: #ff945e;
     --main-color: #f25c05;
     --alternative-color: #140703;
+
     --header-color: #FF945E;
-    --news-bg-color: #a5a5a5;
+    --discreet-color: #a5a5a5;
     --form-bg-color: #1c0a03;
-    --main-font: 'Montserrat';
-    --alternative-font: 'Poppins';
-    --title-font: 'IntroHead';
+
+    --main-font: 'Montserrat', sans-serif;
+    --alternative-font: 'Poppins', sans-serif;
+    --title-font: 'IntroHead', sans-serif;
 }
 
 /* CONFIGURAÇÕES GERAIS */
@@ -70,12 +72,12 @@ body {
 }
 
 .text-container .info-main {
-    font: bold 3.5vw var(--main-font), sans-serif;
+    font: bold 3.5vw var(--main-font);
     text-align: center;
 }
 
 .text-container .info-alternative {
-    font: bold 2.5vw var(--main-font), sans-serif;
+    font: bold 2.5vw var(--main-font);
     text-align: center;
     font-weight: normal;
     letter-spacing: .4em;
@@ -93,7 +95,7 @@ body {
 .buttons-container a {
     color: white;
     background-color: rgba(172, 149, 149, 0.274);
-    font: normal .8em var(--alternative-font), sans-serif;
+    font: normal .8em var(--alternative-font);
     text-decoration: none;
     text-align: center;
 
@@ -112,8 +114,8 @@ body {
 }
 
 .poeiracast-container p {
-    color: var(--news-bg-color);
-    font: normal 1em var(--main-font), sans-serif;
+    color: var(--discreet-color);
+    font: normal 1em var(--main-font);
     margin-left: 10px;
 }
 
@@ -183,7 +185,7 @@ body {
 
 .info-container h1 {
     color: white;
-    font: normal 1.2em var(--main-font), sans-serif;
+    font: normal 1.2em var(--main-font);
 }
 
 .info-container button {
@@ -196,7 +198,7 @@ body {
 .div {
     width: 100vw;
     height: 1px;
-    background-color: var(--news-bg-color);
+    background-color: var(--discreet-color);
 }
 
 .nav-video-buttons-container {
@@ -228,7 +230,7 @@ body {
 
 .news-container {
     color: white;
-    background: var(--background-color) url(../imagens/mobile/news-bg.jpg) repeat-y fixed center center;
+    background: var(--background-color) url(../imagens/mobile/pattern-bg.jpg) repeat-y fixed center center;
     padding: 10px 20px;
 
     position: relative;
@@ -246,7 +248,7 @@ body {
 }
 
 .title-container > h1 {
-    font: bold 1.3em var(--main-font), sans-serif;
+    font: bold 1.3em var(--main-font);
 }
 
 .news {
@@ -283,12 +285,12 @@ body {
 }
 
 .news .info p {
-    font: 300 .6em var(--main-font), sans-serif;
+    font: 300 .6em var(--main-font);
     margin-bottom: 5px;
 }
 
 .news .info h1 {
-    font: normal .85em var(--main-font), sans-serif;
+    font: normal .85em var(--main-font);
 }
 
 .news a {
@@ -306,7 +308,7 @@ body {
     color: white;
     background-image: linear-gradient(to left, var(--main-color) 20%, transparent);
     padding: 3px 10px;
-    font: bold 1.3em var(--main-font), sans-serif;
+    font: bold 1.3em var(--main-font);
     text-decoration: none;
     text-transform: uppercase;
 }
@@ -390,6 +392,25 @@ body {
         min-width: calc((100% / 3) - 10px);
         justify-content: space-between;
         order: 1;
+    }
+
+    .nav-video-buttons-container button {
+        width: 35px;
+        height: 35px;
+        transition: .5s;
+    }
+
+    .nav-video-buttons-container button:hover {
+        color: var(--main-color);
+        background-color: white;
+    }
+
+    .prev-video-btn {
+        left: 30px;
+    }
+
+    .next-video-btn {
+        right: 30px;
     }
 
     .news-container {

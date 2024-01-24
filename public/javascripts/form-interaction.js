@@ -49,6 +49,7 @@ partSel.addEventListener('change', () => {
             statementAuxRequired('1')
             participantsForm('1', 'enable')
             participantsForm('2', 'disable')
+            enableInputs('1')
             submitForm('navigator', 'disable')
             submitForm('aux1', 'enable')
             break
@@ -58,6 +59,8 @@ partSel.addEventListener('change', () => {
             statementAuxRequired('2')
             participantsForm('1', 'enable')
             participantsForm('2', 'enable')
+            enableInputs('1')
+            enableInputs('2')
             submitForm('navigator', 'disable')
             submitForm('aux1', 'disable')
             submitForm('aux2', 'enable')
@@ -208,6 +211,10 @@ function participantsForm(num, action) {
     const formAction = document.querySelector(`#aux${num}-form`)
     disableInputs(formAction)
     if (action === 'disable') {
+        const inputsForClear = formAction.querySelectorAll('input')
+        const selectForClear = formAction.querySelectorAll('select')
+        clearInputs(inputsForClear)
+        clearInputs(selectForClear)
         formAction.classList.add('hidden-participant')
     } else {
         formAction.classList.remove('hidden-participant')
@@ -228,6 +235,22 @@ function disableInputs(form) {
 
     removeRequired(requiredInputs)
     removeRequired(requiredSelects)
+}
+
+function enableInputs(id) {
+    const formForEnable = document.querySelector(`#aux${id}-form`)
+    const classForEnable = ['name', 'date', 'cpf', 'number', 'shirt', 'email', 'cep']
+
+    classForEnable.forEach((item) => {
+        const inputForEnable = formForEnable.querySelector(`.${item}-input`)
+        inputForEnable.required = true
+    })
+}
+
+function clearInputs(elements) {
+    if (elements) {
+        elements.forEach(element => element.value = '')
+    }
 }
 
 function verifySelect(sel) {

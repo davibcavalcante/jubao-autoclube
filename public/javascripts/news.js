@@ -1,183 +1,180 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const updateHtml = (news) => {
-        const mainNewsDesktop = document.querySelector('.main-news-desktop')
-        const otherNewsContainer = document.querySelector('.other-news')
+const setIframe = async(newsData) => {
+    const response = await fetch(`/api/v1/local-news-data/${newsData.title}`)
+    const foundNews = await response.json()
 
-        const createNews = (newsData, type) => {
-
-            const setIframe = async(newsData) => {
-                const response = await fetch(`/api/v1/local-news-data/${newsData.title}`)
-                const foundNews = await response.json()
-
-                const newsIframe = document.querySelector('#news-iframe')
-                if (newsIframe.classList.contains('hidden')) {
-                    newsIframe.classList.remove('hidden')
-                }
-                
-                const iframeContent = `
-                    <html>
-                        <head>
-                            <link rel="stylesheet" href="/stylesheets/iframe.css">
-                            <script src="https://kit.fontawesome.com/3954e72066.js" crossorigin="anonymous"></script>
-                            <link rel="stylesheet" href="https://use.typekit.net/npq0jlq.css">
-                        </head>
-                        <body>
-                            <section class="header-container">
-                                ${foundNews.date}
-                                ${foundNews.title}
-                                ${foundNews.subtitle}
-                            </section>
-                        
-                            <section class="news-container">
-                                <section class=image-container>
-                                    ${foundNews.image}
-                                    ${foundNews.newscaster}
-                                    ${foundNews.from}
-                                </section>
-                                <section class="text-container">
-                                    ${foundNews.text}
-                                </section>
-                            </section>
-
-                            <section class="credits-container">
-                                ${foundNews.newscaster}
-                                ${foundNews.from}
-                            </section>
-                        </body>
-                    </html>
-                `
-
-                setTimeout(() => {
-                    const rect = newsIframe.getBoundingClientRect()
+    const newsIframe = document.querySelector('#news-iframe')
+    if (newsIframe.classList.contains('hidden')) {
+        newsIframe.classList.remove('hidden')
+    }
     
-                    if (newsIframe) {
-                        window.scrollTo({ top: (window.scrollY + rect.top) - 20, behavior: 'smooth' })
-                    }
-                }, 100)
+    const iframeContent = `
+        <html>
+            <head>
+                <link rel="stylesheet" href="/stylesheets/iframe.css">
+                <script src="https://kit.fontawesome.com/3954e72066.js" crossorigin="anonymous"></script>
+                <link rel="stylesheet" href="https://use.typekit.net/npq0jlq.css">
+            </head>
+            <body>
+                <section class="header-container">
+                    ${foundNews.date}
+                    ${foundNews.title}
+                    ${foundNews.subtitle}
+                </section>
+            
+                <section class="news-container">
+                    <section class=image-container>
+                        ${foundNews.image}
+                        ${foundNews.newscaster}
+                        ${foundNews.from}
+                    </section>
+                    <section class="text-container">
+                        ${foundNews.text}
+                    </section>
+                </section>
 
-                newsIframe.contentDocument.write(iframeContent)
-                newsIframe.contentDocument.close()
-            }
+                <section class="credits-container">
+                    ${foundNews.newscaster}
+                    ${foundNews.from}
+                </section>
+            </body>
+        </html>
+    `
 
-            const createNewsImage = (newsData) => {
-                const image = document.createElement('img')
-                image.setAttribute('src', newsData.url)
+    setTimeout(() => {
+        const rect = newsIframe.getBoundingClientRect()
 
-                return image
-            }
+        if (newsIframe) {
+            window.scrollTo({ top: (window.scrollY + rect.top) - 20, behavior: 'smooth' })
+        }
+    }, 100)
 
-            const createNewsLink = (newsData) => {
-                if (newsData.external) {
-                    const link = document.createElement('a')
-                    link.setAttribute('href', newsData.external)
-                    link.setAttribute('rel', 'external')
-                    link.setAttribute('target', '_blank')
+    newsIframe.contentDocument.write(iframeContent)
+    newsIframe.contentDocument.close()
+}
 
-                    link.appendChild(createNewsImage(newsData))
+const createNewsImage = (newsData) => {
+    const image = document.createElement('img')
+    image.setAttribute('src', newsData.url)
 
-                    return link
-                } else {
-                    const link = document.createElement('a')
-                    link.appendChild(createNewsImage(newsData))
+    return image
+}
 
-                    return link
-                }
-            }
+const createNewsLink = (newsData) => {
+    if (newsData.external) {
+        const link = document.createElement('a')
+        link.setAttribute('href', newsData.external)
+        link.setAttribute('rel', 'external')
+        link.setAttribute('target', '_blank')
 
-            const createTitle = (newsData) => {
-                const title = document.createElement('h1')
-                title.innerText = newsData.title
+        link.appendChild(createNewsImage(newsData))
 
-                return title
-            }
+        return link
+    } else {
+        const link = document.createElement('a')
+        link.appendChild(createNewsImage(newsData))
 
-            const createDate = (newsData) => {
-                const date = document.createElement('p')
-                date.innerText = newsData.date
+        return link
+    }
+}
 
-                return date
-            }
+const createTitle = (newsData) => {
+    const title = document.createElement('h1')
+    title.innerText = newsData.title
 
-            const createImageContainer = (newsData) => {
-                const imageContainer = document.createElement('section')
-                imageContainer.classList.add('news-image-container')
+    return title
+}
 
-                imageContainer.appendChild(createNewsLink(newsData))
+const createDate = (newsData) => {
+    const date = document.createElement('p')
+    date.innerText = newsData.date
 
-                return imageContainer
-            }
+    return date
+}
 
-            const createInfoContainer = (newsData) => {
-                const infoContainer = document.createElement('section')
-                infoContainer.classList.add('info')
+const createImageContainer = (newsData) => {
+    const imageContainer = document.createElement('section')
+    imageContainer.classList.add('news-image-container')
 
-                infoContainer.appendChild(createDate(newsData))
-                infoContainer.appendChild(createTitle(newsData))
+    imageContainer.appendChild(createNewsLink(newsData))
 
-                return infoContainer
-            }
+    return imageContainer
+}
 
-            const imageContainer = createImageContainer(newsData)
-            const infoContainer = createInfoContainer(newsData)
+const createInfoContainer = (newsData) => {
+    const infoContainer = document.createElement('section')
+    infoContainer.classList.add('info')
 
-            if (type === 'main') {
-                const mainNewsContainer = document.createElement('section')
-                mainNewsContainer.classList.add('main-news', 'news')
+    infoContainer.appendChild(createDate(newsData))
+    infoContainer.appendChild(createTitle(newsData))
 
-                if (!newsData.external) {
-                    mainNewsContainer.addEventListener('click', () => {
-                        setIframe(newsData)
-                    })
-                }
+    return infoContainer
+}
 
-                mainNewsContainer.appendChild(imageContainer)
-                mainNewsContainer.appendChild(infoContainer)
+const createNews = (newsData, type) => {
+    const imageContainer = createImageContainer(newsData)
+    const infoContainer = createInfoContainer(newsData)
 
-                mainNewsDesktop.appendChild(mainNewsContainer)
+    if (type === 'main') {
+        const mainNewsContainer = document.createElement('section')
+        mainNewsContainer.classList.add('main-news', 'news')
 
-            } else if (type === 'secondary') {
-                const secondaryNewsContainer = document.createElement('section')
-                secondaryNewsContainer.classList.add('secondary-news', 'news')
-
-                if (!newsData.external) {
-                    secondaryNewsContainer.addEventListener('click', () => {
-                        setIframe(newsData)
-                    })
-                }
-
-                secondaryNewsContainer.appendChild(imageContainer)
-                secondaryNewsContainer.appendChild(infoContainer)
-
-                mainNewsDesktop.appendChild(secondaryNewsContainer)
-
-            } else if (type === 'normal') {
-                const news = document.createElement('section')
-                news.classList.add('news')
-
-                if (!newsData.external) {
-                    news.addEventListener('click', () => {
-                        setIframe(news, newsData)
-                    })
-                }
-
-                news.appendChild(imageContainer)
-                news.appendChild(infoContainer)
-
-                otherNewsContainer.appendChild(news)
-            }
+        if (!newsData.external) {
+            mainNewsContainer.addEventListener('click', () => {
+                setIframe(newsData)
+            })
         }
 
-        news.forEach((newsData, index) => {
-            if (index === 0) {
-                createNews(newsData, 'main')
-            } else if (index === 1) {
-                createNews(newsData, 'secondary')
-            } else if (index > 1 && index < 6) {
-                createNews(newsData, 'normal')
-            }
-        })
-    }
+        mainNewsContainer.appendChild(imageContainer)
+        mainNewsContainer.appendChild(infoContainer)
+        return mainNewsContainer
+    } else if (type === 'secondary') {
+        const secondaryNewsContainer = document.createElement('section')
+        secondaryNewsContainer.classList.add('secondary-news', 'news')
 
+        if (!newsData.external) {
+            secondaryNewsContainer.addEventListener('click', () => {
+                setIframe(newsData)
+            })
+        }
+
+        secondaryNewsContainer.appendChild(imageContainer)
+        secondaryNewsContainer.appendChild(infoContainer)
+        return secondaryNewsContainer
+    } else if (type === 'normal') {
+        const news = document.createElement('section')
+        news.classList.add('news')
+
+        if (!newsData.external) {
+            news.addEventListener('click', () => {
+                setIframe(news, newsData)
+            })
+        }
+
+        news.appendChild(imageContainer)
+        news.appendChild(infoContainer)
+        return news
+    }
+}
+
+const updateHtml = (news) => {
+    const mainNewsDesktop = document.querySelector('.main-news-desktop')
+    const otherNewsContainer = document.querySelector('.other-news')
+
+    news.forEach((newsData, index) => {
+        if (index === 0) {
+            const main = createNews(newsData, 'main')
+            mainNewsDesktop.appendChild(main)
+        } else if (index === 1) {
+            const secondary = createNews(newsData, 'secondary')
+            mainNewsDesktop.appendChild(secondary)
+        } else if (index > 1 && index < 6) {
+            const newsEl = createNews(newsData, 'normal')
+            otherNewsContainer.appendChild(newsEl)
+        }
+    })
+}
+
+document.addEventListener('DOMContentLoaded', () => {
     const newsApi = async() => {
         const result = await fetch('/api/v1/news-data')
         const news = await result.json()
