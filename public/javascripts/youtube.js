@@ -63,20 +63,30 @@ const createCardVideos = (videoData) => {
 const createVideos = (data) => {
     data.forEach((video) => {
         const videoData = {
-            thumbnail: video.snippet.thumbnails.maxres.url,
-            title: video.snippet.title,
-            url: `https://youtu.be/${video.snippet.resourceId.videoId}`
+            thumbnail: video.thumbnails.maxres.url,
+            title: video.title,
+            url: `https://youtu.be/${video.resourceId.videoId}`
         }
 
         return createCardVideos(videoData)
     })
 }
 
+const loadingAnimation = (action) => {
+    const boxAnimation = document.querySelector('.loading-animation')
+    if (action === 'start') {
+        boxAnimation.classList.add('active')
+    } else if (action === 'break') {
+        boxAnimation.classList.replace('active', 'hidden')
+    }
+}
+
 const recentsVideos = async() => {
+    loadingAnimation('start')
     const results = await fetch('/api/v1/youtube-videos')
     const data = await results.json()
-    
-    return createVideos(data.videos)
+    loadingAnimation('break')
+    return createVideos(data)
 }
 
 recentsVideos()

@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://kit.fontawesome.com/3954e72066.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="/imagens/desktop/favicon.ico" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/inscricao-rally.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    
+    <title>Inscrição | JubãoFe</title>
+</head>
+<body>
+    <header>
+        <section class="mobile-header">
+            <img src="/imagens/mobile/menu-hamburguer.png" alt="Ícone Menu Hamburguer" class="menu-hamburguer">
+            <a href="/">
+                <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube" class="logo-jubao">
+            </a>
+        </section>
+        <nav>
+            <section class="desktop-logo-container">
+                <a href="/" rel="prev" target="_self">
+                    <img src="/imagens/desktop/jubao-logo.png" alt="Logo JubãoFe Autoclube">
+                </a>
+            </section>
+            <ul class="pages-list">
+                <li>
+                    <a href="/inscricao" rel="prev" target="_self">Inscrições</a>
+                </li>
+                <li>
+                    <a href="/portal-noticias" rel="next" target="_self">Notícias</a>
+                </li>
+                <li>
+                    <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
+                </li>
+                <li>
+                    <a href="/calendario" rel="next" target="_self">Calendário</a>
+                </li>
+                <li>
+                    <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
+                </li>
+                <section class="associations-container">
+                    <img src="/imagens/mobile/faugo-logo.png" alt="Logo da FAUGO" class="logo-faugo">
+                    <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube" class="logo-jubao">
+                    <img src="/imagens/mobile/cba.png" alt="Logo da CBA" class="logo-cba">
+                </section>
+            </ul>
+            <ul class="social-list">
+                <li>
+                    <a href="https://www.instagram.com/rallydojubao/" rel="external" target="_blank">
+                        <img src="/imagens/desktop/instagram-logo.png" alt="Logo dos Instagram">
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:jubaofecontato@gmail.com" rel="external" target="_blank">
+                        <img src="/imagens/desktop/email-logo.png" alt="Logo do Email">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/@JubaoFe" rel="external" target="_blank">
+                        <img src="/imagens/desktop/youtube-logo.png" alt="Logo do Youtube">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="background-container">
+        <div class="low-fade">
+
+        </div>
+        <div class="high-fade">
+            <section class="name-date-container">
+                <h1 id="rally-name"><%= rally.name %></h1>
+                <h2><%= rally.date %></h2>
+            </section>
+            <p><%= rally.description.p1 %></p>
+            <p><%= rally.description.p2 %></p>
+        </div>
+    </section>
+
+    <section class="info-container hidden">
+        <section class="info-background-container">
+            <div class="info-high-fade">
+                <h1>FAÇA A SUA <br> <span class="bold-text">INSCRIÇÃO</span></h1>
+                <section class="buttons-container">
+                    <button id="info-btn">INFORMAÇÕES</button>
+                    <a href="/albums">VER FOTOS</a>
+                </section>
+            </div>
+            <div class="info-low-fade">
+            </div>
+        </section>
+        <section class="more-info">
+            <section class="info-data-local-duration">
+                <div class="data">
+                    <h1>DATA DE INÍCIO:</h1>
+                    <p> <%= rally.date %> </p>
+                </div>
+                <div class="info-largada">
+                    <h1>LARGADA & CHEGADA:</h1>
+                    <p><i class="fa-solid fa-location-dot"></i> <%= rally.local %> </p>
+                </div>
+                <div>
+                    <h1>DURAÇÃO:</h1>
+                    <p><i class="fa-regular fa-clock"></i> <%= rally.duration %></p>
+                </div>
+            </section>
+            <section class="info-class">
+                <h1>CATEGORIAS:</h1>
+                <p>C1: <%= rally.categories.c1 %> </p>
+                <p>C2: <%= rally.categories.c2 %> </p>
+            </section>
+            <section class="info-values">
+                <h1>VALORES:</h1>
+                <section class="class-container">
+                    <div class="c1">
+                        <p>C1:
+                            <ul>
+                                <li> <%= rally.values.c1.l1 %> </li>
+                                <li> <%= rally.values.c1.l2 %> </li>
+                                <li> <%= rally.values.c1.l3 %> </li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="c2">
+                        <p>C2:
+                            <ul>
+                                <li> <%= rally.values.c2.l1 %> </li>
+                                <li> <%= rally.values.c2.l2 %> </li>
+                                <li> <%= rally.values.c2.l3 %> </li>
+                            </ul>
+                        </p>
+                    </div>
+                </section>
+            </section>
+            <section class="info-payment">
+                <h1>PAGAMENTO VIA PIX:</h1>
+                <ul>
+                    <li>
+                        <p>
+                            <strong>EMAIL:</strong> <br>
+                            <%= rally.payments.email %>
+                        </p>
+                    </li>
+                    <li>
+                        <strong>CNPJ:</strong> <br>
+                        <%= rally.payments.cnpj %>
+                    </li>
+                </ul>
+                <p><strong>- Adicionar descrição da equipe</strong></p>
+            </section>
+        </section>
+    </section>
+
+    <section class="registration-closed">
+        <img src="/imagens/mobile/sem-inscricao.png" alt="">
+    </section>
+
+    <form method="POST" autocomplete="off" class="form-container hidden" id="form">
+        <section class="form-slide-container">
+            <section class="main-title-container">
+                <h1>INSCRIÇÃO</h1>
+            </section>
+            <section id="statement-form">
+                <section class="class-info-container">
+                    <section class="select-desktop-container">
+                        <section class="input-container">
+                            <label for="class-select">CATEGORIA:</label>
+                            <select name="team-class" id="class-select" required>
+                                <option value="" disabled selected hidden>SELECIONE...</option>
+                                <option value="INICIANTE">INICIANTE</option>
+                                <option value="NOVATO">NOVATO</option>
+                                <option value="TURISMO">TURISMO</option>
+                                <option value="GRADUADO">GRADUADO</option>
+                                <option value="MASTER">MASTER</option>
+                            </select>
+                        </section>
+                        <section class="input-container">
+                            <label for="participants-select">PARTICIPANTES:</label>
+                            <select name="team-participants" id="participants-select" required>
+                                <option value="" disabled selected hidden>SELECIONE...</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </section>
+                        <section class="team-container input-container">
+                            <label for="team-name-input">EQUIPE:</label>
+                            <input type="text" name="team-name" id="team-name-input" required>
+                            <span class="placeholder">NOME DA EQUIPE</span>
+                        </section>
+                    </section>
+                    <section class="car-container">
+                        <section class="input-desktop-container">
+                            <section class="input-container">
+                                <label for="car-brand-input">MARCA:</label>
+                                <input type="text" name="car-brand" id="car-brand-input" required>
+                                <span class="placeholder">MARCA DO VEÍCULO</span>
+                            </section>
+                            <section class="input-container">
+                                <label for="car-model-input">MODELO:</label>
+                                <input type="text" name="car-model" id="car-model-input" required>
+                                <span class="placeholder">MODELO DO VEÍCULO</span>
+                            </section>
+                        </section>
+                        <section class="input-desktop-container">
+                            <section class="input-container">
+                                <label for="car-year-input">ANO:</label>
+                                <input type="text" name="car-year" id="car-year-input" required>
+                                <span class="placeholder">ANO DO VEÍCULO</span>
+                            </section>
+                            <section class="input-container">
+                                <label for="car-traction-input">TRAÇÃO:</label>
+                                <input type="text" name="car-traction" id="car-traction-input" required>
+                                <span class="placeholder">TRAÇÃO DO VEÍCULO</span>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+                <section class="statement-container">
+                    <section class="desktop-container">
+                        <h1>TERMO DE RESPONSABILIDADE</h1>
+                        <p>
+                            Declaramos responsáveis pela integridade física de todos os inscritos em nossa equipe e que estarão relacionados nesta ficha de inscrição e termo de responsabilidade. Iremos cumprir os regulamentos e adendos, comprometendo seguir todas as normas legais de trânsito vigentes. Nos responsabilizamos pelos danos físicos, morais e/ou materiais causados por nossa equipe a nós mesmos, terceiros e/ou patrimônio público ou de terceiros causados a nós. Declaramos estar cientes que estaremos, a partir da assinatura deste, participando de competição automobilística que implica correr riscos presumidos e previsíveis inerentes à competição, por conta e riscos próprios, isentando de toda a culpabilidade os organizadores, bem como todas as instituições públicas, privadas e associações envolvidas na parte técnica e promocional do evento e também os patrocinadores e apoiadores.
+                            Estou ciente e concordo que os dados dessa ficha será compartilhado com as entidades de administração do desporto automobilístico nacional CBA(Confederação Brasileira de Automobilismo) e estadual FAUGO (Federação Goiana de Automobilismo). Após efetivação da inscrição não haverá devolução de valores.
+                        </p>
+                    </section>
+                    <section class="desktop-container">
+                        <section class="accept-title-container">
+                            <h1>ESTÁ CIENTE DE ACORDO COM O TERMO DE RESPONSABILIDADE</h1>
+                            <h2>A INSCRIÇÃO SÓ É POSSÍVEL COM A ACEITAÇÃO DESTE TERMO</h2>
+                        </section>
+                        <section class="check-container">
+                            <input type="checkbox" name="accept-pilot" id="accept-pilot-input" required>
+                            <label for="accept-pilot-input">Aceite Piloto</label>
+                        </section>
+                        <section class="check-container">
+                            <input type="checkbox" name="accept-navigator" id="accept-navigator-input" required>
+                            <label for="accept-navigator-input">Aceite Navegador</label>
+                        </section>
+                        <section class="check-container">
+                            <input type="checkbox" name="accept-assistant1" id="accept-assistant1-input">
+                            <label for="accept-assistant1-input">Aceite Auxiliar 1</label>
+                        </section>
+                        <section class="check-container">
+                            <input type="checkbox" name="accept-assistant2" id="accept-assistant2-input">
+                            <label for="accept-assistant2-input">Aceite Auxiliar 2</label>
+                        </section>
+                    </section>
+                </section>
+                <section class="nav-btn-container">
+                    <button type="button" class="next-step-btn">
+                        &rArr;
+                    </button>
+                </section>
+            </section>
+        </section>
+        <section class="form-slide-container">
+            <section id="pilot-form">
+                <h1>Piloto:</h1>
+                <section class="pilot-container">
+                    <section class="input-desktop-container">
+                        <section class="input-container">
+                            <label for="pilot-name-input">NOME:</label>
+                            <input type="text" name="pilot-name" id="pilot-name-input" class="name-input" required>
+                            <span class="placeholder">NOME COMPLETO</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="pilot-cba-input">CÉDULA:</label>
+                            <input type="text" name="pilot-cba" id="pilot-cba-input">
+                            <span class="placeholder">CÉDULA CBA</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="pilot-cpf-input">CPF:</label>
+                            <input type="text" name="pilot-cpf" id="pilot-cpf-input" class="cpf-input" required maxlength="14" minlength="14">
+                            <span class="placeholder">CPF</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="pilot-nationality-input">NACIONALIDADE:</label>
+                            <input type="text" name="pilot-nationality" id="pilot-nationality-input" required>
+                            <span class="placeholder">NACIONALIDADE</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="pilot-marital-input">ESTADO CIVIL:</label>
+                            <select name="pilot-marital" id="pilot-marital-input" required>
+                                <option value="" disabled selected hidden>SELECIONE...</option>
+                                <option value="SOLTEIRO">SOLTEIRO</option>
+                                <option value="CASADO">CASADO</option>
+                                <option value="DIVORCIADO">DIVORCIADO</option>
+                                <option value="VIUVO">VIÚVO</option>
+                            </select>
+                        </section>
+                        <section class="input-container">
+                            <label for="pilot-cnh-input">CATEGORIA DA CNH:</label>
+                            <select name="pilot-cnh" id="pilot-cnh-input" required>
+                                <option value="" disabled selected hidden>SELECIONE...</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                            </select>
+                        </section>
+                        <section class="input-container">
+                            <label for="pilot-sex-input">SEXO:</label>
+                            <select name="pilot-sex" id="pilot-sex-input" required>
+                                <option value="" disabled selected hidden>SELECIONE...</option>
+                                <option value="MASCULINO">MASCULINO</option>
+                                <option value="FEMININO">FEMININO</option>
+                            </select>
+                        </section>
+                    </section>
+
+                    <section class="input-desktop-container">
+                        <section class="input-container">
+                            <label for="pilot-date-input">DATA DE NASCIMENTO:</label>
+                            <input type="date" name="pilot-date" id="pilot-date-input" class="date-input" required>
+                        </section>
+                        <section class="input-container">
+                            <label for="pilot-number-input">NÚMERO:</label>
+                            <input type="text" name="pilot-number" id="pilot-number-input" class="number-input" required>
+                            <span class="placeholder">NÚMERO DE CELULAR</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="pilot-email-input">EMAIL:</label>
+                            <input type="email" name="pilot-email" id="pilot-email-input" class="email-input" required>
+                            <span class="placeholder">EMAIL</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="pilot-birthplace-input">NATURALIDADE:</label>
+                            <input type="text" name="pilot-birthplace" id="pilot-birthplace-input" required>
+                            <span class="placeholder">NATURALIDADE</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="pilot-shirt-input">TAMANHO DA CAMISA:</label>
+                            <select name="pilot-shirt" id="pilot-shirt-input" class="shirt-input" required>
+                                <option value="" disabled selected hidden>SELECIONE...</option>
+                                <option value="P">P</option>
+                                <option value="M">M</option>
+                                <option value="G">G</option>
+                                <option value="GG">GG</option>
+                            </select>
+                        </section>
+                        <section class="input-container">
+                            <label for="pilot-blood-input">TIPO SANGUÍNEO:</label>
+                            <select name="pilot-blood" id="pilot-blood-input" required>
+                                <option value="" disabled selected hidden>SELECIONE...</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+                        </section>
+                    </section>
+                </section>
+    
+                <h2>Endereço</h2>
+                <section class="address-container">
+                    <section class="input-desktop-container">
+                        <section class="input-container">
+                            <label for="pilot-cep-input">CEP:</label>
+                            <input type="text" name="pilot-cep" id="pilot-cep-input" class="cep-input" required>
+                            <span class="placeholder">CEP</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="pilot-city-input">CIDADE:</label>
+                            <input type="text" name="pilot-city" id="pilot-city-input">
+                            <span class="placeholder">CIDADE</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="pilot-neighborhood-input">BAIRRO:</label>
+                            <input type="text" name="pilot-neighborhood" id="pilot-neighborhood-input">
+                            <span class="placeholder">BAIRRO</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="pilot-batch-input">LOTE:</label>
+                            <input type="text" name="pilot-batch" id="pilot-batch-input" required>
+                            <span class="placeholder">LOTE</span>
+                        </section>
+                    </section>
+                    <section class="input-desktop-container">
+                        <section class="input-container">
+                            <label for="pilot-state-input">ESTADO:</label>
+                            <input type="text" name="pilot-state" id="pilot-state-input">
+                            <span class="placeholder">ESTADO</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="pilot-street-input">RUA:</label>
+                            <input type="text" name="pilot-street" id="pilot-street-input">
+                            <span class="placeholder">RUA</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="pilot-block-input">QUADRA:</label>
+                            <input type="text" name="pilot-block" id="pilot-block-input" required>
+                            <span class="placeholder">QUADRA</span>
+                        </section>
+                    </section>
+                </section>
+                <section class="nav-btn-container">
+                    <button type="button" class="prev-step-btn">
+                        &lArr;
+                    </button>
+                    <button type="button" class="next-step-btn">
+                        &rArr;
+                    </button>
+                </section>
+            </section>
+        </section>
+
+        <section class="form-slide-container">
+            <section id="navigator-form">
+                <h1>Navegador:</h1>
+                <section class="nav-container">
+                    <section class="input-desktop-container">
+                        <section class="input-container">
+                            <label for="nav-name-input">NOME:</label>
+                            <input type="text" name="nav-name" id="nav-name-input" class="name-input" required>
+                            <span class="placeholder">NOME COMPLETO</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="nav-cpf-input">CPF:</label>
+                            <input type="text" name="nav-cpf" id="nav-cpf-input" class="cpf-input" required maxlength="14" minlength="14">
+                            <span class="placeholder">CPF</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="nav-shirt-input">TAMANHO DA CAMISA:</label>
+                            <select name="nav-shirt" id="nav-shirt-input" class="shirt-input" required>
+                                <option value="" disabled selected hidden>SELECIONE...</option>
+                                <option value="P">P</option>
+                                <option value="M">M</option>
+                                <option value="G">G</option>
+                                <option value="GG">GG</option>
+                            </select>
+                        </section>
+                        <section class="input-container">
+                            <label for="nav-blood-input">TIPO SANGUÍNEO:</label>
+                            <select name="nav-blood" id="nav-blood-input">
+                                <option value="" disabled selected hidden>SELECIONE...</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+                        </section>
+                    </section>
+
+                    <section class="input-desktop-container">
+                        <section class="input-container">
+                            <label for="nav-date-input">DATA DE NASCIMENTO:</label>
+                            <input type="date" name="nav-date" id="nav-date-input" class="date-input" required>
+                        </section>
+                        <section class="input-container">
+                            <label for="nav-number-input">NÚMERO:</label>
+                            <input type="text" name="nav-number" id="nav-number-input" class="number-input" required>
+                            <span class="placeholder">NÚMERO DE CELULAR</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="nav-email-input">EMAIL:</label>
+                            <input type="email" name="nav-email" id="nav-email-input" class="email-input" required>
+                            <span class="placeholder">EMAIL</span>
+                        </section>
+                    </section>
+                </section>
+    
+                <h2>Endereço</h2>
+                <section class="address-container">
+                    <section class="input-desktop-container">
+                        <section class="input-container">
+                            <label for="nav-cep-input">CEP:</label>
+                            <input type="text" name="nav-cep" id="nav-cep-input" class="cep-input" required>
+                            <span class="placeholder">CEP</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="nav-city-input">CIDADE:</label>
+                            <input type="text" name="nav-city" id="nav-city-input">
+                            <span class="placeholder">CIDADE</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="nav-neighborhood-input">BAIRRO:</label>
+                            <input type="text" name="nav-neighborhood" id="nav-neighborhood-input">
+                            <span class="placeholder">BAIRRO</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="nav-batch-input">LOTE:</label>
+                            <input type="text" name="nav-batch" id="nav-batch-input">
+                            <span class="placeholder">LOTE</span>
+                        </section>
+                    </section>
+                    <section class="input-desktop-container">
+                        <section class="input-container">
+                            <label for="nav-state-input">ESTADO:</label>
+                            <input type="text" name="nav-state" id="nav-state-input">
+                            <span class="placeholder">ESTADO</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="nav-street-input">RUA:</label>
+                            <input type="text" name="nav-street" id="nav-street-input">
+                            <span class="placeholder">RUA</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="nav-block-input">QUADRA:</label>
+                            <input type="text" name="nav-block" id="nav-block-input">
+                            <span class="placeholder">QUADRA</span>
+                        </section>
+                        <section class="submit-btn-container">
+                            <button type="submit" id="submit-form-btn">
+                                Inscrever-se
+                            </button>
+                        </section>
+                    </section>
+                </section>
+                <section class="nav-btn-container">
+                    <button type="button" class="prev-step-btn">
+                        &lArr;
+                    </button>
+                    <button type="button" class="next-step-btn">
+                        &rArr;
+                    </button>
+                </section>
+            </section>
+        </section>
+
+        <section class="form-slide-container">
+            <section id="aux1-form">
+                <h1>Auxiliar 1:</h1>
+                <section class="aux1-container">
+                    <section class="input-desktop-container">
+                        <section class="input-container">
+                            <label for="aux1-name-input">NOME:</label>
+                            <input type="text" name="aux1-name" id="aux1-name-input" class="name-input" required>
+                            <span class="placeholder">NOME COMPLETO</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="aux1-cpf-input">CPF:</label>
+                            <input type="text" name="aux1-cpf" id="aux1-cpf-input" class="cpf-input" required maxlength="14" minlength="14">
+                            <span class="placeholder">CPF</span>
+                        </section>
+                    </section>
+                    <section class="input-desktop-container">
+                        <section class="input-container">
+                            <label for="aux1-shirt-input">TAMANHO DA CAMISA:</label>
+                            <select name="aux1-shirt" id="aux1-shirt-input" class="shirt-input" required>
+                                <option value="" disabled selected hidden>SELECIONE...</option>
+                                <option value="P">P</option>
+                                <option value="M">M</option>
+                                <option value="G">G</option>
+                                <option value="GG">GG</option>
+                            </select>
+                        </section>
+                        <section class="input-container">
+                            <label for="aux1-date-input">DATA DE NASCIMENTO:</label>
+                            <input type="date" name="aux1-date" id="aux1-date-input" class="date-input" required>
+                        </section>
+                    </section>
+                </section>
+
+                <section class="submit-btn-container">
+                    <button type="submit" id="submit-form-btn">
+                        Inscrever-se
+                    </button>
+                </section>
+
+                <section class="nav-btn-container">
+                    <button type="button" class="prev-step-btn">
+                        &lArr;
+                    </button>
+                    <button type="button" class="next-step-btn">
+                        &rArr;
+                    </button>
+                </section>
+            </section>
+        </section>
+
+        <section class="form-slide-container">
+            <section id="aux2-form">
+                <h1>Auxiliar 2:</h1>
+                <section class="aux2-container">
+                    <section class="input-desktop-container">
+                        <section class="input-container">
+                            <label for="aux2-name-input">NOME:</label>
+                            <input type="text" name="aux2-name" id="aux2-name-input" class="name-input" required>
+                            <span class="placeholder">NOME COMPLETO</span>
+                        </section>
+                        <section class="input-container">
+                            <label for="aux2-cpf-input">CPF:</label>
+                            <input type="text" name="aux2-cpf" id="aux2-cpf-input" class="cpf-input" required maxlength="14" minlength="14">
+                            <span class="placeholder">CPF</span>
+                        </section>
+                    </section>
+                    <section class="input-desktop-container">
+                        <section class="input-container">
+                            <label for="aux2-shirt-input">TAMANHO DA CAMISA:</label>
+                            <select name="aux2-shirt" id="aux2-shirt-input" class="shirt-input" required>
+                                <option value="" disabled selected hidden>SELECIONE...</option>
+                                <option value="P">P</option>
+                                <option value="M">M</option>
+                                <option value="G">G</option>
+                                <option value="GG">GG</option>
+                            </select>
+                        </section>
+                        <section class="input-container">
+                            <label for="aux2-date-input">DATA DE NASCIMENTO:</label>
+                            <input type="date" name="aux2-date" id="aux2-date-input" class="date-input" required>
+                        </section>
+                    </section>
+                </section>
+
+                <section class="submit-btn-container">
+                    <button type="submit" id="submit-form-btn">
+                        Inscrever-se
+                    </button>
+                </section>
+    
+                <section class="nav-btn-container">
+                    <button type="button" class="prev-step-btn">
+                        &lArr;
+                    </button>
+                </section>
+            </section>
+        </section>
+    </form>
+
+    <section class="message-container hidden">
+        <img src="" class="figure">
+        <h1 class="title"></h1>
+        <p class="important-message"></p>
+        <button id="show-qr-code-btn" class="qr-code-btn">GERAR QR CODE</button>
+        <section class="qr-code-container hidden">
+            <span class="pix">PIX</span>
+            <img src="" class="qr-code-img">
+            <span class="pay-value"></span>
+        </section>
+        <P class="contact"></P>
+        <p class="p-info"></p>
+        <button type="button" class="confirm-btn"></button>
+    </section>
+
+    <footer>
+        <section class="desktop-footer">
+            <section class="logo-container">
+                <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube">
+            </section>
+            <section class="contato-container">
+                <h1>INFORMAÇÕES DE CONTATO:</h1>
+                <section class="info-contato">
+                    <p>
+                        TELEFONE: (62) 9 9999-9999 <br>
+                        CONTATO: jubaofecontato@gmail.com <br>
+                        INSTAGRAM: @rallydojubao
+                    </p>
+                </section>
+            </section>
+            <section class="acessos-container">
+                <h1>OUTROS ACESSOS:</h1>
+                <ul>
+                    <li>
+                        <a href="#">Inscrições</a>
+                    </li>
+                    <li>
+                        <a href="/portal-noticias" rel="next" target="_self">Notícias</a>
+                    </li>
+                    <li>
+                        <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
+                    </li>
+                    <li>
+                        <a href="/calendario" rel="next" target="_self">Calendário</a>
+                    </li>
+                    <li>
+                        <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
+                    </li>
+                </ul>
+            </section>
+            <section class="redes-container">
+                <h1>SIGA NOS:</h1>
+                <ul>
+                    <li>
+                        <a href="https://www.youtube.com/@JubaoFe" rel="external" target="_blank">
+                            <img src="/imagens/mobile/youtube-logo.png" alt="Ícone do Youtube">
+                            <span>Youtube</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:jubaofecontato@gmail.com">
+                            <img src="/imagens/mobile/email-logo.png" alt="Ícone do Email">
+                            <span>jubaocontato@gmail.com</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/rallydojubao/" rel="external" target="_blank">
+                            <img src="/imagens/mobile/instagram-logo.png" alt="Ícone do Instagram">
+                            <span>Instagram</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <section class="associations-footer">
+                <img src="/imagens/desktop/cba.png" alt="Logo CBA">
+                <img src="/imagens/desktop/faugo-logo.png" alt="Logo FAUGO">
+            </section>
+        </section>
+        <p class="copy">
+            &copy; JubãoFe Autoclube Todos os Direitos Reservados
+        </p>
+    </footer>
+
+    <script src="/javascripts/inscricao-rally.js"></script>
+    <script src="/javascripts/menu.js"></script>
+    <script src="/javascripts/inicializacao-form.js"></script>
+    <script src="/javascripts/mais-informacoes.js"></script>
+    <script src="/javascripts/interacao-form.js"></script>
+</body>
+</html>

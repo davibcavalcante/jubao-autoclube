@@ -4,58 +4,71 @@ const config = require('../../../config.json');
 module.exports.enviarEmailInscricao = (req, res) => {
   const data = req.body
   let body = `
-    <html>
-      <head>
-        <style>
-          * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-          }
+              <h1>DADOS DA INSCRIÇÃO <span class="highlight">${data.team.name}</span></h1>
+            `
+  
+  const html = () => {
+    return `
+            <html>
+              <head>
+                <style>
+                  * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                  }
 
-          body {
-            background-color: black;
-            background-color: #ffe8c6;
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: normal;
-          }
+                  body {
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-weight: normal;
+                  }
 
-          h1 {
-            text-align: center;
-            margin-bottom: 15px;
-          }
+                  h1 {
+                    color: black;
+                    font-size: 3em;
+                    text-align: center;
+                    margin-bottom: 15px;
+                  }
 
-          h2 {
-            color: #f25c05;
-            margin-top: 20px;
-          }
+                  h2 {
+                    font-size: 2.3em;
+                    color: #f25c05;
+                    margin-top: 20px;
+                  }
 
-          p {
-            margin: 5px 0;
-          }
+                  p {
+                    color: black;
+                    font-size: 1.4em;
+                    margin: 5px 0;
+                  }
 
-          strong {
-            font-weight: bold;
-          }
+                  strong {
+                    font-weight: bold;
+                  }
 
-        </style>
-      </head>
+                  .highlight {
+                    color: #f25c05 !important;
+                  }
 
-      <body>
-        <h1>DADOS DA SUA INSCRIÇÃO</h1>    
-      </body>
+                </style>
+            </head>
 
-
-  `;
+            <body>
+              ${body} 
+            </body>
+            </html>
+          `
+  }
 
   function translateNameParticipant(nome) {
     const translate = {
-        'team': 'EQUIPE',
-        'car': 'VEÍCULO',
-        'pilot': 'PILOTO',
-        'navigator': 'NAVEGADOR',
-        'aux1': 'AUXILIAR 1',
-        'aux2': 'AUXILIAR 2'
+        'cup': 'COMPETIÇÃO:',
+        'team': 'EQUIPE:',
+        'car': 'VEÍCULO:',
+        'pilot': 'PILOTO:',
+        'navigator': 'NAVEGADOR:',
+        'aux1': 'AUXILIAR 1:',
+        'aux2': 'AUXILIAR 2:'
     };
     return translate[nome] || nome;
   }
@@ -82,11 +95,17 @@ module.exports.enviarEmailInscricao = (req, res) => {
         'rg': 'RG',
         'class': 'CATEGORIA',
         'participants': 'NÚMERO DE PARTICIPANTES',
-        'email': 'E-MAIL'
+        'email': 'E-MAIL',
+        'cba': 'CÉDULA-CBA',
+        'nationality': 'NACIONALIDADE',
+        'marital': 'ESTADO CIVIL',
+        'cnh': 'CATEGORIA DA CNH',
+        'sex': 'SEXO:',
+        'birthplace': 'NATURALIDADE',
+        'cupName': 'NOME'
     };
     return translateInput[nome] || nome;
 }
-
 
   for (const participant in data) {
       if (Object.hasOwnProperty.call(data, participant)) {
@@ -97,11 +116,11 @@ module.exports.enviarEmailInscricao = (req, res) => {
                   body += `<p><strong>${translateInputName(campo)}:</strong> ${data[participant][campo]}</p>`;
               }
           }
-      }
+      }  
   }
 
-  mailClient.sendMail(config.inscricoes.emailDestino, `NOVA INSCRIÇÃO: ${data.team.name}`, body, true).then(result => {
-    res.status(200).send({status: "success", message: "Inscrição realizada com sucesso!"});
+  mailClient.sendMail(config.inscricoes.emailDestino, `NOVA INSCRIÇÃO: ${data.team.name}`, html(), true).then(result => {
+    res.status(200).send({status: "success", message: "Dados enviados com sucesso!"});
   }).catch(error => {
     console.log(error);
     res.status(500).send({status: "error", message: "Houve uma falha na inscrição!"});

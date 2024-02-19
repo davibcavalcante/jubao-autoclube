@@ -22,7 +22,7 @@
     <header>
         <section class="mobile-header">
             <img src="/imagens/mobile/menu-hamburguer.png" alt="Ícone Menu Hamburguer" class="menu-hamburguer">
-            <a href="/">
+            <a href="/" rel="prev" target="_self">
                 <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube" class="logo-jubao">
             </a>
         </section>
@@ -40,7 +40,10 @@
                     <a href="#">Notícias</a>
                 </li>
                 <li>
-                    <a href="/fotos" rel="next" target="_self">Galeria de Fotos</a>
+                    <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
+                </li>
+                <li>
+                    <a href="/calendario" rel="next" target="_self">Calendário</a>
                 </li>
                 <li>
                     <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
@@ -58,7 +61,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" rel="external" target="_blank">
+                    <a href="mailto:jubaofecontato@gmail.com" rel="external" target="_blank">
                         <img src="/imagens/desktop/email-logo.png" alt="Logo do Email">
                     </a>
                 </li>
@@ -96,6 +99,16 @@
         <iframe id="news-iframe" class="hidden" frameborder="0"></iframe>
     </main>
 
+    <section class="pagination-container">
+        <section class="page-btn-container">
+            <button id="prev-page-btn"><i class="fa-solid fa-arrow-left"></i></button>
+            <section class="page-screen">
+                <p class="page">1</p>
+            </section>
+            <button id="next-page-btn"><i class="fa-solid fa-arrow-right"></i></button>
+        </section>
+    </section>
+
     <footer>
         <section class="desktop-footer">
             <section class="logo-container">
@@ -115,16 +128,19 @@
                 <h1>OUTROS ACESSOS:</h1>
                 <ul>
                     <li>
-                        <a href="/inscricao">Inscrições</a>
-                    </li>
-                    <li>
-                        <a href="/fotos">Galeria de Fotos</a>
-                    </li>
-                    <li>
-                        <a href="/quem-somos">Quem Somos</a>
+                        <a href="/inscricao" rel="next" target="_self">Inscrições</a>
                     </li>
                     <li>
                         <a href="#">Notícias</a>
+                    </li>
+                    <li>
+                        <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
+                    </li>
+                    <li>
+                        <a href="/calendario" rel="next" target="_self">Calendário</a>
+                    </li>
+                    <li>
+                        <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
                     </li>
                 </ul>
             </section>
@@ -138,7 +154,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="mailto:jubaofecontato@gmail.com">
                             <img src="/imagens/mobile/email-logo.png" alt="Ícone do Email">
                             <span>jubaocontato@gmail.com</span>
                         </a>
@@ -162,6 +178,6 @@
     </footer>
 
     <script src="/javascripts/menu.js"></script>
-    <script src="/javascripts/news-portal.js"></script>
+    <script src="/javascripts/portal-noticias.js"></script>
 </body>
 </html>

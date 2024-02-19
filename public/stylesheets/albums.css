@@ -1,0 +1,210 @@
+@font-face {
+    font-family: 'IntroHead';
+    src: url(../fonts/IntroRustG-Base2Line.otf) format(opentype);
+    font-weight: normal;
+}
+
+:root {
+    --background-color: #ffe8c6;
+    --alternative-color: #140703;
+    --dull-color: #666666;
+    --background-album-color: #000000c2;
+    --background-album-color-opacity: #00000048;
+    --header-color: #FF945E;
+
+    --main-color: #f25c05;
+    --main-color-low-fade: #f25c055b;
+    --main-color-high-fade: #f25c05c9;
+
+    --main-font: 'Montserrat', sans-serif;
+    --alternative-font: 'Poppins', sans-serif;
+    --title-font: 'IntroHead', sans-serif;
+}
+
+/* CONFIGURAÇÕES GERAIS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hidden, .additional-info {
+    display: none;
+}
+
+body {
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.light-text {
+    font-weight: 300;
+}
+
+/**/
+
+.background-container {
+    background: var(--background-color) url(../imagens/mobile/gallery-bg.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+.low-fade {
+    background-color: var(--main-color-low-fade);
+    min-height: 150px;
+}
+
+.high-fade {
+    color: white;
+    background-color: var(--main-color-high-fade);
+    height: auto;
+    min-height: 150px;
+    padding: 5px;
+}
+
+.high-fade h1 {
+    font: normal 2em var(--title-font);
+}
+
+.high-fade p {
+    font: normal .8em var(--main-font);
+    text-align: justify;
+    hyphens: auto;
+    margin-top: 10px;
+}
+
+main {
+    background: var(--background-color) url(../imagens/mobile/pattern-bg.jpg) no-repeat fixed center center;
+    background-size: cover;
+    flex: 1;
+}
+
+.album {
+    width: 90vw;
+    height: auto;
+    max-width: 500px;
+    margin: 15px auto;
+
+    position: relative;
+}
+
+.album img {
+    width: 100%;
+    height: 100%;
+    max-height: 300px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.info-container {
+    background-color: var(--main-color-high-fade);
+    position: absolute;
+    padding: 5px 10px;
+    width: 100%;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    z-index: 2;
+}
+
+.info-container h1 {
+    color: white;
+    font: normal 1.5em var(--main-font);
+}
+
+.year-container {
+    display: none;
+}
+
+@media screen and (min-width: 992px) {
+    .additional-info {
+        display: block;
+    }
+
+    .background-container {
+        background-image: url(../imagens/desktop/gallery-bg.jpg);
+        display: flex;
+        min-height: 400px;
+    }
+
+    .low-fade {
+        min-width: 60%;
+        min-height: 0;
+    }
+
+    .high-fade {
+        min-width: 40%;
+        min-height: 0;
+        padding: 10px 15px;
+    }
+
+    .high-fade h1 {
+        font-size: 2.5em;
+    }
+
+    .high-fade p {
+        font-size: 1em;
+    }
+
+    main {
+        display: flex;
+        justify-content: center;
+    }
+
+    .albums-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        max-width: 1200px;
+        margin: 20px;
+        flex: 1;
+    }
+
+    .album {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 0;
+        cursor: pointer;
+        transition: .5s;
+    }
+
+    .album:active {
+        transform: scale(.9);
+    }
+
+    .year-container {
+        background-color: var(--background-album-color);
+        width: 100%;
+        height: 100%;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+
+        transition: .5s;
+    }
+    
+    .year-container h1 {
+        color: var(--dull-color);
+        font: bold 4em var(--alternative-font);
+        transition: .5s;
+    }
+
+    .album:hover .year-container h1 {
+        color: white;
+        font-size: 4.5em;
+    }
+
+    .album:hover .year-container {
+        background-color: var(--background-album-color-opacity);
+    }
+}

@@ -12,6 +12,7 @@
     --main-color-high-fade: #f25c05e0;
 
     --alternative-color: #140703;
+    --dull-color: #e7e7e7;
 
     --main-font: 'Montserrat', sans-serif;
     --alternative-font: 'Poppins', sans-serif;
@@ -25,15 +26,14 @@
 }
 
 body {
-    background-color: var(--background-color);
-}
-
-header {
-    background-color: var(--main-color);
+    background: var(--background-color) url(../imagens/mobile/pattern-bg.jpg) no-repeat fixed center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
 }
 
 .background-container {
-    background: var(--background-color) url(../imagens/mobile/quem-somos-bg.jpg) no-repeat center center;
+    background: var(--background-color) url(../imagens/mobile/quem-somos-banner.jpg) no-repeat center center;
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -64,19 +64,25 @@ header {
     font: normal .9em var(--main-font);
     text-align: justify;
     hyphens: auto;
-    line-height: 1.2em;
+    line-height: 1.5em;
     margin-bottom: 7px;
 }
 
-.structure-container, .collaborators-container, .values-container {
-    margin: 40px 0;
+.topics-container {
+    border-bottom: 1px solid white;
+}
+
+.mission-container, .vision-container, .values-container {
+    width: 90%;
+    max-width: 500px;
+    margin: 40px auto;
     padding: 0 10px;
 }
 
 .image-container {
-    width: 80%;
+    max-width: 100%;
     min-width: 280px;
-    height: 40vw;
+    height: auto;
     min-height: 150px;
     margin: auto;
 }
@@ -90,23 +96,71 @@ header {
 
 .text-container {
     margin-top: 10px;
-    width: 80%;
+    width: 100%;
     min-width: 280px;
     margin: 10px auto;
 }
 
 .text-container h1 {
-    font: 500 1.3em var(--main-font);
+    font: 500 2em var(--title-font);
 }
 
 .text-container p {
-    font: normal .8em var(--main-font);
+    font: normal 1em var(--main-font);
     margin-bottom: 7px;
+    line-height: 1.5em;
+}
+
+main {
+    color: white;
+    background-color: var(--main-color-high-fade);
+    flex: 1;
+}
+
+.genese-jubao-container {
+    width: 80%;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.genese-jubao-container > h1 {
+    font: normal 2.5em var(--title-font);
+}
+
+.topic-container {
+    margin: 20px 0;
+    position: relative;
+}
+
+.topic-container::before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 5px;
+    background-color: white;
+    top: -5px;
+    left: -7.5px;
+}
+
+.topic-container h1 {
+    font: 600 1.5em var(--main-font);
+    margin-bottom: 10px;
+}
+
+.text-image-container img {
+    width: 100%;
+    height: auto;
+}
+
+.text-image-container p {
+    font: normal 1em var(--main-font);
+    line-height: 1.5em;
+    margin-top: 5px;
 }
 
 @media screen and (min-width: 992px) {
     .background-container {
-        background-image: url(../imagens/desktop/quem-somos-bg.jpg);
+        background-image: url(../imagens/desktop/quem-somos-banner.jpg);
         flex-direction: row;
     }
 
@@ -129,27 +183,95 @@ header {
         font-size: 1.2em;
     }
 
-    .topics-container {
+    main {
+        color: white;
+        background-color: var(--main-color-high-fade);
+        margin: auto;
         width: 80vw;
-        max-width: 1200px;
+        max-width: 1000px;
+    }
+
+    .topics-container {
+        width: 100%;
         margin: auto;
     }
 
-    .structure-container, .collaborators-container, .values-container {
+    .mission-container, .vision-container, .values-container {
+        width: 100%;
+        max-width: none;
         display: flex;
+        justify-content: space-evenly;
         gap: 20px;
+    }
+
+    .values-container .text-container {
+        order: 1;
+    }
+
+    .values-container .image-container {
+        order: 2;
     }
 
     .image-container {
         width: 30%;
         height: auto;
+        margin: 0;
     }
 
     .text-container {
+        margin: 0;
         width: 65%;
     }
 
+    .text-container h1 {
+        font-size: 2.5em;
+    }
+
     .text-container p {
-        font-size: 1em;
+        font-size: 1.2em;
+        text-align: justify;
+        hyphens: auto;
+    }
+
+    .genese-jubao-container {
+        max-width: none;
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .genese-jubao-container > h1 {
+        text-align: center;
+    }
+
+    .genese-jubao-container .topic-container:first-of-type h1 {
+        text-align: center;
+    }
+
+    .topic-container {
+        margin: 30px 15px;
+    }
+
+    .topic-container::before {
+        display: none;
+    }
+
+    .topic-container:nth-last-child(1) h1 {
+        text-align: center;
+    }
+
+    .text-image-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .text-image-container img {
+        width: 25%;
+    }
+
+    .text-image-container p {
+        font-size: 1.2em;
+        width: 70%;
+        margin: auto;
     }
 }

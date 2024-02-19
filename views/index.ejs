@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,7 +40,10 @@
                     <a href="/portal-noticias">Notícias</a>
                 </li>
                 <li>
-                    <a href="/fotos" rel="next" target="_self">Galeria de Fotos</a>
+                    <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
+                </li>
+                <li>
+                    <a href="/calendario" rel="next" target="_self">Calendário</a>
                 </li>
                 <li>
                     <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
@@ -58,7 +61,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" rel="external" target="_blank">
+                    <a href="mailto:jubaofecontato@gmail.com" rel="external" target="_blank">
                         <img src="/imagens/desktop/email-logo.png" alt="Logo do Email">
                     </a>
                 </li>
@@ -97,7 +100,7 @@
                     </section>
                     <section class="flex-container">
                         <section class="button-container">
-                            <a href="/inscricao" class="inscricao-btn">INSCREVER-SE</a>
+                            <a href="<%= url %>" class="inscricao-btn">INSCREVER-SE</a>
                         </section>
                         <section class="associations-info-container">
                             <img src="imagens/desktop/cba.png" alt="Logo da CBA" class="logo-info-cba">
@@ -131,70 +134,79 @@
         </section>
     </section>
 
-    <section class="desktop-container">
-        <section class="news-jubao-container">
-            <section class="banner-container">
-                <picture>
-                    <source media="(min-width: 992px)" srcset="imagens/desktop/novidades-bg.jpg">
-                    <img src="imagens/mobile/novidades-bg.jpg" alt="Banner de Novidades">
+    <main>
+        <section class="desktop-container">
+            <section class="news-jubao-container">
+                <section class="banner-container">
+                    <picture>
+                        <source media="(min-width: 992px)" srcset="imagens/desktop/novidades-bg.jpg">
+                        <img src="imagens/mobile/novidades-bg.jpg" alt="Banner de Novidades">
+                    </picture>
+                    <section class="info-banner-container">
+                        <section class="text-container">
+                            <h1 class="info-main"><span class="light-text">CONFIRA E</span> SE INSCREVA</h1>
+                            <h2 class="info-alternative">EM NOSSOS RALLYS</h2>
+                        </section>
+                        <section class="buttons-container">
+                            <a href="/albums">VER FOTOS</a>
+                            <a href="/inscricao">INSCRIÇÃO</a>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="poeiracast-container">
+                <picture class="assista-poeiracast">
+                    <a href="https://youtube.com/playlist?list=PLvEEtPflTXtiOXjWysawlsLv7UeaY27xz&si=uyFUgOtCOiwgMxM9" rel="external" target="_blank">
+                        <source media="(min-width: 992px)" srcset="imagens/desktop/youtube-acompanhe.png">
+                        <img src="imagens/mobile/youtube-acompanhe.png" alt="Mensagem para acompanhar o Podcast 'Poeira Cast no Youtube'">
+                    </a>
                 </picture>
-                <section class="info-banner-container">
-                    <section class="text-container">
-                        <h1 class="info-main"><span class="light-text">CONFIRA E</span> SE INSCREVA</h1>
-                        <h2 class="info-alternative">EM NOSSOS RALLYS</h2>
+                <p>Vídeo recentes</p>
+                <section class="position-relative-container">
+                    <section class="loading-animation"></section>
+                    <section class="video-container">
+                        <section class="slide-video-container">
+
+                        </section>
                     </section>
-                    <section class="buttons-container">
-                        <a href="/fotos">VER FOTOS</a>
-                        <a href="/inscricao">INSCRIÇÃO</a>
+                    <section class="nav-video-buttons-container">
+                        <button class="prev-video-btn">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <button class="next-video-btn">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
                     </section>
                 </section>
+                <div class="div"></div>
             </section>
         </section>
-
-        <section class="poeiracast-container">
-            <picture class="assista-poeiracast">
-                <a href="https://youtube.com/playlist?list=PLvEEtPflTXtiOXjWysawlsLv7UeaY27xz&si=uyFUgOtCOiwgMxM9" rel="external" target="_blank">
-                    <source media="(min-width: 992px)" srcset="imagens/desktop/youtube-acompanhe.png">
-                    <img src="imagens/mobile/youtube-acompanhe.png" alt="Mensagem para acompanhar o Podcast 'Poeira Cast no Youtube'">
-                </a>
-            </picture>
-            <p>Vídeo recentes</p>
-            <section class="position-relative-container">
-                <section class="video-container">
-                    <section class="slide-video-container">
-
-                    </section>
-                </section>
-                <section class="nav-video-buttons-container">
-                    <button class="prev-video-btn">
-                        <i class="fa-solid fa-arrow-left"></i>
-                    </button>
-                    <button class="next-video-btn">
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </section>
+        <section class="news-container" id="news-container">
+            <section class="gradient-background"></section>
+            <section class="title-container">
+                <h1>
+                    <span class="light-text">ÚLTIMAS</span> NOTÍCIAS
+                </h1>
             </section>
-            <div class="div"></div>
+            <section class="main-news-desktop">
+        
+            </section>
+            <section class="other-news">
+            </section>
+            <iframe frameborder="0" id="news-iframe" class="hidden"></iframe>
+            <section class="more-news-container">
+                <a href="/portal-noticias"><span class="light-text">Mais</span> Notícias</a>
+            </section>
         </section>
-    </section>
+    </main>
 
-    <section class="news-container" id="news-container">
-        <section class="gradient-background"></section>
-        <section class="title-container">
-            <h1>
-                <span class="light-text">ÚLTIMAS</span> NOTÍCIAS
-            </h1>
-        </section>
-        <section class="main-news-desktop">
-            
-        </section>
-
-        <section class="other-news">
-
-        </section>
-        <iframe frameborder="0" id="news-iframe" class="hidden"></iframe>
-        <section class="more-news-container">
-            <a href="/portal-noticias"><span class="light-text">Mais</span> Notícias</a>
+    <section class="sponsorship-container">
+        <h1>Patrocínios</h1>
+        <section class="sponsorship-logo-container">
+            <img src="/imagens/patrocinadores/accert-transportes.png" alt="Logo da Accert Transportes">
+            <img src="/imagens/patrocinadores/kairos-tcc.png" alt="Logo da Kairos TCC">
+            <img src="/imagens/patrocinadores/tottal-car.png" alt="Logo da Tottal Car">
+            <img src="/imagens/patrocinadores/vs-engenharia.png" alt="Logo da VS Engenharia">
         </section>
     </section>
 
@@ -217,16 +229,19 @@
                 <h1>OUTROS ACESSOS:</h1>
                 <ul>
                     <li>
-                        <a href="/inscricao">Inscrições</a>
+                        <a href="/inscricao" rel="next" target="_self">Inscrições</a>
                     </li>
                     <li>
-                        <a href="/fotos">Galeria de Fotos</a>
+                        <a href="/portal-noticias" rel="next" target="_self">Notícias</a>
                     </li>
                     <li>
-                        <a href="/quem-somos">Quem Somos</a>
+                        <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
                     </li>
                     <li>
-                        <a href="/portal-noticias">Notícias</a>
+                        <a href="/calendario" rel="next" target="_self">Calendário</a>
+                    </li>
+                    <li>
+                        <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
                     </li>
                 </ul>
             </section>
@@ -240,7 +255,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="mailto:jubaocontato@gmail.com">
                             <img src="/imagens/mobile/email-logo.png" alt="Ícone do Email">
                             <span>jubaocontato@gmail.com</span>
                         </a>
@@ -266,6 +281,6 @@
     <script src="/javascripts/menu.js"></script>
     <script src="/javascripts/youtube.js"></script>
     <script src="/javascripts/slides.js"></script>
-    <script src="/javascripts/news.js"></script>
+    <script src="/javascripts/noticias.js"></script>
 </body>
 </html>

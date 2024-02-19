@@ -15,9 +15,10 @@
     <link rel="stylesheet" href="/stylesheets/fotos.css">
     <link rel="stylesheet" href="/stylesheets/footer.css">
 
-    <title>Galeria | JubãoFe</title>
+    <title>Album | JubãoFe</title>
 </head>
 <body>
+    <p id="album-of-year" class="hidden"><%= albumOfYear %></p>
     <header>
         <section class="mobile-header">
             <img src="/imagens/mobile/menu-hamburguer.png" alt="Ícone Menu Hamburguer" class="menu-hamburguer">
@@ -27,7 +28,7 @@
         </section>
         <nav>
             <section class="desktop-logo-container">
-                <a href="/">
+                <a href="/" rel="prev" target="_self">
                     <img src="/imagens/desktop/jubao-logo.png" alt="Logo JubãoFe Autoclube">
                 </a>
             </section>
@@ -39,7 +40,10 @@
                     <a href="/portal-noticias" id="link-news">Notícias</a>
                 </li>
                 <li>
-                    <a href="#" rel="next" target="_self">Galeria de Fotos</a>
+                    <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
+                </li>
+                <li>
+                    <a href="/calendario" rel="next" target="_self">Calendário</a>
                 </li>
                 <li>
                     <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
@@ -57,7 +61,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" rel="external" target="_blank">
+                    <a href="mailto:jubaofecontato@gmail.com" rel="external" target="_blank">
                         <img src="/imagens/desktop/email-logo.png" alt="Logo do Email">
                     </a>
                 </li>
@@ -75,34 +79,41 @@
 
         </div>
         <div class="high-fade">
-            <h1>Galeria de <br> fotos</h1>
+            <h1>Fotos - <%= albumOfYear %> </h1>
             <p>
-                Aqui em nossa galeria, você encontrará momentos incríveis registrados nos eventos de Rally do JubaoFe Autoclube. Cada foto conta uma história de paixão por velocidade, aventura e camaradagem. Explore as curvas sinuosas, saltos emocionantes e a poeira que envolve cada rali, capturados em imagens que transmitem a intensidade e a emoção desse esporte emocionante.
+                Cada imagem é uma janela para vivências únicas e marcantes. Essas fotos não apenas capturam corridas emocionantes, mas também destacam os momentos de camaradagem, celebrações e histórias que tornam este projeto verdadeiramente especial. É um convite para mergulhar em uma jornada visual repleta de diversidade e significado, onde a paixão pela velocidade se entrelaça com experiências inesquecíveis.
             </p>
 
             <p class="additional-info">
-                Viaje conosco por uma jornada visual que atravessa competições, pilotos destemidos e paisagens deslumbrantes que servem como cenário para esses eventos empolgantes. Cada clique é um testemunho da dedicação de nossa comunidade apaixonada pelo automobilismo.
+                omos transportados para um mundo onde a paixão pelos ralis se entrelaça com a camaradagem entre os participantes. Cada foto não é apenas um instantâneo visual, mas uma narrativa vívida de encontros, celebrações e desafios superados.
             </p>
 
             <p class="additional-info">
-                Convidamos você a mergulhar em nossa galeria, onde a poesia da velocidade e a camaradagem se entrelaçam, transformando cada imagem em uma narrativa única. Seja parte dessa emocionante história visual do JubaoFe Autoclube. Venha explorar e reviver os momentos que tornam o Rally uma experiência inesquecível.
+                Em cada imagem, há o reflexo do carinho e dedicação dos organizadores e participantes, que fazem deste projeto mais do que uma simples competição automobilística. É uma celebração da comunidade, da amizade e das histórias que se desdobram a cada curva, a cada celebração.
             </p>
         </div>
     </section>
 
     <main>
-        <section class="albums-container">
-            <div id="2024" class="album"></div>
-            <div id="2023" class="album"></div>
-            <div id="2022" class="album"></div>
-            <div id="2021" class="album"></div>
-            <div id="2020" class="album"></div>
-            <div id="2019" class="album"></div>
-            <div id="2018" class="album"></div>
-            <div id="2017" class="album"></div>
-            <div id="2016" class="album"></div>
-            <div id="2015" class="album"></div>
-            <div id="2014" class="album"></div>
+        <section class="loading-animation"></section>
+        <section class="photo-container">
+
+        </section>
+        <section class="nav-buttons-container">
+            <section class="back-albums">
+                <button id="back-to-albums-btn"><i class="fa-solid fa-reply-all"></i> Voltar</button>
+            </section>
+            <section class="photos-pages-navigation">
+                <button id="prev-page-btn">
+                    <i class="fa-solid fa-angles-left"></i>
+                </button>
+                <section class="page-screen">
+                    <p class="page">1</p>
+                </section>
+                <button id="next-page-btn">
+                    <i class="fa-solid fa-angles-right"></i>
+                </button>
+            </section>
         </section>
     </main>
 
@@ -125,16 +136,19 @@
                 <h1>OUTROS ACESSOS:</h1>
                 <ul>
                     <li>
-                        <a href="/inscricao">Inscrições</a>
+                        <a href="/inscricao" rel="next" target="_self">Inscrições</a>
                     </li>
                     <li>
-                        <a href="#">Galeria de Fotos</a>
+                        <a href="/portal-noticias" rel="next" target="_self">Notícias</a>
                     </li>
                     <li>
-                        <a href="/quem-somos">Quem Somos</a>
+                        <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
                     </li>
                     <li>
-                        <a href="/portal-noticias">Notícias</a>
+                        <a href="/calendario" rel="next" target="_self">Calendário</a>
+                    </li>
+                    <li>
+                        <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
                     </li>
                 </ul>
             </section>
@@ -148,7 +162,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="mailto:jubaofecontato@gmail.com">
                             <img src="/imagens/mobile/email-logo.png" alt="Ícone do Email">
                             <span>jubaocontato@gmail.com</span>
                         </a>
@@ -172,6 +186,6 @@
     </footer>
 
     <script src="/javascripts/menu.js"></script>
-    <script src="/javascripts/albums.js"></script>
+    <script src="/javascripts/fotos.js"></script>
 </body>
 </html>

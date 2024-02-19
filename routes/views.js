@@ -1,46 +1,58 @@
 const express = require('express');
-const inscricaoMiddlewares = require('../api/v1/middlewares/inscricao-info');
-const albumDataMiddlewares = require('../api/v1/middlewares/album')
+const albumDataMiddlewares = require('../api/v1/middlewares/fotos')
+const rallyJubaoData = require('../api/v1/middlewares/rally-jubao-data')
+
 const router = express.Router();
 
-
 /* GET users listing. */
-router.get('/users', (req, res, next) => {
-  res.send('respond with a resource');
-});
-
 router.get('/inscricao', (req, res, next) => {
-  res.render("inscricao", inscricaoMiddlewares.getInfo);
+  res.render("inscricao");
 });
 
-router.get('/quem-somos', (req, res, next) => {
-  res.render('quem-somos');
-});
-
-router.get('/fotos', (req, res, next) => {
-  res.render('fotos');
-});
-
-router.get('/album/:year', (req, res, next) => {
-  const albumOfYear = albumDataMiddlewares.getYear(req);
-  res.render('album', { albumOfYear });
+router.get('/inscricao/:name', (req, res, next) => {
+  try {
+    const rallyName = req.params.name
+    const arrayRally = rallyJubaoData.getFilterEvents(false, rallyName)
+    const rally = arrayRally[0]
+    res.render('inscricao-rally', { rally })
+  } catch (error) {
+    console.log('Erro ao obter rally:', error.message);
+    res.status(500).json({erro: 'Erro interno do servidor'})
+  }
 });
 
 router.get('/portal-noticias', (req, res, next) => {
   res.render('portal-noticias')
 })
 
-/* home page. (deixar essa rota por último) */
+router.get('/albums', (req, res, next) => {
+  res.render('albums');
+});
+
+router.get('/fotos/:year', (req, res, next) => {
+  const albumOfYear = albumDataMiddlewares.getYear(req);
+  res.render('fotos', { albumOfYear });
+});
+
+router.get('/calendario', (req, res, next) => {
+  res.render('calendario')
+})
+
+router.get('/quem-somos', (req, res, next) => {
+  res.render('quem-somos');
+});
+
 router.get('/', (req, res, next) => {
   res.render('index', {
-    cup: 'COPA SOLIDARIEDADE', 
+    cup: 'RALLY DAY', 
     categories: {
       c1: 'INICIANTE',
       c2: 'LIGHT',
       c3: 'GRADUADO',
       c4: 'TURISTA',
       c5: 'MASTER'
-    }
+    },
+    url: '/inscricao/RALLY DAY'
   });
 });
 

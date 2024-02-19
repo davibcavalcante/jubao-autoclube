@@ -6,12 +6,13 @@
 
 :root {
     --background-color: #ffe8c6;
-    --alternative-color: #140703;
-    --header-color: #FF945E;
-
     --main-color: #f25c05;
     --main-color-low-fade: #f25c055b;
     --main-color-high-fade: #f25c05c9;
+
+    --alternative-color: #140703;
+    --dull-color: #140703ce;
+    --header-color: #FF945E;
 
     --main-font: 'Montserrat', sans-serif;
     --alternative-font: 'Poppins', sans-serif;
@@ -32,13 +33,14 @@
 
 body {
     background-color: var(--background-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .light-text {
     font-weight: 300;
 }
-
-/**/
 
 .background-container {
     background: var(--background-color) url(../imagens/mobile/gallery-bg.jpg) no-repeat center center;
@@ -70,44 +72,111 @@ body {
 }
 
 main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background: var(--background-color) url(../imagens/mobile/pattern-bg.jpg) no-repeat fixed center center;
     background-size: cover;
 }
 
-.album {
+.photo-container {
     width: 90vw;
     height: auto;
-    max-width: 500px;
-    margin: 15px auto;
-
-    position: relative;
+    margin-top: 20px;
 }
 
-.album img {
+.photo-container img {
     width: 100%;
+    max-width: 400px;
     height: auto;
+    max-height: 300px;
+    display: block;
+    margin: auto;
+
     border-radius: 10px;
+    box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 10px;
 }
 
-.info-container {
-    background-color: var(--main-color-high-fade);
-    position: absolute;
-    padding: 5px 10px;
-    width: 100%;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
+.photo-container.error img {
+    box-shadow: none;
 }
 
-.info-container h1 {
+.back-albums {
+    margin-bottom: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-albums button {
     color: white;
-    font: normal 1.5em var(--main-font);
+    background-color: var(--main-color);
+    font: italic normal 1.2em var(--main-font);
+
+    border: none;
+
+    padding: 3px 10px;
+    border-radius: 6px;
+}
+
+.photos-pages-navigation {
+    margin-bottom: 10px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.photos-pages-navigation button {
+    color: white;
+    background-color: var(--main-color);
+    border-radius: 50%;
+    border: none;
+
+    width: 30px;
+    height: 30px;
+}
+
+.page {
+    color: white;
+    background-color: var(--dull-color);
+    font: bold 1.2em var(--alternative-font);
+    border: 2px solid white;
+    border-radius: 50%;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-animation {
+    width: 70px;
+    height: 70px;
+    margin: 20px 0;
+
+    border: 10px solid var(--main-color);
+    border-top: 10px solid transparent;
+    border-radius: 50%;
+}
+
+.loading-animation.active {
+    animation: loading .7s infinite linear;
+}
+
+@keyframes loading {
+    to {
+        transform: rotate(1turn);
+    } 
 }
 
 @media screen and (min-width: 992px) {
-    header {
-        background-color: var(--main-color);
-    }
-    
     .additional-info {
         display: block;
     }
@@ -137,31 +206,63 @@ main {
         font-size: 1em;
     }
 
-    main {
-        display: flex;
-        justify-content: center;
-    }
-
-    .albums-container {
+    .photo-container {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 20px;
         max-width: 1200px;
-        margin: 20px;
-        flex: 1;
+        margin: 15px 0;
     }
 
-    .album {
+    .photo-container.error {
+        display: block;
+    }
+
+    .photo-container.error img {
+        width: fit-content;
+        margin: auto;
+        cursor: default;
+    }
+
+    .photo-container.error img:hover {
+        transform: none;
+    }
+
+    .photo-container img {
         width: 100%;
-        height: auto;
+        height: 300px;
         border-radius: 10px;
         overflow: hidden;
         margin: 0;
         cursor: pointer;
+        transition: .3s;
+    }
+
+    .photo-container img.focus-out {
+        transform: scale(.9);
+    }
+
+    .photo-container img:hover {
+        transform: scale(1.05);
+    }
+
+    .photos-pages-navigation button {
+        width: 50px;
+        border-radius: 10px;
+        cursor: pointer;
         transition: .5s;
     }
 
-    .album:active {
-        transform: scale(.9);
+    .photos-pages-navigation button:hover {
+        transform: scale(1.2);
+    }
+
+    .back-albums button {
+        cursor: pointer;
+        transition: .5s;
+    }
+
+    .back-albums button:hover {
+        transform: scale(1.1);
     }
 }
