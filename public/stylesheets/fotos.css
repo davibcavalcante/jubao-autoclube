@@ -28,7 +28,7 @@
 }
 
 .hidden, .additional-info {
-    display: none;
+    display: none !important;
 }
 
 body {
@@ -162,12 +162,25 @@ main {
     margin: 20px 0;
 
     border: 10px solid var(--main-color);
-    border-top: 10px solid transparent;
+    border-top: 10px solid var(--main-color-low-fade);
     border-radius: 50%;
 }
 
 .loading-animation.active {
     animation: loading .7s infinite linear;
+}
+
+.message-error-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message-error-container img {
+    width: 100%;
+    max-width: 350px;
 }
 
 @keyframes loading {

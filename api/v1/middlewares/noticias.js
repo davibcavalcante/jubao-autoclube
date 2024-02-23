@@ -23,6 +23,7 @@ module.exports.getNews = (pageNumber, pageSize) => {
             'https://cba.org.br/upload/noticias/2024/2682/thumb/automovel-clube-recebe-presidente-da-comissao-nacional-de-circuitos.png',
             'Automóvel Clube Chapecó recebe presidente da Comissão Nacional de Circuitos',
             '17 Fevereiro 2024',
+            'https://cba.org.br/noticias/noticiasinfo/2682/automovel-clube-chapeco-recebe-presidente-da-comissao-nacional-de-circuitos'
         ),
 
         createNews(
@@ -36,6 +37,7 @@ module.exports.getNews = (pageNumber, pageSize) => {
             'https://cba.org.br/upload/noticias/2024/2680/thumb/matheus-morgatto-e-campeao-do-skusa-winter-series.png',
             'Matheus Morgatto é campeão do SKUSA Winter Series',
             '12 Fevereiro 2024',
+            'https://cba.org.br/noticias/noticiasinfo/2680/matheus-morgatto-e-campeao-do-skusa-winter-series'
         ),
 
         createNews(
@@ -56,19 +58,7 @@ module.exports.getNews = (pageNumber, pageSize) => {
             'https://cba.org.br/upload/noticias/2024/2677/thumb/brasileiros-sao-premiados-em-evento-da-fia-no-panama.jpg',
             'Brasileiros são premiados em evento da FIA no Panamá',
             '05 Fevereiro 2024',
-            'https://cba.org.br/campeonato/noticiasinfo/82/2678/campeao-brasileiro-na-junior-menor-raphael-gebara-e-anunciado-pela-cba-como-o-representante-do-brasil-no-trofeu-academy-da-fia-de-2024'
-        ),
-
-        createNews(
-            'https://cba.org.br/upload/noticias/2024/2659/thumb/lucas-moraes-vence-pela-primeira-vez-no-dakar.jpg',
-            'Lucas Moraes vence pela primeira vez no Dakar',
-            '08 Janeiro 2024',
-        ),
-
-        createNews(
-            'https://cba.org.br/upload/noticias/2023/2637/thumb/gaetano-di-mauro-foi-o-grande-campeao-da-temporada-2023-do-imperio-endurance-brasil-.png',
-            'Gaetano Di Mauro foi o grande campeão da temporada 2023 do Imperio Endurance Brasil',
-            '11 Dezembro 2023',
+            'https://cba.org.br/noticias/noticiasinfo/2677/brasileiros-sao-premiados-em-evento-da-fia-no-panama'
         ),
 
         createNews(
@@ -79,10 +69,10 @@ module.exports.getNews = (pageNumber, pageSize) => {
         ),
 
         createNews(
-            'https://cba.org.br/upload/noticias/2024/2660/thumb/com-trechos-ineditos-rally-cerapio-comeca-dia-23-de-janeiro.png',
-            'Com trechos inéditos, Rally Cerapió começa dia 23 de janeiro',
-            ' 09 Janeiro 2024',
-            'https://cba.org.br/campeonato/noticiasinfo/196/2660/com-trechos-ineditos-rally-cerapio-comeca-dia-23-de-janeiro'
+            'https://cba.org.br/upload/noticias/2024/2662/thumb/terceira-edicao-do-fia-motorsport-games-contara-com-programa-de-esports-expandido.png',
+            'Terceira edição do FIA Motorsport Games contará com programa de eSports expandido',
+            '13 Janeiro 2024',
+            'https://cba.org.br/campeonato/noticiasinfo/329/2662/terceira-edicao-do-fia-motorsport-games-contara-com-programa-de-esports-expandido'
         ),
 
         createNews(
@@ -93,17 +83,24 @@ module.exports.getNews = (pageNumber, pageSize) => {
         ),
 
         createNews(
-            'https://cba.org.br/upload/noticias/2024/2662/thumb/terceira-edicao-do-fia-motorsport-games-contara-com-programa-de-esports-expandido.png',
-            'Terceira edição do FIA Motorsport Games contará com programa de eSports expandido',
-            '13 Janeiro 2024',
-            'https://cba.org.br/campeonato/noticiasinfo/329/2662/terceira-edicao-do-fia-motorsport-games-contara-com-programa-de-esports-expandido'
-        ),
-
-        createNews(
             'https://cba.org.br/upload/noticias/2024/2661/thumb/-ldquo-cade-o-carro-o-pirata-lsquo-comeu-rsquo-rdquo-a-aventura-do-team-brazil-no-dakar-2024.jpg',
             '“Cadê o carro? O pirata ‘comeu’!” - A aventura do Team Brazil no Dakar 2024',
             '09 Janeiro 2024',
             'https://cba.org.br/noticias/noticiasinfo/2661/-ldquo-cade-o-carro-o-pirata-lsquo-comeu-rsquo-rdquo-a-aventura-do-team-brazil-no-dakar-2024'
+        ),
+
+        createNews(
+            'https://cba.org.br/upload/noticias/2024/2660/thumb/com-trechos-ineditos-rally-cerapio-comeca-dia-23-de-janeiro.png',
+            'Com trechos inéditos, Rally Cerapió começa dia 23 de janeiro',
+            ' 09 Janeiro 2024',
+            'https://cba.org.br/campeonato/noticiasinfo/196/2660/com-trechos-ineditos-rally-cerapio-comeca-dia-23-de-janeiro'
+        ),
+
+        createNews(
+            'https://cba.org.br/upload/noticias/2024/2659/thumb/lucas-moraes-vence-pela-primeira-vez-no-dakar.jpg',
+            'Lucas Moraes vence pela primeira vez no Dakar',
+            '08 Janeiro 2024',
+            'https://cba.org.br/noticias/noticiasinfo/2659/lucas-moraes-vence-pela-primeira-vez-no-dakar'
         ),
 
     ];

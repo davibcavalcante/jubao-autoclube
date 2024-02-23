@@ -30,7 +30,7 @@
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 body {
@@ -193,6 +193,19 @@ main {
     margin: 10px 0;
 }
 
+.message-error-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message-error-container img {
+    width: 100%;
+    max-width: 350px;
+}
+
 @media screen and (min-width: 992px) {
     .news, .info {
         position: static;
@@ -258,6 +271,7 @@ main {
 
     .page-btn-container button {
         width: 60px;
+        cursor: pointer;
     }
 }
 

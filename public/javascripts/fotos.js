@@ -1,3 +1,12 @@
+const messageError = (method) => {
+    const showsMessageErrorContainer = document.querySelector('.message-error-container')
+    if (method === 'remove') {
+        showsMessageErrorContainer.classList.remove('hidden')
+    } else if (method == 'add' && showsMessageErrorContainer.classList.contains('messa-error-container')){
+        showsMessageErrorContainer.classList.add('hidden')
+    }
+}
+
 const backPageButton = () => {
     const backButton = document.querySelector('#back-to-albums-btn')
     backButton.addEventListener('click', () => {
@@ -114,8 +123,17 @@ const filterPhotos = (dataPhotos) => {
 
 const getPhotos = async() => {
     const useYear = document.querySelector('#album-of-year').innerText
-    const response = await fetch(`/api/v1/fotos/${useYear}`)
-    const data = await response.json()
+    const results = await fetch(`/api/v1/fotos/${useYear}`)
+
+    if (!results.ok) {
+        messageError('remove')
+        loadingAnimation(false)
+        return
+    } else {
+        messageError('add')
+    }
+
+    const data = await results.json()
     return filterPhotos(data)
 }
 

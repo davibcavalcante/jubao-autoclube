@@ -39,8 +39,7 @@ const filterEvents = async (month) => {
   const results = await fetch(req)
 
   if (!results.ok) {
-      console.log('erro')
-      return
+    showsMessageError()
   }
 
   const events = await results.json()
@@ -147,8 +146,7 @@ const createCalendar = async () => {
   const results = await fetch(req)
 
   if (!results.ok) {
-      console.log('erro')
-      return
+      showsMessageError()
   }
 
   const eventsData = await results.json()

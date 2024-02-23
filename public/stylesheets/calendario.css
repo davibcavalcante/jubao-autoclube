@@ -314,6 +314,19 @@ main {
     background-color: var(--jubao-color);
 }
 
+.message-error-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message-error-container img {
+    width: 100%;
+    max-width: 350px;
+}
+
 @media screen and (min-width: 768px) {
     .org-container {
         width: calc((100% / 2) - 20px) !important;

@@ -220,7 +220,7 @@ main {
         gap: 20px;
     }
 
-    .day-container {
+    .event-container {
         margin: 20px;
         cursor: pointer;
     }

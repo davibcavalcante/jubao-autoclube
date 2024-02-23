@@ -1,8 +1,19 @@
+const messageError = (method) => {
+    const showsMessageErrorContainer = document.querySelector('.message-error-container')
+    if (method === 'remove') {
+        showsMessageErrorContainer.classList.remove('hidden')
+    } else if (method == 'add' && showsMessageErrorContainer.classList.contains('messa-error-container')){
+        showsMessageErrorContainer.classList.add('hidden')
+    }
+}
+
 const filterEvents = async (data, method) => {
     const results = await fetch(`/api/v1/calendario/${data}/${method}`)
 
     if (!results.ok) {
-        console.log('Erro na requisição')
+        messageError('remove')
+    } else {
+        messageError('add')
     }
 
     const events = await results.json()
@@ -173,7 +184,9 @@ const createCalendar = async () => {
     const results = await fetch(`/api/v1/calendario/${formattedMonth}/month`)
 
     if (!results.ok) {
-        console.log('Erro na requisição!')
+        messageError('remove')
+    } else {
+        messageError('add')
     }
 
     const rallyOfMonth = await results.json()

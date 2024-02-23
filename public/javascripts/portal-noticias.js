@@ -1,3 +1,12 @@
+const messageError = (method) => {
+    const showsMessageErrorContainer = document.querySelector('.message-error-container')
+    if (method === 'remove') {
+        showsMessageErrorContainer.classList.remove('hidden')
+    } else if (method == 'add' && showsMessageErrorContainer.classList.contains('messa-error-container')){
+        showsMessageErrorContainer.classList.add('hidden')
+    }
+}
+
 const setIframe = async(news) => {
     const response = await fetch(`/api/v1//dados-noticias-locais/${news.title}`)
     const foundNews = await response.json()
@@ -162,8 +171,16 @@ const setPaginationEvents = () => {
 
 const getNewsApi = async (currentPage) => {
     const pageSize = 16
-    const result = await fetch(`/api/v1/noticias/${currentPage}/${pageSize}`)
-    const data = await result.json()
+    const results = await fetch(`/api/v1/noticias/${currentPage}/${pageSize}`)
+
+    if (!results.ok) {
+        messageError('remove')
+        return
+    } else {
+        messageError('add')
+    }
+
+    const data = await results.json()
 
     const news = data.newsForPage
     const totalPages = data.totalPages
