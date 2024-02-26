@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://kit.fontawesome.com/3954e72066.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="/imagens/desktop/favicon.ico" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/npq0jlq.css">
+
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/portal-noticias.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    
+    <title>Portal de Notícias | JubãoFe</title>
+</head>
+<body>
+    <header>
+        <section class="mobile-header">
+            <img src="/imagens/mobile/menu-hamburguer.png" alt="Ícone Menu Hamburguer" class="menu-hamburguer">
+            <a href="/" rel="prev" target="_self">
+                <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube" class="logo-jubao">
+            </a>
+        </section>
+        <nav>
+            <section class="desktop-logo-container">
+                <a href="/">
+                    <img src="/imagens/desktop/jubao-logo.png" alt="Logo JubãoFe Autoclube">
+                </a>
+            </section>
+            <ul class="pages-list">
+                <li>
+                    <a href="/inscricao" rel="next" target="_self">Inscrições</a>
+                </li>
+                <li>
+                    <a href="#">Notícias</a>
+                </li>
+                <li>
+                    <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
+                </li>
+                <li>
+                    <a href="/calendario" rel="next" target="_self">Calendário</a>
+                </li>
+                <li>
+                    <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
+                </li>
+                <section class="associations-container">
+                    <img src="/imagens/mobile/faugo-logo.png" alt="Logo da FAUGO" class="logo-faugo">
+                    <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube" class="logo-jubao">
+                    <img src="/imagens/mobile/cba.png" alt="Logo da CBA" class="logo-cba">
+                </section>
+            </ul>
+            <ul class="social-list">
+                <li>
+                    <a href="https://www.instagram.com/rallydojubao/" rel="external" target="_blank">
+                        <img src="/imagens/desktop/instagram-logo.png" alt="Logo dos Instagram">
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:jubaofecontato@gmail.com" rel="external" target="_blank">
+                        <img src="/imagens/desktop/email-logo.png" alt="Logo do Email">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/@JubaoFe" rel="external" target="_blank">
+                        <img src="/imagens/desktop/youtube-logo.png" alt="Logo do Youtube">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="background-container">
+        <section class="low-fade">
+
+        </section>
+        <section class="high-fade">
+            <h1>Portal de Notícias</h1>
+            <p>
+                Bem-vindo ao nosso universo de notícias, onde a informação é poder e a atualização é constante! Aqui, você encontrará as últimas e mais relevantes notícias, cuidadosamente selecionadas para mantê-lo informado sobre os acontecimentos mais impactantes ao redor do mundo.
+            </p>
+            <p class="desktop-text">
+                Adentra conosco nesse espaço vibrante, onde as manchetes ganham vida e as histórias se desdobram diante dos seus olhos. Seja você apaixonado por política, entusiasta de tecnologia, curioso sobre cultura ou ávido por esportes, temos um leque diversificado de notícias para satisfazer todos os gostos.
+            </p>
+            <p class="desktop-text">
+                Embarque nessa jornada informativa e mantenha-se à frente dos acontecimentos. Aqui, a atualidade é a nossa prioridade, e cada artigo é uma porta de entrada para o entendimento mais profundo do que molda o nosso mundo.
+            </p>
+        </section>
+    </section>
+
+    <main>
+        <section class="message-error-container hidden">
+            <img src="/imagens/mobile/not-found-error.png">
+        </section>
+        <section class="news-container" id="news-container">
+
+        </section>
+        <iframe id="news-iframe" class="hidden" frameborder="0"></iframe>
+    </main>
+
+    <section class="pagination-container">
+        <section class="page-btn-container">
+            <button id="prev-page-btn"><i class="fa-solid fa-arrow-left"></i></button>
+            <section class="page-screen">
+                <p class="page">1</p>
+            </section>
+            <button id="next-page-btn"><i class="fa-solid fa-arrow-right"></i></button>
+        </section>
+    </section>
+
+    <footer>
+        <section class="desktop-footer">
+            <section class="logo-container">
+                <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube">
+            </section>
+            <section class="contato-container">
+                <h1>INFORMAÇÕES DE CONTATO:</h1>
+                <section class="info-contato">
+                    <p>
+                        TELEFONE: (62) 9 8459-4447 <br>
+                        CONTATO: jubaofecontato@gmail.com <br>
+                        INSTAGRAM: @rallydojubao
+                    </p>
+                </section>
+            </section>
+            <section class="acessos-container">
+                <h1>OUTROS ACESSOS:</h1>
+                <ul>
+                    <li>
+                        <a href="/inscricao" rel="next" target="_self">Inscrições</a>
+                    </li>
+                    <li>
+                        <a href="#">Notícias</a>
+                    </li>
+                    <li>
+                        <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
+                    </li>
+                    <li>
+                        <a href="/calendario" rel="next" target="_self">Calendário</a>
+                    </li>
+                    <li>
+                        <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
+                    </li>
+                </ul>
+            </section>
+            <section class="redes-container">
+                <h1>SIGA NOS:</h1>
+                <ul>
+                    <li>
+                        <a href="https://www.youtube.com/@JubaoFe" rel="external" target="_blank">
+                            <img src="/imagens/mobile/youtube-logo.png" alt="Ícone do Youtube">
+                            <span>Youtube</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:jubaofecontato@gmail.com">
+                            <img src="/imagens/mobile/email-logo.png" alt="Ícone do Email">
+                            <span>jubaocontato@gmail.com</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/rallydojubao/" rel="external" target="_blank">
+                            <img src="/imagens/mobile/instagram-logo.png" alt="Ícone do Instagram">
+                            <span>Instagram</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <section class="associations-footer">
+                <img src="/imagens/desktop/cba.png" alt="Logo CBA">
+                <img src="/imagens/desktop/faugo-logo.png" alt="Logo FAUGO">
+            </section>
+        </section>
+        <p class="copy">
+            &copy; JubãoFe Autoclube Todos os Direitos Reservados
+        </p>
+    </footer>
+
+    <script src="/javascripts/menu.js"></script>
+    <script src="/javascripts/portal-noticias.js"></script>
+</body>
+</html>

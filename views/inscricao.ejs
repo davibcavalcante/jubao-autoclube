@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="https://kit.fontawesome.com/3954e72066.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="/imagens/desktop/favicon.ico" type="image/x-icon">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/stylesheets/header.css">
     <link rel="stylesheet" href="/stylesheets/inscricao.css">
     <link rel="stylesheet" href="/stylesheets/footer.css">
-    <title>Inscrição</title>
+
+    <title>Calendário | Jubão Fe</title>
 </head>
 <body>
     <header>
@@ -24,19 +28,22 @@
         </section>
         <nav>
             <section class="desktop-logo-container">
-                <a href="/">
+                <a href="/" rel="prev" target="_self">
                     <img src="/imagens/desktop/jubao-logo.png" alt="Logo JubãoFe Autoclube">
                 </a>
             </section>
             <ul class="pages-list">
                 <li>
-                    <a href="/inscricao" rel="next" target="_self">Inscrições</a>
+                    <a href="#" rel="next" target="_self">Inscrições</a>
                 </li>
                 <li>
-                    <a href="/#news-container">Notícias</a>
+                    <a href="/portal-noticias" rel="next" target="_self">Notícias</a>
                 </li>
                 <li>
-                    <a href="/fotos" rel="next" target="_self">Galeria de Fotos</a>
+                    <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
+                </li>
+                <li>
+                    <a href="/calendario" rel="next" target="_self">Calendário</a>
                 </li>
                 <li>
                     <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
@@ -68,654 +75,80 @@
     </header>
 
     <section class="background-container">
-        <div class="low-fade">
+        <section class="low-fade">
 
-        </div>
-        <div class="high-fade">
-            <h1>FINAL <br> COPA SOLIDARIEDADE</h1>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus dolorum optio nulla soluta exercitationem sint eligendi atque, obcaecati odit, repellendus ea cumque veniam illo mollitia repellat aliquid ipsum id iure.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos autem soluta repudiandae quas beatae, consequuntur pariatur, doloremque possimus unde voluptate nulla ratione tempore incidunt earum nihil iusto perspiciatis, eveniet expedita.
-            </p>
-        </div>
-    </section>
-
-    <section class="info-container">
-        <section class="info-background-container">
-            <div class="info-high-fade">
-                <h1>FAÇA A SUA <br> <span class="bold-text">INSCRIÇÃO</span></h1>
-                <section class="buttons-container">
-                    <button id="info-btn">INFORMAÇÕES</button>
-                    <a href="/fotos">VER FOTOS</a>
-                </section>
-            </div>
-            <div class="info-low-fade">
-            </div>
         </section>
-        <section class="more-info">
-            <section class="info-data">
-                <div class="data">
-                    <h1>DATA DE INÍCIO:</h1>
-                    <p>DD/MM/AAAA</p>
-                </div>
-                <div class="info-largada">
-                    <h1>LARGADA & CHEGADA</h1>
-                    <p><i class="fa-solid fa-location-dot"></i> GOIÂNIA</p>
-                </div>
-            </section>
-            <section class="info-class">
-                <h1>CATEGORIAS:</h1>
-                <p>C1: INICIANTE | NOVATO</p>
-                <p>C2: TURISMO | GRADUADO | MASTER</p>
-            </section>
-            <section class="info-values">
-                <h1>VALORES:</h1>
-                <section class="class-container">
-                    <div class="c1">
-                        <p>C1:
-                            <ul>
-                                <li>R$ 350,00 (ATÉ 3 PESSOAS)</li>
-                                <li>ZEQUINHA ADICIONAL: 75,00</li>
-                                <li>DATA LIMITE: DD/MM/AAAA</li>
-                            </ul>
-                        </p>
-                    </div>
-                    <div class="c2">
-                        <p>C2:
-                            <ul>
-                                <li>R$ 400,00 (2 PESSOAS)</li>
-                                <li>GRID MÍNIMO: 05 CARROS POR CATEGORIA</li>
-                                <li>DATA LIMITE: DD/MM/AAAA</li>
-                            </ul>
-                        </p>
-                    </div>
-                </section>
-            </section>
+        <section class="high-fade">
+            <h1>Rallys Disponíveis para inscrição</h1>
+            <p>Embarque na emoção dos rallys disponíveis e faça parte de uma jornada única com um propósito inspirador. Cada corrida oferece não apenas desafios emocionantes, mas também a oportunidade de contribuir para projetos significativos que impactam vidas ao redor do mundo. Ao participar, você se une a uma comunidade apaixonada em busca de aventura e de fazer a diferença. Inscreva-se agora e escreva seu próprio capítulo nesta história extraordinária!</p>
         </section>
     </section>
 
-    <form method="POST" autocomplete="off" class="form-container" id="form">
-        <section class="form-slide-container">
-            <section class="main-title-container">
-                <h1>INSCRIÇÃO</h1>
+    <section class="filters-container">
+        <section class="months-container">
+            <section id="all" class="option-container selected">
+                <h1>TODOS</h1>
+                <span class="cursor"></span>
             </section>
-            <section id="statement-form">
-                <section class="class-info-container">
-                    <section class="select-desktop-container">
-                        <section class="input-container">
-                            <label for="class-select">CATEGORIA:</label>
-                            <select name="team-class" id="class-select" required>
-                                <option value="" disabled selected hidden>SELECIONE...</option>
-                                <option value="iniciante">INICIANTE</option>
-                                <option value="novato">NOVATO</option>
-                                <option value="turismo">TURISMO</option>
-                                <option value="graduado">GRADUADO</option>
-                                <option value="master">MASTER</option>
-                            </select>
-                        </section>
-                        <section class="input-container">
-                            <label for="participants-select">PARTICIPANTES:</label>
-                            <select name="team-participants" id="participants-select" required>
-                                <option value="" disabled selected hidden>SELECIONE...</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </section>
-                        <section class="team-container input-container">
-                            <label for="team-name-input">EQUIPE:</label>
-                            <input type="text" name="team-name" id="team-name-input" required>
-                            <span class="placeholder">NOME DA EQUIPE</span>
-                        </section>
-                    </section>
-                    <section class="car-container">
-                        <section class="input-desktop-container">
-                            <section class="input-container">
-                                <label for="car-brand-input">MARCA:</label>
-                                <input type="text" name="car-brand" id="car-brand-input" required>
-                                <span class="placeholder">MARCA DO VEÍCULO</span>
-                            </section>
-                            <section class="input-container">
-                                <label for="car-model-input">MODELO:</label>
-                                <input type="text" name="car-model" id="car-model-input" required>
-                                <span class="placeholder">MODELO DO VEÍCULO</span>
-                            </section>
-                        </section>
-                        <section class="input-desktop-container">
-                            <section class="input-container">
-                                <label for="car-year-input">ANO:</label>
-                                <input type="text" name="car-year" id="car-year-input" required>
-                                <span class="placeholder">ANO DO VEÍCULO</span>
-                            </section>
-                            <section class="input-container">
-                                <label for="car-traction-input">TRAÇÃO:</label>
-                                <input type="text" name="car-traction" id="car-traction-input" required>
-                                <span class="placeholder">TRAÇÃO DO VEÍCULO</span>
-                            </section>
-                        </section>
-                    </section>
-                </section>
-                <section class="statement-container">
-                    <section class="desktop-container">
-                        <h1>TERMO DE RESPONSABILIDADE</h1>
-                        <p>
-                            Declaramos responsáveis pela integridade física de todos os inscritos em nossa equipe e que estarão relacionados nesta ficha de inscrição e termo de responsabilidade.
-                            Iremos cumprir os regulamentos e adendos, comprometendo seguir todas as normas legais de trânsito vigentes. Nos responsabilizamos pelos danos físicos, morais e/ou materiais causados por nossa equipe a nós mesmos, terceiros e/ou patrimônio público ou de terceiros causados a nós. Declaramos estar cientes que estaremos, a partir da assinatura deste, participando de competição automobilística que implica correr riscos presumidos e previsíveis inerentes à competição, por conta e riscos próprios, isentando de toda a culpabilidade os organizadores, bem como todas as instituições públicas, privadas e associações envolvidas na parte técnica e promocional do evento e também os patrocinadores e apoiadores.Após efetivada a inscrição não haverá devolução da mesma.
-                        </p>
-                    </section>
-                    <section class="desktop-container">
-                        <section class="accept-title-container">
-                            <h1>ESTÁ CIENTE DE ACORDO COM O TERMO DE RESPONSABILIDADE</h1>
-                            <h2>A INSCRIÇÃO SÓ É POSSÍVEL COM A ACEITAÇÃO DESTE TERMO</h2>
-                        </section>
-                        <section class="check-container">
-                            <input type="checkbox" name="accept-pilot" id="accept-pilot-input" required>
-                            <label for="accept-pilot-input">Aceite Piloto | Assinatura | CPF</label>
-                        </section>
-                        <section class="check-container">
-                            <input type="checkbox" name="accept-navigator" id="accept-navigator-input" required>
-                            <label for="accept-navigator-input">Aceite Navegador | Assinatura | CPF</label>
-                        </section>
-                        <section class="check-container">
-                            <input type="checkbox" name="accept-assistant1" id="accept-assistant1-input">
-                            <label for="accept-assistant1-input">Aceite Auxiliar 1 | Assinatura | CPF</label>
-                        </section>
-                        <section class="check-container">
-                            <input type="checkbox" name="accept-assistant2" id="accept-assistant2-input">
-                            <label for="accept-assistant2-input">Aceite Auxiliar 2 | Assinatura | CPF</label>
-                        </section>
-                    </section>
-                </section>
-                <section class="nav-btn-container">
-                    <button type="button" class="next-step-btn">
-                        &rArr;
-                    </button>
-                </section>
+            <section id="m01" class="option-container">
+                <h1>JAN</h1>
+                <span class="cursor"></span>
+            </section>
+            <section id="m02" class="option-container">
+                <h1>FEV</h1>
+                <span class="cursor"></span>
+            </section>
+            <section id="m03" class="option-container">
+                <h1>MAR</h1>
+                <span class="cursor"></span>
+            </section>
+            <section id="m04" class="option-container">
+                <h1>ABR</h1>
+                <span class="cursor"></span>
+            </section>
+            <section id="m05" class="option-container">
+                <h1>MAI</h1>
+                <span class="cursor"></span>
+            </section>
+            <section id="m06" class="option-container">
+                <h1>JUN</h1>
+                <span class="cursor"></span>
+            </section>
+            <section id="m07" class="option-container">
+                <h1>JUL</h1>
+                <span class="cursor"></span>
+            </section>
+            <section id="m08" class="option-container">
+                <h1>AGO</h1>
+                <span class="cursor"></span>
+            </section>
+            <section id="m09" class="option-container">
+                <h1>SET</h1>
+                <span class="cursor"></span>
+            </section>
+            <section id="m10" class="option-container">
+                <h1>OUT</h1>
+                <span class="cursor"></span>
+            </section>
+            <section id="m11" class="option-container">
+                <h1>NOV</h1>
+                <span class="cursor"></span>
+            </section>
+            <section id="m12" class="option-container">
+                <h1>DEZ</h1>
+                <span class="cursor"></span>
             </section>
         </section>
-        <section class="form-slide-container">
-            <section id="pilot-form">
-                <h1>Piloto:</h1>
-                <section class="pilot-container">
-                    <section class="input-desktop-container">
-                        <section class="input-container">
-                            <label for="pilot-name-input">NOME:</label>
-                            <input type="text" name="pilot-name" id="pilot-name-input" required>
-                            <span class="placeholder">NOME COMPLETO</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="pilot-cba-input">CÉDULA:</label>
-                            <input type="text" name="pilot-cba" id="pilot-cba-input">
-                            <span class="placeholder">CÉDULA CBA</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="pilot-cpf-input">CPF:</label>
-                            <input type="text" name="pilot-cpf" id="pilot-cpf-input" class="cpf-input" required maxlength="14" minlength="14">
-                            <span class="placeholder">CPF</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="pilot-shirt-input">TAMANHO DA CAMISA:</label>
-                            <select name="pilot-shirt" id="pilot-shirt-input" required>
-                                <option value="" disabled selected hidden>SELECIONE...</option>
-                                <option value="P">P</option>
-                                <option value="M">M</option>
-                                <option value="G">G</option>
-                                <option value="GG">GG</option>
-                            </select>
-                        </section>
-                        <section class="input-container">
-                            <label for="pilot-blood-input">TIPO SANGUÍNEO:</label>
-                            <select name="pilot-blood" id="pilot-blood-input">
-                                <option value="" disabled selected hidden>SELECIONE...</option>
-                                <option value="O+">O+</option>
-                                <option value="O-">O-</option>
-                                <option value="A+">A+</option>
-                                <option value="A-">A-</option>
-                                <option value="B+">B+</option>
-                                <option value="B-">B-</option>
-                                <option value="AB+">AB+</option>
-                                <option value="AB-">AB-</option>
-                            </select>
-                        </section>
-                    </section>
-                    <section class="input-desktop-container">
-                        <section class="input-container">
-                            <label for="pilot-date-input">DATA DE NASCIMENTO:</label>
-                            <input type="date" name="pilot-date" id="pilot-date-input" required>
-                        </section>
-                        <section class="input-container">
-                            <label for="pilot-number-input">NÚMERO:</label>
-                            <input type="text" name="pilot-number" id="pilot-number-input" class="number-input" required>
-                            <span class="placeholder">NÚMERO DE CELULAR</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="pilot-rg-input">RG:</label>
-                            <input type="text" name="pilot-rg" id="pilot-rg-input">
-                            <span class="placeholder">NÚMERO DO RG</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="pilot-email-input">EMAIL:</label>
-                            <input type="email" name="pilot-email" id="pilot-email-input" required>
-                            <span class="placeholder">EMAIL</span>
-                        </section>
-                    </section>
-                </section>
-            
-                <h2>Endereço</h2>
-                <section class="address-container">
-                    <section class="input-desktop-container">
-                        <section class="input-container">
-                            <label for="pilot-cep-input">CEP:</label>
-                            <input type="text" name="pilot-cep" id="pilot-cep-input" class="cep-input" required>
-                            <span class="placeholder">CEP</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="pilot-city-input">CIDADE:</label>
-                            <input type="text" name="pilot-city" id="pilot-city-input">
-                            <span class="placeholder">CIDADE</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="pilot-neighborhood-input">BAIRRO:</label>
-                            <input type="text" name="pilot-neighborhood" id="pilot-neighborhood-input">
-                            <span class="placeholder">BAIRRO</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="pilot-batch-input">LOTE:</label>
-                            <input type="text" name="pilot-batch" id="pilot-batch-input">
-                            <span class="placeholder">LOTE</span>
-                        </section>
-                    </section>
-                    <section class="input-desktop-container">
-                        <section class="input-container">
-                            <label for="pilot-state-input">ESTADO:</label>
-                            <input type="text" name="pilot-state" id="pilot-state-input">
-                            <span class="placeholder">ESTADO</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="pilot-street-input">RUA:</label>
-                            <input type="text" name="pilot-street" id="pilot-street-input">
-                            <span class="placeholder">RUA</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="pilot-block-input">QUADRA:</label>
-                            <input type="text" name="pilot-block" id="pilot-block-input">
-                            <span class="placeholder">QUADRA</span>
-                        </section>
-                    </section>
-                </section>
-                <section class="nav-btn-container">
-                    <button type="button" class="prev-step-btn">
-                        &lArr;
-                    </button>
-                    <button type="button" class="next-step-btn">
-                        &rArr;
-                    </button>
-                </section>
-            </section>
-        </section>
+    </section>
 
-        <section class="form-slide-container">
-            <section id="navigator-form">
-                <h1>Navegador:</h1>
-                <section class="nav-container">
-                    <section class="input-desktop-container">
-                        <section class="input-container">
-                            <label for="nav-name-input">NOME:</label>
-                            <input type="text" name="nav-name" id="nav-name-input" required>
-                            <span class="placeholder">NOME COMPLETO</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="nav-cpf-input">CPF:</label>
-                            <input type="text" name="nav-cpf" id="nav-cpf-input" class="cpf-input" required maxlength="14" minlength="14">
-                            <span class="placeholder">CPF</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="nav-shirt-input">TAMANHO DA CAMISA:</label>
-                            <select name="nav-shirt" id="nav-shirt-input" required>
-                                <option value="" disabled selected hidden>SELECIONE...</option>
-                                <option value="P">P</option>
-                                <option value="M">M</option>
-                                <option value="G">G</option>
-                                <option value="GG">GG</option>
-                            </select>
-                        </section>
-                        <section class="input-container">
-                            <label for="nav-blood-input">TIPO SANGUÍNEO:</label>
-                            <select name="nav-blood" id="nav-blood-input">
-                                <option value="" disabled selected hidden>SELECIONE...</option>
-                                <option value="O+">O+</option>
-                                <option value="O-">O-</option>
-                                <option value="A+">A+</option>
-                                <option value="A-">A-</option>
-                                <option value="B+">B+</option>
-                                <option value="B-">B-</option>
-                                <option value="AB+">AB+</option>
-                                <option value="AB-">AB-</option>
-                            </select>
-                        </section>
-                    </section>
-                    <section class="input-desktop-container">
-                        <section class="input-container">
-                            <label for="nav-date-input">DATA DE NASCIMENTO:</label>
-                            <input type="date" name="nav-date" id="nav-date-input" required>
-                        </section>
-                        <section class="input-container">
-                            <label for="nav-number-input">NÚMERO:</label>
-                            <input type="text" name="nav-number" id="nav-number-input" class="number-input" required>
-                            <span class="placeholder">NÚMERO DE CELULAR</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="nav-rg-input">RG:</label>
-                            <input type="text" name="nav-rg" id="nav-rg-input">
-                            <span class="placeholder">NÚMERO DO RG</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="nav-email-input">EMAIL:</label>
-                            <input type="email" name="nav-email" id="nav-email-input" required>
-                            <span class="placeholder">EMAIL</span>
-                        </section>
-                    </section>
-                </section>
-            
-                <h2>Endereço</h2>
-                <section class="address-container">
-                    <section class="input-desktop-container">
-                        <section class="input-container">
-                            <label for="nav-cep-input">CEP:</label>
-                            <input type="text" name="nav-cep" id="nav-cep-input" class="cep-input" required>
-                            <span class="placeholder">CEP</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="nav-city-input">CIDADE:</label>
-                            <input type="text" name="nav-city" id="nav-city-input">
-                            <span class="placeholder">CIDADE</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="nav-neighborhood-input">BAIRRO:</label>
-                            <input type="text" name="nav-neighborhood" id="nav-neighborhood-input">
-                            <span class="placeholder">BAIRRO</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="nav-batch-input">LOTE:</label>
-                            <input type="text" name="nav-batch" id="nav-batch-input">
-                            <span class="placeholder">LOTE</span>
-                        </section>
-                    </section>
-                    <section class="input-desktop-container">
-                        <section class="input-container">
-                            <label for="nav-state-input">ESTADO:</label>
-                            <input type="text" name="nav-state" id="nav-state-input">
-                            <span class="placeholder">ESTADO</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="nav-street-input">RUA:</label>
-                            <input type="text" name="nav-street" id="nav-street-input">
-                            <span class="placeholder">RUA</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="nav-block-input">QUADRA:</label>
-                            <input type="text" name="nav-block" id="nav-block-input">
-                            <span class="placeholder">QUADRA</span>
-                        </section>
-                        <section class="submit-btn-container">
-                            <button type="submit" id="submit-form-btn">
-                                Inscrever-se
-                            </button>
-                        </section>
-                    </section>
-                </section>
-                <section class="nav-btn-container">
-                    <button type="button" class="prev-step-btn">
-                        &lArr;
-                    </button>
-                    <button type="button" class="next-step-btn">
-                        &rArr;
-                    </button>
-                </section>
-            </section>
+    <main>
+        <section class="error-img hidden">
+            <img src="/imagens/mobile/sem-evento.png">
         </section>
+        <section class="calendar-container">
 
-        <section class="form-slide-container">
-            <section id="aux1-form">
-                <h1>Auxiliar 1:</h1>
-                <section class="aux1-container">
-                    <section class="input-desktop-container">
-                        <section class="input-container">
-                            <label for="aux1-name-input">NOME:</label>
-                            <input type="text" name="aux1-name" id="aux1-name-input" required>
-                            <span class="placeholder">NOME COMPLETO</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux1-cpf-input">CPF:</label>
-                            <input type="text" name="aux1-cpf" id="aux1-cpf-input" class="cpf-input" required maxlength="14" minlength="14">
-                            <span class="placeholder">CPF</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux1-shirt-input">TAMANHO DA CAMISA:</label>
-                            <select name="aux1-shirt" id="aux1-shirt-input" required>
-                                <option value="" disabled selected hidden>SELECIONE...</option>
-                                <option value="P">P</option>
-                                <option value="M">M</option>
-                                <option value="G">G</option>
-                                <option value="GG">GG</option>
-                            </select>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux1-blood-input">TIPO SANGUÍNEO:</label>
-                            <select name="aux1-blood" id="aux1-blood-input">
-                                <option value="" disabled selected hidden>SELECIONE...</option>
-                                <option value="O+">O+</option>
-                                <option value="O-">O-</option>
-                                <option value="A+">A+</option>
-                                <option value="A-">A-</option>
-                                <option value="B+">B+</option>
-                                <option value="B-">B-</option>
-                                <option value="AB+">AB+</option>
-                                <option value="AB-">AB-</option>
-                            </select>
-                        </section>
-                    </section>
-                    <section class="input-desktop-container">
-                        <section class="input-container">
-                            <label for="aux1-date-input">DATA DE NASCIMENTO:</label>
-                            <input type="date" name="aux1-date" id="aux1-date-input" required>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux1-number-input">NÚMERO:</label>
-                            <input type="text" name="aux1-number" id="aux1-number-input" class="number-input" required>
-                            <span class="placeholder">NÚMERO DE CELULAR</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux1-rg-input">RG:</label>
-                            <input type="text" name="aux1-rg" id="aux1-rg-input">
-                            <span class="placeholder">NÚMERO DO RG</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux1-email-input">EMAIL:</label>
-                            <input type="email" name="aux1-email" id="aux1-email-input" required>
-                            <span class="placeholder">EMAIL</span>
-                        </section>
-                    </section>
-                </section>
-
-                <h2>Endereço</h2>
-                <section class="address-container">
-                    <section class="input-desktop-container">
-                        <section class="input-container">
-                            <label for="aux1-cep-input">CEP:</label>
-                            <input type="text" name="aux1-cep" id="aux1-cep-input" class="cep-input" required>
-                            <span class="placeholder">CEP</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux1-city-input">CIDADE:</label>
-                            <input type="text" name="aux1-city" id="aux1-city-input">
-                            <span class="placeholder">CIDADE</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux1-neighborhood-input">BAIRRO:</label>
-                            <input type="text" name="aux1-neighborhood" id="aux1-neighborhood-input">
-                            <span class="placeholder">BAIRRO</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux1-batch-input">LOTE:</label>
-                            <input type="text" name="aux1-batch" id="aux1-batch-input">
-                            <span class="placeholder">LOTE</span>
-                        </section>
-                    </section>
-                    <section class="input-desktop-container">
-                        <section class="input-container">
-                            <label for="aux1-state-input">ESTADO:</label>
-                            <input type="text" name="aux1-state" id="aux1-state-input">
-                            <span class="placeholder">ESTADO</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux1-street-input">RUA:</label>
-                            <input type="text" name="aux1-street" id="aux1-street-input">
-                            <span class="placeholder">RUA</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux1-block-input">QUADRA:</label>
-                            <input type="text" name="aux1-block" id="aux1-block-input">
-                            <span class="placeholder">QUADRA</span>
-                        </section>
-                        <section class="submit-btn-container">
-                            <button type="submit" id="submit-form-btn">
-                                Inscrever-se
-                            </button>
-                        </section>
-                    </section>
-                </section>
-                <section class="nav-btn-container">
-                    <button type="button" class="prev-step-btn">
-                        &lArr;
-                    </button>
-                    <button type="button" class="next-step-btn">
-                        &rArr;
-                    </button>
-                </section>
-            </section>
         </section>
-
-        <section class="form-slide-container">
-            <section id="aux2-form">
-                <h1>Auxiliar 2:</h1>
-                <section class="aux2-container">
-                    <section class="input-desktop-container">
-                        <section class="input-container">
-                            <label for="aux2-name-input">NOME:</label>
-                            <input type="text" name="aux2-name" id="aux2-name-input" required>
-                            <span class="placeholder">NOME COMPLETO</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux2-cpf-input">CPF:</label>
-                            <input type="text" name="aux2-cpf" id="aux2-cpf-input" class="cpf-input" required maxlength="14" minlength="14">
-                            <span class="placeholder">CPF</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux2-shirt-input">TAMANHO DA CAMISA:</label>
-                            <select name="aux2-shirt" id="aux2-shirt-input" required>
-                                <option value="" disabled selected hidden>SELECIONE...</option>
-                                <option value="P">P</option>
-                                <option value="M">M</option>
-                                <option value="G">G</option>
-                                <option value="GG">GG</option>
-                            </select>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux2-blood-input">TIPO SANGUÍNEO:</label>
-                            <select name="aux2-blood" id="aux2-blood-input">
-                                <option value="" disabled selected hidden>SELECIONE...</option>
-                                <option value="O+">O+</option>
-                                <option value="O-">O-</option>
-                                <option value="A+">A+</option>
-                                <option value="A-">A-</option>
-                                <option value="B+">B+</option>
-                                <option value="B-">B-</option>
-                                <option value="AB+">AB+</option>
-                                <option value="AB-">AB-</option>
-                            </select>
-                        </section>
-                    </section>
-                    <section class="input-desktop-container">
-                        <section class="input-container">
-                            <label for="aux2-date-input">DATA DE NASCIMENTO:</label>
-                            <input type="date" name="aux2-date" id="aux2-date-input" required>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux2-number-input">NÚMERO:</label>
-                            <input type="text" name="aux2-number" id="aux2-number-input" class="number-input" required>
-                            <span class="placeholder">NÚMERO DE CELULAR</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux2-rg-input">RG:</label>
-                            <input type="text" name="aux2-rg" id="aux2-rg-input">
-                            <span class="placeholder">NÚMERO DO RG</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux2-email-input">EMAIL:</label>
-                            <input type="email" name="aux2-email" id="aux2-email-input" required>
-                            <span class="placeholder">EMAIL</span>
-                        </section>
-                    </section>
-                </section>
-        
-                <h2>Endereço</h2>
-                <section class="address-container">
-                    <section class="input-desktop-container">
-                        <section class="input-container">
-                            <label for="aux2-cep-input">CEP:</label>
-                            <input type="text" name="aux2-cep" id="aux2-cep-input" class="cep-input" required>
-                            <span class="placeholder">CEP</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux2-city-input">CIDADE:</label>
-                            <input type="text" name="aux2-city" id="aux2-city-input">
-                            <span class="placeholder">CIDADE</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux2-neighborhood-input">BAIRRO:</label>
-                            <input type="text" name="aux2-neighborhood" id="aux2-neighborhood-input">
-                            <span class="placeholder">BAIRRO</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux2-batch-input">LOTE:</label>
-                            <input type="text" name="aux2-batch" id="aux2-batch-input">
-                            <span class="placeholder">LOTE</span>
-                        </section>
-                    </section>
-                    <section class="input-desktop-container">
-                        <section class="input-container">
-                            <label for="aux2-state-input">ESTADO:</label>
-                            <input type="text" name="aux2-state" id="aux2-state-input">
-                            <span class="placeholder">ESTADO</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux2-street-input">RUA:</label>
-                            <input type="text" name="aux2-street" id="aux2-street-input">
-                            <span class="placeholder">RUA</span>
-                        </section>
-                        <section class="input-container">
-                            <label for="aux2-block-input">QUADRA:</label>
-                            <input type="text" name="aux2-block" id="aux2-block-input">
-                            <span class="placeholder">QUADRA</span>
-                        </section>
-                        <section class="submit-btn-container">
-                            <button type="submit" id="submit-form-btn">
-                                Inscrever-se
-                            </button>
-                        </section>
-                    </section>
-                </section>
-                <section class="nav-btn-container">
-                    <button type="button" class="prev-step-btn">
-                        &lArr;
-                    </button>
-                </section>
-            </section>
-        </section>
-    </form>
+    </main>
 
     <footer>
         <section class="desktop-footer">
@@ -726,10 +159,9 @@
                 <h1>INFORMAÇÕES DE CONTATO:</h1>
                 <section class="info-contato">
                     <p>
-                        TELEFONE: 21 2221-4895 <br>
-                        OUVIDORIA: ouvidoria@jubaofe.org.br <br>
-                        SALA DE IMPRENSA: comunicacao@jubaofe.org.br <br>
-                        MARKETING: marketing@cba.org.br
+                        TELEFONE: (62) 9 8459-4447 <br>
+                        CONTATO: jubaofecontato@gmail.com <br>
+                        INSTAGRAM: @rallydojubao
                     </p>
                 </section>
             </section>
@@ -737,16 +169,19 @@
                 <h1>OUTROS ACESSOS:</h1>
                 <ul>
                     <li>
-                        <a href="/inscricao">Inscrições</a>
+                        <a href="/inscricao" rel="next" target="_self">Inscrições</a>
                     </li>
                     <li>
-                        <a href="/fotos">Galeria de Fotos</a>
+                        <a href="/portal-noticias" rel="next" target="_self">Notícias</a>
                     </li>
                     <li>
-                        <a href="/quem-somos">Quem Somos</a>
+                        <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
                     </li>
                     <li>
-                        <a href="/#news-container">Notícias</a>
+                        <a href="/calendario" rel="next" target="_self">Calendário</a>
+                    </li>
+                    <li>
+                        <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
                     </li>
                 </ul>
             </section>
@@ -760,7 +195,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="mailto:jubaocontato@gmail.com">
                             <img src="/imagens/mobile/email-logo.png" alt="Ícone do Email">
                             <span>jubaocontato@gmail.com</span>
                         </a>
@@ -783,10 +218,7 @@
         </p>
     </footer>
 
-    <script src="/javascripts/inscricao.js"></script>
     <script src="/javascripts/menu.js"></script>
-    <script src="/javascripts/inicialization.js"></script>
-    <script src="/javascripts/more-info.js"></script>
-    <script src="/javascripts/form-interaction.js"></script>
+    <script src="/javascripts/inscricao.js"></script>
 </body>
 </html>

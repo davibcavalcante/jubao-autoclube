@@ -1,5 +1,10 @@
 @media screen and (min-width: 992px) {
     .background-desktop-header {
+        display: block;
+        overflow-x: hidden;
+    }
+
+    .slide-background-container {
         display: flex;
         position: relative;
         transition: .5s;
@@ -18,7 +23,7 @@
     }
 
     .images-container.main {
-        background-image: url(../imagens/desktop/principal-header-bg.jpg);
+        background-image: url(../imagens/desktop/main-header-bg.jpg);
     }
 
     .images-container.alternative {
@@ -43,12 +48,12 @@
     }
     
     .cup-name-container h1 {
-        font: normal 3.2vw var(--title-font), sans-serif;
+        font: normal 3.2vw var(--title-font);
         text-wrap: nowrap;
     }
     
     .cup-name-container h2 {
-        font: normal 2vw var(--main-font), sans-serif;
+        font: normal 2vw var(--main-font);
         letter-spacing: 0.41em;
         text-wrap: nowrap;
     }
@@ -60,13 +65,13 @@
     }
     
     .class-container h1 {
-        font: 500 1.6em var(--main-font), sans-serif;
+        font: 500 1.6em var(--main-font);
         letter-spacing: 0.15em;
         margin-bottom: 5px;
     }
     
     .class-flex {
-        font: 300 1em var(--main-font), sans-serif;
+        font: 300 1em var(--main-font);
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -112,7 +117,7 @@
         background-color: white;
         text-decoration: none;
         text-align: center;
-        font-family: var(--alternative-font), sans-serif;
+        font-family: var(--alternative-font);
         font-size: 1.5em;
         font-weight: 500;
     
@@ -133,30 +138,31 @@
         transform: scale(1.05);
     }
     
-    .prev-button-container {
-        position: absolute;
-        top: 50%;
-        left: 10px;
-    }
-    
-    .next-button-container {
-        position: absolute;
-        top: 50%;
-        right: 25px;
-    }
-    
     .next-button-container button, .prev-button-container button {
         color: var(--main-color);
         background-color: transparent;
         border: 1px solid white;
         border-radius: 50%;
-        width: 30px;
-        height: 30px;
+        width: 35px;
+        height: 35px;
         cursor: pointer;
         transition: .5s;
     }
     
     .next-button-container button:hover, .prev-button-container button:hover {
-        transform: scale(1.1);
+        background-color: white;
+        transform: scale(1.2);
+    }
+
+    .prev-button-container {
+        position: absolute;
+        top: 50%;
+        left: 15px;
+    }
+    
+    .next-button-container {
+        position: absolute;
+        top: 50%;
+        right: 35px;
     }
 }

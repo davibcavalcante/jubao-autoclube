@@ -1,29 +1,59 @@
 const express = require('express');
-const inscricaoMiddlewares = require('../api/v1/middlewares/inscricao');
-const newsDataMiddlewares = require('../api/v1/middlewares/news-data')
-const youtubeMiddlewares = require('../api/v1/middlewares/youtube')
+const albumDataMiddlewares = require('../api/v1/middlewares/fotos')
+const rallyJubaoData = require('../api/v1/middlewares/rally-jubao-data')
+
 const router = express.Router();
 
-
 /* GET users listing. */
-router.get('/users', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
-router.get('/inscricao', function(req, res, next) {
+router.get('/inscricao', (req, res, next) => {
   res.render("inscricao");
 });
 
-router.get('/quem-somos', function(req, res, next) {
-  res.render('quem-somos')
+router.get('/inscricao/:name', (req, res, next) => {
+  try {
+    const rallyName = req.params.name
+    const arrayRally = rallyJubaoData.getFilterEvents(false, rallyName)
+    const rally = arrayRally[0]
+    res.render('inscricao-rally', { rally })
+  } catch (error) {
+    console.log('Erro ao obter rally:', error.message);
+    res.status(500).json({erro: 'Erro interno do servidor'})
+  }
 });
 
-router.post('/inscricao', inscricaoMiddlewares.enviarEmailInscricao);
+router.get('/portal-noticias', (req, res, next) => {
+  res.render('portal-noticias')
+})
 
+router.get('/albums', (req, res, next) => {
+  res.render('albums');
+});
 
-/* home page. (deixar essa rota por último) */
-router.get('/', function(req, res, next) {
-  res.render('index', newsDataMiddlewares.getNewsData);
+router.get('/fotos/:year', (req, res, next) => {
+  const albumOfYear = albumDataMiddlewares.getYear(req);
+  res.render('fotos', { albumOfYear });
+});
+
+router.get('/calendario', (req, res, next) => {
+  res.render('calendario')
+})
+
+router.get('/quem-somos', (req, res, next) => {
+  res.render('quem-somos');
+});
+
+router.get('/', (req, res, next) => {
+  res.render('index', {
+    cup: 'RALLY DAY', 
+    categories: {
+      c1: 'INICIANTE',
+      c2: 'LIGHT',
+      c3: 'GRADUADO',
+      c4: 'TURISTA',
+      c5: 'MASTER'
+    },
+    url: '/inscricao/RALLY DAY'
+  });
 });
 
 module.exports = router;

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script async src="//www.instagram.com/embed.js"></script>
     <script src="https://kit.fontawesome.com/3954e72066.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="/imagens/desktop/favicon.ico" type="image/x-icon">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="/stylesheets/slide-header.css">
     <link rel="stylesheet" href="/stylesheets/index.css">
     <link rel="stylesheet" href="/stylesheets/footer.css">
-    <title>Site Jubão</title>
+
+    <title>Home | JubãoFe</title>
 </head>
 <body>
     <header>
@@ -36,10 +37,13 @@
                     <a href="/inscricao" rel="next" target="_self">Inscrições</a>
                 </li>
                 <li>
-                    <a href="/#news-container" id="link-news">Notícias</a>
+                    <a href="/portal-noticias">Notícias</a>
                 </li>
                 <li>
-                    <a href="/fotos" rel="next" target="_self">Galeria de Fotos</a>
+                    <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
+                </li>
+                <li>
+                    <a href="/calendario" rel="next" target="_self">Calendário</a>
                 </li>
                 <li>
                     <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
@@ -57,7 +61,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" rel="external" target="_blank">
+                    <a href="mailto:jubaofecontato@gmail.com" rel="external" target="_blank">
                         <img src="/imagens/desktop/email-logo.png" alt="Logo do Email">
                     </a>
                 </li>
@@ -71,175 +75,138 @@
     </header>
 
     <section class="background-desktop-header">
-        <section class="images-container main">
-            <section class="info-header">
-                <section class="cup-name-container">
-                    <h1><%= cupName %></h1>
-                    <h2>INSCRIÇÕES ABERTAS</h2>
-                </section>
-                <section class="flex-info-container">
-                    <section class="class-container">
-                        <h1>CATEGORIAS:</h1>
-                        <section class="class-flex">
-                            <ul class="first-class">
-                                <li>INICIANTE</li>
-                                <li>LIGHT</li>
-                            </ul>
-                            <ul class="second-class">
-                                <li>GRADUADO</li>
-                                <li>TURISTA</li>
-                                <li>MASTER</li>
-                            </ul>
+        <section class="slide-background-container">
+            <section class="images-container main">
+                <section class="info-header">
+                    <section class="cup-name-container">
+                        <h1><%= cup %></h1>
+                        <h2>INSCRIÇÕES ABERTAS</h2>
+                    </section>
+                    <section class="flex-info-container">
+                        <section class="class-container">
+                            <h1>CATEGORIAS:</h1>
+                            <section class="class-flex">
+                                <ul class="first-class">
+                                    <li><%= categories.c1 %></li>
+                                    <li><%= categories.c2 %></li>
+                                </ul>
+                                <ul class="second-class">
+                                    <li><%= categories.c3 %></li>
+                                    <li><%= categories.c4 %></li>
+                                    <li><%= categories.c5 %></li>
+                                </ul>
+                            </section>
+                        </section>
+                    </section>
+                    <section class="flex-container">
+                        <section class="button-container">
+                            <a href="<%= url %>" class="inscricao-btn">INSCREVER-SE</a>
+                        </section>
+                        <section class="associations-info-container">
+                            <img src="imagens/desktop/cba.png" alt="Logo da CBA" class="logo-info-cba">
+                            <img src="imagens/desktop/faugo-logo.png" alt="Logo da FAUGO" class="logo-info-faugo">
                         </section>
                     </section>
                 </section>
-                <section class="flex-container">
-                    <section class="button-container">
-                        <a href="inscricao.html" class="inscricao-btn">INSCREVER-SE</a>
-                    </section>
-                    <section class="associations-info-container">
-                        <img src="imagens/desktop/cba.png" alt="Logo da CBA" class="logo-info-cba">
-                        <img src="imagens/desktop/faugo-logo.png" alt="Logo da FAUGO" class="logo-info-faugo">
-                    </section>
-                </section>
-            </section>
-            <div class="prev-button-container">
-                <button class="prev-image-btn">
-                    <i class="fa-solid fa-arrow-left"></i>
-                </button>
-            </div>
-            <div class="next-button-container">
-                <button class="next-image-btn">
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </div>
-        </section>
-
-        <section class="images-container alternative">
-            <div class="prev-button-container">
-                <button class="prev-image-btn">
-                    <i class="fa-solid fa-arrow-left"></i>
-                </button>
-            </div>
-            <div class="next-button-container">
-                <button class="next-image-btn">
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </div>
-        </section>
-    </section>
-
-    <section class="desktop-container">
-        <section class="news-jubao-container">
-            <section class="banner-container">
-                <picture>
-                    <source media="(min-width: 992px)" srcset="imagens/desktop/novidades-bg.jpg">
-                    <img src="imagens/mobile/novidades-bg.jpg" alt="Banner de Novidades">
-                </picture>
-                <section class="info-banner-container">
-                    <section class="text-container">
-                        <h1 class="info-main"><span class="light-text">CONFIRA E</span> SE INSCREVA</h1>
-                        <h2 class="info-alternative">EM NOSSOS RALLYS</h2>
-                    </section>
-                    <section class="buttons-container">
-                        <a href="fotos.html">VER FOTOS</a>
-                        <a href="inscricao.html">INSCRIÇÃO</a>
-                    </section>
-                </section>
-            </section>
-        </section>
-
-        <section class="poeiracast-container">
-            <picture class="assista-poeiracast">
-                <a href="https://youtube.com/playlist?list=PLvEEtPflTXtiOXjWysawlsLv7UeaY27xz&si=uyFUgOtCOiwgMxM9" rel="external" target="_blank">
-                    <source media="(min-width: 992px)" srcset="imagens/desktop/youtube-acompanhe.png">
-                    <img src="imagens/mobile/youtube-acompanhe.png" alt="Mensagem para acompanhar o Podcast 'Poeira Cast no Youtube'">
-                </a>
-            </picture>
-            <p>Vídeo recentes</p>
-            <section class="position-relative-container">
-                <section class="video-container">
-                    <section class="slide-video-container">
-
-                    </section>
-                </section>
-                <section class="nav-video-buttons-container">
-                    <button class="prev-video-btn">
+                <div class="prev-button-container">
+                    <button class="prev-image-btn">
                         <i class="fa-solid fa-arrow-left"></i>
                     </button>
-                    <button class="next-video-btn">
+                </div>
+                <div class="next-button-container">
+                    <button class="next-image-btn">
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
-                </section>
+                </div>
             </section>
-            <div class="div"></div>
+            <section class="images-container alternative">
+                <div class="prev-button-container">
+                    <button class="prev-image-btn">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                </div>
+                <div class="next-button-container">
+                    <button class="next-image-btn">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
         </section>
     </section>
 
-    <section class="news-container" id="news-container">
-        <section class="gradient-background"></section>
-        <section class="title-container">
-            <h1>
-                <span class="light-text">ÚLTIMAS</span> NOTÍCIAS
-            </h1>
+    <main>
+        <section class="desktop-container">
+            <section class="news-jubao-container">
+                <section class="banner-container">
+                    <picture>
+                        <source media="(min-width: 992px)" srcset="imagens/desktop/novidades-bg.jpg">
+                        <img src="imagens/mobile/novidades-bg.jpg" alt="Banner de Novidades">
+                    </picture>
+                    <section class="info-banner-container">
+                        <section class="text-container">
+                            <h1 class="info-main"><span class="light-text">CONFIRA E</span> SE INSCREVA</h1>
+                            <h2 class="info-alternative">EM NOSSOS RALLYS</h2>
+                        </section>
+                        <section class="buttons-container">
+                            <a href="/albums">VER FOTOS</a>
+                            <a href="/inscricao">INSCRIÇÃO</a>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="poeiracast-container">
+                <picture class="assista-poeiracast">
+                    <a href="https://youtube.com/playlist?list=PLvEEtPflTXtiOXjWysawlsLv7UeaY27xz&si=uyFUgOtCOiwgMxM9" rel="external" target="_blank">
+                        <source media="(min-width: 992px)" srcset="imagens/desktop/youtube-acompanhe.png">
+                        <img src="imagens/mobile/youtube-acompanhe.png" alt="Mensagem para acompanhar o Podcast 'Poeira Cast no Youtube'">
+                    </a>
+                </picture>
+                <p>Vídeo recentes</p>
+                <section class="position-relative-container">
+                    <section class="loading-animation"></section>
+                    <section class="video-container">
+                        <section class="slide-video-container">
+
+                        </section>
+                    </section>
+                    <section class="nav-video-buttons-container">
+                        <button class="prev-video-btn">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <button class="next-video-btn">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </section>
+                </section>
+                <div class="div"></div>
+            </section>
         </section>
-        <section class="main-news-desktop">
-            <div class="main-new new">
-                <section class="new-image-container">
-                    <img src="<%= mainNew.url %>" alt="">
-                </section>
-                <section class="info">
-                    <p><%= mainNew.date %></p>
-                    <h1><%= mainNew.title %></h1>
-                </section>
-            </div>
-            <div class="second-new new">
-                <section class="new-image-container">
-                    <img src="<%= secondaryNew.url %>" alt="">
-                </section>
-                <section class="info">
-                    <p><%= secondaryNew.date %></p>
-                    <h1><%= secondaryNew.title %></h1>
-                </section>
-            </div>
+        <section class="news-container" id="news-container">
+            <section class="gradient-background"></section>
+            <section class="title-container">
+                <h1>
+                    <span class="light-text">ÚLTIMAS</span> NOTÍCIAS
+                </h1>
+            </section>
+            <section class="main-news-desktop">
+        
+            </section>
+            <section class="other-news">
+            </section>
+            <iframe frameborder="0" id="news-iframe" class="hidden"></iframe>
+            <section class="more-news-container">
+                <a href="/portal-noticias"><span class="light-text">Mais</span> Notícias</a>
+            </section>
         </section>
-        <section class="other-news">
-            <div class="new">
-                <section class="new-image-container">
-                    <img src="<%= otherNews[0].url %>" alt="">
-                </section>
-                <section class="info">
-                    <p><%= otherNews[0].date %></p>
-                    <h1><%= otherNews[0].title %></h1>
-                </section>
-            </div>
-            <div class="new">
-                <section class="new-image-container">
-                    <img src="<%= otherNews[1].url %>" alt="">
-                </section>
-                <section class="info">
-                    <p><%= otherNews[1].date %></p>
-                    <h1><%= otherNews[1].title %></h1>
-                </section>
-            </div>
-            <div class="new">
-                <section class="new-image-container">
-                    <img src="<%= otherNews[2].url %>" alt="">
-                </section>
-                <section class="info">
-                    <p><%= otherNews[2].date %></p>
-                    <h1><%= otherNews[2].title %></h1>
-                </section>
-            </div>
-            <div class="new">
-                <section class="new-image-container">
-                    <img src="<%= otherNews[3].url %>" alt="">
-                </section>
-                <section class="info">
-                    <p><%= otherNews[3].date %></p>
-                    <h1><%= otherNews[3].title %></h1>
-                </section>
-            </div>
+    </main>
+
+    <section class="sponsorship-container">
+        <h1>Patrocínios</h1>
+        <section class="sponsorship-logo-container">
+            <img src="/imagens/patrocinadores/accert-transportes.png" alt="Logo da Accert Transportes">
+            <img src="/imagens/patrocinadores/kairos-tcc.png" alt="Logo da Kairos TCC">
+            <img src="/imagens/patrocinadores/tottal-car.png" alt="Logo da Tottal Car">
+            <img src="/imagens/patrocinadores/vs-engenharia.png" alt="Logo da VS Engenharia">
         </section>
     </section>
 
@@ -252,10 +219,9 @@
                 <h1>INFORMAÇÕES DE CONTATO:</h1>
                 <section class="info-contato">
                     <p>
-                        TELEFONE: 21 2221-4895 <br>
-                        OUVIDORIA: ouvidoria@jubaofe.org.br <br>
-                        SALA DE IMPRENSA: comunicacao@jubaofe.org.br <br>
-                        MARKETING: marketing@cba.org.br
+                        TELEFONE: (62) 9 8459-4447 <br>
+                        CONTATO: jubaofecontato@gmail.com <br>
+                        INSTAGRAM: @rallydojubao
                     </p>
                 </section>
             </section>
@@ -263,16 +229,19 @@
                 <h1>OUTROS ACESSOS:</h1>
                 <ul>
                     <li>
-                        <a href="/inscricao">Inscrições</a>
+                        <a href="/inscricao" rel="next" target="_self">Inscrições</a>
                     </li>
                     <li>
-                        <a href="/fotos">Galeria de Fotos</a>
+                        <a href="/portal-noticias" rel="next" target="_self">Notícias</a>
                     </li>
                     <li>
-                        <a href="/quem-somos">Quem Somos</a>
+                        <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
                     </li>
                     <li>
-                        <a href="/#news-container">Notícias</a>
+                        <a href="/calendario" rel="next" target="_self">Calendário</a>
+                    </li>
+                    <li>
+                        <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
                     </li>
                 </ul>
             </section>
@@ -286,7 +255,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="mailto:jubaocontato@gmail.com">
                             <img src="/imagens/mobile/email-logo.png" alt="Ícone do Email">
                             <span>jubaocontato@gmail.com</span>
                         </a>
@@ -311,7 +280,7 @@
 
     <script src="/javascripts/menu.js"></script>
     <script src="/javascripts/youtube.js"></script>
-    <script src="/javascripts/index.js"></script>
-    <script src="/javascripts/news.js"></script>
+    <script src="/javascripts/slides.js"></script>
+    <script src="/javascripts/noticias.js"></script>
 </body>
 </html>
