@@ -42,6 +42,14 @@ router.get('/quem-somos', (req, res, next) => {
   res.render('quem-somos');
 });
 
+router.get('/termos', (req, res, next) => {
+  res.render('termos');
+});
+
+router.get('/politica-privacidade', (req, res, next) => {
+  res.render('politica-privacidade');
+});
+
 router.get('/', (req, res, next) => {
   res.render('index', {
     cup: 'RALLY DAY', 

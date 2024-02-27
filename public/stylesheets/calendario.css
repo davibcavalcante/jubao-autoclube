@@ -225,6 +225,7 @@ main {
 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    place-items: center;
     gap: 20px;
 
     z-index: 1;
@@ -233,9 +234,8 @@ main {
 .day-container {
     background-color: var(--background-color);
 
-    margin: auto;
     width: 90%;
-    max-width: 400px;
+    max-width: 450px;
     min-height: 200px;
     box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.4);
 
@@ -325,6 +325,12 @@ main {
 .message-error-container img {
     width: 100%;
     max-width: 350px;
+}
+
+@media screen and (max-width: 320px) {
+    .calendar-container {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
 }
 
 @media screen and (min-width: 768px) {

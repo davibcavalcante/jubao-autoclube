@@ -1,0 +1,126 @@
+:root {
+    --main-color: #f25c05;
+
+    --main-font: 'Montserrat', sans-serif;
+    --alternative-font: 'Poppins', sans-serif;
+}
+
+/* CONFIGURAÇÕES GERAIS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none;
+}
+
+body {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+main {
+    flex: 1;
+}
+
+.light-text {
+    font-weight: 300;
+}
+
+/* HEADER CONFIG */
+
+header {
+    color: white;
+    background-color: var(--main-color);
+
+    padding: 15px;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-header-container a {
+    text-decoration: none;
+    display: block;
+    border-right: 2px solid white;
+    padding-right: 15px;
+}
+
+.logo-header-container img {
+    width: 120px;
+}
+
+.page-container h1 {
+    font: normal 1.2em var(--main-font);
+}
+
+.back-tohome-container {
+    padding: 10px 15px;
+}
+
+.back-tohome-container p {
+    font: normal 1.1em var(--alternative-font);
+}
+
+.back-tohome-container a {
+    color: var(--main-color);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+/* MAIN CONFIG */
+
+main {
+    padding: 10px 20px;
+    font-family: var(--main-font);
+
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+main h1 {
+    font-size: 1.7em;
+    letter-spacing: 0.01em;
+}
+
+main p {
+    font: 500 1em var(--main-font);
+    line-height: 1.4em;
+
+    margin: 10px 0;
+}
+
+main ul {
+    text-indent: 20px;
+    list-style-position: inside;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+@media screen and (min-width: 600px) {
+    .logo-header-container img {
+        width: 150px;
+    }
+
+    .page-container h1 {
+        font-size: 1.5em;
+    }
+
+    .back-tohome-container {
+        padding: 15px 40px;
+    }
+}

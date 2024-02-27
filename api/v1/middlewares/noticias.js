@@ -20,6 +20,13 @@ const createNews = (url, title, date, external = false) => {
 module.exports.getNews = (pageNumber, pageSize) => {
     const newsArray = [
         createNews(
+            'https://admin.presskit.com.br/anexos_checkurl.jpg?fd=0&tipoimg=web&newsid=434466&anexoid=1097030&usuid=&usu=',
+            'Accert Competições confirma participação nos principais campeonatos de 2024',
+            '22 Fevereiro 2024',
+            'https://share.presskit.com.br/43446671f9'
+        ),
+        
+        createNews(
             'https://cba.org.br/upload/noticias/2024/2682/thumb/automovel-clube-recebe-presidente-da-comissao-nacional-de-circuitos.png',
             'Automóvel Clube Chapecó recebe presidente da Comissão Nacional de Circuitos',
             '17 Fevereiro 2024',

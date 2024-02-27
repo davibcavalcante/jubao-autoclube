@@ -13,27 +13,37 @@ footer {
     border-bottom: 1px solid white;
 }
 
-.contato-container {
+.contact-footer-container, .mobile-terms-container {
     text-align: center;
     margin-top: 10px;
 }
 
-.contato-container h1 {
+.contact-footer-container h1, .mobile-terms-container h1 {
     font-size: 1em;
     font-weight: 300;
+    text-transform: uppercase;
     margin-bottom: 10px;
 }
 
-.contato-container p {
+.contact-footer-container p {
+    color: white;
     font-size: .8em;
     font-weight: 300;
+    text-transform: uppercase;
 }
 
-.acessos-container {
+.mobile-terms-container a {
+    color: white;
+    font-size: 1em;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.accesses-footer-container {
     display: none;
 }
 
-.redes-container {
+.social-footer-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -46,26 +56,26 @@ footer {
     height: 50px;
 }
 
-.redes-container h1 {
+.social-footer-container h1 {
     font-weight: 300;
 }
 
-.redes-container ul {
+.social-footer-container ul {
     list-style-type: none;
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.redes-container img {
+.social-footer-container img {
     width: 30px;
 }
 
-.redes-container span {
+.social-footer-container span {
     display: none;
 }
 
-.redes-container li {
+.social-footer-container li {
     height: 30px;
 }
 
@@ -82,6 +92,10 @@ footer {
 }
 
 @media screen and (min-width: 992px) {
+    .mobile-terms-container {
+        display: none;
+    }
+
     .desktop-footer {
         display: flex;
         justify-content: space-around;
@@ -103,29 +117,29 @@ footer {
         width: 180px;
     }
 
-    .contato-container {
+    .contact-footer-container {
         text-align: left;
         align-self: flex-start;
         width: 20%;
     }
 
-    .acessos-container {
+    .accesses-footer-container {
         display: block;
         align-self: flex-start;
         margin-top: 10px;
         width: 20%;
     }
 
-    .acessos-container h1 {
+    .accesses-footer-container h1 {
         font-weight: 300;
         margin-bottom: 10px;
     }
 
-    .acessos-container ul {
+    .accesses-footer-container ul {
         list-style-type: none;
     }
 
-    .acessos-container a {
+    .accesses-footer-container a {
         color: white; 
         text-transform: uppercase;
         text-decoration: none;
@@ -133,7 +147,7 @@ footer {
         font-weight: 300;
     }
 
-    .redes-container {
+    .social-footer-container {
         display: block;
         border: none;
         align-self: flex-start;
@@ -141,19 +155,19 @@ footer {
         width: 20%;
     }
 
-    .redes-container ul {
+    .social-footer-container ul {
         flex-direction: column;
         align-items: start;
         margin-top: 10px;
     }
 
-    .redes-container span {
+    .social-footer-container span {
         display: block;
         font-size: .8em;
         text-transform: uppercase;
     }
 
-    .redes-container a {
+    .social-footer-container a {
         color: white;
         text-decoration: none;
         display: flex;
@@ -161,7 +175,7 @@ footer {
         gap: 5px;
     }
 
-    .redes-container a:hover, .acessos-container a:hover {
+    .social-footer-container a:hover, .acessos-container a:hover {
         text-decoration: underline;
     }
 
