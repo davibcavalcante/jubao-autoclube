@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'IntroHead';
+    src: url(../fonts/IntroRustG-Base2Line.otf) format(opentype);
+    font-weight: normal;
+}
+
+:root {
+    --background-color: #ffe8c6;
+    --main-color: #f25c05;
+    --alternative-color: #140703;
+    --header-color: #FF945E;
+    --news-bg-color: #a5a5a5;
+    --form-bg-color: #1c0a03;
+    --main-font: 'Montserrat';
+    --alternative-font: 'Poppins';
+    --title-font: 'IntroHead';
+}
+
+/* CONFIGURAÇÕES GERAIS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none;
+}
+
+body {
+    background-color: var(--background-color);
+    overflow-x: hidden;
+}
+
+.light-text {
+    font-weight: 300;
+}
+
+@media screen and (min-width: 992px) {
+    header {
+        background-color: var(--main-color);
+    }
+}
