@@ -1,0 +1,86 @@
+:root {
+    --background-color: #ff945e;
+    --main-color: #f25c05;
+    --alternative-color: #140703;
+
+    --header-color: #FF945E;
+    --dull-color: #a5a5a5;
+    --sponsorship-color: #F5F5F5;
+    --form-bg-color: #1c0a03;
+
+    --main-font: 'Montserrat', sans-serif;
+    --alternative-font: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+.message-error-container {
+    margin: 30px 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.message-error-container h1, .message-error-container h2 {
+    font: 700 2em var(--main-font);
+}
+
+.message-error-container p {
+    font-size: 2em;
+}
+
+main img {
+    display: block;
+
+    margin: auto;
+    width: 90%;
+    max-width: 400px;
+}
+
+.button-container {
+    margin: 50px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-container a {
+    color: white;
+    background-color: var(--main-color);
+    font: normal 1.5em var(--alternative-font);
+    text-transform: uppercase;
+    text-decoration: none;
+
+    width: 250px;
+    height: 50px;
+
+    box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (min-width: 600px) {
+    .message-error-container h1, .message-error-container h2 {
+        font-size: 3em;
+    }
+}

@@ -1,3 +1,120 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://kit.fontawesome.com/3954e72066.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="/imagens/desktop/favicon.ico" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/stylesheets/error.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+
+    <title>Error JubãoFe</title>
+</head>
+<body>
+    <main>
+        <section class="message-error-container">
+            <h1><%= message %></h1>
+            <p>-</p>
+            <h2><%= error.status %></h2>
+        </section>
+        
+        <img src="/imagens/mobile/pagina-erro.png" alt="Carro triste e precisando de reparos">
+        
+        <section class="button-container">
+            <a href="/" rel="next" target="_self">Página Inicial <i class="fa-solid fa-reply-all"></i></a>
+        </section>
+    </main>
+
+    <footer>
+        <section class="desktop-footer">
+            <section class="logo-container">
+                <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube">
+            </section>
+            <section class="contact-footer-container">
+                <h1>INFORMAÇÕES DE CONTATO:</h1>
+                <section class="info-contato">
+                    <p>
+                        TELEFONE: (62) 9 9133-6479 <br>
+                        CONTATO: jubaofe@gmail.com <br>
+                        INSTAGRAM: @rallydojubao
+                    </p>
+                </section>
+            </section>
+            <section class="mobile-terms-container">
+                <h1>Termos de Uso e Política de privacidade</h1>
+                <ul>
+                    <li>
+                        <a href="/termos" rel="next" target="_self">Termos de Uso</a>
+                    </li>
+                    <li>
+                        <a href="/politica-privacidade" rel="next" target="_self">Política de privacidade</a>
+                    </li>
+                </ul>
+            </section>
+            <section class="accesses-footer-container">
+                <h1>OUTROS ACESSOS:</h1>
+                <ul>
+                    <li>
+                        <a href="/inscricao" rel="next" target="_self">Inscrições</a>
+                    </li>
+                    <li>
+                        <a href="/portal-noticias" rel="next" target="_self">Notícias</a>
+                    </li>
+                    <li>
+                        <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
+                    </li>
+                    <li>
+                        <a href="/calendario" rel="next" target="_self">Calendário</a>
+                    </li>
+                    <li>
+                        <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
+                    </li>
+                    <li>
+                        <a href="/termos" rel="next" target="_self">Termos de uso</a>
+                    </li>
+                    <li>
+                        <a href="/politica-privacidade" rel="next" target="_self">Política de privacidade</a>
+                    </li>
+                </ul>
+            </section>
+            <section class="social-footer-container">
+                <h1>SIGA NOS:</h1>
+                <ul>
+                    <li>
+                        <a href="https://www.youtube.com/@JubaoFe" rel="external" target="_blank">
+                            <img src="/imagens/mobile/youtube-logo.png" alt="Ícone do Youtube">
+                            <span>Youtube</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:jubaofe@gmail.com">
+                            <img src="/imagens/mobile/email-logo.png" alt="Ícone do Email">
+                            <span>jubaofe@gmail.com</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/rallydojubao/" rel="external" target="_blank">
+                            <img src="/imagens/mobile/instagram-logo.png" alt="Ícone do Instagram">
+                            <span>Instagram</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <section class="associations-footer">
+                <img src="/imagens/desktop/cba.png" alt="Logo CBA">
+                <img src="/imagens/desktop/faugo-logo.png" alt="Logo FAUGO">
+            </section>
+        </section>
+        <p class="copy">
+            &copy; JubãoFe Autoclube Todos os Direitos Reservados <br>
+            Desenvolvido por <a href="https://www.instagram.com/indigitalprogramming/">Indigital</a>
+        </p>
+    </footer>
+</body>
+</html>

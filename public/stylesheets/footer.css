@@ -86,9 +86,17 @@ footer {
 .copy {
     text-align: center;
     font-weight: 300;
-    font-size: .7em;
+    font-size: 1em;
     border-top: 1px solid white;
     padding: 3px 0;
+}
+
+.copy a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
 
 @media screen and (min-width: 992px) {
@@ -190,9 +198,5 @@ footer {
         align-items: center;
         gap: 20px;
         padding: 0 10px;
-    }
-
-    .copy {
-        font-size: 1em;
     }
 }
