@@ -85,8 +85,8 @@ const allEvents = () => {
             org: 'JUBÃOFE',
             rally: 'RALLY DA APAE',
             local: 'SILVÂNIA - GO',
-            date: '13-14/04/2024',
-            day: '13',
+            date: '06-07/04/2024',
+            day: '06',
             month: '04'
         },
 
@@ -113,7 +113,7 @@ const allEvents = () => {
             rally: 'RALLY BURITI 35 BALI JEEP',
             local: 'BRASÍLIA - DF',
             date: '21/04/2024 - SUJEITO A ALTERAÇÃO',
-            day: '212',
+            day: '21',
             month: '04'
         },
 

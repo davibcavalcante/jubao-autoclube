@@ -1,6 +1,6 @@
 const express = require('express');
 const albumDataMiddlewares = require('../api/v1/middlewares/fotos')
-const rallyJubaoData = require('../api/v1/middlewares/rally-jubao-data')
+const rallyJubaoData = require('../api/v1/middlewares/dados-rally-jubao')
 
 const router = express.Router();
 
@@ -14,7 +14,7 @@ router.get('/inscricao/:name', (req, res, next) => {
     const rallyName = req.params.name
     const arrayRally = rallyJubaoData.getFilterEvents(false, rallyName)
     const rally = arrayRally[0]
-    res.render('inscricao-rally', { rally })
+    res.render('inscricao-form', { rally })
   } catch (error) {
     console.log('Erro ao obter rally:', error.message);
     res.status(500).json({erro: 'Erro interno do servidor'})

@@ -6,8 +6,8 @@ const youtube = require('../api/v1/middlewares/youtube');
 const fotos = require('../api/v1/middlewares/fotos');
 const noticias = require('../api/v1/middlewares/noticias')
 const noticiasLocais = require('../api/v1/middlewares/dados-noticias-locais')
-const rallyJubaoData = require('../api/v1/middlewares/rally-jubao-data')
-const calendarioData = require('../api/v1/middlewares/calendario-data')
+const rallyJubaoData = require('../api/v1/middlewares/dados-rally-jubao')
+const calendarioData = require('../api/v1/middlewares/dados-calendario')
 
 /* GET home page. */
 router.get('/youtube-videos', youtube.getVideos);
