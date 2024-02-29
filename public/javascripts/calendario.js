@@ -7,6 +7,17 @@ const messageError = (method) => {
     }
 }
 
+const openCloseOrgsFilter = (containerCaret) => {
+    const absoluteContainer = document.querySelector('.absolute-container')
+    absoluteContainer.classList.toggle('active')
+
+    if (absoluteContainer.classList.contains('active')) {
+        containerCaret.innerHTML = '<i class="fa-solid fa-caret-up"></i>'
+    } else {
+        containerCaret.innerHTML = '<i class="fa-solid fa-caret-down"></i>'
+    }
+}
+
 const filterEvents = async (data, method) => {
     const results = await fetch(`/api/v1/calendario/${data}/${method}`)
 
@@ -64,14 +75,8 @@ const setMonthSelected = (monthsContainer, month, e) => {
 
 const setFilterEvents = (month) => {
     const showOrgsButton = document.querySelector('.show-mobile')
-    const absoluteContainer = document.querySelector('.absolute-container')
     showOrgsButton.addEventListener('click', () => {
-        absoluteContainer.classList.toggle('active')
-        if (absoluteContainer.classList.contains('active')) {
-            showOrgsButton.innerHTML = '<i class="fa-solid fa-caret-up"></i>'
-        } else {
-            showOrgsButton.innerHTML = '<i class="fa-solid fa-caret-down"></i>'
-        }
+        openCloseOrgsFilter(showOrgsButton)
     })
 
     const monthsContainer = document.querySelector('.months-container')
@@ -91,18 +96,8 @@ const setFilterEvents = (month) => {
     })
 
     const orgsContainer = document.querySelector('.orgs-container')
-    
     filterSelect.addEventListener('change', () => {
         if (filterSelect.value === 'org') {
-            const orgs = document.querySelectorAll('.org-container')
-            orgs.forEach((org) => {
-                org.addEventListener('click', (e) => {
-                    const container = setOrgSelected(orgsContainer, e)
-                    const dataFilter = container.querySelector('h1').innerText
-                    filterEvents(dataFilter, 'org')
-                })
-            })
-
             const container = setOrgSelected(orgsContainer)
             const dataFilter = container.querySelector('h1').innerText
             filterEvents(dataFilter, 'org')
@@ -113,6 +108,16 @@ const setFilterEvents = (month) => {
             const dataFilter = container.id.substring(1)
             filterEvents(dataFilter, 'month')
         }
+    })
+
+    const orgs = document.querySelectorAll('.org-container')
+    orgs.forEach((org) => {
+        org.addEventListener('click', (e) => {
+            const container = setOrgSelected(orgsContainer, e)
+            const dataFilter = container.querySelector('h1').innerText
+            openCloseOrgsFilter(showOrgsButton)
+            filterEvents(dataFilter, 'org')
+        })
     })
 }
 
