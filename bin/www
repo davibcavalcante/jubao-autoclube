@@ -44,7 +44,7 @@ httpServer.on('error', onError);
 httpServer.on('listening', onServerListening(httpServer)); 
 
 
-if(config.useHTTPS) {
+if (config.useHTTPS) {
   const certificate = fs.readFileSync(config.httpsConfig.certificateFile, 'utf8');
   const privateKey = fs.readFileSync(config.httpsConfig.privateKeyFile, 'utf8');
   const credentials = {key: privateKey, cert: certificate};

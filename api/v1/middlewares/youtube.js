@@ -1,4 +1,5 @@
 const fetch = require('node-fetch')
+const config = require('../../../config.json').apis;
 
 const checkVideosUploaded = async (videoIds, apiKey) => {
     try {
@@ -18,7 +19,7 @@ const checkVideosUploaded = async (videoIds, apiKey) => {
 }
 
 module.exports.getVideos = async (req, res) => {
-    const apiKey = 'AIzaSyCv16fX2wWmHIa3pMqEyvOsbDIuSyaqrJ4';
+    const apiKey = config.youtube.key;
     const playlistId = 'UUFgVI_9GrVOp6t7sG7j4UHg';
     const maxResults = 20;
     const order = 'date';

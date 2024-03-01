@@ -15,7 +15,7 @@ const createNews = (url, title, date, external = false) => {
         };
 
     }
-};
+}
 
 module.exports.getNews = (pageNumber, pageSize) => {
     const newsArray = [

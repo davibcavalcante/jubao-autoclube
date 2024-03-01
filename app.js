@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-if(config.server.useHTTPS){
+if (config.server.useHTTPS) {
   app.use((req, res, next) => {
     if (!req.secure) {
         // Redireciona para HTTPS
@@ -34,6 +34,12 @@ if(config.server.useHTTPS){
 
 app.use('/', viewsRouters);
 app.use('/api/v1', apiV1Router);
+
+if (config.certRequest.enabled) {
+  app.use(config.certRequest.requestRoute, (req, res) => {
+    res.status(200).send(config.certRequest.challenge);
+  });
+}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
