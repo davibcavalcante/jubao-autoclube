@@ -6,6 +6,7 @@ const logger = require('morgan');
 
 const viewsRouters = require('./routes/views');
 const apiV1Router = require('./routes/api');
+const config = require('./config.json');
 
 const app = express();
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 1;
@@ -20,14 +21,16 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use((req, res, next) => {
+if(config.server.useHTTPS){
+  app.use((req, res, next) => {
     if (!req.secure) {
         // Redireciona para HTTPS
         res.redirect(`https://${req.headers.host}${req.url}`);
     } else {
         next(); // Continue com a próxima rota
     }
-});
+  });
+}
 
 app.use('/', viewsRouters);
 app.use('/api/v1', apiV1Router);
