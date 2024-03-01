@@ -50,6 +50,14 @@ router.get('/politica-privacidade', (req, res, next) => {
   res.render('politica-privacidade');
 });
 
+/* rota para criação/renovação do certificado
+ *
+router.get('/.well-known/acme-challenge/EQz--x1I5SNkAGASOy4zZ-GBLhdQoH-JTkh2gKrpgX4', (req, res)=> {
+	res.status(200).send('EQz--x1I5SNkAGASOy4zZ-GBLhdQoH-JTkh2gKrpgX4.zq5Qx_7HaUo9hdCssqoT3BFqOKJhSu5j17lvkyH_fz8');
+})
+
+*/
+
 router.get('/', (req, res, next) => {
   res.render('index', {
     cup: 'RALLY DAY', 
