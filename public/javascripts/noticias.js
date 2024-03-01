@@ -142,6 +142,21 @@ const createNews = (newsData, type) => {
         secondaryNewsContainer.appendChild(imageContainer)
         secondaryNewsContainer.appendChild(infoContainer)
         return secondaryNewsContainer
+    } else if (type === 'tertiary') {
+        const tertiaryNewsContainer = document.createElement('section')
+        tertiaryNewsContainer.classList.add('tertiary-news', 'news')
+
+        if (!newsData.external) {
+            tertiaryNewsContainer.classList.add('jubao-news')
+            tertiaryNewsContainer.addEventListener('click', () => {
+                setIframe(newsData)
+            })
+        }
+
+        tertiaryNewsContainer.appendChild(imageContainer)
+        tertiaryNewsContainer.appendChild(infoContainer)
+        return tertiaryNewsContainer
+
     } else if (type === 'normal') {
         const news = document.createElement('section')
         news.classList.add('news')
@@ -170,7 +185,10 @@ const updateHtml = (news) => {
         } else if (index === 1) {
             const secondary = createNews(newsData, 'secondary')
             mainNewsDesktop.appendChild(secondary)
-        } else if (index > 1 && index < 6) {
+        } else if (index === 2) {
+            const tertiary = createNews(newsData, 'tertiary')
+            mainNewsDesktop.appendChild(tertiary)
+        } else if (index > 2 && index < 7) {
             const newsEl = createNews(newsData, 'normal')
             otherNewsContainer.appendChild(newsEl)
         }
@@ -179,7 +197,7 @@ const updateHtml = (news) => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const newsApi = async() => {
-        const result = await fetch(`/api/v1/noticias/1/6`)
+        const result = await fetch(`/api/v1/noticias/1/7`)
         const data = await result.json()
         const news = data.newsForPage
 

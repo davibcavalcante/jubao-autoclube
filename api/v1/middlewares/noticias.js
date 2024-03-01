@@ -20,6 +20,41 @@ const createNews = (url, title, date, external = false) => {
 module.exports.getNews = (pageNumber, pageSize) => {
     const newsArray = [
         createNews(
+            'https://cba.org.br/upload/noticias/2024/2687/thumb/tudo-pronto-para-o-sul-brasileiro-de-kart-em-pato-branco-pr-.png',
+            'Tudo pronto para o Sul-Brasileiro de Kart, em Pato Branco (PR)',
+            '28 Fevereiro 2024',
+            'https://cba.org.br/campeonato/noticiasinfo/309/2687/tudo-pronto-para-o-sul-brasileiro-de-kart-em-pato-branco-pr-'
+        ),
+        
+        createNews(
+            'https://cba.org.br/upload/noticias/2024/2686/thumb/cba-e-governo-do-estado-firmam-entendimentos-para-construcao-de-complexo-automobilistico-no-piaui.png',
+            'CBA e governo do Estado firmam entendimentos para construção de complexo automobilístico no Piauí',
+            '27 Fevereiro 2024',
+            'https://cba.org.br/noticias/noticiasinfo/2686/cba-e-governo-do-estado-firmam-entendimentos-para-construcao-de-complexo-automobilistico-no-piaui'
+        ),
+
+        createNews(
+            'https://cba.org.br/upload/noticias/2024/2685/thumb/bwt-alpine-f1-team-renova-parceria-com-o-banco-brb.png',
+            'BWT Alpine F1 Team renova parceria com o Banco BRB',
+            '27 Fevereiro 2024',
+            'https://cba.org.br/campeonato/noticiasinfo/239/2685/bwt-alpine-f1-team-renova-parceria-com-o-banco-brb'
+        ),
+
+        createNews(
+            'https://cba.org.br/upload/noticias/2024/2684/thumb/o-automobilismo-brasileiro-perde-wilson-fittipaldi-jr-.png',
+            'O Automobilismo Brasileiro perde Wilson Fittipaldi Jr.',
+            '23 Fevereiro 2024',
+            'https://cba.org.br/noticias/noticiasinfo/2684/o-automobilismo-brasileiro-perde-wilson-fittipaldi-jr-'
+        ),
+
+        createNews(
+            'https://cba.org.br/upload/noticias/2024/2683/thumb/campeonato-do-nordeste-de-kart-prorroga-desconto-nas-inscricoes-ate-dia-3-de-marco.png',
+            'Campeonato do Nordeste de Kart prorroga desconto nas inscrições até dia 3 de março',
+            '21 Fevereiro 2024',
+            'https://cba.org.br/campeonato/noticiasinfo/310/2683/campeonato-do-nordeste-de-kart-prorroga-desconto-nas-inscricoes-ate-dia-3-de-marco'
+        ),
+
+        createNews(
             'https://admin.presskit.com.br/anexos_checkurl.jpg?fd=0&tipoimg=web&newsid=434466&anexoid=1097030&usuid=&usu=',
             'Accert Competições confirma participação nos principais campeonatos de 2024',
             '22 Fevereiro 2024',

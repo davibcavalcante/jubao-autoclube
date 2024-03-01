@@ -520,7 +520,7 @@ main {
     }
 
     .main-news {
-        width: 60%;
+        width: 49.3%;
         height: 50vh;
     }
 
@@ -529,8 +529,8 @@ main {
         object-position: center;
     }
 
-    .secondary-news {
-        width: 39%;
+    .secondary-news, .tertiary-news {
+        width: 24%;
         height: 50vh;
     }
 
