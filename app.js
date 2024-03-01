@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res, next) => {
     if (!req.secure) {
         // Redireciona para HTTPS
-        res.redirect(`https://${req.headers.host}${req.url}${req.query}`);
+        res.redirect(`https://${req.headers.host}${req.url}`);
     } else {
         next(); // Continue com a próxima rota
     }
