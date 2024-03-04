@@ -125,7 +125,7 @@ const createTemplate = (allNews, scroll = false) => {
         setTimeout(() => {
             const containerRect = allNewsContainer.getBoundingClientRect()
             window.scrollTo({ top: (window.scrollY + containerRect.top) - 20, behavior: 'smooth' })
-        }, 300)
+        }, 500)
     }
 }
 
