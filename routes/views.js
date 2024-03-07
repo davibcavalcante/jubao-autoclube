@@ -60,7 +60,7 @@ router.get('/.well-known/acme-challenge/EQz--x1I5SNkAGASOy4zZ-GBLhdQoH-JTkh2gKrp
 
 router.get('/', (req, res, next) => {
   res.render('index', {
-    cup: 'RALLY DAY', 
+    cup: 'INSCRIÇÕES EM BREVE', 
     categories: {
       c1: 'INICIANTE',
       c2: 'LIGHT',
@@ -68,7 +68,7 @@ router.get('/', (req, res, next) => {
       c4: 'TURISTA',
       c5: 'MASTER'
     },
-    url: '/inscricao/RALLY DAY'
+    url: '#'
   });
 });
 
