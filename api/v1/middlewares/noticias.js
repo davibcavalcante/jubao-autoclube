@@ -20,6 +20,13 @@ const createNews = (url, title, date, external = false) => {
 module.exports.getNews = (pageNumber, pageSize) => {
     const newsArray = [
         createNews(
+            'https://cba.org.br/upload/noticias/2024/2689/thumb/kart-cba-abre-licitacao-para-fornecimento-de-motores-4-tempos.png',
+            'Kart: CBA abre licitação para fornecimento de motores 4 tempos',
+            '06 Março 2024',
+            'https://cba.org.br/noticias/noticiasinfo/2689/kart-cba-abre-licitacao-para-fornecimento-de-motores-4-tempos'
+        ),
+
+        createNews(
             'https://cba.org.br/upload/noticias/2024/2688/thumb/pioneiro-e-visionario-fernando-monteiro-um-dos-principais-responsaveis-pela-pratica-do-automobilismo-no-nordeste-completa-80-anos.png',
             'Pioneiro e visionário, Fernando Monteiro, um dos principais responsáveis pela prática do automobilismo no Nordeste, completa 80 anos',
             '03 Março 2024',
