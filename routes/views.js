@@ -64,9 +64,10 @@ router.get('/', (req, res, next) => {
     categories: {
       c1: 'INICIANTE',
       c2: 'LIGHT',
-      c3: 'GRADUADO',
+      c3: 'SILVÂNIA',
       c4: 'TURISTA',
-      c5: 'MASTER'
+      c5: 'GRADUADO',
+      c6: 'MASTER'
     },
     url: '/inscricao/Rally da APAE'
   });

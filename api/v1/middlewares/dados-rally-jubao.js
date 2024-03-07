@@ -44,7 +44,7 @@ const allEvents = () => {
             name: 'Rally da APAE',
             stage: '',
             description: description,
-            date: '13-04-2024',
+            date: '07-04-2024',
             month: '04',
             local: 'Silvânia-GO',
             ok: true,
