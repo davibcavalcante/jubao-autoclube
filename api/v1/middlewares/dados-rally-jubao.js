@@ -47,7 +47,7 @@ const allEvents = () => {
             date: '13-04-2024',
             month: '04',
             local: 'Silvânia-GO',
-            ok: false,
+            ok: true,
             duration: "7:00h às 15:00h",
             categories: categories,
             values: {
@@ -72,7 +72,7 @@ const allEvents = () => {
             date: '08-06-2024',
             month: '06',
             local: 'Goiânia',
-            ok: false,
+            ok: true,
             duration: "7:00h às 15:00h",
             categories: categories,
             values: {
@@ -97,7 +97,7 @@ const allEvents = () => {
             date: '12-10-2024',
             month: '10',
             local: 'Goiânia',
-            ok: false,
+            ok: true,
             duration: "7:00h às 15:00h",
             categories: categories,
             values: {
@@ -122,7 +122,7 @@ const allEvents = () => {
             date: '07-12-2024',
             month: '12',
             local: 'Goiânia',
-            ok: false,
+            ok: true,
             duration: "7:00h às 15:00h",
             categories: categories,
             values: {
