@@ -14,6 +14,10 @@ const birthplaceInput = document.querySelector('#pilot-birthplace-input')
 
 const showQrCodeButton = document.querySelector('#show-qr-code-btn')
 
+const tempOption = document.querySelector('#temp-option')
+const rallyName = document.querySelector('#rally-name').innerText
+if (rallyName.toUpperCase() !== 'RALLY DA APAE') tempOption.classList.add('hidden')
+
 // INTERACTION WITH ELEMENTS
 
 form.addEventListener('focusin', handleFocusIn)
@@ -23,17 +27,19 @@ form.addEventListener('submit', (e) => {
     const valueScreen = document.querySelector('.pay-value')
 
     if (partSel.value <= '3') {
-        if (classSelect.value === 'INICIANTE' || classSelect.value === 'NOVATO') {
+        if (classSelect.value === 'INICIANTE' || classSelect.value === 'NOVATO' || classSelect.value === 'SILVANIA') {
             valueScreen.innerText = 'VALOR: R$ 375,00'
         } else {
             valueScreen.innerText = 'VALOR: R$ 450,00'
         }
     } else if (partSel.value === '4') {
-        if (classSelect.value != 'TURISMO' || classSelect.value != 'GRADUADO' || classSelect.value != 'MASTER') {
+        if (classSelect.value != 'TURISMO' && classSelect.value != 'GRADUADO' && classSelect.value != 'MASTER' && classSelect.value != 'SILVANIA') {
             valueScreen.innerText = 'VALOR: R$ 475,00'
+        } else if (classSelect.value === 'SILVANIA') {
+            valueScreen.innerText = 'VALOR: R$ 450,00'
         }
     }
-    return validateForm()
+    return validateForm(true)
 })
 
 placeholder.forEach((item) => {

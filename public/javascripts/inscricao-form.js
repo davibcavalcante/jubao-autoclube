@@ -1,4 +1,4 @@
-const showMessage = (message, buttonText) => {
+const showMessage = (message, buttonText, silvania = false) => {
     const wrapper = document.querySelector('.message-container')
     const formOpacity = document.querySelector('form')
     const title = document.querySelector('.title')
@@ -17,7 +17,11 @@ const showMessage = (message, buttonText) => {
         figure.src = '/imagens/mobile/checked.png'
         importantMessage.innerHTML = `Para confirmar a sua inscrição é necessário realizar o pagamento e enviar o comprovante via Email ou WhatsApp!`
         contact.innerHTML = 'Email: jubaofe@gmail.com </br> (62) 9 8459-4447 | (62) 9 9675-1067'
-        qrCode.src = '/imagens/mobile/qr-code.jpg'
+        if (silvania) {
+          qrCode.src = '/imagens/mobile/qrcode-silvania.jpeg'
+        } else {
+          qrCode.src = '/imagens/mobile/qr-code.jpg'
+        }
         pInfo.innerText = 'Caso tenha alguma dúvida sobre valores clique em "INFORMAÇÕES" no topo da página!'
     } else {
         figure.src = '/imagens/mobile/cancel.png'
@@ -113,7 +117,7 @@ const clearFormData = () => {
     resetForm(placeholdersForReset)
 }
 
-const sendData = async(formData) => {
+const sendData = async(formData, silvania) => {
     const result = await fetch("/api/v1/inscricao", {
       method: "POST",
       body: JSON.stringify(formData),
@@ -124,7 +128,7 @@ const sendData = async(formData) => {
 
     if (result.status === 200) {
       const data = await result.json();
-      showMessage(data.message, 'OK')
+      showMessage(data.message, 'OK', silvania)
       clearFormData();
     } else {
       const data = await result.json();
@@ -132,7 +136,7 @@ const sendData = async(formData) => {
     }
   }
 
-const validateForm = () => {
+const validateForm = (silvania) => {
     const formData = getFormData();
-    return sendData(formData)
+    return sendData(formData, silvania)
 }
