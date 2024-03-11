@@ -177,6 +177,7 @@
                                 <option value="" disabled selected hidden>SELECIONE...</option>
                                 <option value="INICIANTE">INICIANTE</option>
                                 <option value="NOVATO">NOVATO</option>
+                                <option value="SILVANIA" id="temp-option">SILVÂNIA</option>
                                 <option value="TURISMO">TURISMO</option>
                                 <option value="GRADUADO">GRADUADO</option>
                                 <option value="MASTER">MASTER</option>
@@ -284,7 +285,7 @@
                         </section>
                         <section class="input-container">
                             <label for="pilot-nationality-input">NACIONALIDADE:</label>
-                            <input type="text" name="pilot-nationality" id="pilot-nationality-input" required>
+                            <input type="text" name="pilot-nationality" id="pilot-nationality-input" class="without-numbers-input" required>
                             <span class="placeholder">NACIONALIDADE</span>
                         </section>
                         <section class="input-container">
@@ -335,7 +336,7 @@
                         </section>
                         <section class="input-container">
                             <label for="pilot-birthplace-input">NATURALIDADE:</label>
-                            <input type="text" name="pilot-birthplace" id="pilot-birthplace-input" required>
+                            <input type="text" name="pilot-birthplace" id="pilot-birthplace-input" class="without-numbers-input" required>
                             <span class="placeholder">NATURALIDADE</span>
                         </section>
                         <section class="input-container">
@@ -370,7 +371,7 @@
                     <section class="input-desktop-container">
                         <section class="input-container">
                             <label for="pilot-cep-input">CEP:</label>
-                            <input type="text" name="pilot-cep" id="pilot-cep-input" class="cep-input" required>
+                            <input type="text" name="pilot-cep" id="pilot-cep-input" class="cep-input" maxlength="8" required>
                             <span class="placeholder">CEP</span>
                         </section>
                         <section class="input-container">
@@ -482,7 +483,7 @@
                     <section class="input-desktop-container">
                         <section class="input-container">
                             <label for="nav-cep-input">CEP:</label>
-                            <input type="text" name="nav-cep" id="nav-cep-input" class="cep-input" required>
+                            <input type="text" name="nav-cep" id="nav-cep-input" class="cep-input" maxlength="8" required>
                             <span class="placeholder">CEP</span>
                         </section>
                         <section class="input-container">

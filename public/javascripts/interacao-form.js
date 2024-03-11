@@ -1,9 +1,3 @@
-/*updateStep(statementForm, 'enable')
-updateStep(pilotForm, 'disable')
-updateStep(navigatorForm, 'disable')
-updateStep(auxForm1, 'disable')
-updateStep(auxForm2, 'disable')*/
-
 // RETORNA OS FORMULÁRIOS E O CONTAINER PAI
 const getForms = () => {
     return {
@@ -27,13 +21,142 @@ const toggleClass = (element, action) => {
     }
 }
 
-// DEVOLVE VALOR DAS SELECTS
+// RETORNA UMA SELECT
 const getSelect = (id) => {
     return document.querySelector(`#${id}-select`)
 }
 
-//
+// TROCA A CLASSE DE UM ELEMENTO POR OUTRA
+const replaceClass = (newClass, oldClass) => {
+    getForms().parent.classList.replace(newClass, oldClass)
+}
 
+// VERIFICA SE OS INPUTS FORAM PREENCHIDOS
+const checkElementsOk = (element) => {
+    if (element.attributes[0].value === 'checkbox') {
+        if (element.checked === false) {
+            element.classList.add('error')
+            setTimeout(() => {
+                element.classList.remove('error')
+            }, 1000)
+            return false
+        } else {
+            return true
+        }
+    } else {
+        if (element.value === '') {
+            element.scrollIntoView({ behavior: 'smooth' })
+            element.classList.add('error')
+            return false
+        } else {
+            return true
+        }
+    }
+}
+
+// PREPARA OS ELEMENTOS PARA CHECAR SE SÃO VÁLIDOS
+const sendElementsForCheck = (id) => {
+    const parentElement = document.querySelector(`#${id}-form`)
+    const elements = Array.from(parentElement.querySelectorAll('input, select'))
+    const elementsToCheck = elements.filter(element => element.required)
+
+    let inputIsvalid
+
+    for (let input of elementsToCheck) {
+        inputIsvalid = checkElementsOk(input)
+        if (!inputIsvalid) break
+    }
+
+    if (inputIsvalid) return true 
+}
+
+// RETIRA OS NÚMEROS DOS INPUTS QUE NÃO DEVEM CONTER NÚMEROS 
+const removeNumbersInput = (input) => {
+    const regex = /^[^\d]*$/
+    let inputValue = input.value
+
+    if (regex.test(input.value)) {
+        input.value = inputValue
+    } else {
+        input.value = inputValue.substring(0, inputValue.length - 1)
+    }
+}
+
+// FUNÇÕES DE CEP
+
+// COMPLETA OS OUTROS CAMPOS DE ENDEREÇO COM BASE NO CEP
+const setAutoAddress = (data, input) => {
+    const idInput = input.id
+    const participantCep = idInput.split('-')[0]
+    const autoCompleteInputs = ['state', 'city', 'street', 'neighborhood']
+
+    autoCompleteInputs.forEach((item) => {
+        const currentInput = document.querySelector(`#${participantCep}-${item}-input`)
+        if (item === 'state') currentInput.value = data.state
+        if (item === 'city') currentInput.value = data.city
+        if (item === 'street') currentInput.value = data.street
+        if (item === 'neighborhood') currentInput.value = data.neighborhood
+        currentInput.focus()
+    })
+}
+
+// VERIFICA SE O CEP É VALIDO
+const cepIsValid = async (cep, input) => {
+    const request = await fetch(`https://brasilapi.com.br/api/cep/v1/${cep}`)
+    const data = await request.json()
+    if (data.cep) {
+        if (input.classList.contains('input-error')) {
+            input.classList.remove('error')
+        }
+        setAutoAddress(data, input)
+    } else {
+        input.classList.add('error')
+    }
+}
+
+// FORMATA O CAMPO DE CEP
+const formatCepInput = (input) => {
+    const cepValue = input.value
+    const cepFormatted = cepValue.replace(/[^0-9]/g, '')
+    input.value = cepFormatted
+    if (cepFormatted.length === 8) {
+        cepIsValid(cepFormatted, input)
+    } else if (cepFormatted.length === 0) {
+        if (input.classList.contains('input-error')) {
+            removeErrorClass(input)
+        }
+    }
+}
+
+// FORMATA OS CAMPOS DE CPF
+const formatCpfInput = (input) => {
+    let cpfValue = input.value.replace(/[^\d]/g, '')
+
+    if (cpfValue.length > 3 && cpfValue.length <= 6) {
+        cpfValue = cpfValue.replace(/(\d{3})/, '$1.')
+    } else if (cpfValue.length > 6 && cpfValue.length <= 9) {
+        cpfValue = cpfValue.replace(/(\d{3})(\d{3})/, '$1.$2.')
+    } else if (cpfValue.length > 9) {
+        cpfValue = cpfValue.replace(/(\d{3})(\d{3})(\d{3})/, '$1.$2.$3-')
+    }
+
+    input.value = cpfValue
+}
+
+// FORMATA OS CAMPOS DE NÚMERO
+const formatNumberInput = (input) => {
+    let numberValue = input.value.replace(/[^\d]/g, '')
+
+    if (numberValue.length > 2 && numberValue.length <= 6) {
+        numberValue = numberValue.replace(/(\d{2})(\d{1,4})/, '($1) $2')
+    } else if (numberValue.length > 6 && numberValue.length <= 10) {
+        numberValue = numberValue.replace(/(\d{2})(\d{4})(\d{1,4})/, '($1) $2-$3')
+    } else if (numberValue.length > 10) {
+        numberValue = numberValue.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3').substr(0, 15)
+    }
+
+    input.value = numberValue
+}
 
 // FUNÇÕES QUE AJUSTAM O FORMULÁRIO DE ACORDO COM O TAMANHO DA TELA / QUANTIDADE DE PARTICIPANTES
 
@@ -51,17 +174,65 @@ const toggleSubmitButtons = (elementsArray, actionArray) => {
 }
 
 // DEIXA VISÍVEL O FORMULÁRIO NO QUAL O USUÁRIO ESTÁ (MOBILE)
-const updateStepTeste = (step, forms) => {
-    if (step === 0) {
-        forms.forEach((form) => {
-            if (form.id === 'statement-form') {
-                toggleClass(form, 'remove')
-            } else {
-                toggleClass(form, 'add')
-            }
-        })
+const updateStepTeste = (step, forms, scroll = false) => {
+    const parentForms = getForms().parent
+    let formId
+
+    switch (step) {
+        case 0: 
+            formId = 'statement-form'
+            break
+
+        case 1:
+            formId = 'pilot-form'
+            break
+
+        case 2:
+            formId = 'navigator-form'
+            break
+
+        case 3:
+            formId = 'aux1-form'
+            break
+
+        case 4:
+            formId = 'aux2-form'
+            break
+
+        default: 'Id Inválido!'
+    }
+
+    forms.forEach((form) => {
+        if (form.id === formId) {
+            toggleClass(form, 'remove')
+        } else {
+            toggleClass(form, 'add')
+        }
+    })
+
+    if (scroll) {
+        setTimeout(() => {
+            parentForms.scrollIntoView({behavior: 'smooth'})
+        }, 300)
     }
 }
+
+// ARMAZENA E DEFINE VALOR DO PASSO ATUAL DO FORMULÁRIO
+const formStepState = () => {
+    let step = 0
+
+    const getStep = () => {
+        return step
+    }
+
+    const setStep = (newStep) => {
+        step = newStep
+    }
+
+    return { getStep, setStep }
+}
+
+const formStepManage = formStepState()
 
 // ARMAZENA E DEFINE VALOR DO TAMANHO DA TELA DO USUÁRIO (RESIZE)
 const viewWidthState = () => {
@@ -109,19 +280,30 @@ const enableDisableForms = (e, forms) => {
 const submitForm = (e) => {
     e.preventDefault()
     const valueScreen = document.querySelector('.pay-value')
+    const categoriesValue = getSelect('categories').value
+    const participantsValue = getSelect('participants').value
 
-    if (partSel.value <= '3') {
-        if (classSelect.value === 'INICIANTE' || classSelect.value === 'NOVATO') {
+    if (participantsValue <= '3') {
+        if (categoriesValue === 'INICIANTE' || categoriesValue === 'NOVATO' || categoriesValue === 'SILVANIA') {
             valueScreen.innerText = 'VALOR: R$ 375,00'
         } else {
             valueScreen.innerText = 'VALOR: R$ 450,00'
         }
-    } else if (partSel.value === '4') {
-        if (classSelect.value != 'TURISMO' || classSelect.value != 'GRADUADO' || classSelect.value != 'MASTER') {
+    } else if (participantsValue === '4') {
+        if (categoriesValue != 'TURISMO' && categoriesValue && 'GRADUADO' && categoriesValue != 'MASTER' &&         categoriesValue != 'SILVANIA') {
             valueScreen.innerText = 'VALOR: R$ 475,00'
+        } else if (categoriesValue === 'SILVANIA') {
+            valueScreen.innerText = 'VALOR: R$ 450,00'
         }
     }
-    return validateForm()
+
+    const rallyName = document.querySelector('#rally-name').innerText
+
+    if (rallyName.toUpperCase() !== 'RALLY DA APAE') {
+        return validateForm(true)
+    } else {
+        return validateForm()
+    }
 }
 
 // ATIVA E DESATIVA A ANIMAÇÃO DOS INPUTS
@@ -145,8 +327,8 @@ const handleFocus = (e) => {
     }
 }
 
-//
-function statementRequired(elements, type) {
+// DEFINE COMO REQUIRED OS INPUTS CHECKBOX DO TERMO DE RESPONSABILIDADE
+const statementRequired = (elements) => {
     if (elements === 'none') {
         for (let c = 1; c <= 2; c++) {
             const auxRequired = document.querySelector(`#accept-assistant${c}-input`)
@@ -155,7 +337,7 @@ function statementRequired(elements, type) {
         return
     } else {
         elements.forEach((element) => {
-            document.querySelector(`accept-assistant${element}-input`).required = true
+            document.querySelector(`#accept-assistant${element}-input`).required = true
         })
     }
 }
@@ -170,7 +352,7 @@ const enableInputs = (element, type) => {
     } else if (type === 'array') {
         element.forEach((item) => {
             classForEnable.forEach((className) => {
-                item.querySelector(`${className}-input`).required = true
+                item.querySelector(`.${className}-input`).required = true
             })
         })
     }
@@ -188,7 +370,7 @@ const participantsForm = (elementsArray, actionArray) => {
     elementsArray.forEach((element, index) => {
         if (actionArray[index] === 'disable') {
             const inputsForReset = element.querySelectorAll('input, select')
-            resetInputss(inputsForReset)
+            resetInputs(inputsForReset)
             element.classList.add('hidden-participant')
         } else {
             element.classList.remove('hidden-participant')
@@ -209,8 +391,6 @@ const changeParticipants = () => {
     if (categories.value === 'TURISMO' || categories.value === 'GRADUADO' || categories.value === 'MASTER') {
         participantsValue = '2'
         participantsSelect.value = participantsValue
-    } else {
-        participantsValue = participantsSelect.value
     }
 
     const forms = getForms().forms
@@ -237,68 +417,187 @@ const changeParticipants = () => {
     }
 }
 
-// FUNÇÕES QUE REGISTRAM EVENTOS
+// LEVA O USUÁRIO AO PRÓXIMO PASSO DO FORMULÁRIO (MOBILE)
+const goNextStep = (currentStep, forms, formContainer) => {
+    const participantsValue = getSelect('participants').value
 
-// REGISTRA TODOS OS EVENTOS DO FORMULÁRIO
-const setFormEvents = () => {
+    const selPartIsValid = checkElementsOk(getSelect('participants'))
+    const selCategIsValid = checkElementsOk(getSelect('categories'))
+
+    if (!selPartIsValid || !selCategIsValid) return
+
+    if (currentStep === 0) {
+        const canNextStep = sendElementsForCheck('statement')
+        if (!canNextStep) return
+
+        currentStep++
+        formStepManage.setStep(currentStep)
+        formContainer.classList.add('second-step')
+        updateStepTeste(currentStep, forms, true)
+    } else if (currentStep === 1) {
+        const canNextStep = sendElementsForCheck('pilot')
+
+        if (!canNextStep) return
+
+        currentStep++
+        formStepManage.setStep(currentStep)
+        replaceClass('second-step', 'third-step')
+        updateStepTeste(currentStep, forms, true)
+    } else if (currentStep === 2 && (participantsValue === '3' || participantsValue === '4')) {
+        const canNextStep = sendElementsForCheck('pilot')
+
+        if (!canNextStep) return
+
+        currentStep++
+        formStepManage.setStep(currentStep)
+        replaceClass('third-step', 'fourth-step')
+        updateStepTeste(currentStep, forms, true)
+    } else if (currentStep === 3 && participantsValue === '4') {
+        const canNextStep = sendElementsForCheck('pilot')
+
+        if (!canNextStep) return
+
+        currentStep++
+        formStepManage.setStep(currentStep)
+        replaceClass('fourth-step', 'fifth-step')
+        updateStepTeste(currentStep, forms, true)
+    }
+}
+
+// LEVA O USUÁRIO AO PASSO ANTERIOR DO FORMULÁRIO (MOBILE)
+const goPrevStep = (currentStep, forms, formContainer) => {
+    switch (currentStep) {
+        case 1:
+            currentStep--
+            formStepManage.setStep(currentStep)
+            updateStepTeste(currentStep, forms, true)
+            formContainer.classList.remove('second-step')
+            break
+
+        case 2:
+            currentStep--
+            formStepManage.setStep(currentStep)
+            updateStepTeste(currentStep, forms, true)
+            replaceClass('third-step', 'second-step')
+            break
+
+        case 3:
+            currentStep--
+            formStepManage.setStep(currentStep)
+            updateStepTeste(currentStep, forms, true)
+            replaceClass('fourth-step', 'third-step')
+            break
+
+        case 4:
+            currentStep--
+            formStepManage.setStep(currentStep)
+            updateStepTeste(currentStep, forms, true)
+            replaceClass('fifth-step', 'fourth-step')
+            break
+    }
+}
+
+// FUNÇÃO QUE REGISTRA EVENTOS
+const setEvents = () => {
+    // ELEMENTOS GLOBAIS
+    const formContainer = getForms().parent
+
+    // EVENTOS DE FORMULÁRIOS
     const form = document.querySelector('#form')
-
     form.addEventListener('focusin', handleFocus)
     form.addEventListener('focusout', handleFocus)
     form.addEventListener('submit', submitForm)
-}
 
-// REGISTRA EVENTO PARA OS PLACEHOLDERS
-const setPlaceholderEvents = () => {
-    const placeholders = document.querySelectorAll('.placeholder')
-    placeholders.forEach((item) => {
-        item.addEventListener('click', (e) => {
-            const targetEl = e.target.previousElementSibling
-            targetEl.focus()
-        })
+    // EVENTO DO CONTAINER PAI DOS FORMULÁRIOS
+    formContainer.addEventListener('click', (e) => {
+        const targetClick = e.target
+        const forms = getForms().forms
+        let currentStep = formStepManage.getStep()
+
+        if (targetClick.classList.contains('next-step-btn')) {
+            goNextStep(currentStep, forms, formContainer)
+        } else if (targetClick.classList.contains('prev-step-btn')) {
+            goPrevStep(currentStep, forms, formContainer)
+        }
     })
-}
 
-// REGISTRA EVENTO PARA OS INPUTS
-const setInputEvents = () => {
-    const form = getForms().parent
-    const inputs = form.querySelectorAll('input')
+    // EVENTO DA SELECT DE PARTICIPANTES
+    const participantsSelect = getSelect('participants')
+    participantsSelect.addEventListener('change', changeParticipants)
 
-    inputs.forEach((input) => {    
-        input.addEventListener('input', () => {
-            if (input.classList.contains('active') && input.classList.contains('error')) {
-                input.classList.remove('error')
-            }
-        })
-    })
-}
-
-// REGISTRA EVENTO PARA A SELECT DE CATEGORIA
-const setEventsCategoriesSelect = () => {
-    const categoriesSelect = document.querySelector('#categories-select')
+    // EVENTO DA SELECT DE CATEGORIAS
+    const categoriesSelect = getSelect('categories')
 
     categoriesSelect.addEventListener('change', () => {
-        if (classSelect.classList.contains('error')) {
-            classSelect.classList.remove('error')
+        if (categoriesSelect.classList.contains('error')) {
+            categoriesSelect.classList.remove('error')
         }
 
         const pilotCba = document.querySelector('#pilot-cba-input')
-        const categoriesValue = getSelect('categories').value
+        const categoriesValue = categoriesSelect.value
 
         if (categoriesValue === 'TURISMO' || categoriesValue === 'GRADUADO' || categoriesValue === 'MASTER') {
-            partSel.value = '2'
+            getSelect('participants').value = '2'
             changeParticipants()
             pilotCba.required = true
         } else {
             pilotCba.required = false
         }
     })
-}
 
-// REGISTRA EVENTO PARA A SELECT DE PARTICIPANTES
-const setEventsParticipantsSelect = () => {
-    const participantsSelect = getSelect('participants')
-    participantsSelect.addEventListener('change', changeParticipants)
+    // EVENTO DOS INPUTS
+    const inputs = formContainer.querySelectorAll('input')
+
+    inputs.forEach((input) => {    
+        input.addEventListener('input', (e) => {
+            if (input.classList.contains('active') && input.classList.contains('error')) {
+                input.classList.remove('error')
+            }
+
+            if (input.classList.contains('without-numbers-input')) {
+                removeNumbersInput(input)
+            }
+            
+            if (input.classList.contains('cep-input')) {
+                formatCepInput(input)
+            }
+
+            if (input.classList.contains('cpf-input')) {
+                formatCpfInput(input)
+            }
+
+            if (input.classList.contains('number-input')) {
+                formatNumberInput(input)
+            }
+
+            input.focus()
+        })
+    })
+
+    // EVENTOS DOS PLACEHOLDERS
+    const placeholders = document.querySelectorAll('.placeholder')
+
+    placeholders.forEach((item) => {
+        item.addEventListener('click', (e) => {
+            const targetEl = e.target.previousElementSibling
+            targetEl.focus()
+        })
+    })
+
+    // EVENTO DO BOTÃO QUE GERA O QRCODE
+    const showQrCodeButton = document.querySelector('#show-qr-code-btn')
+
+    showQrCodeButton.addEventListener('click', () => {
+        const qrCodeContainer = document.querySelector('.qr-code-container')
+        qrCodeContainer.classList.toggle('hidden')
+        showQrCodeButton.classList.toggle('active')
+    
+        if (showQrCodeButton.classList.contains('active')) {
+            showQrCodeButton.innerText = 'LIMPAR QR CODE'
+        } else {
+            showQrCodeButton.innerText = 'GERAR QR CODE'
+        }
+    })
 }
 
 // PONTO INICIAL
@@ -311,403 +610,9 @@ window.addEventListener('load', (e) => {
         enableDisableForms(e, forms)
     })
 
-    setFormEvents()
-    setPlaceholderEvents()
-    setEventsCategoriesSelect()
+    const tempOption = document.querySelector('#temp-option')
+    const rallyName = document.querySelector('#rally-name').innerText
+    if (rallyName.toUpperCase() !== 'RALLY DA APAE') tempOption.classList.add('hidden')
+
+    setEvents()
 })
-
-/*
-
-const infoContainer = document.querySelector('.info-container') !NÃO UTILIZANDO!!!!
-const footer = document.querySelector('footer') !NÃO UTILIZANDO!!!!
-
-const cepInputs = document.querySelectorAll('.cep-input')
-const cpfInputs = document.querySelectorAll('.cpf-input')
-const numbersInput = document.querySelectorAll('.number-input')
-
-
-
-
-const nationalityInput = document.querySelector('#pilot-nationality-input')
-const birthplaceInput = document.querySelector('#pilot-birthplace-input')
-
-const showQrCodeButton = document.querySelector('#show-qr-code-btn')
-
-// INTERACTION WITH ELEMENTS
-
-/*
-function handleFocusIn(e) {
-    if (e === undefined) return
-    if (e.target.tagName.toLowerCase() !== 'select') {
-        e.target.classList.add('active');
-        if (e.target.nextElementSibling) {
-            e.target.nextElementSibling.classList.add('active');
-        }
-    }
-}
-
-function handleFocusOut(e) {
-    if (e.target.tagName.toLowerCase() !== 'select' && e.target.value.length === 0) {
-        e.target.classList.remove('active');
-        if (e.target.nextElementSibling) {
-            e.target.nextElementSibling.classList.remove('active');
-        }
-    }
-}
-
-input.addEventListener('input', autoFocus)
-function autoFocus(e) {
-    const targetInput = e.target
-    targetInput.focus()
-}
-
-containerForm.addEventListener('click', (e) => {
-    const targetClick = e.target
-    if (targetClick.classList.contains('next-step-btn')) {
-
-        const selPartIsValid = verifyInput(partSel)
-        const selClassIsValid = verifyInput(classSelect)
-        let inputsToCheck = []
-        let inputIsvalid
-
-        if (!selPartIsValid || !selClassIsValid) return
-
-        if (step === 0) {
-            const statementInputs = statementForm.querySelectorAll('input')
-            statementInputs.forEach((input) => {
-                if (input.required) {
-                    inputsToCheck.push(input)
-                }
-            })
-
-            for (let input of inputsToCheck) {
-                inputIsvalid = verifyInput(input)
-                if (!inputIsvalid) {
-                    break
-                }
-            }
-
-            if (!inputIsvalid) return
-
-            containerForm.classList.add('second-step')
-            step++
-            updateStep(pilotForm, 'enable', true)
-            updateStep(statementForm, 'disable', true)
-            updateStep(navigatorForm, 'disable', true)
-            updateStep(auxForm1, 'disable', true)
-            updateStep(auxForm2, 'disable', true)
-        } else if (step === 1) {
-            const pilotInputs = pilotForm.querySelectorAll('input')
-            const pilotSelects = pilotForm.querySelectorAll('select')
-
-            pilotSelects.forEach((select) => {
-                if (select.required) {
-                    inputsToCheck.push(select)
-                }
-            })
-
-            pilotInputs.forEach((input) => {
-                if (input.required) {
-                    inputsToCheck.push(input)
-                }
-            })
-
-            for (let input of inputsToCheck) {
-                inputIsvalid = verifyInput(input)
-                if (!inputIsvalid) {
-                    break
-                }
-            }
-
-            if (!inputIsvalid) return
-
-            replaceClass('second-step', 'third-step')
-            step++
-            updateStep(navigatorForm, 'enable', true)
-            updateStep(statementForm, 'disable', true)
-            updateStep(pilotForm, 'disable', true)
-            updateStep(auxForm1, 'disable', true)
-            updateStep(auxForm2, 'disable', true)
-        } else if (step === 2 && (partSel.value === '3' || partSel.value === '4')) {
-            const navigatorInputs = navigatorForm.querySelectorAll('input')
-            const navigatorSelects = navigatorForm.querySelectorAll('select')
-
-            navigatorSelects.forEach((select) => {
-                if (select.required) {
-                    inputsToCheck.push(select)
-                }
-            })
-
-            navigatorInputs.forEach((input) => {
-                if (input.required) {
-                    inputsToCheck.push(input)
-                }
-            })
-
-            for (let input of inputsToCheck) {
-                inputIsvalid = verifyInput(input)
-                if (!inputIsvalid) {
-                    break
-                }
-            }
-
-            if (!inputIsvalid) return
-
-            replaceClass('third-step', 'fourth-step')
-            step++
-            updateStep(auxForm1, 'enable', true)
-            updateStep(statementForm, 'disable', true)
-            updateStep(pilotForm, 'disable', true)
-            updateStep(navigatorForm, 'disable', true)
-            updateStep(auxForm2, 'disable', true)
-        } else if (step === 3 && partSel.value === '4') {
-            const aux1Inputs = auxForm1.querySelectorAll('input')
-            const aux1Selects = auxForm1.querySelectorAll('select')
-
-            aux1Selects.forEach((select) => {
-                if (select.required) {
-                    inputsToCheck.push(select)
-                }
-            })
-
-            aux1Inputs.forEach((input) => {
-                if (input.required) {
-                    inputsToCheck.push(input)
-                }
-            })
-
-            for (let input of inputsToCheck) {
-                inputIsvalid = verifyInput(input)
-                if (!inputIsvalid) {
-                    break
-                }
-            }
-
-            if (!inputIsvalid) return
-
-            replaceClass('fourth-step', 'fifth-step')
-            step++
-            updateStep(auxForm2, 'enable', true)
-            updateStep(statementForm, 'disable', true)
-            updateStep(pilotForm, 'disable')
-            updateStep(navigatorForm, 'disable', true)
-            updateStep(auxForm1, 'disable', true)
-        }
-    }
-
-    if (targetClick.classList.contains('prev-step-btn')) {
-        switch (step) {
-        case 1:
-            containerForm.classList.remove('second-step')
-            step--
-            updateStep(statementForm, 'enable', true)
-            updateStep(pilotForm, 'disable', true)
-            updateStep(navigatorForm, 'disable', true)
-            updateStep(auxForm1, 'disable', true)
-            updateStep(auxForm2, 'disable', true)
-            break
-
-        case 2:
-            replaceClass('third-step', 'second-step')
-            step--
-            updateStep(pilotForm, 'enable', true)
-            updateStep(statementForm, 'disable', true)
-            updateStep(navigatorForm, 'disable', true)
-            updateStep(auxForm1, 'disable', true)
-            updateStep(auxForm2, 'disable', true)
-            break
-
-        case 3:
-            replaceClass('fourth-step', 'third-step')
-            step--
-            updateStep(navigatorForm, 'enable', true)
-            updateStep(statementForm, 'disable', true)
-            updateStep(pilotForm, 'disable', true)
-            updateStep(auxForm1, 'disable', true)
-            updateStep(auxForm2, 'disable', true)
-            break
-
-        case 4:
-            replaceClass('fifth-step', 'fourth-step')
-            step--
-            updateStep(auxForm1, 'enable', true)
-            updateStep(statementForm, 'disable', true)
-            updateStep(pilotForm, 'disable', true)
-            updateStep(navigatorForm, 'disable', true)
-            updateStep(auxForm2, 'disable', true)
-            break
-        }
-    }
-})
-
-showQrCodeButton.addEventListener('click', () => {
-    const qrCodeContainer = document.querySelector('.qr-code-container')
-    qrCodeContainer.classList.toggle('hidden')
-    showQrCodeButton.classList.toggle('active')
-
-    if (showQrCodeButton.classList.contains('active')) {
-        showQrCodeButton.innerText = 'LIMPAR QR CODE'
-    } else {
-        showQrCodeButton.innerText = 'GERAR QR CODE'
-    }
-})
-
-function updateStep(form, action, scroll) {
-    if (scroll) {
-        setTimeout(() => {
-            containerForm.scrollIntoView({behavior: 'smooth'})
-        }, 300)
-    }
-
-    if (action === 'enable') {
-        form.classList.remove('hidden')
-    } else {
-        form.classList.add('hidden')
-    }
-}
-
-function replaceClass(newClass, oldClass) {
-    containerForm.classList.replace(newClass, oldClass)
-}
-
-function clearInputs(elements) {
-    if (elements) {
-        elements.forEach(element => element.value = '')
-    }
-}
-
-function verifyInput(input) {
-    if (input.attributes[0].value === 'checkbox') {
-        if (input.checked === false) {
-            input.classList.add('error')
-            setTimeout(() => {
-                input.classList.remove('error')
-            }, 1000)
-            return false
-        } else {
-            return true
-        }
-    } else {
-        if (input.value === '') {
-            containerForm.scrollIntoView({ behavior: 'smooth' })
-            input.classList.add('error')
-            return false
-        } else {
-            return true
-        }
-    }
-}
-
-function inputFocus(input) {
-    input.focus()
-}
-
-function removeErrorClass(input) {
-    input.classList.remove('input-error')
-    input.nextElementSibling.classList.remove('input-error')
-}
-
-function setErrorClass(input) {
-    input.classList.add('input-error')
-    input.nextElementSibling.classList.add('input-error')
-}
-
-// INTERACTION WITH DATA
-
-nationalityInput.addEventListener('input', deleteNumbers)
-birthplaceInput.addEventListener('input', deleteNumbers)
-
-function deleteNumbers(e) {
-    const useInput = e.target
-    const regex = /^[^\d]*$/
-    let inputValue = useInput.value
-
-    if (regex.test(useInput.value)) {
-        useInput.value = inputValue
-    } else {
-        useInput.value = inputValue.substring(0, inputValue.length - 1)
-    }
-}
-
-cpfInputs.forEach((input) => {
-    input.addEventListener('input', (e) => {
-        const inputEl = e.target
-        let cpfValue = inputEl.value.replace(/[^\d]/g, '')
-
-        if (cpfValue.length > 3 && cpfValue.length <= 6) {
-            cpfValue = cpfValue.replace(/(\d{3})/, '$1.')
-        } else if (cpfValue.length > 6 && cpfValue.length <= 9) {
-            cpfValue = cpfValue.replace(/(\d{3})(\d{3})/, '$1.$2.')
-        } else if (cpfValue.length > 9) {
-            cpfValue = cpfValue.replace(/(\d{3})(\d{3})(\d{3})/, '$1.$2.$3-')
-        }
-
-        inputEl.value = cpfValue;
-    })
-})
-
-cepInputs.forEach((input) => {
-    input.addEventListener('input', (e) => {
-        const inputTarget = e.target
-        const cepValue = inputTarget.value
-        const cepFormatted = cepValue.replace(/[.\-\s]/g, '')
-        if (cepFormatted.length === 8) {
-            cepIsValid(cepFormatted, inputTarget)
-        } else if (cepFormatted.length === 0) {
-            if (inputTarget.classList.contains('input-error')) {
-                removeErrorClass(inputTarget)
-            }
-        }
-    })
-})
-
-numbersInput.forEach((input) => {
-    input.addEventListener('input', (e) => {
-        const inputNumber = e.target
-        let numberValue = inputNumber.value.replace(/[^\d]/g, '')
-
-        if (numberValue.length > 2 && numberValue.length <= 6) {
-            numberValue = numberValue.replace(/(\d{2})(\d{1,4})/, '($1) $2')
-        } else if (numberValue.length > 6 && numberValue.length <= 10) {
-            numberValue = numberValue.replace(/(\d{2})(\d{4})(\d{1,4})/, '($1) $2-$3')
-        } else if (numberValue.length > 10) {
-            numberValue = numberValue.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3').substr(0, 15)
-        }
-
-        inputNumber.value = numberValue
-    })
-})
-
-function setAutoAddress(response, input) {
-    const idInput = input.id
-    const participantCep = idInput.split('-')[0]
-    const stateInput = document.querySelector(`#${participantCep}-state-input`)
-    stateInput.value = response.state
-
-    const cityInput = document.querySelector(`#${participantCep}-city-input`)
-    cityInput.value = response.city
-
-    const streetInput = document.querySelector(`#${participantCep}-street-input`)
-    streetInput.value = response.street
-
-    const neighborhoodInput = document.querySelector(`#${participantCep}-neighborhood-input`)
-    neighborhoodInput.value = response.neighborhood
-
-    const inputsForFocus = [stateInput, cityInput, streetInput, neighborhoodInput]
-    inputsForFocus.forEach(input => inputFocus(input))
-}
-
-async function cepIsValid(cep, input) {
-    const request = await fetch(`https://brasilapi.com.br/api/cep/v1/${cep}`)
-    const requestFormatted = await request.json()
-    if (requestFormatted.cep) {
-        if (input.classList.contains('input-error')) {
-            removeErrorClass(input)
-        }
-
-        setAutoAddress(requestFormatted, input)
-    } else {
-        setErrorClass(input)
-    }
-}
-// */
