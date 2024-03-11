@@ -89,7 +89,7 @@
         </div>
     </section>
 
-    <section class="info-container hidden">
+    <section class="info-container">
         <section class="info-background-container">
             <div class="info-high-fade">
                 <h1>FAÇA A SUA <br> <span class="bold-text">INSCRIÇÃO</span></h1>
@@ -163,11 +163,7 @@
         </section>
     </section>
 
-    <section class="registration-closed">
-        <img src="/imagens/mobile/sem-inscricao.png" alt="">
-    </section>
-
-    <form method="POST" autocomplete="off" class="form-container hidden" id="form">
+    <form method="POST" autocomplete="off" class="form-container" id="form">
         <section class="form-slide-container">
             <section class="main-title-container">
                 <h1>INSCRIÇÃO</h1>
@@ -176,8 +172,8 @@
                 <section class="class-info-container">
                     <section class="select-desktop-container">
                         <section class="input-container">
-                            <label for="class-select">CATEGORIA:</label>
-                            <select name="team-class" id="class-select" required>
+                            <label for="categories-select">CATEGORIA:</label>
+                            <select name="team-class" id="categories-select" required>
                                 <option value="" disabled selected hidden>SELECIONE...</option>
                                 <option value="INICIANTE">INICIANTE</option>
                                 <option value="NOVATO">NOVATO</option>
@@ -289,7 +285,7 @@
                         </section>
                         <section class="input-container">
                             <label for="pilot-nationality-input">NACIONALIDADE:</label>
-                            <input type="text" name="pilot-nationality" id="pilot-nationality-input" required>
+                            <input type="text" name="pilot-nationality" id="pilot-nationality-input" class="without-numbers-input" required>
                             <span class="placeholder">NACIONALIDADE</span>
                         </section>
                         <section class="input-container">
@@ -340,7 +336,7 @@
                         </section>
                         <section class="input-container">
                             <label for="pilot-birthplace-input">NATURALIDADE:</label>
-                            <input type="text" name="pilot-birthplace" id="pilot-birthplace-input" required>
+                            <input type="text" name="pilot-birthplace" id="pilot-birthplace-input" class="without-numbers-input" required>
                             <span class="placeholder">NATURALIDADE</span>
                         </section>
                         <section class="input-container">
@@ -375,7 +371,7 @@
                     <section class="input-desktop-container">
                         <section class="input-container">
                             <label for="pilot-cep-input">CEP:</label>
-                            <input type="text" name="pilot-cep" id="pilot-cep-input" class="cep-input" required>
+                            <input type="text" name="pilot-cep" id="pilot-cep-input" class="cep-input" maxlength="8" required>
                             <span class="placeholder">CEP</span>
                         </section>
                         <section class="input-container">
@@ -487,7 +483,7 @@
                     <section class="input-desktop-container">
                         <section class="input-container">
                             <label for="nav-cep-input">CEP:</label>
-                            <input type="text" name="nav-cep" id="nav-cep-input" class="cep-input" required>
+                            <input type="text" name="nav-cep" id="nav-cep-input" class="cep-input" maxlength="8" required>
                             <span class="placeholder">CEP</span>
                         </section>
                         <section class="input-container">
@@ -647,7 +643,7 @@
         <button id="show-qr-code-btn" class="qr-code-btn">GERAR QR CODE</button>
         <section class="qr-code-container hidden">
             <span class="pix">PIX</span>
-            <img src="" class="qr-code-img">
+            <img src="" class="qr-code-img" alt="Imagem do qr code para pix">
             <span class="pay-value"></span>
         </section>
         <P class="contact"></P>
@@ -743,7 +739,6 @@
 
     <script src="/javascripts/inscricao-form.js"></script>
     <script src="/javascripts/menu.js"></script>
-    <script src="/javascripts/inicializacao-form.js"></script>
     <script src="/javascripts/mais-informacoes.js"></script>
     <script src="/javascripts/interacao-form.js"></script>
 </body>

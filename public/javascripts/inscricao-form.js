@@ -117,7 +117,7 @@ const clearFormData = () => {
     resetForm(placeholdersForReset)
 }
 
-const sendData = async(formData, silvania) => {
+const sendData = async (formData, silvania) => {
     const result = await fetch("/api/v1/inscricao", {
       method: "POST",
       body: JSON.stringify(formData),
