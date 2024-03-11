@@ -299,7 +299,7 @@ const submitForm = (e) => {
 
     const rallyName = document.querySelector('#rally-name').innerText
 
-    if (rallyName.toUpperCase() !== 'RALLY DA APAE') {
+    if (rallyName.toUpperCase() === 'RALLY DA APAE') {
         return validateForm(true)
     } else {
         return validateForm()
