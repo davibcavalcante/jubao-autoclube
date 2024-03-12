@@ -20,6 +20,27 @@ const createNews = (url, title, date, external = false) => {
 module.exports.getNews = (pageNumber, pageSize) => {
     const newsArray = [
         createNews(
+            'https://cba.org.br/upload/noticias/2024/2692/thumb/regional-cup-brasil-chega-ao-pais-com-apoio-da-fia-e-premiacao-para-o-mundial-de-kart-em-setembro-na-gra-bretanha.png',
+            'Regional Cup Brasil chega ao país com apoio da FIA e premiação para o Mundial de Kart em setembro na Grã Bretanha',
+            '12 Março 2024',
+            'https://cba.org.br/noticias/noticiasinfo/2692/regional-cup-brasil-chega-ao-pais-com-apoio-da-fia-e-premiacao-para-o-mundial-de-kart-em-setembro-na-gra-bretanha'
+        ),
+
+        createNews(
+            'https://cba.org.br/upload/noticias/2024/2691/thumb/enzo-fittipaldi-vence-a-principal-prova-da-formula-2-na-arabia-saudita.jpg',
+            'Enzo Fittipaldi vence a principal prova da Fórmula 2 na Arábia Saudita',
+            ' 09 Março 2024',
+            'https://cba.org.br/noticias/noticiasinfo/2691/enzo-fittipaldi-vence-a-principal-prova-da-formula-2-na-arabia-saudita'
+        ),
+
+        createNews(
+            'https://cba.org.br/upload/noticias/2024/2690/thumb/rally-barretos-abre-o-campeonato-brasileiro-de-rally-raid-2024.png',
+            'Rally Barretos abre o Campeonato Brasileiro de Rally Raid 2024',
+            '08 Março 2024',
+            'https://cba.org.br/campeonato/noticiasinfo/221/2690/rally-barretos-abre-o-campeonato-brasileiro-de-rally-raid-2024'
+        ),
+
+        createNews(
             'https://cba.org.br/upload/noticias/2024/2689/thumb/kart-cba-abre-licitacao-para-fornecimento-de-motores-4-tempos.png',
             'Kart: CBA abre licitação para fornecimento de motores 4 tempos',
             '06 Março 2024',
