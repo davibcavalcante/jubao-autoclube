@@ -4,10 +4,11 @@ const router = express.Router();
 const inscricao = require('../api/v1/middlewares/inscricao');
 const youtube = require('../api/v1/middlewares/youtube');
 const fotos = require('../api/v1/middlewares/fotos');
-const noticias = require('../api/v1/middlewares/noticias')
-const noticiasLocais = require('../api/v1/middlewares/dados-noticias-locais')
-const rallyJubaoData = require('../api/v1/middlewares/dados-rally-jubao')
-const calendarioData = require('../api/v1/middlewares/dados-calendario')
+const noticias = require('../api/v1/middlewares/noticias');
+const noticiasLocais = require('../api/v1/middlewares/dados-noticias-locais');
+const rallyJubaoData = require('../api/v1/middlewares/dados-rally-jubao');
+const calendarioData = require('../api/v1/middlewares/dados-calendario');
+const database = require('../api/v1/middlewares/database');
 
 /* GET home page. */
 router.get('/youtube-videos', youtube.getVideos);
@@ -76,6 +77,14 @@ router.get('/calendario/:data/:method', (req, res) => {
         res.status(500).json({erro: 'Erro interno do servidor'})
     }
 })
+
+router.get('/database', (req, res) => {
+    database.getDatabaseData(req, res);
+});
+
+router.post('/database', (req, res) => {
+    database.sendDatabaseData(req.body, res);
+});
 
 router.post("/inscricao", inscricao.enviarEmailInscricao);
 
