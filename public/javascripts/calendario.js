@@ -8,6 +8,8 @@ const messageError = (method) => {
 }
 
 const openCloseOrgsFilter = (containerCaret) => {
+    const viewWidth = window.innerWidth
+    if (viewWidth >= 768) return
     const absoluteContainer = document.querySelector('.absolute-container')
     absoluteContainer.classList.toggle('active')
 
