@@ -8,7 +8,7 @@ const noticias = require('../api/v1/middlewares/noticias');
 const noticiasLocais = require('../api/v1/middlewares/dados-noticias-locais');
 const rallyJubaoData = require('../api/v1/middlewares/dados-rally-jubao');
 const calendarioData = require('../api/v1/middlewares/dados-calendario');
-const database = require('../api/v1/middlewares/database');
+const database = require('../api/v1/middlewares/database-noticias');
 
 /* GET home page. */
 router.get('/youtube-videos', youtube.getVideos);
@@ -84,6 +84,14 @@ router.get('/database', (req, res) => {
 
 router.post('/database', (req, res) => {
     database.sendDatabaseData(req.body, res);
+});
+
+router.put('/database', (req, res) => {
+    database.updateDatabaseData(req.body, res)
+})
+
+router.delete('/database/:id', (req, res) => {
+    database.deleteDatabaseData(req, res);
 });
 
 router.post("/inscricao", inscricao.enviarEmailInscricao);
