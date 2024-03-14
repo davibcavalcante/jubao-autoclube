@@ -1,3 +1,4 @@
+// FUNCTION THAT RETURNS AN OBJECT WITH NEWS INFORMATION
 const createNews = (url, title, date, external = false) => {
     if (external) {
         return {
@@ -17,6 +18,7 @@ const createNews = (url, title, date, external = false) => {
     }
 }
 
+// FUNCTION THAT STORES AND CALLS THE FUNCTION THAT CREATES THE NEWS
 module.exports.getNews = (pageNumber, pageSize) => {
     const newsArray = [
         createNews(
@@ -182,6 +184,7 @@ module.exports.getNews = (pageNumber, pageSize) => {
 
     ];
 
+    // PROCESS THAT ORGANIZES NEWS BY PAGE
     const startIndex = (pageNumber - 1) * pageSize;
     const endIndex = startIndex + pageSize;
 

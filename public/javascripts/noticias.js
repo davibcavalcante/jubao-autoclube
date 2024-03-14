@@ -1,3 +1,4 @@
+// FUNCTION THAT CREATES NEWS IFRAMES
 const setIframe = async(newsData) => {
     const response = await fetch(`/api/v1/dados-noticias-locais/${newsData.title}`)
     const foundNews = await response.json()
@@ -52,6 +53,7 @@ const setIframe = async(newsData) => {
     newsIframe.contentDocument.close()
 }
 
+// FUNCTION THAT CREATES NEWS IMAGE
 const createNewsImage = (newsData) => {
     const image = document.createElement('img')
     image.setAttribute('src', newsData.url)
@@ -59,6 +61,7 @@ const createNewsImage = (newsData) => {
     return image
 }
 
+// FUNCTION THAT CREATES NEWS LINK
 const createNewsLink = (newsData) => {
     if (newsData.external) {
         const link = document.createElement('a')
@@ -77,6 +80,7 @@ const createNewsLink = (newsData) => {
     }
 }
 
+// FUNCTION THAT CREATES NEWS TITLE
 const createTitle = (newsData) => {
     const title = document.createElement('h1')
     title.innerText = newsData.title
@@ -84,6 +88,7 @@ const createTitle = (newsData) => {
     return title
 }
 
+// FUNCTION THAT CREATES NEWS DATE
 const createDate = (newsData) => {
     const date = document.createElement('p')
     date.innerHTML = `<i class="fa-regular fa-clock"></i> ${newsData.date}`
@@ -91,6 +96,7 @@ const createDate = (newsData) => {
     return date
 }
 
+// FUNCTION THAT CREATES IMAGES CONTAINER
 const createImageContainer = (newsData) => {
     const imageContainer = document.createElement('section')
     imageContainer.classList.add('news-image-container')
@@ -100,6 +106,7 @@ const createImageContainer = (newsData) => {
     return imageContainer
 }
 
+// FUNCTION THAT CREATES INFORMATION CONTAINER
 const createInfoContainer = (newsData) => {
     const infoContainer = document.createElement('section')
     infoContainer.classList.add('info')
@@ -110,6 +117,7 @@ const createInfoContainer = (newsData) => {
     return infoContainer
 }
 
+// FUNCTION THAT CREATES NEWS
 const createNews = (newsData, type) => {
     const imageContainer = createImageContainer(newsData)
     const infoContainer = createInfoContainer(newsData)
@@ -174,6 +182,7 @@ const createNews = (newsData, type) => {
     }
 }
 
+// FUNCTION THAT UPDATES HTML
 const updateHtml = (news) => {
     const mainNewsDesktop = document.querySelector('.main-news-desktop')
     const otherNewsContainer = document.querySelector('.other-news')
@@ -195,7 +204,8 @@ const updateHtml = (news) => {
     })
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+// CODE INICIALIZATION EVENT
+window.addEventListener('load', () => {
     const newsApi = async() => {
         const result = await fetch(`/api/v1/noticias/1/7`)
         const data = await result.json()

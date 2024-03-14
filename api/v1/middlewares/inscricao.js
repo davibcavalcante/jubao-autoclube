@@ -1,12 +1,14 @@
 const mailClient = require('../../../lib/sendMail');
 const config = require('../../../config.json');
 
+// FUNCTION THAT SEND EMAILS
 module.exports.enviarEmailInscricao = (req, res) => {
   const data = req.body
   let body = `
               <h1>DADOS DA INSCRIÇÃO <span class="highlight">${data.team.name}</span></h1>
             `
   
+  // EMAIL HTML
   const html = () => {
     return `
             <html>
@@ -60,6 +62,7 @@ module.exports.enviarEmailInscricao = (req, res) => {
           `
   }
 
+  // FUNCTION THAT TRANSLATES THE SUBTITLES
   function translateNameParticipant(nome) {
     const translate = {
         'cup': 'COMPETIÇÃO:',
@@ -73,6 +76,7 @@ module.exports.enviarEmailInscricao = (req, res) => {
     return translate[nome] || nome;
   }
 
+  // FUNCTION THAT TRANSLATES THE INFORMATIONS
   function translateInputName(nome) {
     const translateInput = {
         'name': 'NOME',
@@ -107,6 +111,7 @@ module.exports.enviarEmailInscricao = (req, res) => {
     return translateInput[nome] || nome;
 }
 
+  // LOOP THAT TAKES THE KEY AND VALUES OF THE OBJECT ABD PUTS IT IN THE HTML
   for (const participant in data) {
       if (Object.hasOwnProperty.call(data, participant)) {
           body += `<h2>${translateNameParticipant(participant)}</h2>`;
@@ -119,6 +124,7 @@ module.exports.enviarEmailInscricao = (req, res) => {
       }  
   }
 
+  // USE THE NODEMAILER LIB
   mailClient.sendMail(config.inscricoes.emailDestino, `NOVA INSCRIÇÃO: ${data.team.name}`, html(), true).then(result => {
     res.status(200).send({status: "success", message: "Dados enviados com sucesso!"});
   }).catch(error => {

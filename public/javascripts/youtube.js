@@ -1,10 +1,12 @@
-const createTitleVideo = (videoData) => {
+// FUNCTION THAT CREATES THE VIDEO TITLE
+const createVideoTitle = (videoData) => {
     const titleVideo = document.createElement('h1')
     titleVideo.innerText = videoData.title
 
     return titleVideo
 }
 
+// FUNCTION THAT CREATES THE PLAY BUTTON
 const createPlayButton = () =>{
     const playButton = document.createElement('button')
     playButton.classList.add('play-btn')
@@ -13,6 +15,7 @@ const createPlayButton = () =>{
     return playButton
 }
 
+// FUNCTION THAT CREATES THE VIDEO THUMBNAIL
 const createVideoThumbnail = (videoData) => {
     const videoThumbnail = document.createElement('img')
     videoThumbnail.setAttribute('src', videoData.thumbnail)
@@ -21,7 +24,8 @@ const createVideoThumbnail = (videoData) => {
     return videoThumbnail
 }
 
-const createLinkVideo = (videoData) => {
+// FUNCTION THAT CREATES THE VIDEO LINK
+const createVideoLink = (videoData) => {
     const linkVideo = document.createElement('a')
     linkVideo.setAttribute('href', videoData.url)
     linkVideo.setAttribute('rel', 'external')
@@ -32,27 +36,30 @@ const createLinkVideo = (videoData) => {
     return linkVideo
 }
 
+// FUNCTION THAT CREATES THE VIDEO INFORMATION
 const createVideoInfo = (videoData) => {
     const infoContainer = document.createElement('section')
     infoContainer.classList.add('info-container')
 
-    infoContainer.appendChild(createTitleVideo(videoData))
+    infoContainer.appendChild(createVideoTitle(videoData))
     infoContainer.appendChild(createPlayButton())
 
     return infoContainer
 }
 
+// FUNCTION THAT CREATES THE VIDEO CONTAINER
 const createVideoContainer = (videoData) => {
     containerEl = document.createElement('section')
     containerEl.classList.add('poeiracast-video-container')
 
     containerEl.appendChild(createVideoInfo(videoData))
-    containerEl.appendChild(createLinkVideo(videoData))
+    containerEl.appendChild(createVideoLink(videoData))
 
     return containerEl
 }
 
-const createCardVideos = (videoData) => {
+// FUNCTION THAT CREATES THE VIDEO CARDS
+const createVideoCards = (videoData) => {
     const container = document.querySelector('.slide-video-container')
     const videoContainer = createVideoContainer(videoData)
     
@@ -60,6 +67,7 @@ const createCardVideos = (videoData) => {
     return container
 }
 
+// FUNCTION THAT CREATES VIDEOS
 const createVideos = (data) => {
     data.forEach((video) => {
         const videoData = {
@@ -68,10 +76,11 @@ const createVideos = (data) => {
             url: `https://youtu.be/${video.resourceId.videoId}`
         }
 
-        return createCardVideos(videoData)
+        return createVideoCards(videoData)
     })
 }
 
+// FUNCTION THAT ENABLES AND DISABLES LOADING ANIMATION
 const loadingAnimation = (action) => {
     const boxAnimation = document.querySelector('.loading-animation')
     if (action === 'start') {
@@ -81,6 +90,7 @@ const loadingAnimation = (action) => {
     }
 }
 
+// FUNCTION THAT TAKES THE RECENT VIDEOS
 const recentsVideos = async() => {
     loadingAnimation('start')
     const results = await fetch('/api/v1/youtube-videos')
@@ -89,4 +99,7 @@ const recentsVideos = async() => {
     return createVideos(data)
 }
 
-recentsVideos()
+// CODE INICIALIZATION EVENT
+window.addEventListener('load', () => {
+    recentsVideos()
+})

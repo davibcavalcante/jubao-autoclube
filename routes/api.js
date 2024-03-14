@@ -1,6 +1,8 @@
+// API V1 ROUTES
 const express = require('express');
 const router = express.Router();
 
+// MIDDLEWARES
 const inscricao = require('../api/v1/middlewares/inscricao');
 const youtube = require('../api/v1/middlewares/youtube');
 const fotos = require('../api/v1/middlewares/fotos');
@@ -8,10 +10,12 @@ const noticias = require('../api/v1/middlewares/noticias');
 const noticiasLocais = require('../api/v1/middlewares/dados-noticias-locais');
 const rallyJubaoData = require('../api/v1/middlewares/dados-rally-jubao');
 const calendarioData = require('../api/v1/middlewares/dados-calendario');
-const database = require('../api/v1/middlewares/database-noticias');
+const databaseNoticias = require('../api/v1/middlewares/database-noticias');
 
-/* GET home page. */
+// YOUTUBE VIDEOS ROUTES
 router.get('/youtube-videos', youtube.getVideos);
+
+// PHOTOS ROUTES
 router.get('/fotos/:year', async (req, res) => {
     try {
         const photos = await fotos.getPhotos(req.params.year);
@@ -22,6 +26,7 @@ router.get('/fotos/:year', async (req, res) => {
     }
 });
 
+// NEWS ROUTES
 router.get('/noticias/:page/:size', async (req, res) => {
     try {
         const page = req.params.page;
@@ -45,6 +50,7 @@ router.get('/dados-noticias-locais/:title', async (req, res) => {
     }
 });
 
+// EVENTS ROUTES
 router.get('/rally-jubao', async (req, res) => {
     try {
         const events = await rallyJubaoData.getEvents()
@@ -78,22 +84,24 @@ router.get('/calendario/:data/:method', (req, res) => {
     }
 })
 
-router.get('/database', (req, res) => {
-    database.getDatabaseData(req, res);
+// DATABASE NEWS ROUTES
+router.get('/database/noticias', (req, res) => {
+    databaseNoticias.getDatabaseData(req, res);
 });
 
-router.post('/database', (req, res) => {
-    database.sendDatabaseData(req.body, res);
+router.post('/database/noticias', (req, res) => {
+    databaseNoticias.sendDatabaseData(req.body, res);
 });
 
-router.put('/database', (req, res) => {
-    database.updateDatabaseData(req.body, res)
+router.put('/database/noticias', (req, res) => {
+    databaseNoticias.updateDatabaseData(req.body, res)
 })
 
-router.delete('/database/:id', (req, res) => {
-    database.deleteDatabaseData(req, res);
+router.delete('/database/noticias/:id', (req, res) => {
+    databaseNoticias.deleteDatabaseData(req, res);
 });
 
+// REGISTRATION ROUTES
 router.post("/inscricao", inscricao.enviarEmailInscricao);
 
 module.exports = router;

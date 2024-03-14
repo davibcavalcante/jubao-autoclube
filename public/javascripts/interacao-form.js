@@ -1,4 +1,4 @@
-// RETORNA OS FORMULÁRIOS E O CONTAINER PAI
+// RETORNA OS FORMULÁRIOS E O CONTAINER PAI || FUNCTION THAT RETURNS THE FORMS AND PARENT CONTAINER
 const getForms = () => {
     return {
         parent: document.querySelector('.form-container'),
@@ -12,7 +12,7 @@ const getForms = () => {
     }
 }
 
-// HABILITA E DESABILITA ELEMENTOS
+// HABILITA E DESABILITA ELEMENTOS || FUNCTION THAT ENABLES AND DISABLES ELEMENTS
 const toggleClass = (element, action) => {
     if (action === 'remove') {
         element.classList.remove('hidden')
@@ -21,17 +21,17 @@ const toggleClass = (element, action) => {
     }
 }
 
-// RETORNA UMA SELECT
+// RETORNA UMA SELECT || FUNCTION THAT RETURNS A SELECT
 const getSelect = (id) => {
     return document.querySelector(`#${id}-select`)
 }
 
-// TROCA A CLASSE DE UM ELEMENTO POR OUTRA
+// TROCA A CLASSE DE UM ELEMENTO POR OUTRA || FUNCTION THAT REPLACES CLASSES
 const replaceClass = (newClass, oldClass) => {
     getForms().parent.classList.replace(newClass, oldClass)
 }
 
-// VERIFICA SE OS INPUTS FORAM PREENCHIDOS
+// VERIFICA SE OS INPUTS FORAM PREENCHIDOS || FUNCTION THAT CHECKS IF THE INPUTS WERE FILLED IN
 const checkElementsOk = (element) => {
     if (element.attributes[0].value === 'checkbox') {
         if (element.checked === false) {
@@ -54,7 +54,7 @@ const checkElementsOk = (element) => {
     }
 }
 
-// PREPARA OS ELEMENTOS PARA CHECAR SE SÃO VÁLIDOS
+// PREPARA OS ELEMENTOS PARA CHECAR SE SÃO VÁLIDOS || FUNCTION THAT PREPARES THE ELEMENTS TO CHECK IF THEY ARE VALID
 const sendElementsForCheck = (id) => {
     const parentElement = document.querySelector(`#${id}-form`)
     const elements = Array.from(parentElement.querySelectorAll('input, select'))
@@ -70,7 +70,7 @@ const sendElementsForCheck = (id) => {
     if (inputIsvalid) return true 
 }
 
-// RETIRA OS NÚMEROS DOS INPUTS QUE NÃO DEVEM CONTER NÚMEROS 
+// RETIRA OS NÚMEROS DOS INPUTS QUE NÃO DEVEM CONTER NÚMEROS || FUNCTION THAT REMOVES NUMBERS FROM INPUTS THAT SHOULD NOT CONTAINER NUMBERS
 const removeNumbersInput = (input) => {
     const regex = /^[^\d]*$/
     let inputValue = input.value
@@ -82,7 +82,7 @@ const removeNumbersInput = (input) => {
     }
 }
 
-// FUNÇÕES DE CEP
+// FUNÇÕES DE CEP || ZIPCODE FUNCTIONS
 
 // COMPLETA OS OUTROS CAMPOS DE ENDEREÇO COM BASE NO CEP
 const setAutoAddress = (data, input) => {
@@ -128,7 +128,7 @@ const formatCepInput = (input) => {
     }
 }
 
-// FORMATA OS CAMPOS DE CPF
+// FORMATA OS CAMPOS DE CPF || FUNCTION THAT FORMATS CPF INPUTS
 const formatCpfInput = (input) => {
     let cpfValue = input.value.replace(/[^\d]/g, '')
 
@@ -143,7 +143,7 @@ const formatCpfInput = (input) => {
     input.value = cpfValue
 }
 
-// FORMATA OS CAMPOS DE NÚMERO
+// FORMATA OS CAMPOS DE NÚMERO || FUNCTION THAT FORMATS NUMBERS INPUTS
 const formatNumberInput = (input) => {
     let numberValue = input.value.replace(/[^\d]/g, '')
 
@@ -161,6 +161,7 @@ const formatNumberInput = (input) => {
 // FUNÇÕES QUE AJUSTAM O FORMULÁRIO DE ACORDO COM O TAMANHO DA TELA / QUANTIDADE DE PARTICIPANTES
 
 // HABILITA E DESABILITA OS BOTÕES DE SUBMIT DO FORMULÁRIO DE ACORDO COM A QUANTIDADE DE PARTICIPANTES.
+// EN => FUNCTION THAT ENABLES AND DISABLES THE SUBMIT BUTTONS OF FORM ACCORDING TO THE NUMBERS OF PARTICIPANTS
 const toggleSubmitButtons = (elementsArray, actionArray) => {
     elementsArray.forEach((element, index) => {
         const submitButton = element.querySelector('.submit-btn-container')
@@ -173,7 +174,7 @@ const toggleSubmitButtons = (elementsArray, actionArray) => {
     })
 }
 
-// DEIXA VISÍVEL O FORMULÁRIO NO QUAL O USUÁRIO ESTÁ (MOBILE)
+// DEIXA VISÍVEL O FORMULÁRIO NO QUAL O USUÁRIO ESTÁ (MOBILE) || FUNCTION THAT MAKES VISIBLE THE FORM THE USER IS ON
 const updateStepTeste = (step, forms, scroll = false) => {
     const parentForms = getForms().parent
     let formId
@@ -217,7 +218,7 @@ const updateStepTeste = (step, forms, scroll = false) => {
     }
 }
 
-// ARMAZENA E DEFINE VALOR DO PASSO ATUAL DO FORMULÁRIO
+// ARMAZENA E DEFINE VALOR DO PASSO ATUAL DO FORMULÁRIO || FUNCTION THAT STORES AND DEFINES OF THE FORMS CURRENT STEP
 const formStepState = () => {
     let step = 0
 
@@ -234,7 +235,7 @@ const formStepState = () => {
 
 const formStepManage = formStepState()
 
-// ARMAZENA E DEFINE VALOR DO TAMANHO DA TELA DO USUÁRIO (RESIZE)
+// ARMAZENA E DEFINE VALOR DO TAMANHO DA TELA DO USUÁRIO (RESIZE) || FUNCTION THAT STORES AND DEFINES VALUE OF THE SCREEN SIZE
 const viewWidthState = () => {
     let viewWidth = window.innerWidth
 
@@ -251,7 +252,7 @@ const viewWidthState = () => {
 
 const viewWidthManager = viewWidthState()
 
-// AJUSTA O FORMULÁRIO PARA O MODO MOBILE E MODO DESKTOP
+// AJUSTA O FORMULÁRIO PARA O MODO MOBILE E MODO DESKTOP || FUNCTION THAT ADJUSTS THE FORM FOR MOBILE AND DESKTOP MODE
 const enableDisableForms = (e, forms) => {
     const event = e.type
     const oldViewWidth = viewWidthManager.getWidth()
@@ -276,7 +277,7 @@ const enableDisableForms = (e, forms) => {
     viewWidthManager.setWidth(viewWidth)
 }
 
-// CALCULA VALOR DA INSCRIÇÃO E A ENVIA PARA VALIDAÇÃO
+// CALCULA VALOR DA INSCRIÇÃO E A ENVIA PARA VALIDAÇÃO || FUNCTION THAT CALCULATES THE REGISTRATION VALUE AND SENDS IT FOR VALIDATION
 const submitForm = (e) => {
     e.preventDefault()
     const valueScreen = document.querySelector('.pay-value')
@@ -306,7 +307,7 @@ const submitForm = (e) => {
     }
 }
 
-// ATIVA E DESATIVA A ANIMAÇÃO DOS INPUTS
+// ATIVA E DESATIVA A ANIMAÇÃO DOS INPUTS || FUNCTION THAT ENABLES AND DISABLES THE INPUTS ANIMATION
 const handleFocus = (e) => {
     const eventType = e.type
 
@@ -327,7 +328,7 @@ const handleFocus = (e) => {
     }
 }
 
-// DEFINE COMO REQUIRED OS INPUTS CHECKBOX DO TERMO DE RESPONSABILIDADE
+// DEFINE COMO REQUIRED OS INPUTS CHECKBOX DO TERMO DE RESPONSABILIDADE || FUNCTION THAT DEFINES AS REQUIRED THE CHECKBOX INPUTS OF THE DISCLAIMER
 const statementRequired = (elements) => {
     if (elements === 'none') {
         for (let c = 1; c <= 2; c++) {
@@ -342,7 +343,7 @@ const statementRequired = (elements) => {
     }
 }
 
-// DEFINE COMO VERDADEIRA A PROPRIEDADE "REQUIRED" DOS INPUTS HABILITADOS
+// DEFINE COMO VERDADEIRA A PROPRIEDADE "REQUIRED" DOS INPUTS HABILITADOS || FUNCTION THAT DEFINES AS TRUE THE REQUIRED PROPERTY OF ENABLED INPUTS
 const enableInputs = (element, type) => {
     const classForEnable = ['name', 'date', 'cpf', 'shirt']
     if (type === 'element') {
@@ -358,14 +359,14 @@ const enableInputs = (element, type) => {
     }
 }
 
-// DEFINE COMO FALSA A PROPRIEDADE "REQUIRED" DOS INPUTS DESABILITADOS
+// DEFINE COMO FALSA A PROPRIEDADE "REQUIRED" DOS INPUTS DESABILITADOS || FUNCTION THAT DEFINES AS FALSE THE REQUIRED PROPERTY OF DISABLED INPUTS
 const resetInputs = (elements) => {   
     elements.forEach((element) => {
         if (element.required) element.required = false
     })
 }
 
-// HABILITA E DESABILITA FORMULÁRIOS DE ACORDO COM A QUANTIDADE DE PARTICIPANTES SELECIONADA
+// HABILITA E DESABILITA FORMULÁRIOS DE ACORDO COM A QUANTIDADE DE PARTICIPANTES SELECIONADA || FUNCTION THAT ENABLES AND DISABLES FORMS ACCORDING TO THE NUMBERS OF PARTICIPANTS SELECTED
 const participantsForm = (elementsArray, actionArray) => {
     elementsArray.forEach((element, index) => {
         if (actionArray[index] === 'disable') {
@@ -417,7 +418,7 @@ const changeParticipants = () => {
     }
 }
 
-// LEVA O USUÁRIO AO PRÓXIMO PASSO DO FORMULÁRIO (MOBILE)
+// LEVA O USUÁRIO AO PRÓXIMO PASSO DO FORMULÁRIO (MOBILE) || FUNCTION THAT TAKES THE USER TO THE NEXT STEP OF THE FORM (MOBILE)
 const goNextStep = (currentStep, forms, formContainer) => {
     const participantsValue = getSelect('participants').value
 
@@ -464,7 +465,7 @@ const goNextStep = (currentStep, forms, formContainer) => {
     }
 }
 
-// LEVA O USUÁRIO AO PASSO ANTERIOR DO FORMULÁRIO (MOBILE)
+// LEVA O USUÁRIO AO PASSO ANTERIOR DO FORMULÁRIO (MOBILE) || FUNCTION THAT TAKES THE USER TO THE PREVIOUS STEP OF THE FORM
 const goPrevStep = (currentStep, forms, formContainer) => {
     switch (currentStep) {
         case 1:
@@ -497,18 +498,18 @@ const goPrevStep = (currentStep, forms, formContainer) => {
     }
 }
 
-// FUNÇÃO QUE REGISTRA EVENTOS
+// FUNÇÃO QUE REGISTRA EVENTOS || FUNCTION THAT RECORDS EVENTS
 const setEvents = () => {
-    // ELEMENTOS GLOBAIS
+    // ELEMENTOS GLOBAIS || GLOBAL ELEMENTS
     const formContainer = getForms().parent
 
-    // EVENTOS DE FORMULÁRIOS
+    // EVENTOS DE FORMULÁRIOS || FORM EVENTS
     const form = document.querySelector('#form')
     form.addEventListener('focusin', handleFocus)
     form.addEventListener('focusout', handleFocus)
     form.addEventListener('submit', submitForm)
 
-    // EVENTO DO CONTAINER PAI DOS FORMULÁRIOS
+    // EVENTO DO CONTAINER PAI DOS FORMULÁRIOS || PARENT FORM EVENT
     formContainer.addEventListener('click', (e) => {
         const targetClick = e.target
         const forms = getForms().forms
@@ -521,11 +522,11 @@ const setEvents = () => {
         }
     })
 
-    // EVENTO DA SELECT DE PARTICIPANTES
+    // EVENTO DA SELECT DE PARTICIPANTES || PARTICIPANTS SELECT EVENTS
     const participantsSelect = getSelect('participants')
     participantsSelect.addEventListener('change', changeParticipants)
 
-    // EVENTO DA SELECT DE CATEGORIAS
+    // EVENTO DA SELECT DE CATEGORIAS || CATEGORIES SELECT EVENTS
     const categoriesSelect = getSelect('categories')
 
     categoriesSelect.addEventListener('change', () => {
@@ -545,7 +546,7 @@ const setEvents = () => {
         }
     })
 
-    // EVENTO DOS INPUTS
+    // EVENTO DOS INPUTS || INPUTS EVENTS
     const inputs = formContainer.querySelectorAll('input')
 
     inputs.forEach((input) => {    
@@ -574,7 +575,7 @@ const setEvents = () => {
         })
     })
 
-    // EVENTOS DOS PLACEHOLDERS
+    // EVENTOS DOS PLACEHOLDERS || PLACEHOLDERS EVENTS
     const placeholders = document.querySelectorAll('.placeholder')
 
     placeholders.forEach((item) => {
@@ -584,7 +585,7 @@ const setEvents = () => {
         })
     })
 
-    // EVENTO DO BOTÃO QUE GERA O QRCODE
+    // EVENTO DO BOTÃO QUE GERA O QRCODE || BUTTON EVENT THAT GENERATES THE QRCODE
     const showQrCodeButton = document.querySelector('#show-qr-code-btn')
 
     showQrCodeButton.addEventListener('click', () => {
@@ -600,7 +601,7 @@ const setEvents = () => {
     })
 }
 
-// PONTO INICIAL
+// PONTO INICIAL || CODE INCIALIZATION EVENT
 window.addEventListener('load', (e) => {
     const forms = getForms().forms
     enableDisableForms(e, forms)

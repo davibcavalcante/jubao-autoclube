@@ -1,10 +1,11 @@
+// VIEWS ROUTES
 const express = require('express');
 const albumDataMiddlewares = require('../api/v1/middlewares/fotos')
 const rallyJubaoData = require('../api/v1/middlewares/dados-rally-jubao')
 
 const router = express.Router();
 
-/* GET users listing. */
+// REGISTRATION ROUTES
 router.get('/inscricao', (req, res, next) => {
   res.render("inscricao");
 });
@@ -21,36 +22,43 @@ router.get('/inscricao/:name', (req, res, next) => {
   }
 });
 
+// NEWS PORTAL ROUTES
 router.get('/portal-noticias', (req, res, next) => {
   res.render('portal-noticias')
 })
 
+// ALBUMS ROUTES
 router.get('/albums', (req, res, next) => {
   res.render('albums');
 });
 
+// PHOTOS ROUTES
 router.get('/fotos/:year', (req, res, next) => {
   const albumOfYear = albumDataMiddlewares.getYear(req);
   res.render('fotos', { albumOfYear });
 });
 
+// CALENDAR ROUTES
 router.get('/calendario', (req, res, next) => {
   res.render('calendario')
 })
 
+// ABOUT US ROUTES
 router.get('/quem-somos', (req, res, next) => {
   res.render('quem-somos');
 });
 
+// TERMS ROUTES
 router.get('/termos', (req, res, next) => {
   res.render('termos');
 });
 
+// PRIVATE POLICY ROUTES
 router.get('/politica-privacidade', (req, res, next) => {
   res.render('politica-privacidade');
 });
 
-// INDEX
+// ROUTE OF INDEX
 router.get('/', (req, res, next) => {
   res.render('index', {
     cup: '6° RALLY DA APAE', 

@@ -1,10 +1,12 @@
 const fetch = require('node-fetch');
 const config = require('../../../config.json').apis;
 
+// FUNCTION THAT RETURNS THE YEAR OF THE ALBUM
 module.exports.getYear = (req, res) => {
     return req.params.year;
 }
 
+// FUNCTION THAT RETURNS THE PHOTOS OF THE ALBUM
 module.exports.getPhotos = async (year) => {
     try {
         const getUserId = (nYear) => {

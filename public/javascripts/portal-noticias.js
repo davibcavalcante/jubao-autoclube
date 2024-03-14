@@ -1,12 +1,14 @@
-const messageError = (method) => {
-    const showsMessageErrorContainer = document.querySelector('.message-error-container')
+// FUNCTION THAT SHOWS ERROR MESSAGE
+const errorMessage = (method) => {
+    const showsErrorMessageContainer = document.querySelector('.message-error-container')
     if (method === 'remove') {
-        showsMessageErrorContainer.classList.remove('hidden')
-    } else if (method == 'add' && showsMessageErrorContainer.classList.contains('messa-error-container')){
-        showsMessageErrorContainer.classList.add('hidden')
+        showsErrorMessageContainer.classList.remove('hidden')
+    } else if (method == 'add' && showsErrorMessageContainer.classList.contains('messa-error-container')){
+        showsErrorMessageContainer.classList.add('hidden')
     }
 }
 
+// FUNCTION THAT SET NEWS IFRAMES
 const setIframe = async(news) => {
     const response = await fetch(`/api/v1//dados-noticias-locais/${news.title}`)
     const foundNews = await response.json()
@@ -62,6 +64,7 @@ const setIframe = async(news) => {
     newsIframe.contentDocument.close()
 }
 
+// FUNCTION THAT DEFINES NEWS IMAGE
 const setImage = (news) => {
     const image = document.createElement('img')
     image.src = news.url
@@ -72,6 +75,7 @@ const setImage = (news) => {
     return image
 }
 
+// FUNCTION THAT DEFINES NEWS LINK
 const setLink = (news, type) => {
     const link = document.createElement('a')
     link.classList.add('info')
@@ -98,6 +102,7 @@ const setLink = (news, type) => {
     }
 }
 
+// FUNCTION THAT CREATES NEWS
 const createNews = (news) => {
     const newsContainer = document.createElement('section')
     newsContainer.classList.add('news')
@@ -114,6 +119,7 @@ const createNews = (news) => {
     return newsContainer
 }
 
+// FUNCTION THAT CREATES NEWS TEMPLATE
 const createTemplate = (allNews, scroll = false) => {
     const allNewsContainer = document.querySelector('#news-container')
     allNewsContainer.innerHTML = ''
@@ -129,6 +135,7 @@ const createTemplate = (allNews, scroll = false) => {
     }
 }
 
+// FUNCTION THAT UPDATES PAGES
 const updatePage = async (method) => {
     const pageScreen = document.querySelector('.page')
     let pageNumber = Number(pageScreen.innerText)
@@ -151,11 +158,13 @@ const updatePage = async (method) => {
     }
 }
 
+// FUNCTION THAT TAKES CURRENT PAGE
 const getCurrentPage = () => {
     const pageStr = document.querySelector('.page').innerText
     return pageStr
 }
 
+// FUNCTION THAT DEFINES PAGINATION EVENTS
 const setPaginationEvents = () => {
     const nextPageButton = document.querySelector('#next-page-btn')
     const prevPageButton = document.querySelector('#prev-page-btn')
@@ -169,15 +178,16 @@ const setPaginationEvents = () => {
     })
 }
 
+// FUNCTION THAT TAKES NEWS
 const getNewsApi = async (currentPage) => {
     const pageSize = 16
     const results = await fetch(`/api/v1/noticias/${currentPage}/${pageSize}`)
 
     if (!results.ok) {
-        messageError('remove')
+        errorMessage('remove')
         return
     } else {
-        messageError('add')
+        errorMessage('add')
     }
 
     const data = await results.json()
@@ -191,7 +201,8 @@ const getNewsApi = async (currentPage) => {
     }
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+// CODE INICIALIZATION EVENT
+window.addEventListener('load', async () => {
     const currentPage = getCurrentPage()
     const data = await getNewsApi(currentPage)
     

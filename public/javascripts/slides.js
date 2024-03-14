@@ -1,15 +1,21 @@
+// VIDEOS FUNCTIONS
+
+// FUNCTION THAT TAKES VIEW WIDTH
 const getViewWidth = () => {
     return window.innerWidth
 }
 
+// FUNCTION THAT MOVES TO THE NEXT VIDEO
 const moveNextVideo = (container, currentVideo, moveValue) => {
     container.style.transform = `translateX(-${(moveValue * currentVideo)}%)`
 }
 
+// FUNCTION THAT MOVES TO THE PREVIOUS VIDEO
 const movePrevVideo = (container, currentVideo, moveValue) => {
     container.style.transform = `translateX(-${moveValue * (currentVideo - 1)}%)`
 }
 
+// FUNCTION THAT TAKES VIDEO ELEMENTS
 const getVideoElements = () => {
     const autoVideoSlide = () => {
         viewWidth = getViewWidth()
@@ -111,6 +117,9 @@ const getVideoElements = () => {
     })
 }
 
+// BACKGROUND FUNCTIONS
+
+// FUNCTION THAT MOVES BACKGROUND
 const moveBackground = (container, currentBackground, action) => {
     if (action === 'next') {
         container.style.transform = `translateX(-${100 * currentBackground}vw)`
@@ -119,6 +128,7 @@ const moveBackground = (container, currentBackground, action) => {
     }
 }
 
+// FUNCTION THAT TAKES BACKGROUND ELEMENTS
 const getBackgroundElements = () => {
 
     const verifyMoveBackground = (e) => {
@@ -181,5 +191,8 @@ const getBackgroundElements = () => {
     }))
 }
 
-getVideoElements()
-getBackgroundElements()
+// CODE INICIALIZATION EVENT
+window.addEventListener('load', () => {
+    getVideoElements()
+    getBackgroundElements()
+})

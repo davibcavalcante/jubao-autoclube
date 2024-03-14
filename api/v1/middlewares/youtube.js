@@ -1,6 +1,7 @@
 const fetch = require('node-fetch')
 const config = require('../../../config.json').apis;
 
+// CHECK IF THE VIDEOS ARE ALREADY POSTED
 const checkVideosUploaded = async (videoIds, apiKey) => {
     try {
         const videoIdsString = videoIds.join(',');
@@ -18,6 +19,7 @@ const checkVideosUploaded = async (videoIds, apiKey) => {
     }
 }
 
+// GET THE LATEST VIDEOS
 module.exports.getVideos = async (req, res) => {
     const apiKey = config.youtube.key;
     const playlistId = 'UUFgVI_9GrVOp6t7sG7j4UHg';

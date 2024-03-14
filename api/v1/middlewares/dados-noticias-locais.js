@@ -1,3 +1,4 @@
+// LOCAL NEWS DATA
 module.exports.localNews = (title) => {
     const localNewsArray = [
         {
@@ -23,8 +24,10 @@ module.exports.localNews = (title) => {
         },
     ]
 
+    // REMOVE HTML TAGS FROM THE ELEMENT AND SEARCHES FOR NEWS
     const foundNews = localNewsArray.find(news => news.title.replace(/<\/?[^>]+(>|$)/g, '') === title);
 
+    // RETURN THE NEWS
     if (foundNews) {
         return foundNews;
     } else {

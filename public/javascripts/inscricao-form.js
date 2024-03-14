@@ -1,3 +1,4 @@
+// FUNCTION THAT SHOWS MESSAGE
 const showMessage = (message, buttonText, silvania = false) => {
     const wrapper = document.querySelector('.message-container')
     const formOpacity = document.querySelector('form')
@@ -38,6 +39,7 @@ const showMessage = (message, buttonText, silvania = false) => {
   })
 }
 
+// FUNCTION THAT TAKES FORM DATA
 const getFormData = () => {
     const numParticipants = document.getElementById('participants-select').value
     const data = {}
@@ -104,6 +106,7 @@ const getFormData = () => {
     return data
 }
 
+// FUNCTION THAT CLEARS FORM DATA
 const clearFormData = () => {
     const inputsForReset = document.querySelectorAll('input.active')
     const placeholdersForReset = document.querySelectorAll('.placeholder.active')
@@ -117,25 +120,27 @@ const clearFormData = () => {
     resetForm(placeholdersForReset)
 }
 
+// FUNCTION THAT SENDS FORM DATA
 const sendData = async (formData, silvania) => {
-    const result = await fetch("/api/v1/inscricao", {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
-    });
-
-    if (result.status === 200) {
-      const data = await result.json();
-      showMessage(data.message, 'OK', silvania)
-      clearFormData();
-    } else {
-      const data = await result.json();
-      showMessage(data.message, 'Tentar Novamente')
+  const result = await fetch("/api/v1/inscricao", {
+    method: "POST",
+    body: JSON.stringify(formData),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
     }
-  }
+  });
 
+  if (result.status === 200) {
+    const data = await result.json();
+    showMessage(data.message, 'OK', silvania)
+    clearFormData();
+  } else {
+    const data = await result.json();
+    showMessage(data.message, 'Tentar Novamente')
+  }
+}
+
+// FUNCTION THAT VALIDATES FORM DATA
 const validateForm = (silvania) => {
     const formData = getFormData();
     return sendData(formData, silvania)

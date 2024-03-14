@@ -1,3 +1,4 @@
+// FUNCTION THAT PLACES ALBUMS IN THE DOM
 const insertAlbums = (albums) => {
 
     albums.forEach(async (album) => {
@@ -23,4 +24,7 @@ const getAlbums = () => {
     insertAlbums(albums)
 }
 
-getAlbums()
+// CODE INICIALIZATION EVENT
+window.addEventListener('load', () => {
+    getAlbums()
+})
