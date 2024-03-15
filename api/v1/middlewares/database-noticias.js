@@ -1,9 +1,9 @@
 const Database = require('../../../config/db-connect-noticias');
-const UserController = require('../../../controllers/noticias-controller');
+const NewsController = require('../../../controllers/noticias-controller');
 
-class DatabaseMiddleware {
+class DatabaseNoticiasMiddleware {
     constructor() {
-        this.userController = new UserController();
+        this.newsController = new NewsController();
     }
 
     // GET METHOD
@@ -11,7 +11,7 @@ class DatabaseMiddleware {
         const db = new Database();
         try {
             await db.connect();
-            const results = await this.userController.getNews(db);
+            const results = await this.newsController.getNews(db);
             res.status(200).json({ message: 'Notícias recebidas do Banco de Dados', results });
         } catch (err) {
             res.status(500).json({ message: 'Erro ao obter notícias do Banco de Dados', err });
@@ -25,7 +25,7 @@ class DatabaseMiddleware {
         const db = new Database();
         try {
             await db.connect();
-            await this.userController.sendNews(db, req);
+            await this.newsController.sendNews(db, req);
             res.status(200).json({ message: 'Notícia enviada ao Banco de dados'})
         } catch (err) {
             res.status(500).json({ message: 'Erro ao enviar notícia ao Banco de Dados', err });
@@ -41,7 +41,7 @@ class DatabaseMiddleware {
         const searchData = req.searchData;
         try {
             await db.connect();
-            await this.userController.updateNews(db, {newData, searchData});
+            await this.newsController.updateNews(db, {newData, searchData});
             res.status(200).json({ message: "Notícia alterada com sucesso!"});
         } catch (err) {
             res.status(500).json({ message: "Erro ao alterar dados do Banco de Dados!", err});
@@ -57,7 +57,7 @@ class DatabaseMiddleware {
         const id = req.params.id;
         try {
             await db.connect();
-            await this.userController.deleteNews(db, id);
+            await this.newsController.deleteNews(db, id);
             res.status(200).json({ message: 'Notícia excluída com sucesso!' });
         } catch (err) {
             res.status(500).json({ message: 'Erro ao excluir notícia!', err })
@@ -69,4 +69,4 @@ class DatabaseMiddleware {
     // OTHER METHODS
 }
 
-module.exports = new DatabaseMiddleware();
+module.exports = new DatabaseNoticiasMiddleware();

@@ -1,5 +1,5 @@
 const mysql = require('mysql2');
-const config = require('../config.json').database.noticias;
+const config = require('../config.json').database.usuarios;
 
 // DATABASE CLASS
 class Database {

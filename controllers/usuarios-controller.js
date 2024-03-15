@@ -1,11 +1,21 @@
-class NoticiasController {
+const getParam = (data, method) => {
+    if (method === 'user') {
+        return { usuario: data };
+    } else if (method === 'id') {
+        return { id: data };
+    }
+}
+
+class UsersController {
     // MÉTODOS DO CONTROLADOR => CONTROLLER METHODS
 
     // GET METHOD
-    async getNews(connection) {
+    async getUser(connection, data, method) {
+        const param = getParam(data, method);
+
         try {
-            const result = await connection.query('SELECT * FROM `noticias` WHERE 1');
-            return result;
+            const results = await connection.query('SELECT * FROM `usuarios` WHERE ?', param);
+            return results;
         } catch (err) {
             throw err;
         }
@@ -42,4 +52,4 @@ class NoticiasController {
     }
 }
 
-module.exports = NoticiasController;
+module.exports = UsersController;

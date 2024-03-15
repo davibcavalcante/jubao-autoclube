@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'IntroHead';
+    src: url(../fonts/IntroRustG-Base2Line.otf) format(opentype);
+    font-weight: normal;
+}
+
+:root {
+    --background-color: #ffe8c6;
+    --main-color: #f25c05;
+    --main-color-low-fade: #f25c055b;
+    --main-color-high-fade: #f25c05c9;
+
+    --alternative-color: #140703;
+    --dull-color: #140703ce;
+    --header-color: #FF945E;
+
+    --main-font: 'Montserrat', sans-serif;
+    --alternative-font: 'Poppins', sans-serif;
+    --title-font: 'IntroHead', sans-serif;
+}
+
+/* CONFIGURAÇÕES GERAIS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hidden, .additional-info {
+    display: none !important;
+}
+
+body {
+    background-color: var(--background-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}

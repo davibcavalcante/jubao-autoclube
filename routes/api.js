@@ -11,6 +11,7 @@ const noticiasLocais = require('../api/v1/middlewares/dados-noticias-locais');
 const rallyJubaoData = require('../api/v1/middlewares/dados-rally-jubao');
 const calendarioData = require('../api/v1/middlewares/dados-calendario');
 const databaseNoticias = require('../api/v1/middlewares/database-noticias');
+const login = require('../api/v1/middlewares/database-usuarios');
 
 // YOUTUBE VIDEOS ROUTES
 router.get('/youtube-videos', youtube.getVideos);
@@ -103,5 +104,10 @@ router.delete('/database/noticias/:id', (req, res) => {
 
 // REGISTRATION ROUTES
 router.post("/inscricao", inscricao.enviarEmailInscricao);
+
+// REGISTER USER
+router.post('/login', (req, res) => {
+    login.userLogin(req, res);
+});
 
 module.exports = router;

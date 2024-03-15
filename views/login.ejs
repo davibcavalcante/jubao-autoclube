@@ -12,25 +12,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.typekit.net/npq0jlq.css">
 
     <link rel="stylesheet" href="/stylesheets/header.css">
-    <link rel="stylesheet" href="/stylesheets/portal-noticias.css">
+    <link rel="stylesheet" href="/stylesheets/login.css">
     <link rel="stylesheet" href="/stylesheets/footer.css">
-    
-    <title>Rally do JubãoFe | Portal de Notícias</title>
+
+    <title>Rally do JubãoFe | Login</title>
 </head>
 <body>
     <header>
         <section class="mobile-header">
             <img src="/imagens/mobile/menu-hamburguer.png" alt="Ícone Menu Hamburguer" class="menu-hamburguer">
-            <a href="/" rel="prev" target="_self">
+            <a href="/">
                 <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube" class="logo-jubao">
             </a>
         </section>
         <nav>
             <section class="desktop-logo-container">
-                <a href="/">
+                <a href="/" rel="prev" target="_self">
                     <img src="/imagens/desktop/jubao-logo.png" alt="Logo JubãoFe Autoclube">
                 </a>
             </section>
@@ -39,7 +38,7 @@
                     <a href="/inscricao" rel="next" target="_self">Inscrições</a>
                 </li>
                 <li>
-                    <a href="#">Notícias</a>
+                    <a href="/portal-noticias" id="link-news">Notícias</a>
                 </li>
                 <li>
                     <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
@@ -76,43 +75,14 @@
         </nav>
     </header>
 
-    <section class="background-container">
-        <section class="low-fade">
-
-        </section>
-        <section class="high-fade">
-            <h1>Portal de Notícias</h1>
-            <p>
-                Bem-vindo ao nosso universo de notícias, onde a informação é poder e a atualização é constante! Aqui, você encontrará as últimas e mais relevantes notícias, cuidadosamente selecionadas para mantê-lo informado sobre os acontecimentos mais impactantes ao redor do mundo.
-            </p>
-            <p class="desktop-text">
-                Adentra conosco nesse espaço vibrante, onde as manchetes ganham vida e as histórias se desdobram diante dos seus olhos. Seja você apaixonado por política, entusiasta de tecnologia, curioso sobre cultura ou ávido por esportes, temos um leque diversificado de notícias para satisfazer todos os gostos.
-            </p>
-            <p class="desktop-text">
-                Embarque nessa jornada informativa e mantenha-se à frente dos acontecimentos. Aqui, a atualidade é a nossa prioridade, e cada artigo é uma porta de entrada para o entendimento mais profundo do que molda o nosso mundo.
-            </p>
-        </section>
-    </section>
-
     <main>
-        <section class="message-error-container hidden">
-            <img src="/imagens/mobile/not-found-error.png">
-        </section>
-        <section class="news-container" id="news-container">
-
-        </section>
-        <iframe id="news-iframe" class="hidden" frameborder="0"></iframe>
+        <form id="form">
+            <input type="text" name="user" id="user-input" placeholder="Nome de usuário">
+            <input type="password" name="password" id="password-input" placeholder="Senha">
+            <button type="submit">Logar</button>
+        </form>
+        <button id="update-news-btn">Atualizar Notícias</button>
     </main>
-
-    <section class="pagination-container">
-        <section class="page-btn-container">
-            <button id="prev-page-btn"><i class="fa-solid fa-arrow-left"></i></button>
-            <section class="page-screen">
-                <p class="page">1</p>
-            </section>
-            <button id="next-page-btn"><i class="fa-solid fa-arrow-right"></i></button>
-        </section>
-    </section>
 
     <footer>
         <section class="desktop-footer">
@@ -139,7 +109,7 @@
                         <a href="/politica-privacidade" rel="next" target="_self">Política de privacidade</a>
                     </li>
                     <li>
-                        <a href="/login" rel="next" target="_self">Administração</a>
+                        <a href="#">Administração</a>
                     </li>
                 </ul>
             </section>
@@ -150,7 +120,7 @@
                         <a href="/inscricao" rel="next" target="_self">Inscrições</a>
                     </li>
                     <li>
-                        <a href="#">Notícias</a>
+                        <a href="/portal-noticias" rel="next" target="_self">Notícias</a>
                     </li>
                     <li>
                         <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
@@ -168,7 +138,7 @@
                         <a href="/politica-privacidade" rel="next" target="_self">Política de privacidade</a>
                     </li>
                     <li>
-                        <a href="/login" rel="next" target="_self">Administração</a>
+                        <a href="#">Administração</a>
                     </li>
                 </ul>
             </section>
@@ -206,7 +176,8 @@
         </p>
     </footer>
 
+
     <script src="/javascripts/menu.js"></script>
-    <script src="/javascripts/portal-noticias.js"></script>
+    <script src="/javascripts/login.js"></script>
 </body>
 </html>
