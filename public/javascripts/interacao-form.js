@@ -404,7 +404,7 @@ const changeParticipants = () => {
         case '3': 
             statementRequired(['1'])
             participantsForm(forms.slice(3), ['enable', 'disable'])
-            enableInputs(forms[4], 'element')
+            enableInputs(forms[3], 'element')
             toggleSubmitButtons(forms.slice(2), ['disable', 'enable', 'disable'])
             break
 
