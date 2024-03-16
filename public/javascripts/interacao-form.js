@@ -534,14 +534,17 @@ const setEvents = () => {
         }
 
         const pilotCba = document.querySelector('#pilot-cba-input')
+        const navCba = document.querySelector('#nav-cba-input')
         const categoriesValue = categoriesSelect.value
 
         if (categoriesValue === 'TURISMO' || categoriesValue === 'GRADUADO' || categoriesValue === 'MASTER') {
             getSelect('participants').value = '2'
             changeParticipants()
             pilotCba.required = true
+            navCba.required = true
         } else {
             pilotCba.required = false
+            navCba.required = false
         }
     })
 

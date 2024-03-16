@@ -19,6 +19,14 @@ const createNews = (url, title, date, external = false) => {
 
 module.exports.getNews = (pageNumber, pageSize) => {
     const newsArray = [
+
+        createNews(
+            'https://cba.org.br/upload/noticias/2024/2693/thumb/regulamento-de-homologacoes-apresenta-novos-detalhes-para-o-grupo-propulsao.png',
+            'Regulamento de homologações apresenta novos detalhes para o Grupo Propulsão',
+            '15 Março 2024',
+            'https://cba.org.br/noticias/noticiasinfo/2693/regulamento-de-homologacoes-apresenta-novos-detalhes-para-o-grupo-propulsao'
+        ),
+
         createNews(
             'https://cba.org.br/upload/noticias/2024/2692/thumb/regional-cup-brasil-chega-ao-pais-com-apoio-da-fia-e-premiacao-para-o-mundial-de-kart-em-setembro-na-gra-bretanha.png',
             'Regional Cup Brasil chega ao país com apoio da FIA e premiação para o Mundial de Kart em setembro na Grã Bretanha',
