@@ -1,8 +1,8 @@
 // VIEWS ROUTES
 const express = require('express');
-const albumDataMiddlewares = require('../api/v1/middlewares/fotos')
-const rallyJubaoData = require('../api/v1/middlewares/dados-rally-jubao')
-const authorization = require('../api/v1/middlewares/authorization')
+const albumDataMiddlewares = require('../api/v1/middlewares/fotos');
+const rallyJubaoData = require('../api/v1/middlewares/dados-rally-jubao');
+const authorization = require('../api/v1/middlewares/authorization');
 
 const router = express.Router();
 
@@ -25,14 +25,12 @@ router.get('/inscricao/:name', (req, res, next) => {
 
 // NEWS PORTAL ROUTES
 router.get('/portal-noticias', (req, res, next) => {
-  res.render('portal-noticias')
+  res.render('portal-noticias');
 })
 
-// UPDATE NEWS ROUTES
-
-router.get('/atualizar-noticias/:id', authorization.authorizeUser, async (req, res, next) => {
+router.get('/atualizar-noticias/:id', authorization.authorizeUser, (req, res, next) => {
   res.render('atualizar-noticias');
-});
+})
 
 // ALBUMS ROUTES
 router.get('/albums', (req, res, next) => {
@@ -67,8 +65,8 @@ router.get('/politica-privacidade', (req, res, next) => {
 
 // LOGIN
 router.get('/login', (req, res, next) => {
-  res.render('login')
-})
+  res.render('login');
+});
 
 // ROUTE OF INDEX
 router.get('/', (req, res, next) => {

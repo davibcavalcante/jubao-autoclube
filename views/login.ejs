@@ -75,13 +75,41 @@
         </nav>
     </header>
 
+    <section class="message-container hidden" id="message-wrapper">
+        <section class="icon-container">
+            <img src="" id="icon-img">
+        </section>
+        <section class="status-container">
+            <p id="status-msg"></p>
+        </section>
+        <section class="button-msg-container">
+            <a href="/" rel="prev" target="_self" id="link-msg"></a>
+        </section>
+    </section>
+
     <main>
-        <form id="form">
-            <input type="text" name="user" id="user-input" placeholder="Nome de usuário">
-            <input type="password" name="password" id="password-input" placeholder="Senha">
-            <button type="submit">Logar</button>
-        </form>
-        <button id="update-news-btn">Atualizar Notícias</button>
+       <section class="wrapper" id="form-wrapper">
+            <section class="title-container">
+                <h1>Login</h1>
+                <h2>Bem vindo!</h2>
+            </section>
+           <section class="form-container">
+                <form id="form" autocomplete="off">
+                    <section class="input-container">
+                        <label for="user-input">Usuário:</label>
+                        <input type="text" name="user" id="user-input" placeholder="Digite o seu nome de usuário">
+                    </section>
+                    <section class="input-container">
+                        <label for="password-input">Senha:</label>
+                        <input type="password" name="password" id="password-input" placeholder="Digite sua senha">
+                    </section>
+                    <section class="button-container">
+                        <button type="submit" id="submit-btn">Login</button>
+                        <div class="loading-animation hidden" id="loading"></div>
+                    </section>
+                </form>
+           </section>
+       </section>
     </main>
 
     <footer>

@@ -54,13 +54,15 @@ class DatabaseUsuariosMiddlewares {
                 senha: data.pass
             } : {};
 
+            const { id, usuario } = userData.length > 0 ? userData[0] : {}
+
             await checkLogin(userData, user.senha, user.hash);
-            const token = openUserSession(userData[0].id)
-            console.log('Logado com sucesso!')
-            res.status(200).json({ message: `Usuário ${user.name} logado com sucesso!`, name: user.name, token});
+            const token = openUserSession(userData[0].id);
+            res.cookie('userToken', token);
+            res.status(200).json({ message: `Usuário ${user.name} logado com sucesso!`, user: {id, usuario}, /* token */});
         } catch (err) {
             const statusCode = err.statusCode || 500;
-            const message = err.message || 'Erro ao fazer login!';~
+            const message = err.message || 'Erro ao fazer login!';
             console.log(message)
             res.status(statusCode).json({ message, error: err });
         } finally {

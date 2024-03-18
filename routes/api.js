@@ -105,7 +105,7 @@ router.delete('/database/noticias/:id', (req, res) => {
 // REGISTRATION ROUTES
 router.post("/inscricao", inscricao.enviarEmailInscricao);
 
-// REGISTER USER
+// LOGIN
 router.post('/login', (req, res) => {
     login.userLogin(req, res);
 });

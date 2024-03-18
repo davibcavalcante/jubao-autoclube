@@ -11,8 +11,7 @@
     --main-color-high-fade: #f25c05c9;
 
     --alternative-color: #140703;
-    --dull-color: #140703ce;
-    --header-color: #FF945E;
+    --dull-color: #ffe8c6be;
 
     --main-font: 'Montserrat', sans-serif;
     --alternative-font: 'Poppins', sans-serif;
@@ -27,17 +26,221 @@
     box-sizing: border-box;
 }
 
-.hidden, .additional-info {
+.hidden {
     display: none !important;
 }
 
 body {
-    background-color: var(--background-color);
+    background: var(--background-color) url(../imagens/mobile/pattern-bg.jpg) no-repeat fixed center center;
+    background-size: cover;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+
+    position: relative;
+}
+
+body.opacity main:not(section.message-container, section.icon-container, section.button-msg-container) {
+    filter: brightness(.1) blur(1px);
+}
+
+.message-container {
+    background-color: white;
+    max-width: 600px;
+    width: calc(100% - 20px);
+
+    border-radius: 8px;
+    box-shadow: 8px 12px 8px rgba(0, 0, 0, 0.1);
+
+    padding: 20px;
+    margin: 20px auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+.icon-container img {
+    display: block;
+    width: 70px;
+    margin: auto;
+}
+
+.status-container  p {
+    color: var(--main-color);
+    font: 500 1.2em var(--main-font);
+    text-align: center;
+}
+
+.button-msg-container {
+    width: 100%;
 }
 
 main {
     flex: 1;
+    background-color: var(--dull-color);
+    height: auto;
+    min-height: calc(100vh - 94px);
+    padding: 20px 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.wrapper {
+    background-color: white;
+
+    border-radius: 8px;
+    box-shadow: 8px 12px 8px rgba(0, 0, 0, 0.1);
+
+    width: calc(100% - 20px);
+    max-width: 600px;
+    padding: 40px 0;
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.wrapper::before {
+    content: '';
+    position: absolute;
+    background-color: white;
+    width: calc(100% - 15px);
+    height: calc(100% - 15px);
+    border-radius: 10px;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.wrapper::after {
+    content: '';
+    position: absolute;
+    background-image: conic-gradient(var(--main-color) 45deg, transparent 100deg);
+    background-repeat: no-repeat;
+    width: 500%;
+    height: 500%;
+    border-radius: 10px;
+
+    z-index: -2;
+    transform-origin: center;    
+    animation: backanimated 5s linear infinite;
+}
+
+@keyframes backanimated {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.title-container {
+    margin-bottom: 20px;
+}
+
+.title-container h1 {
+    color: var(--main-color);
+    font: 600 3.5em var(--alternative-font);
+    text-align: center;
+    letter-spacing: 0.08em;
+}
+
+.title-container h2 {
+    color: black;
+    font: 500 1.5em var(--alternative-font);
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+
+.form-container {
+    width: calc(100% - 40px);
+    flex: 1;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.input-container {
+    margin-bottom: 15px;
+}
+
+.input-container label {
+    font: normal 1.2em var(--main-font);
+
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-container input {
+    font: normal 1em var(--main-font);
+    border: 2px solid var(--alternative-color);
+
+    padding: 10px;
+    width: 100%;
+}
+
+.button-container {
+    margin-top: 40px;
+}
+
+.button-container button, .button-msg-container a {
+    color: white;
+    font: 600 1.2em var(--alternative-font);
+    text-decoration: none;
+    text-align: center;
+    background-color: var(--main-color);
+
+    padding: 5px 0;
+    border: none;
+
+    box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.2);
+
+    display: block;
+    margin: auto;
+    width: 70%;
+}
+
+.loading-animation {
+    border-top: 5px solid var(--main-color-low-fade);
+    border-right: 5px solid var(--main-color);
+    border-left: 5px solid var(--main-color);
+    border-bottom: 5px solid var(--main-color);
+    border-radius: 50%;
+
+    width: 50px;
+    height: 50px;
+    margin: auto;
+
+    animation: loading .8s linear infinite;
+}
+
+@keyframes loading {
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+@media screen and (min-width: 992px) {
+    main {
+        flex-direction: row;
+    }
+
+    .button-container button, .button-msg-container button {
+        cursor: pointer;
+    }
 }

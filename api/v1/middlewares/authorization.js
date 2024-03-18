@@ -1,7 +1,7 @@
 const Database = require('../../../config/db-connect-usuarios');
 const UsersAuthController = require('../../../controllers/usuarios-controller');
-const jwt = require('jsonwebtoken')
-const config = require('../../../config.json')
+const jwt = require('jsonwebtoken');
+const config = require('../../../config.json');
 
 module.exports.authorizeUser = async (req, res, next) => {
     const db = new Database();
@@ -17,15 +17,15 @@ module.exports.authorizeUser = async (req, res, next) => {
             error.statusCode = 404;
             throw error;
         } else {
-            const token = req.headers['authorization'];
-            // const token = authHeader && authHeader.split(' ')[1];
+            // const token = req.headers['authorization'].split(' ')[1];
+            const token = req.cookies.userToken;
             if (!token) {
                 const error = new Error('Usuário ou senha incorreto!');
                 error.statusCode = 401;
                 throw error;
             } else {
-                const secret = config.secret;
-                jwt.verify(token, secret);
+                jwt.verify(token, config.secret);
+                console.log('Autenticado com sucesso!');
                 next();
             }
         }
