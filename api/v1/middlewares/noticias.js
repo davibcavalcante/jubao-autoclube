@@ -21,6 +21,13 @@ module.exports.getNews = (pageNumber, pageSize) => {
     const newsArray = [
 
         createNews(
+            'https://cba.org.br/upload/noticias/2024/2694/thumb/com-apoio-do-banco-brb-cba-e-capacete-de-ouro-realizam-a-maior-festa-do-automobilismo-brasileiro.png',
+            'Com apoio do Banco BRB, CBA e Capacete de Ouro realizam a maior festa do automobilismo brasileiro',
+            '18 Março 2024',
+            'https://cba.org.br/noticias/noticiasinfo/2694/com-apoio-do-banco-brb-cba-e-capacete-de-ouro-realizam-a-maior-festa-do-automobilismo-brasileiro'
+        ),
+
+        createNews(
             'https://cba.org.br/upload/noticias/2024/2693/thumb/regulamento-de-homologacoes-apresenta-novos-detalhes-para-o-grupo-propulsao.png',
             'Regulamento de homologações apresenta novos detalhes para o Grupo Propulsão',
             '15 Março 2024',
