@@ -85,7 +85,7 @@ router.get('/calendario/:data/:method', (req, res) => {
     }
 })
 
-// DATABASE NEWS ROUTES
+// NEWS DATABASE ROUTES
 router.get('/database/noticias', (req, res) => {
     databaseNoticias.getDatabaseData(req, res);
 });

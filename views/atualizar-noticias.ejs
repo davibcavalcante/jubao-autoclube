@@ -3,9 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Somos o JubaoFe. Nós organizamos, informamos e apoiamos o crescimento do Rally, principalmente em Goiânia e região. Em nosso site temos inscrições para nosso rallys, galeria de fotos, notícias atualizadas, calendário geral com datas de diversos eventos no ano. Além de promovermos o PoeiraCast nosso podcast sobre esse esporte maravilhoso no Youtube">
+    <meta name="keywords" content="Rally, Rally do jubão, Inscrições Rallys, Calendário Rallys, Fotos Rallys">
+
+    <script src="https://kit.fontawesome.com/3954e72066.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="/imagens/desktop/favicon.ico" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/atualizar-noticias.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+
+    <title>Rally do JubãoFe | Atualização de Notícias</title>
 </head>
 <body>
-    <h1>Atualização de notícias!</h1>
+    <header>
+        <section class="mobile-header">
+            <img src="/imagens/mobile/menu-hamburguer.png" alt="Ícone Menu Hamburguer" class="menu-hamburguer">
+            <a href="/">
+                <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube" class="logo-jubao">
+            </a>
+        </section>
+        <nav>
+            <section class="desktop-logo-container">
+                <a href="/" rel="prev" target="_self">
+                    <img src="/imagens/desktop/jubao-logo.png" alt="Logo JubãoFe Autoclube">
+                </a>
+            </section>
+            <ul class="pages-list">
+                <li>
+                    <a href="/inscricao" rel="next" target="_self">Inscrições</a>
+                </li>
+                <li>
+                    <a href="/portal-noticias" id="link-news">Notícias</a>
+                </li>
+                <li>
+                    <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
+                </li>
+                <li>
+                    <a href="/calendario" rel="next" target="_self">Calendário</a>
+                </li>
+                <li>
+                    <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
+                </li>
+                <section class="associations-container">
+                    <img src="/imagens/mobile/faugo-logo.png" alt="Logo da FAUGO" class="logo-faugo">
+                    <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube" class="logo-jubao">
+                    <img src="/imagens/mobile/cba.png" alt="Logo da CBA" class="logo-cba">
+                </section>
+            </ul>
+            <ul class="social-list">
+                <li>
+                    <a href="https://www.instagram.com/rallydojubao/" rel="external" target="_blank">
+                        <img src="/imagens/desktop/instagram-logo.png" alt="Logo dos Instagram">
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:jubaofe@gmail.com" rel="external" target="_blank">
+                        <img src="/imagens/desktop/email-logo.png" alt="Logo do Email">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/@JubaoFe" rel="external" target="_blank">
+                        <img src="/imagens/desktop/youtube-logo.png" alt="Logo do Youtube">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="message-container hidden" id="message-wrapper">
+        <section class="icon-container">
+            <img src="" id="icon-img">
+        </section>
+        <section class="status-container">
+            <p id="status-msg"></p>
+        </section>
+        <section class="button-msg-container">
+            <a href="#" rel="prev" target="_self" id="link-msg"></a>
+        </section>
+    </section>
+    
+    <main>
+        <section class="wrapper" id="form-wrapper">
+            <section class="title-container">
+                <h1>Atualização de Notícias</h1>
+                <h2>Seja bem vindo!</h2>
+            </section>
+            <section class="form-container">
+                <form id="form" autocomplete="off">
+                    <section class="title-form-container">
+                        <section class="input-container">
+                            <label for="title-input">Titulo:</label>
+                            <input type="text" name="title" id="title-input" placeholder="Digite o título da notícia" required>
+                        </section>
+                    </section>
+
+                    <section class="image-form-container">
+                        <section class="input-container">
+                            <label for="image-input">Imagem:</label>
+                            <section class="flex-input-container">
+                                <input type="text" name="image" id="image-input" placeholder="Digite o link da imagem da notícia" required>
+                                <button id="image-check-btn" type="button"><i class="fa-solid fa-check"></i></button>
+                            </section>
+                        </section>
+                    </section>
+
+                    <section class="link-form-container">
+                        <section class="input-container">
+                            <label for="link-input">Link:</label>
+                            <input type="text" name="link" id="link-input" placeholder="Digite o link da notícia">
+                        </section>
+                    </section>
+
+                    <section class="date-form-container">
+                        <h1>Data:</h1>
+                        <section class="containers">
+                            <section class="input-container day">
+                                <section class="day-container">
+                                    <label for="day-input">Dia:</label>
+                                    <input type="text" name="day" id="day-input" placeholder="DD" required>
+                                </section>
+                            </section>
+                            <section class="input-container month">
+                                <section class="month-container">
+                                    <label for="month-select">Mês</label>
+                                    <select name="month" id="month-select">
+                                        <option hidden selected disabled value="">SELECIONE</option>
+                                        <option value="JANEIRO">JANEIRO</option>
+                                        <option value="FEVEREIRO">FEVEREIRO</option>
+                                        <option value="MARÇO">MARÇO</option>
+                                        <option value="ABRIL">ABRIL</option>
+                                        <option value="MAIO">MAIO</option>
+                                        <option value="JUNHO">JUNHO</option>
+                                        <option value="JULHO">JULHO</option>
+                                        <option value="AGOSTO">AGOSTO</option>
+                                        <option value="SETEMBRO">SETEMBRO</option>
+                                        <option value="OUTUBRO">OUTUBRO</option>
+                                        <option value="NOVEMBRO">NOVEMBRO</option>
+                                        <option value="DEZEMBRO">DEZEMBRO</option>
+                                    </select>
+                                </section>
+                            </section>
+                            <section class="input-container year">
+                                <section class="year-container">
+                                    <label for="year-input">Ano:</label>
+                                    <input type="text" name="year" id="year-input" placeholder="AAAA" required>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+
+                    <section class="external-form-container">
+                        <section class="input-container">
+                            <label for="external-select">Fonte externa:</label>
+                            <select name="external" id="external-select">
+                                <option hidden selected disabled value="">SELECIONE</option>
+                                <option value="y">SIM</option>
+                                <option value="n">NÃO</option>
+                            </select>
+                        </section>
+                    </section>
+
+                    <section class="buttons-form-container">
+                        <button type="submit" class="submit-btn">Atualizar</button>
+                        <button type="reset" class="reset-btn">Limpar</button>
+                    </section>
+                </form>
+            </section>
+        </section>
+
+        <section class="wrapper" id="preview-wrapper">
+            <section class="preview-title-container">
+                <h1>Pré visualização</h1>
+            </section>
+            <section class="news-container">
+                <section class="image-news-container">
+                    <img src="" id="image-preview">
+                </section>
+                <section class="info-news-container">
+                    <section class="date-news-container">
+                        <p id="date-preview"></p>
+                    </section>
+                    <section class="title-news-container">
+                        <h1 id="title-preview"></h1>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <section class="desktop-footer">
+            <section class="logo-container">
+                <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube">
+            </section>
+            <section class="contact-footer-container">
+                <h1>INFORMAÇÕES DE CONTATO:</h1>
+                <section class="info-contato">
+                    <p>
+                        TELEFONE: (62) 9 9133-6479 <br>
+                        CONTATO: jubaofe@gmail.com <br>
+                        INSTAGRAM: @rallydojubao
+                    </p>
+                </section>
+            </section>
+            <section class="mobile-terms-container">
+                <h1>Termos de Uso e Política de privacidade</h1>
+                <ul>
+                    <li>
+                        <a href="/termos" rel="next" target="_self">Termos de Uso</a>
+                    </li>
+                    <li>
+                        <a href="/politica-privacidade" rel="next" target="_self">Política de privacidade</a>
+                    </li>
+                    <li>
+                        <a href="#">Administração</a>
+                    </li>
+                </ul>
+            </section>
+            <section class="accesses-footer-container">
+                <h1>OUTROS ACESSOS:</h1>
+                <ul>
+                    <li>
+                        <a href="/inscricao" rel="next" target="_self">Inscrições</a>
+                    </li>
+                    <li>
+                        <a href="/portal-noticias" rel="next" target="_self">Notícias</a>
+                    </li>
+                    <li>
+                        <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
+                    </li>
+                    <li>
+                        <a href="/calendario" rel="next" target="_self">Calendário</a>
+                    </li>
+                    <li>
+                        <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
+                    </li>
+                    <li>
+                        <a href="/termos" rel="next" target="_self">Termos de uso</a>
+                    </li>
+                    <li>
+                        <a href="/politica-privacidade" rel="next" target="_self">Política de privacidade</a>
+                    </li>
+                    <li>
+                        <a href="#">Administração</a>
+                    </li>
+                </ul>
+            </section>
+            <section class="social-footer-container">
+                <h1>SIGA NOS:</h1>
+                <ul>
+                    <li>
+                        <a href="https://www.youtube.com/@JubaoFe" rel="external" target="_blank">
+                            <img src="/imagens/mobile/youtube-logo.png" alt="Ícone do Youtube">
+                            <span>Youtube</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:jubaofe@gmail.com">
+                            <img src="/imagens/mobile/email-logo.png" alt="Ícone do Email">
+                            <span>jubaofe@gmail.com</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/rallydojubao/" rel="external" target="_blank">
+                            <img src="/imagens/mobile/instagram-logo.png" alt="Ícone do Instagram">
+                            <span>Instagram</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <section class="associations-footer">
+                <img src="/imagens/desktop/cba.png" alt="Logo CBA">
+                <img src="/imagens/desktop/faugo-logo.png" alt="Logo FAUGO">
+            </section>
+        </section>
+        <p class="copy">
+            &copy; JubãoFe Autoclube Todos os Direitos Reservados <br>
+            Desenvolvido por <a href="https://davibcavalcante.github.io/my-profile" rel="external" target="_blank">Indigital</a>
+        </p>
+    </footer>
+
+    <script src="/javascripts/menu.js"></script>
+    <script src="/javascripts/atualizar-noticias.js"></script>
 </body>
 </html>
