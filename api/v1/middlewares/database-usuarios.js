@@ -59,7 +59,8 @@ class DatabaseUsuariosMiddlewares {
             await checkLogin(userData, user.senha, user.hash);
             const token = openUserSession(userData[0].id);
             res.cookie('userToken', token);
-            res.status(200).json({ message: `Usuário ${user.name} logado com sucesso!`, user: {id, usuario}, /* token */});
+            console.log('Usuário logado com sucesso!')
+            res.status(200).json({ message: `Usuário ${user.name} logado com sucesso!`, user: {id, usuario}});
         } catch (err) {
             const statusCode = err.statusCode || 500;
             const message = err.message || 'Erro ao fazer login!';

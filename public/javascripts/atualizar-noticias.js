@@ -1,3 +1,4 @@
+// FUNCTION THAT GET ELEMENTS BY DOM
 const getElements = () => {
     return {
         titleInput: document.querySelector('#title-input'),
@@ -10,6 +11,7 @@ const getElements = () => {
     }
 }
 
+// FUNCTION THAT CENTEALIZES VERTICALLY
 const centerVertically = (element) => {
     const windowHeight = window.innerHeight
     const scrollY = window.scrollY || window.pageYOffset
@@ -19,6 +21,7 @@ const centerVertically = (element) => {
     element.classList.remove('hidden')
 }
 
+// FUNCTION THAT CONTROLS ON MESSAGE STATE
 const showsMessageStateOn = () => {
     document.querySelector('body').classList.add('opacity')
     document.querySelector('#form-wrapper').classList.add('hidden')
@@ -26,6 +29,7 @@ const showsMessageStateOn = () => {
     document.querySelector('#message-wrapper').classList.remove('hidden')
 }
 
+// FUNCTION THAT CONTROLS OFF MESSAGE STATE
 const showsMessageStateOff = (e) => {
     e.preventDefault()
     document.querySelector('body').classList.remove('opacity')
@@ -34,6 +38,7 @@ const showsMessageStateOff = (e) => {
     document.querySelector('#message-wrapper').classList.add('hidden')
 }
 
+// FUNCTION THAT SHOWS STATUS MESSAGE
 const showsStatusMessage = (results) => {
     showsMessageStateOn()
     const icon = document.querySelector('#icon-img')
@@ -47,7 +52,7 @@ const showsStatusMessage = (results) => {
 
     if (results.ok) {
         icon.src = '/imagens/mobile/checked.png'
-        link.href = '/atualizar-noticias/1'
+        link.href = '/atualizar-noticias'
         link.innerText = 'OK'
     } else {
         icon.src = '/imagens/mobile/cancel.png'
@@ -62,6 +67,7 @@ const showsStatusMessage = (results) => {
     centerVertically(messageContainer)
 }
 
+// FUNCTION THAT UPDATES PREVIEW SCREEN
 const updatePreview = (e) => {
     let target = e.target
 
@@ -83,21 +89,30 @@ const updatePreview = (e) => {
     }
 }
 
+// FUNCTION THAT FORMATTES NUMBERS LESS THAN 10
+const formatNumber = (number) => {
+    if (number < 10) return `0${number}`
+
+    return number
+}
+
+// FUNCTION THAT FORMAT INPUTS
 const formatInputNumbersOnly = (e) => {
     const input = e.target
     input.value = input.value.replace(/\D/g, '')
     updatePreview(e)
 }
 
+// FUNCTION THAT VALIDATES FORM DATA
 const validateForm = () => {
     const elements = getElements()
     const externalValue = elements.externalSelect.value
-    const monthValue = elements.externalSelect.value
+    const monthValue = elements.monthSelect.value
     const linkValue = elements.linkInput.value
-    
-    if (elements.dayInput.value.length !== 2) {
+
+    if (Number(elements.dayInput.value) > 31 || Number(elements.dayInput.value) < 1) {
         return {
-            ok: false, message: 'O dia da notícia deve conter exatamente 2 caractéres. Exemplo: 07'
+            ok: false, message: 'Dia inválido, tente um valor entre 01 e 31.'
         }
     } 
 
@@ -134,6 +149,25 @@ const validateForm = () => {
     return { ok: true, message: 'Notícia enviada com sucesso!' }
 }
 
+// FUNCTION THAT SEND FORM DATA
+const sendData = async (formData, checkDataResults) => {
+    const result = await fetch('/api/v1/database/noticias', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8"
+        },
+        credentials: 'include',
+        body: JSON.stringify(formData)
+    })
+
+    if (!result.status === 200) {
+        return showsMessageStateOff({ ok: false, message: 'Não foi possível enviar a sua notícia, tente novamente mais tarde!'})
+    }
+
+    showsStatusMessage(checkDataResults)
+}
+
+// FUNCTION THAT SUBMIT THE FORM
 const submitForm = (e, form) => {
     e.preventDefault()
 
@@ -143,7 +177,7 @@ const submitForm = (e, form) => {
         return showsStatusMessage(formIsValid)
     }
 
-    const date = `${form.day.value} ${form.month.value} ${form.year.value}`
+    const date = `${formatNumber(form.day.value)} ${form.month.value} ${form.year.value}`
 
     const formData = {
         id: '',
@@ -154,9 +188,10 @@ const submitForm = (e, form) => {
         externa: form.external.value,
     }
 
-    console.log(formData)
+    sendData(formData, formIsValid)
 }
 
+// FUNCTION THAT SET EVENTS
 const setEvents = () => {
     // PREVIEW EVENTS
     const elements = getElements()

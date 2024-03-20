@@ -2,7 +2,9 @@
 const express = require('express');
 const albumDataMiddlewares = require('../api/v1/middlewares/fotos');
 const rallyJubaoData = require('../api/v1/middlewares/dados-rally-jubao');
-const authorization = require('../api/v1/middlewares/authorization');
+
+// AUTH
+const authorization = require('../api/v1/middlewares/autenticacao-usuario');
 
 const router = express.Router();
 
@@ -28,7 +30,7 @@ router.get('/portal-noticias', (req, res, next) => {
   res.render('portal-noticias');
 })
 
-router.get('/atualizar-noticias/:id', authorization.authorizeUser, (req, res, next) => {
+router.get('/atualizar-noticias', authorization.authorizeUser, (req, res, next) => {
   res.render('atualizar-noticias');
 })
 
