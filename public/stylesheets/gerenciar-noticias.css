@@ -45,8 +45,8 @@ body.opacity main:not(section.message-container, section.icon-container, section
 }
 
 main {
-    background-color: var(--dull-color);
     flex: 1;
+    background-color: var(--dull-color);
     height: auto;
     min-height: calc(100vh - 94px);
 }
@@ -128,8 +128,22 @@ button:active {
     width: calc(100% - 20px);
     max-width: 600px;
 
-    margin: 20px auto;
+    margin: 20px auto 0 auto;
     padding: 20px 10px;
+}
+
+.add-form {
+    order: 2;
+}
+
+.add-preview {
+    order: 1;
+}
+
+.add-news-container, .updel-news-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
 }
 
 .title-container {
@@ -238,10 +252,11 @@ button:active {
     text-transform: uppercase;
     letter-spacing: 0.08em;
 
+    padding: 5px 0;
+
     border-radius: 4px;
     box-shadow: 4px 8px 8px rgba(0, 0, 0, 0.1);
     width: 40%;
-    height: 40px;
 }
 
 .submit-btn {
@@ -287,17 +302,63 @@ button:active {
     font: normal 1em var(--main-font);
 }
 
+.updel-preview {
+    margin-bottom: 20px;
+    height: 798px;
+    overflow-y: auto;
+}
+
+.updel-preview::-webkit-scrollbar {
+    width: 10px;
+}
+
+.updel-preview::-webkit-scrollbar-track {
+    background-color: var(--alternative-color);
+    border-radius: 20px;
+}
+
+.updel-preview::-webkit-scrollbar-thumb {
+    background-color: var(--main-color);
+    border-radius: 20px;
+}
+
+.loading-animation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-animation {
+    border-top: 5px solid var(--main-color-low-fade);
+    border-right: 5px solid var(--main-color);
+    border-left: 5px solid var(--main-color);
+    border-bottom: 5px solid var(--main-color);
+    border-radius: 50%;
+
+    width: 50px;
+    height: 50px;
+    margin: auto;
+
+    animation: loading .8s linear infinite;
+}
+
+@keyframes loading {
+    to {
+        transform: rotate(1turn);
+    }
+}
+
 @media screen and (min-width: 992px) {
     button {
         cursor: pointer;
     }
 
-    .flex-input-container button:hover, .buttons-form-add-container .reset-btn:hover {
+    .flex-input-container button:hover, .buttons-form-container .reset-btn:hover {
         color: white;
         background-color: var(--main-color);
     }
 
-    .buttons-form-add-container .submit-btn:hover {
+    .buttons-form-container .submit-btn:hover {
         color: var(--main-color);
         background-color: white;
     }
@@ -306,10 +367,13 @@ button:active {
         padding: 20px;
     }
 
+    .wrapper {
+        margin: 20px 0;
+    }
+
     .add-news-container, .updel-news-container {
-        display: flex;
+        flex-direction: row;
         justify-content: center;
-        align-items: start;
         gap: 20px;
     }
 }

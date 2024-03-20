@@ -89,20 +89,13 @@
     
     <main>
         <section class="add-news-container">
-            <section class="wrapper" id="form-add-wrapper">
+            <section class="wrapper add-form" id="form-add-wrapper">
                 <section class="title-container">
                     <h1>Adicionar Nova Notícia</h1>
                     <h2>Lembre-se de conferir como ficará a notícia na pré-visualização</h2>
                 </section>
                 <section class="form-add-container">
                     <form id="add-form" autocomplete="off">
-                        <section class="title-form-container">
-                            <section class="input-container">
-                                <label for="title-add-input">Titulo:</label>
-                                <input type="text" name="title" id="title-add-input" placeholder="Digite o título da notícia" required>
-                            </section>
-                        </section>
-
                         <section class="image-form-container">
                             <section class="input-container">
                                 <label for="image-add-input">Imagem:</label>
@@ -110,6 +103,13 @@
                                     <input type="text" name="image" id="image-add-input" placeholder="Digite o link da imagem da notícia" required>
                                     <button id="image-add-check-btn" type="button"><i class="fa-solid fa-check"></i></button>
                                 </section>
+                            </section>
+                        </section>
+                        
+                        <section class="title-form-container">
+                            <section class="input-container">
+                                <label for="title-add-input">Titulo:</label>
+                                <input type="text" name="title" id="title-add-input" placeholder="Digite o título da notícia" required>
                             </section>
                         </section>
 
@@ -170,27 +170,27 @@
                         </section>
 
                         <section class="buttons-form-container">
-                            <button type="submit" class="submit-btn">Atualizar</button>
+                            <button type="submit" class="submit-btn">Enviar</button>
                             <button type="reset" class="reset-btn">Limpar</button>
                         </section>
                     </form>
                 </section>
             </section>
 
-            <section class="wrapper" id="preview-add-wrapper">
+            <section class="wrapper add-preview" id="preview-add-wrapper">
                 <section class="preview-title-add-container">
                     <h1>Pré visualização</h1>
                 </section>
                 <section class="news-add-container">
                     <section class="image-news-add-container">
-                        <img src="" id="image-add-preview">
+                        <img src="/imagens/mobile/imagem-noticias-default.png" id="image-add-preview">
                     </section>
                     <section class="info-news-add-container">
                         <section class="date-news-add-container">
-                            <p id="date-add-preview"></p>
+                            <p id="date-add-preview">20 DEZEMBRO 2024</p>
                         </section>
                         <section class="title-news-add-container">
-                            <h1 id="title-add-preview"></h1>
+                            <h1 id="title-add-preview">Seu título aqui</h1>
                         </section>
                     </section>
                 </section>
@@ -317,12 +317,14 @@
                 </section>
             </section>
 
-            <section class="wrapper" id="preview-updel-wrapper">
+            <section class="wrapper updel-preview" id="preview-updel-wrapper">
                 <section class="preview-title-updel-container">
                     <h1>Pré visualização</h1>
                     <button id="refresh-news-btn"><i class="fa-solid fa-refresh"></i></button>
                 </section>
-                
+                <section class="loading-animation-container">
+                    <div class="loading-animation hidden" id="loading-preview"></div>
+                </section>
             </section>
             
         </section>

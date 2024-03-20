@@ -152,18 +152,6 @@ const formatInputNumbersOnly = (e) => {
     updateAddPreview(e)
 }
 
-const selectNews = (e) => {
-    const newsToSelect = e.target
-    const newsSelected = document.querySelector('.news-selected')
-
-    if (!newsSelected) {
-        newsToSelect.classList.add('news-selected')
-    } else {
-        newsSelected.classList.remove('news-selected')
-        newsToSelect.classList.add('news-selected')
-    }
-}
-
 // FUNCTION THAT VALIDATES FORM DATA
 const validateForm = (section) => {
     let elements
@@ -354,7 +342,16 @@ const createNewsUpdelContainer = (news) => {
     container.appendChild(createImageNews({ image: news.imagem, id: news.id }))
     container.appendChild(createInfoNews({ title: news.titulo, date: news.data, id: news.id }))
 
-    container.addEventListener('dblclick', selectNews)
+    container.addEventListener('dblclick', () => {
+        const newsSelected = document.querySelector('.news-selected')
+    
+        if (!newsSelected) {
+            container.classList.add('news-selected')
+        } else {
+            newsSelected.classList.remove('news-selected')
+            container.classList.add('news-selected')
+        }
+    })
 
     return container
 }
@@ -366,10 +363,21 @@ const getNews = async () => {
     return data.results
 }
 
+const setLoadingAnimation = (start) => {
+    const loadingAnimation = document.querySelector('#loading-preview')
+
+    if (start) {
+        loadingAnimation.classList.remove('hidden')
+    } else {
+        loadingAnimation.classList.add('hidden')
+    }
+}
+
 const setNewOnUpdelPreview = async () => {
+    setLoadingAnimation(true)
     const updelContainer = document.querySelector('#preview-updel-wrapper')
     const news = await getNews()
-
+    setLoadingAnimation(false)
     news.forEach(newsInfo => {
         updelContainer.appendChild(createNewsUpdelContainer(newsInfo))
     })
