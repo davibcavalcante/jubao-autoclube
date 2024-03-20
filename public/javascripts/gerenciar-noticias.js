@@ -1,13 +1,26 @@
 // FUNCTION THAT GET ELEMENTS BY DOM
 const getElements = () => {
     return {
-        titleInput: document.querySelector('#title-input'),
-        imageButton: document.querySelector('#image-check-btn'),
-        dayInput: document.querySelector('#day-input'),
-        monthSelect: document.querySelector('#month-select'),
-        yearInput: document.querySelector('#year-input'),
-        externalSelect: document.querySelector('#external-select'),
-        linkInput: document.querySelector('#link-input'),
+        add: {
+            titleInput: document.querySelector('#title-add-input'),
+            linkInput: document.querySelector('#link-add-input'),
+            dayInput: document.querySelector('#day-add-input'),
+            yearInput: document.querySelector('#year-add-input'),
+            externalSelect: document.querySelector('#external-add-select'),
+            monthSelect: document.querySelector('#month-add-select'),
+            imageButton: document.querySelector('#image-add-check-btn'),
+        },
+
+        update: {
+            titleInput: document.querySelector('#title-update-input'),
+            dayInput: document.querySelector('#day-update-input'),
+            yearInput: document.querySelector('#year-update-input'),
+            linkInput: document.querySelector('#link-update-input'),
+            monthSelect: document.querySelector('#month-update-select'),
+            externalSelect: document.querySelector('#external-update-select'),
+            actionSelect: document.querySelector('#action-select'),
+            imageButton: document.querySelector('#image-update-check-btn'),
+        }
     }
 }
 
@@ -24,8 +37,8 @@ const centerVertically = (element) => {
 // FUNCTION THAT CONTROLS ON MESSAGE STATE
 const showsMessageStateOn = () => {
     document.querySelector('body').classList.add('opacity')
-    document.querySelector('#form-wrapper').classList.add('hidden')
-    document.querySelector('#preview-wrapper').classList.add('hidden')
+    document.querySelector('#form-add-wrapper').classList.add('hidden')
+    document.querySelector('#preview-add-wrapper').classList.add('hidden')
     document.querySelector('#message-wrapper').classList.remove('hidden')
 }
 
@@ -33,8 +46,8 @@ const showsMessageStateOn = () => {
 const showsMessageStateOff = (e) => {
     e.preventDefault()
     document.querySelector('body').classList.remove('opacity')
-    document.querySelector('#form-wrapper').classList.remove('hidden')
-    document.querySelector('#preview-wrapper').classList.remove('hidden')
+    document.querySelector('#form-add-wrapper').classList.remove('hidden')
+    document.querySelector('#preview-add-wrapper').classList.remove('hidden')
     document.querySelector('#message-wrapper').classList.add('hidden')
 }
 
@@ -52,7 +65,7 @@ const showsStatusMessage = (results) => {
 
     if (results.ok) {
         icon.src = '/imagens/mobile/checked.png'
-        link.href = '/atualizar-noticias'
+        link.href = '/gerenciar-noticias'
         link.innerText = 'OK'
     } else {
         icon.src = '/imagens/mobile/cancel.png'
@@ -67,25 +80,61 @@ const showsStatusMessage = (results) => {
     centerVertically(messageContainer)
 }
 
-// FUNCTION THAT UPDATES PREVIEW SCREEN
-const updatePreview = (e) => {
-    let target = e.target
+const resetAddPreview = () => {
+    document.querySelector(`#title-add-preview`).innerText = ''
+    document.querySelector('#image-add-preview').src = ''
+    document.querySelector('#date-add-preview').innerHTML = ''
+}
 
+// FUNCTION THAT SETS CURRENT UPDATE OR DELET MODE
+const setCurrentMode = (e) => {
+    const newsIsSelected = document.querySelector('.news-selected')
+
+    if (!newsIsSelected) {
+        e.target.value = ''
+        return showsStatusMessage({ ok: false, message: 'Primeiro você deve selecionar uma notícia' })
+    }
+
+    const mode = e.target.value
+
+    const updateContainer = document.querySelector('.update-informations-container')
+    const deleteContainer = document.querySelector('.delete-informations-container')
+
+    if (mode === 'put') {
+        if (!deleteContainer.classList.contains('hidden')) {
+            deleteContainer.classList.add('hidden')
+            updateContainer.classList.remove('hidden')
+        } else {
+            updateContainer.classList.remove('hidden')
+        }
+    } else if (mode === 'delete') {
+        if (!updateContainer.classList.contains('hidden')) {
+            updateContainer.classList.add('hidden')
+            deleteContainer.classList.remove('hidden')
+        } else {
+            deleteContainer.classList.remove('hidden')
+        }
+    }
+}
+
+// FUNCTION THAT UPDATES PREVIEW SCREEN
+const updateAddPreview = (e) => {
+    let target = e.target
     if (target.classList.contains('fa-check')) {
         target = target.parentNode 
     }
 
     const elementId = target.id.split('-')[0]
-    const elementPreview = document.querySelector(`#${elementId}-preview`)
+    const elementPreview = document.querySelector(`#${elementId}-add-preview`)
 
     if (elementId === 'image') {
-        elementPreview.src = document.querySelector('#image-input').value
+        elementPreview.src = document.querySelector('#image-add-input').value
     } else if (elementId === 'title') {
         elementPreview.innerText = target.value
     } else if (elementId === 'day' || elementId === 'month' || elementId === 'year') {
-        const dateContent = `<i class="fa-regular fa-clock"></i> ${document.querySelector('#day-input').value} ${document.querySelector('#month-select').value} ${document.querySelector('#year-input').value}`
+        const dateContent = `<i class="fa-regular fa-clock"></i> ${document.querySelector('#day-add-input').value} ${document.querySelector('#month-add-select').value} ${document.querySelector('#year-add-input').value}`
 
-        document.querySelector('#date-preview').innerHTML = dateContent
+        document.querySelector('#date-add-preview').innerHTML = dateContent
     }
 }
 
@@ -100,12 +149,31 @@ const formatNumber = (number) => {
 const formatInputNumbersOnly = (e) => {
     const input = e.target
     input.value = input.value.replace(/\D/g, '')
-    updatePreview(e)
+    updateAddPreview(e)
+}
+
+const selectNews = (e) => {
+    const newsToSelect = e.target
+    const newsSelected = document.querySelector('.news-selected')
+
+    if (!newsSelected) {
+        newsToSelect.classList.add('news-selected')
+    } else {
+        newsSelected.classList.remove('news-selected')
+        newsToSelect.classList.add('news-selected')
+    }
 }
 
 // FUNCTION THAT VALIDATES FORM DATA
-const validateForm = () => {
-    const elements = getElements()
+const validateForm = (section) => {
+    let elements
+
+    if (section === 'add') {
+        elements = getElements().add
+    } else if (section === 'update') {
+        elements = getElements().update
+    }
+
     const externalValue = elements.externalSelect.value
     const monthValue = elements.monthSelect.value
     const linkValue = elements.linkInput.value
@@ -150,7 +218,11 @@ const validateForm = () => {
 }
 
 // FUNCTION THAT SEND FORM DATA
-const sendData = async (formData, checkDataResults) => {
+const putData = async () => {
+
+}
+
+const postData = async (formData, checkDataResults) => {
     const result = await fetch('/api/v1/database/noticias', {
         method: "POST",
         headers: {
@@ -168,10 +240,10 @@ const sendData = async (formData, checkDataResults) => {
 }
 
 // FUNCTION THAT SUBMIT THE FORM
-const submitForm = (e, form) => {
+const submitForm = (e, form, action) => {
     e.preventDefault()
 
-    const formIsValid = validateForm()
+    const formIsValid = validateForm(action)
 
     if (!formIsValid.ok) {
         return showsStatusMessage(formIsValid)
@@ -188,28 +260,122 @@ const submitForm = (e, form) => {
         externa: form.external.value,
     }
 
-    sendData(formData, formIsValid)
+
+    if (action === 'add') {
+        postData(formData, formIsValid)
+    } else if (action === 'update') {
+        putData(formData, formIsValid)
+    }
 }
 
 // FUNCTION THAT SET EVENTS
 const setEvents = () => {
-    // PREVIEW EVENTS
+    // ADD PREVIEW EVENTS
     const elements = getElements()
-    elements.titleInput.addEventListener('input', updatePreview)
-    elements.dayInput.addEventListener('input', formatInputNumbersOnly)
-    elements.yearInput.addEventListener('input', formatInputNumbersOnly)
-    elements.imageButton.addEventListener('click', updatePreview)
-    elements.monthSelect.addEventListener('change', updatePreview)
+    elements.add.titleInput.addEventListener('input', updateAddPreview)
+    elements.add.dayInput.addEventListener('input', formatInputNumbersOnly)
+    elements.add.yearInput.addEventListener('input', formatInputNumbersOnly)
+    elements.add.imageButton.addEventListener('click', updateAddPreview)
+    elements.add.monthSelect.addEventListener('change', updateAddPreview)
 
-    document.querySelector('.fa-check').addEventListener('click', updatePreview)
+    document.querySelector('.fa-check').addEventListener('click', updateAddPreview)
+
+    // UPDATE ACTION SELECT EVENTS
+    elements.update.actionSelect.addEventListener('change', setCurrentMode)
 
     // FORM EVENTS
-    const form = document.querySelector('#form')
-    form.addEventListener('submit', (e) => {
-        submitForm(e, form)
+    const addForm = document.querySelector('#add-form')
+    addForm.addEventListener('submit', (e) => {
+        submitForm(e, addForm, 'add')
+    })
+
+    addForm.addEventListener('reset', resetAddPreview)
+
+    const updateForm = document.querySelector('#update-form')
+    updateForm.addEventListener('submit', (e) => {
+        submitForm(e, updateForm, 'update')
+    })
+}
+
+const createTitleNews = (title, id) => {
+    const titleContainer = document.createElement('section')
+    titleContainer.classList.add('title-news-updel-container')
+
+    const hTitle = document.createElement('h1')
+    hTitle.id = `title-preview-${id}`
+    hTitle.innerText = title
+
+    titleContainer.appendChild(hTitle)
+
+    return titleContainer
+}
+
+const createDateNews = (date, id) => {
+    const dateContainer = document.createElement('section')
+    dateContainer.classList.add('date-news-updel-container')
+
+    const pDate = document.createElement('p')
+    pDate.id = `date-preview-${id}`
+    pDate.innerHTML = `<i class="fa-regular fa-clock"></i> ${date}`
+
+    dateContainer.appendChild(pDate)
+
+    return dateContainer
+}
+
+const createInfoNews = ({title, date, id}) => {
+    const infoContainer = document.createElement('section')
+    infoContainer.classList.add('info-news-updel-container')
+
+    infoContainer.appendChild(createDateNews(date, id))
+    infoContainer.appendChild(createTitleNews(title, id))
+
+    return infoContainer
+}
+
+const createImageNews = ({image, id}) => {
+    const imageContainer = document.createElement('section')
+    imageContainer.classList.add('image-news-updel-container')
+
+    const img = document.createElement('img')
+    img.id = `img-preview-${id}`
+    img.src = image
+
+    imageContainer.appendChild(img)
+
+    return imageContainer
+}
+
+const createNewsUpdelContainer = (news) => {
+    const container = document.createElement('section')
+    container.classList.add('news-updel-container')
+    container.id = `news-${news.id}`
+
+    container.appendChild(createImageNews({ image: news.imagem, id: news.id }))
+    container.appendChild(createInfoNews({ title: news.titulo, date: news.data, id: news.id }))
+
+    container.addEventListener('dblclick', selectNews)
+
+    return container
+}
+
+const getNews = async () => {
+    const results = await fetch('/api/v1/database/noticias')
+    const data = await results.json()
+
+    return data.results
+}
+
+const setNewOnUpdelPreview = async () => {
+    const updelContainer = document.querySelector('#preview-updel-wrapper')
+    const news = await getNews()
+
+    news.forEach(newsInfo => {
+        updelContainer.appendChild(createNewsUpdelContainer(newsInfo))
     })
 }
 
 window.addEventListener('load', () => {
     setEvents()
+    setNewOnUpdelPreview()
 })

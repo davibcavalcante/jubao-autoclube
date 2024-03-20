@@ -59,6 +59,11 @@ button:active {
     transform: scale(.9);
 }
 
+.news-selected {
+    filter: brightness(1.2) contrast(1.1);
+    border: 8px solid var(--main-color);
+}
+
 .message-container {
     background-color: white;
     max-width: 600px;
@@ -131,14 +136,14 @@ button:active {
     margin-bottom: 30px;
 }
 
-.title-container h1, .preview-title-container h1 {
+.title-container h1, .preview-title-add-container h1, .preview-title-updel-container h1 {
     color: var(--main-color);
     font: normal 2em var(--alternative-font);
     text-align: center;
 }
 
 .title-container h2 {
-    font: normal 1.5em var(--alternative-font);
+    font: normal 1.2em var(--alternative-font);
     text-align: center;
 }
 
@@ -146,7 +151,8 @@ button:active {
 .image-form-container,
 .link-form-container,
 .date-form-container,
-.external-form-container {
+.external-form-container,
+.action-form-container {
     margin: 20px 0;
 }
 
@@ -193,7 +199,7 @@ button:active {
     align-items: center;
 }
 
-.containers .input-container input, .containers .input-container select, .external-form-container .input-container select {
+.containers .input-container input, .containers .input-container select, .external-form-container .input-container select, .action-form-container .input-container select {
     font-size: 1.2em;
     text-align: center;
     border: 2px solid var(--alternative-color);
@@ -203,7 +209,9 @@ button:active {
     padding: 0;
 }
 
-.containers .input-container select, .external-form-container .input-container select {
+.containers .input-container select, 
+.external-form-container .input-container select, 
+.action-form-container .input-container select {
     text-align: left !important;
 }
 
@@ -248,17 +256,17 @@ button:active {
     border: 2px solid var(--main-color);
 }
 
-.news-container {
+.news-add-container, .news-updel-container {
     margin-top: 20px;
 
     position: relative;
 }
 
-.image-news-container img {
+.image-news-add-container img, .image-news-updel-container img {
     width: 100%;
 }
 
-.info-news-container {
+.info-news-add-container, .info-news-updel-container {
     color: white;
     background-color: rgba(0, 0, 0, 0.7);
 
@@ -270,12 +278,12 @@ button:active {
     left: 0;
 }
 
-.date-news-container p {
+.date-news-add-container p, .date-news-updel-container p {
     font: 300 .8em var(--main-font);
     margin-bottom: 5px;
 }
 
-.title-news-container h1 {
+.title-news-add-container h1, .title-news-updel-container h1 {
     font: normal 1em var(--main-font);
 }
 
@@ -284,19 +292,21 @@ button:active {
         cursor: pointer;
     }
 
-    .flex-input-container button:hover, .buttons-form-container .reset-btn:hover {
+    .flex-input-container button:hover, .buttons-form-add-container .reset-btn:hover {
         color: white;
         background-color: var(--main-color);
     }
 
-    .buttons-form-container .submit-btn:hover {
+    .buttons-form-add-container .submit-btn:hover {
         color: var(--main-color);
         background-color: white;
     }
 
     main {
         padding: 20px;
+    }
 
+    .add-news-container, .updel-news-container {
         display: flex;
         justify-content: center;
         align-items: start;

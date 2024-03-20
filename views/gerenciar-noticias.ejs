@@ -88,111 +88,243 @@
     </section>
     
     <main>
-        <section class="wrapper" id="form-wrapper">
-            <section class="title-container">
-                <h1>Atualização de Notícias</h1>
-                <h2>Seja bem vindo!</h2>
+        <section class="add-news-container">
+            <section class="wrapper" id="form-add-wrapper">
+                <section class="title-container">
+                    <h1>Adicionar Nova Notícia</h1>
+                    <h2>Lembre-se de conferir como ficará a notícia na pré-visualização</h2>
+                </section>
+                <section class="form-add-container">
+                    <form id="add-form" autocomplete="off">
+                        <section class="title-form-container">
+                            <section class="input-container">
+                                <label for="title-add-input">Titulo:</label>
+                                <input type="text" name="title" id="title-add-input" placeholder="Digite o título da notícia" required>
+                            </section>
+                        </section>
+
+                        <section class="image-form-container">
+                            <section class="input-container">
+                                <label for="image-add-input">Imagem:</label>
+                                <section class="flex-input-container">
+                                    <input type="text" name="image" id="image-add-input" placeholder="Digite o link da imagem da notícia" required>
+                                    <button id="image-add-check-btn" type="button"><i class="fa-solid fa-check"></i></button>
+                                </section>
+                            </section>
+                        </section>
+
+                        <section class="link-form-container">
+                            <section class="input-container">
+                                <label for="link-add-input">Link:</label>
+                                <input type="text" name="link" id="link-add-input" placeholder="Digite o link da notícia">
+                            </section>
+                        </section>
+
+                        <section class="date-form-container">
+                            <h1>Data:</h1>
+                            <section class="containers">
+                                <section class="input-container day">
+                                    <section class="day-container">
+                                        <label for="day-add-input">Dia:</label>
+                                        <input type="text" name="day" id="day-add-input" placeholder="DD" maxlength="2" required>
+                                    </section>
+                                </section>
+                                <section class="input-container month">
+                                    <section class="month-container">
+                                        <label for="month-add-select">Mês</label>
+                                        <select name="month" id="month-add-select">
+                                            <option hidden selected disabled value="">SELECIONE</option>
+                                            <option value="JANEIRO">JANEIRO</option>
+                                            <option value="FEVEREIRO">FEVEREIRO</option>
+                                            <option value="MARÇO">MARÇO</option>
+                                            <option value="ABRIL">ABRIL</option>
+                                            <option value="MAIO">MAIO</option>
+                                            <option value="JUNHO">JUNHO</option>
+                                            <option value="JULHO">JULHO</option>
+                                            <option value="AGOSTO">AGOSTO</option>
+                                            <option value="SETEMBRO">SETEMBRO</option>
+                                            <option value="OUTUBRO">OUTUBRO</option>
+                                            <option value="NOVEMBRO">NOVEMBRO</option>
+                                            <option value="DEZEMBRO">DEZEMBRO</option>
+                                        </select>
+                                    </section>
+                                </section>
+                                <section class="input-container year">
+                                    <section class="year-container">
+                                        <label for="year-add-input">Ano:</label>
+                                        <input type="text" name="year" id="year-add-input" placeholder="AAAA" maxlength="4" required>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+
+                        <section class="external-form-container">
+                            <section class="input-container">
+                                <label for="external-add-select">Fonte externa:</label>
+                                <select name="external" id="external-add-select">
+                                    <option hidden selected disabled value="">SELECIONE</option>
+                                    <option value="y">SIM</option>
+                                    <option value="n">NÃO</option>
+                                </select>
+                            </section>
+                        </section>
+
+                        <section class="buttons-form-container">
+                            <button type="submit" class="submit-btn">Atualizar</button>
+                            <button type="reset" class="reset-btn">Limpar</button>
+                        </section>
+                    </form>
+                </section>
             </section>
-            <section class="form-container">
-                <form id="form" autocomplete="off">
-                    <section class="title-form-container">
-                        <section class="input-container">
-                            <label for="title-input">Titulo:</label>
-                            <input type="text" name="title" id="title-input" placeholder="Digite o título da notícia" required>
+
+            <section class="wrapper" id="preview-add-wrapper">
+                <section class="preview-title-add-container">
+                    <h1>Pré visualização</h1>
+                </section>
+                <section class="news-add-container">
+                    <section class="image-news-add-container">
+                        <img src="" id="image-add-preview">
+                    </section>
+                    <section class="info-news-add-container">
+                        <section class="date-news-add-container">
+                            <p id="date-add-preview"></p>
+                        </section>
+                        <section class="title-news-add-container">
+                            <h1 id="title-add-preview"></h1>
                         </section>
                     </section>
-
-                    <section class="image-form-container">
-                        <section class="input-container">
-                            <label for="image-input">Imagem:</label>
-                            <section class="flex-input-container">
-                                <input type="text" name="image" id="image-input" placeholder="Digite o link da imagem da notícia" required>
-                                <button id="image-check-btn" type="button"><i class="fa-solid fa-check"></i></button>
-                            </section>
-                        </section>
-                    </section>
-
-                    <section class="link-form-container">
-                        <section class="input-container">
-                            <label for="link-input">Link:</label>
-                            <input type="text" name="link" id="link-input" placeholder="Digite o link da notícia">
-                        </section>
-                    </section>
-
-                    <section class="date-form-container">
-                        <h1>Data:</h1>
-                        <section class="containers">
-                            <section class="input-container day">
-                                <section class="day-container">
-                                    <label for="day-input">Dia:</label>
-                                    <input type="text" name="day" id="day-input" placeholder="DD" maxlength="2" required>
-                                </section>
-                            </section>
-                            <section class="input-container month">
-                                <section class="month-container">
-                                    <label for="month-select">Mês</label>
-                                    <select name="month" id="month-select">
-                                        <option hidden selected disabled value="">SELECIONE</option>
-                                        <option value="JANEIRO">JANEIRO</option>
-                                        <option value="FEVEREIRO">FEVEREIRO</option>
-                                        <option value="MARÇO">MARÇO</option>
-                                        <option value="ABRIL">ABRIL</option>
-                                        <option value="MAIO">MAIO</option>
-                                        <option value="JUNHO">JUNHO</option>
-                                        <option value="JULHO">JULHO</option>
-                                        <option value="AGOSTO">AGOSTO</option>
-                                        <option value="SETEMBRO">SETEMBRO</option>
-                                        <option value="OUTUBRO">OUTUBRO</option>
-                                        <option value="NOVEMBRO">NOVEMBRO</option>
-                                        <option value="DEZEMBRO">DEZEMBRO</option>
-                                    </select>
-                                </section>
-                            </section>
-                            <section class="input-container year">
-                                <section class="year-container">
-                                    <label for="year-input">Ano:</label>
-                                    <input type="text" name="year" id="year-input" placeholder="AAAA" maxlength="4" required>
-                                </section>
-                            </section>
-                        </section>
-                    </section>
-
-                    <section class="external-form-container">
-                        <section class="input-container">
-                            <label for="external-select">Fonte externa:</label>
-                            <select name="external" id="external-select">
-                                <option hidden selected disabled value="">SELECIONE</option>
-                                <option value="y">SIM</option>
-                                <option value="n">NÃO</option>
-                            </select>
-                        </section>
-                    </section>
-
-                    <section class="buttons-form-container">
-                        <button type="submit" class="submit-btn">Atualizar</button>
-                        <button type="reset" class="reset-btn">Limpar</button>
-                    </section>
-                </form>
+                </section>
             </section>
         </section>
 
-        <section class="wrapper" id="preview-wrapper">
-            <section class="preview-title-container">
-                <h1>Pré visualização</h1>
-            </section>
-            <section class="news-container">
-                <section class="image-news-container">
-                    <img src="" id="image-preview">
+        <section class="updel-news-container">
+            <section class="wrapper" id="updel-form-wrapper">
+                <section class="title-container">
+                    <h1>Atualizar ou Remover Notícias</h1>
+                    <h2>Tome cuidado ao atualizar ou remover um notícia!</h2>
                 </section>
-                <section class="info-news-container">
-                    <section class="date-news-container">
-                        <p id="date-preview"></p>
+                <section class="form-update-container">
+                    <form id="update-form" autocomplete="off">
+                        <section class="action-form-container">
+                            <section class="input-container">
+                                <label for="action-select">O que deseja fazer:</label>
+                                <select name="action" id="action-select">
+                                    <option hidden selected disabled value="">SELECIONE</option>
+                                    <option value="put">ATUALIZAR</option>
+                                    <option value="delete">REMOVER</option>
+                                </select>
+                            </section>
+                        </section>
+                        <section class="update-informations-container hidden">
+                            <section class="title-form-container">
+                                <section class="input-container">
+                                    <label for="title-add-input">Titulo:</label>
+                                    <input type="text" name="title" id="title-update-input" placeholder="Digite o título da notícia" required>
+                                </section>
+                            </section>
+    
+                            <section class="image-form-container">
+                                <section class="input-container">
+                                    <label for="image-add-input">Imagem:</label>
+                                    <section class="flex-input-container">
+                                        <input type="text" name="image" id="image-update-input" placeholder="Digite o link da imagem da notícia" required>
+                                        <button id="image-update-check-btn" type="button"><i class="fa-solid fa-check"></i></button>
+                                    </section>
+                                </section>
+                            </section>
+    
+                            <section class="link-form-container">
+                                <section class="input-container">
+                                    <label for="link-add-input">Link:</label>
+                                    <input type="text" name="link" id="link-update-input" placeholder="Digite o link da notícia">
+                                </section>
+                            </section>
+    
+                            <section class="date-form-container">
+                                <h1>Data:</h1>
+                                <section class="containers">
+                                    <section class="input-container day">
+                                        <section class="day-container">
+                                            <label for="day-add-input">Dia:</label>
+                                            <input type="text" name="day" id="day-update-input" placeholder="DD" maxlength="2" required>
+                                        </section>
+                                    </section>
+                                    <section class="input-container month">
+                                        <section class="month-container">
+                                            <label for="month-add-select">Mês</label>
+                                            <select name="month" id="month-update-select">
+                                                <option hidden selected disabled value="">SELECIONE</option>
+                                                <option value="JANEIRO">JANEIRO</option>
+                                                <option value="FEVEREIRO">FEVEREIRO</option>
+                                                <option value="MARÇO">MARÇO</option>
+                                                <option value="ABRIL">ABRIL</option>
+                                                <option value="MAIO">MAIO</option>
+                                                <option value="JUNHO">JUNHO</option>
+                                                <option value="JULHO">JULHO</option>
+                                                <option value="AGOSTO">AGOSTO</option>
+                                                <option value="SETEMBRO">SETEMBRO</option>
+                                                <option value="OUTUBRO">OUTUBRO</option>
+                                                <option value="NOVEMBRO">NOVEMBRO</option>
+                                                <option value="DEZEMBRO">DEZEMBRO</option>
+                                            </select>
+                                        </section>
+                                    </section>
+                                    <section class="input-container year">
+                                        <section class="year-container">
+                                            <label for="year-add-input">Ano:</label>
+                                            <input type="text" name="year" id="year-update-input" placeholder="AAAA" maxlength="4" required>
+                                        </section>
+                                    </section>
+                                </section>
+                            </section>
+    
+                            <section class="external-form-container">
+                                <section class="input-container">
+                                    <label for="external-add-select">Fonte externa:</label>
+                                    <select name="external" id="external-update-select">
+                                        <option hidden selected disabled value="">SELECIONE</option>
+                                        <option value="y">SIM</option>
+                                        <option value="n">NÃO</option>
+                                    </select>
+                                </section>
+                            </section>
+    
+                            <section class="buttons-form-container">
+                                <button type="submit" class="submit-btn">Atualizar</button>
+                                <button type="reset" class="reset-btn">Limpar</button>
+                            </section>
+                        </section>
+                    </form>
+                </section>
+
+                <section class="delete-informations-container hidden">
+                    <section class="news-selected-container">
+                        <section class="image-news-selected-container">
+                            <img src="" id="image-selected-preview">
+                        </section>
+                        <section class="info-news-selected-container">
+                            <section class="date-news-selected-container">
+                                <p id="date-selected-preview"></p>
+                            </section>
+                            <section class="title-news-selected-container">
+                                <h1 id="title-selected-preview"></h1>
+                            </section>
+                        </section>
                     </section>
-                    <section class="title-news-container">
-                        <h1 id="title-preview"></h1>
+                    <section class="buttons-form-container">
+                        <button id="delete-news-btn" class="submit-btn">Remover</button>
                     </section>
                 </section>
             </section>
+
+            <section class="wrapper" id="preview-updel-wrapper">
+                <section class="preview-title-updel-container">
+                    <h1>Pré visualização</h1>
+                    <button id="refresh-news-btn"><i class="fa-solid fa-refresh"></i></button>
+                </section>
+                
+            </section>
+            
         </section>
     </main>
 
@@ -289,6 +421,7 @@
     </footer>
 
     <script src="/javascripts/menu.js"></script>
+    <script src="/javascripts/autenticacao.js"></script>
     <script src="/javascripts/gerenciar-noticias.js"></script>
 </body>
 </html>
