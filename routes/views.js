@@ -30,8 +30,8 @@ router.get('/portal-noticias', (req, res, next) => {
   res.render('portal-noticias');
 })
 
-router.get('/atualizar-noticias', authorization.authorizeUser, (req, res, next) => {
-  res.render('atualizar-noticias');
+router.get('/gerenciar-noticias', authorization.authorizeUser, (req, res, next) => {
+  res.render('gerenciar-noticias');
 })
 
 // ALBUMS ROUTES
