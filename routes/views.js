@@ -1,10 +1,8 @@
 // VIEWS ROUTES
 const express = require('express');
+
 const albumDataMiddlewares = require('../api/v1/middlewares/fotos');
 const rallyJubaoData = require('../api/v1/middlewares/dados-rally-jubao');
-
-// AUTH
-const authorization = require('../api/v1/middlewares/autenticacao-usuario');
 
 const router = express.Router();
 
@@ -28,10 +26,6 @@ router.get('/inscricao/:name', (req, res, next) => {
 // NEWS PORTAL ROUTES
 router.get('/portal-noticias', (req, res, next) => {
   res.render('portal-noticias');
-})
-
-router.get('/gerenciar-noticias', authorization.authorizeUser, (req, res, next) => {
-  res.render('gerenciar-noticias');
 })
 
 // ALBUMS ROUTES

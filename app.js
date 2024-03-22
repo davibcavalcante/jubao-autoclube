@@ -5,7 +5,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const viewsRouters = require('./routes/views');
-const apiV1Router = require('./routes/api');
+const adminViewsRouters = require('./routes/admin-views');
+const apiV1Routers = require('./routes/api');
 const config = require('./config.json');
 
 const app = express();
@@ -33,7 +34,8 @@ if (config.server.useHTTPS) {
 }
 
 app.use('/', viewsRouters);
-app.use('/api/v1', apiV1Router);
+app.use('/api/v1', apiV1Routers);
+app.use('/admin', adminViewsRouters);
 
 if (config.certRequest.enabled) {
   app.use(config.certRequest.requestRoute, (req, res) => {

@@ -5,11 +5,12 @@ module.exports.authorizeUser = async (req, res, next) => {
     try {
         const token = req.cookies.userToken;
         if (!token) {
-            const error = new Error('Usuário ou senha incorreto!');
-            error.statusCode = 401;
-            throw error;
+            res.redirect('/login')
         } else {
-            jwt.verify(token, config.secret);
+            jwt.verify(token, config.secret, (err, decoded) => {
+                if (err) return res.status(401).json({ message: 'Não autorizado'});
+                req.userId = decoded.id;
+            });
             console.log('Autenticado com sucesso!');
             next();
         }

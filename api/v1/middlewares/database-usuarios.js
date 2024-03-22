@@ -8,7 +8,10 @@ const openUserSession = (id) => {
     try {
         const token = jwt.sign({
             id,
-        }, config.secret)
+        }, 
+        config.secret, {
+            expiresIn: 86400
+        })
 
         return token
     } catch (err) {
@@ -57,7 +60,9 @@ class DatabaseUsuariosMiddlewares {
             const { id, usuario } = userData.length > 0 ? userData[0] : {}
 
             await checkLogin(userData, user.senha, user.hash);
-            const token = openUserSession(userData[0].id);
+
+            const token = openUserSession(id);
+
             res.cookie('userToken', token);
             console.log('Usuário logado com sucesso!')
             res.status(200).json({ message: `Usuário ${user.name} logado com sucesso!`, user: {id, usuario}});

@@ -21,6 +21,7 @@ const getElements = () => {
             externalSelect: document.querySelector('#external-update-select'),
             actionSelect: document.querySelector('#action-select'),
             imageButton: document.querySelector('#image-update-check-btn'),
+            refreshNewsButton: document.querySelector('#refresh-news-btn'),
         },
 
         delete: {
@@ -46,8 +47,6 @@ const scrollYState = () => {
 
     return { getScrollY, setScrollY }
 }
-
-const scrollYManager = scrollYState()
 
 const newsUpdateState = () => {
     let savedState = {}
@@ -86,9 +85,10 @@ const currentNewsDataState = () => {
     return { getOldData, setCurrentData }
 }
 
-const newsDataStateManager = currentNewsDataState() 
-
+const newsDataStateManager = currentNewsDataState()
 const newsUpdateStateManager = newsUpdateState()
+const scrollYManager = scrollYState()
+
 // FUNCTION THAT CONTROLS ON MESSAGE STATE
 const showsMessageStateOn = () => {
     document.querySelector('body').classList.add('opacity')
@@ -99,12 +99,14 @@ const showsMessageStateOn = () => {
 
 // FUNCTION THAT CONTROLS OFF MESSAGE STATE
 const showsMessageStateOff = (e) => {
-    const scrollY = scrollYManager.getScrollY()
     e.preventDefault()
+    const scrollY = scrollYManager.getScrollY()
+
     document.querySelector('body').classList.remove('opacity')
     document.querySelector('.add-news-container').classList.remove('hidden')
     document.querySelector('.updel-news-container').classList.remove('hidden')
     document.querySelector('#message-wrapper').classList.add('hidden')
+
     window.scrollTo({ top: scrollY, behavior: 'smooth' })
 }
 
@@ -131,16 +133,14 @@ const showsStatusMessage = (results) => {
 
     if (results.ok) {
         icon.src = '/imagens/mobile/checked.png'
-        link.href = '/gerenciar-noticias'
         link.innerText = 'OK'
     } else {
         icon.src = '/imagens/mobile/cancel.png'
-        link.href = '#'
-        link.addEventListener('click', showsMessageStateOff)
-        link.classList.add('listening-click')
         link.innerText = 'Voltar'
     }
     status.innerText = results.message
+    link.addEventListener('click', showsMessageStateOff)
+    link.classList.add('listening-click')
 
     const messageContainer = document.querySelector('#message-wrapper')
     centerVertically(messageContainer)
@@ -161,7 +161,11 @@ const updateUpPreview = (e) => {
         target = target.parentNode 
     }
 
-    const id = document.querySelector('.news-selected').id.split('-')[1]
+    const currentNews = document.querySelector('.news-selected') || undefined
+
+    if (!currentNews) return
+
+    const id = currentNews.id.split('-')[1]
     const elementId = target.id.split('-')[0]
     const elementPreview = document.querySelector(`#${elementId}-preview-${id}`)
 
@@ -226,15 +230,21 @@ const formatInputNumbersOnly = (e) => {
 
 const deleteMode = (newsSelected) => {
     const elements = getElements().delete
-    const elementId = newsSelected.id.split('-')[1]
+    if (newsSelected) {
+        const elementId = newsSelected.id.split('-')[1]
 
-    const imageElement = document.querySelector(`#image-preview-${elementId}`).src
-    const titleElement = document.querySelector(`#title-preview-${elementId}`).innerText
-    const dateElement = document.querySelector(`#date-preview-${elementId}`).innerHTML
-    
-    elements.newsSelectedImage.src = imageElement
-    elements.newsSelectedTitle.innerText = titleElement
-    elements.newsSelectedDate.innerHTML = dateElement
+        const imageElement = document.querySelector(`#image-preview-${elementId}`).src
+        const titleElement = document.querySelector(`#title-preview-${elementId}`).innerText
+        const dateElement = document.querySelector(`#date-preview-${elementId}`).innerHTML
+        
+        elements.newsSelectedImage.src = imageElement
+        elements.newsSelectedTitle.innerText = titleElement
+        elements.newsSelectedDate.innerHTML = dateElement
+    } else {
+        elements.newsSelectedImage.src = ''
+        elements.newsSelectedTitle.innerText = ''
+        elements.newsSelectedDate.innerHTML = ''
+    }
 }
 
 const updateMode = (newsSelected) => {
@@ -360,7 +370,7 @@ const validateForm = (method) => {
 
     if (externalValue === '') {
         return {
-            ok: false, message: 'Não é possível atualizar a notícia sem especificar se é ou não uma notícia externa'
+            ok: false, message: 'Não é possível enviar ou atualizar a notícia sem especificar a sua fonte'
         }
     }
 
@@ -388,8 +398,8 @@ const validateForm = (method) => {
 const deleteNews = async () => {
     const elements = getElements().delete
     const confirm = elements.confirmRemoveInput.value
-    const newsToRemove = document.querySelector('.news-selected')
-    const idToRemove = newsToRemove.id.split('-')[1]
+    const newsToRemove = document.querySelector('.news-selected') || undefined
+    const idToRemove = newsToRemove ? newsToRemove.id.split('-')[1] : undefined
 
     if (!newsToRemove) {
         return showsStatusMessage({ ok: false, message: 'Para remover, é necessário que tenha uma notícia selecionada!' })
@@ -413,11 +423,14 @@ const deleteNews = async () => {
         return showsStatusMessage({ ok: false, message: data.message })
     }
 
+    setNewsOnUpdelPreview()
+    deleteMode()
+    elements.confirmRemoveInput.value = ''
     showsStatusMessage({ ok: true, message: data.message })
 }
 
 // FUNCTION THAT SEND FORM DATA
-const sendData = async (formData, checkDataResults, method) => {
+const sendData = async (formData, method) => {
     const result = await fetch('/api/v1/database/noticias', {
         method: method,
         headers: {
@@ -427,11 +440,19 @@ const sendData = async (formData, checkDataResults, method) => {
         body: JSON.stringify(formData)
     })
 
-    if (!result.status === 200) {
-        return showsMessageStateOff({ ok: false, message: 'Não foi possível enviar a sua notícia, tente novamente mais tarde!'})
+    if (result.status !== 200) {
+        return showsStatusMessage({ ok: false, message: 'Não foi possível enviar a sua notícia, tente novamente mais tarde!'})
     }
 
-    showsStatusMessage(checkDataResults)
+    const data = await result.json()
+
+    if (method === 'POST') document.querySelector('#add-form').reset()
+    if (method === 'PUT') {
+        document.querySelector('#update-form').reset()
+        document.querySelector('#action-select').value = 'put'
+    }
+    setNewsOnUpdelPreview()
+    showsStatusMessage({ ok: true, message: data.message })
 }
 
 // FUNCTION THAT SUBMIT THE FORM
@@ -470,7 +491,7 @@ const submitForm = (e, form, method) => {
         externa: form.external.value,
     } : currentData
 
-    sendData(formData, formIsValid, method)
+    sendData(formData, method)
 }
 
 // DOM MANIPULATION
@@ -558,20 +579,21 @@ const getNews = async () => {
 
 // FUNCTION THAT SETS LOADING ANIMATION
 const setLoadingAnimation = (start) => {
-    const loadingAnimation = document.querySelector('#loading-preview')
+    const loadingAnimation = document.querySelector('#refresh-news-btn')
 
     if (start) {
-        loadingAnimation.classList.remove('hidden')
+        loadingAnimation.classList.add('active')
     } else {
-        loadingAnimation.classList.add('hidden')
+        loadingAnimation.classList.remove('active')
     }
 }
 
-const setNewOnUpdelPreview = async () => {
+const setNewsOnUpdelPreview = async () => {
     setLoadingAnimation(true)
-    const updelContainer = document.querySelector('#preview-updel-wrapper')
+    const updelContainer = document.querySelector('#parent-news-container')
     const news = await getNews()
     setLoadingAnimation(false)
+    updelContainer.innerHTML = ''
     news.forEach(newsInfo => {
         updelContainer.appendChild(createNewsUpdelContainer(newsInfo))
     })
@@ -601,6 +623,9 @@ const setEvents = () => {
     // DELETE NEWS EVENTS
     elements.delete.deleteNewsButton.addEventListener('click', deleteNews)
 
+    // REFRESH NEWS EVENTS
+    elements.update.refreshNewsButton.addEventListener('click', setNewsOnUpdelPreview)
+
     // FORM EVENTS
     const addForm = document.querySelector('#add-form')
     addForm.addEventListener('submit', (e) => {
@@ -617,5 +642,5 @@ const setEvents = () => {
 
 window.addEventListener('load', () => {
     setEvents()
-    setNewOnUpdelPreview()
+    setNewsOnUpdelPreview()
 })

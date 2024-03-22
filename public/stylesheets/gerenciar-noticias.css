@@ -338,23 +338,18 @@ button:active {
     border-radius: 20px;
 }
 
-.loading-animation-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.preview-title-updel-container button {
+    color: var(--main-color);
+    background-color: transparent;
+    font-size: 2em;
+
+    border: none;
+
+    margin: auto;
+    display: block;
 }
 
-.loading-animation {
-    border-top: 5px solid var(--main-color-low-fade);
-    border-right: 5px solid var(--main-color);
-    border-left: 5px solid var(--main-color);
-    border-bottom: 5px solid var(--main-color);
-    border-radius: 50%;
-
-    width: 50px;
-    height: 50px;
-    margin: auto;
-
+.preview-title-updel-container button.active {
     animation: loading .8s linear infinite;
 }
 

@@ -1,6 +1,5 @@
 // API V1 ROUTES
 const express = require('express');
-const router = express.Router();
 
 // MIDDLEWARES
 const inscricao = require('../api/v1/middlewares/inscricao');
@@ -15,6 +14,8 @@ const login = require('../api/v1/middlewares/database-usuarios');
 
 // AUTH
 const authorization = require('../api/v1/middlewares/autenticacao-usuario');
+
+const router = express.Router();
 
 // YOUTUBE VIDEOS ROUTES
 router.get('/youtube-videos', youtube.getVideos);
@@ -107,7 +108,7 @@ router.delete('/database/noticias/:id', authorization.authorizeUser, (req, res) 
 
 // CHECK PRIVATE ROUTES
 router.get('/autenticacao', authorization.authorizeUser, (req, res) => {
-    res.status(200);
+    res.status(200).json({ message: 'Usuário autenticado com sucesso!' });
 });
 
 // REGISTRATION ROUTES
