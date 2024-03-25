@@ -3,6 +3,7 @@ const express = require('express');
 
 const albumDataMiddlewares = require('../api/v1/middlewares/fotos');
 const rallyJubaoData = require('../api/v1/middlewares/dados-rally-jubao');
+const { authorizeUser } = require('../api/v1/middlewares/autorizacao-usuario');
 
 const router = express.Router();
 
@@ -61,6 +62,7 @@ router.get('/politica-privacidade', (req, res, next) => {
 
 // LOGIN
 router.get('/login', (req, res, next) => {
+  res.setHeader('Cache-Control', 'no-store')
   res.render('login');
 });
 

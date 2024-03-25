@@ -13,7 +13,7 @@ const databaseNoticias = require('../api/v1/middlewares/database-noticias');
 const login = require('../api/v1/middlewares/database-usuarios');
 
 // AUTH
-const authorization = require('../api/v1/middlewares/autenticacao-usuario');
+const authorization = require('../api/v1/middlewares/autorizacao-usuario');
 
 const router = express.Router();
 
@@ -56,9 +56,9 @@ router.get('/dados-noticias-locais/:title', async (req, res) => {
 });
 
 // EVENTS ROUTES
-router.get('/rally-jubao', async (req, res) => {
+router.get('/rally-jubao', (req, res) => {
     try {
-        const events = await rallyJubaoData.getEvents()
+        const events = rallyJubaoData.getEvents()
         res.status(200).json(events)
     } catch (error) {
         console.log('Erro ao obter eventos:', error.message);
@@ -108,7 +108,7 @@ router.delete('/database/noticias/:id', authorization.authorizeUser, (req, res) 
 
 // CHECK PRIVATE ROUTES
 router.get('/autenticacao', authorization.authorizeUser, (req, res) => {
-    res.status(200).json({ message: 'Usuário autenticado com sucesso!' });
+    res.status(200).json({ message: 'Usuário autorizado!' })
 });
 
 // REGISTRATION ROUTES

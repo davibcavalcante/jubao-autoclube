@@ -5,10 +5,12 @@ module.exports.authorizeUser = async (req, res, next) => {
     try {
         const token = req.cookies.userToken;
         if (!token) {
-            res.redirect('/login')
+            if (req.baseUrl === '/admin') return res.redirect('/login')
         } else {
             jwt.verify(token, config.secret, (err, decoded) => {
-                if (err) return res.status(401).json({ message: 'Não autorizado'});
+                if (err && req.baseUrl === '/admin') {
+                    return res.redirect('/login')
+                }
                 req.userId = decoded.id;
             });
             console.log('Autenticado com sucesso!');

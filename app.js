@@ -15,12 +15,14 @@ process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 1;
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.set('adminViews', path.join(__dirname, 'admin', 'admin-views'));
 
 app.use(logger('dev'));
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'admin')));
 
 if (config.server.useHTTPS) {
   app.use((req, res, next) => {
@@ -33,9 +35,21 @@ if (config.server.useHTTPS) {
   });
 }
 
+app.use('/admin', (req, res, next) => {
+  res.setHeader('Cache-Control', 'no-store');
+  app.set('views', app.get('adminViews'));
+  next();
+});
+
+app.use('/admin', adminViewsRouters);
+
+app.use((req, res, next) => {
+  app.set('views', path.join(__dirname, 'views'));
+  next();
+});
+
 app.use('/', viewsRouters);
 app.use('/api/v1', apiV1Routers);
-app.use('/admin', adminViewsRouters);
 
 if (config.certRequest.enabled) {
   app.use(config.certRequest.requestRoute, (req, res) => {

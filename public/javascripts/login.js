@@ -20,7 +20,7 @@ const setStatusMessageItems = (successLogin, message) => {
 
     if (successLogin) {
         icon.src = '/imagens/mobile/checked.png'
-        link.href = '/'
+        link.href = '/admin'
         link.innerText = 'OK'
     } else {
         icon.src = '/imagens/mobile/cancel.png'
