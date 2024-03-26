@@ -6,6 +6,8 @@ module.exports.authorizeUser = async (req, res, next) => {
         const token = req.cookies.userToken;
         if (!token) {
             if (req.baseUrl === '/admin') return res.redirect('/login')
+            res.setHeader('Cache-Control', 'no-store');
+            res.status(401).json({ message: 'Usuário não autorizado!' });
         } else {
             jwt.verify(token, config.secret, (err, decoded) => {
                 if (err && req.baseUrl === '/admin') {

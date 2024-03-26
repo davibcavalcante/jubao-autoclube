@@ -62,7 +62,8 @@ router.get('/politica-privacidade', (req, res, next) => {
 
 // LOGIN
 router.get('/login', (req, res, next) => {
-  res.setHeader('Cache-Control', 'no-store')
+  res.setHeader('Cache-Control', 'no-store');
+  res.setHeader('Connection', 'close');
   res.render('login');
 });
 
