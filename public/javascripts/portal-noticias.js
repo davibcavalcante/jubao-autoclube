@@ -65,9 +65,12 @@ const setIframe = async(news) => {
 const setImage = (news) => {
     const image = document.createElement('img')
     image.src = news.url
-    image.addEventListener('click', () => {
-        setIframe(news)
-    })
+    
+    if (!news.external) {
+        image.addEventListener('click', () => {
+            setIframe(news)
+        })
+    }
 
     return image
 }
