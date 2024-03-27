@@ -1,5 +1,5 @@
 const Database = require('../../../config/db-connect-noticias');
-const NewsController = require('../../../controllers/noticias-controller');
+const NewsController = require('../../../repository/noticias');
 
 class DatabaseNoticiasMiddleware {
     constructor() {

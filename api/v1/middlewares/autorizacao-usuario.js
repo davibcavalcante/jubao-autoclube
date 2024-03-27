@@ -2,11 +2,11 @@ const jwt = require('jsonwebtoken');
 const config = require('../../../config.json');
 
 module.exports.authorizeUser = async (req, res, next) => {
+    console.log('ok')
     try {
         const token = req.cookies.userToken;
         if (!token) {
-            if (req.baseUrl === '/admin') return res.redirect('/login')
-            res.setHeader('Cache-Control', 'no-store');
+            if (req.baseUrl === '/admin') return res.redirect('/login');
             res.status(401).json({ message: 'Usuário não autorizado!' });
         } else {
             jwt.verify(token, config.secret, (err, decoded) => {
@@ -14,6 +14,7 @@ module.exports.authorizeUser = async (req, res, next) => {
                     return res.redirect('/login')
                 }
                 req.userId = decoded.id;
+                req.user = decoded.user;
             });
             console.log('Autenticado com sucesso!');
             next();

@@ -9,7 +9,7 @@ router.get('/gerenciar-noticias', authorization.authorizeUser, (req, res, next) 
 })
 
 router.get('/', authorization.authorizeUser, (req, res, next) => {
-    res.render('index-admin');
+    res.render('index-admin', { user: req.user});
 });
 
 module.exports = router;

@@ -1,17 +1,12 @@
 const Database = require('../../../config/db-connect-usuarios');
-const UsersController = require('../../../controllers/usuarios-controller');
+const UsersController = require('../../../repository/usuarios');
 const config = require('../../../config.json')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const openUserSession = (id) => {
+const openUserSession = (id, user) => {
     try {
-        const token = jwt.sign({
-            id,
-        }, 
-        config.secret, {
-            expiresIn: 86400
-        })
+        const token = jwt.sign({id, user}, config.secret, { expiresIn: 86400 })
 
         return token
     } catch (err) {
@@ -61,7 +56,7 @@ class DatabaseUsuariosMiddlewares {
 
             await checkLogin(userData, user.senha, user.hash);
 
-            const token = openUserSession(id);
+            const token = openUserSession(id, usuario);
 
             res.cookie('userToken', token);
             console.log('Usuário logado com sucesso!')
@@ -78,5 +73,3 @@ class DatabaseUsuariosMiddlewares {
 }
 
 module.exports = new DatabaseUsuariosMiddlewares();
-
-// PASSWORD: HiVN6CYxN161QuwE
