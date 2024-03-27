@@ -7,7 +7,7 @@ class DatabaseNoticiasMiddleware {
     }
 
     // GET METHOD
-    async getDatabaseData(req, res) {
+    async getDatabaseNews(req, res) {
         const db = new Database();
         try {
             await db.connect();
@@ -21,7 +21,7 @@ class DatabaseNoticiasMiddleware {
     }
 
     // SEND METHOD
-    async sendDatabaseData(req, res) {
+    async sendDatabaseNews(req, res) {
         const db = new Database();
         try {
             await db.connect();
@@ -35,7 +35,7 @@ class DatabaseNoticiasMiddleware {
     }
 
     // UPDATE METHOD
-    async updateDatabaseData(req, res) {
+    async updateDatabaseNews(req, res) {
         const db = new Database();
         const newData = req.newData;
         const searchData = req.searchData;
@@ -52,7 +52,7 @@ class DatabaseNoticiasMiddleware {
 
 
     // DELETE METHOD
-    async deleteDatabaseData(req, res) {
+    async deleteDatabaseNews(req, res) {
         const db = new Database();
         const id = req.params.id;
         try {

@@ -10,7 +10,7 @@ const noticiasLocais = require('../api/v1/middlewares/dados-noticias-locais');
 const rallyJubaoData = require('../api/v1/middlewares/dados-rally-jubao');
 const calendarioData = require('../api/v1/middlewares/dados-calendario');
 const databaseNoticias = require('../api/v1/middlewares/database-noticias');
-const login = require('../api/v1/middlewares/database-usuarios');
+const login = require('../api/v1/middlewares/usuarios');
 
 // AUTH
 const authorization = require('../api/v1/middlewares/autorizacao-usuario');
@@ -91,19 +91,19 @@ router.get('/calendario/:data/:method', (req, res) => {
 
 // NEWS DATABASE ROUTES
 router.get('/database/noticias', (req, res) => {
-    databaseNoticias.getDatabaseData(req, res);
+    databaseNoticias.getDatabaseNews(req, res);
 });
 
 router.post('/database/noticias', authorization.authorizeUser, (req, res) => {
-    databaseNoticias.sendDatabaseData(req.body, res);
+    databaseNoticias.sendDatabaseNews(req.body, res);
 });
 
 router.put('/database/noticias', authorization.authorizeUser, (req, res) => {
-    databaseNoticias.updateDatabaseData(req.body, res)
+    databaseNoticias.updateDatabaseNews(req.body, res)
 })
 
 router.delete('/database/noticias/:id', authorization.authorizeUser, (req, res) => {
-    databaseNoticias.deleteDatabaseData(req, res);
+    databaseNoticias.deleteDatabaseNews(req, res);
 });
 
 // CHECK PRIVATE ROUTES

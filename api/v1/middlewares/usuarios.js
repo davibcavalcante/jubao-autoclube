@@ -58,7 +58,7 @@ class DatabaseUsuariosMiddlewares {
 
             const token = openUserSession(id, usuario);
 
-            res.cookie('userToken', token);
+            res.cookie('authToken', token);
             console.log('Usuário logado com sucesso!')
             res.status(200).json({ message: `Usuário ${user.name} logado com sucesso!`, user: {id, usuario}});
         } catch (err) {
