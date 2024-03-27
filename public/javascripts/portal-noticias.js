@@ -67,9 +67,9 @@ const setIframe = async(news) => {
 // FUNCTION THAT DEFINES NEWS IMAGE
 const setImage = (news) => {
     const image = document.createElement('img')
-    image.src = news.url
+    image.src = news.imagem
     
-    if (!news.external) {
+    if (news.externa === 'n') {
         image.addEventListener('click', () => {
             setIframe(news)
         })
@@ -83,19 +83,19 @@ const setLink = (news, type) => {
     const link = document.createElement('a')
     link.classList.add('info')
     if (type === 'external') {
-        link.href = news.external
+        link.href = news.link
         link.rel = 'external'
         link.target = '_blank'
 
         link.innerHTML = `
-            <p><i class="fa-regular fa-clock"></i> ${news.date}</p>
-            <h1>${news.title}</h1>
+            <p><i class="fa-regular fa-clock"></i> ${news.data}</p>
+            <h1>${news.titulo}</h1>
         ` 
         return link
     } else if (type === 'local') {
         link.innerHTML = `
-            <p><i class="fa-regular fa-clock"></i> ${news.date}</p>
-            <h1>${news.title}</h1>
+            <p><i class="fa-regular fa-clock"></i> ${news.data}</p>
+            <h1>${news.titulo}</h1>
         `
 
         link.addEventListener('click', () => {
@@ -110,7 +110,7 @@ const createNews = (news) => {
     const newsContainer = document.createElement('section')
     newsContainer.classList.add('news')
 
-    if (news.external) {
+    if (news.externa === 'y') {
         newsContainer.appendChild(setImage(news))
         newsContainer.appendChild(setLink(news, 'external'))
     } else {
@@ -139,25 +139,25 @@ const createTemplate = (allNews, scroll = false) => {
 }
 
 // FUNCTION THAT UPDATES PAGES
-const updatePage = async (method) => {
+const updatePage = async (goTo) => {
     const pageScreen = document.querySelector('.page')
     let pageNumber = Number(pageScreen.innerText)
 
-    const data = await getNewsApi(pageNumber)
-    const totalPages = data.totalPages
+    const currentNewsData = await organizeNewsByPage(pageNumber, 16)
+    const totalPages = currentNewsData.totalPages
 
-    if (method === 'next') {
+    if (goTo === 'next') {
         if (pageNumber + 1 > totalPages) return
         pageNumber++
-        const newsData = await getNewsApi(pageNumber)
+        const data = await organizeNewsByPage(pageNumber, 16)
         pageScreen.innerText = pageNumber
-        createTemplate(newsData.news, true)
-    } else if (method === 'prev') {
+        createTemplate(data.news, true)
+    } else if (goTo === 'prev') {
         if (!(pageNumber > 1)) return
         pageNumber--
-        const newsData = await getNewsApi(pageNumber)
+        const data = await organizeNewsByPage(pageNumber, 16)
         pageScreen.innerText = pageNumber
-        createTemplate(newsData.news, true)
+        createTemplate(data.news, true)
     }
 }
 
@@ -181,34 +181,38 @@ const setPaginationEvents = () => {
     })
 }
 
-// FUNCTION THAT TAKES NEWS
-const getNewsApi = async (currentPage) => {
-    const pageSize = 16
-    const results = await fetch(`/api/v1/noticias/${currentPage}/${pageSize}`)
+const getTotalNews = async () => {
+    const result = await fetch('/api/v1/database/noticias/count')
+    const data = await result.json()
 
-    if (!results.ok) {
-        errorMessage('remove')
-        return
-    } else {
-        errorMessage('add')
-    }
+    return data.results[0].total
+}
 
+const getNewsPerPage = async (currentPage, pageSize) => {
+    const limit = (currentPage - 1) * pageSize
+
+    const results = await fetch(`/api/v1/database/noticias/index?limit=${limit}&pagesize=${pageSize}`)
     const data = await results.json()
 
-    const news = data.newsForPage
-    const totalPages = data.totalPages
+    return data.results
+}
 
-    return {
-        news,
-        totalPages
-    }
+const organizeNewsByPage = async (currentPage, pageSize) => {
+    const news = await getNewsPerPage(currentPage, pageSize)
+
+    const totalNews = await getTotalNews()
+
+    const totalPages = Math.ceil(totalNews / pageSize)
+
+    return { news, totalPages }
 }
 
 // CODE INICIALIZATION EVENT
 window.addEventListener('load', async () => {
-    const currentPage = getCurrentPage()
-    const data = await getNewsApi(currentPage)
-    
+    const strCurrentPage = getCurrentPage()
+    const currentPage = parseInt(strCurrentPage)
+    const data = await organizeNewsByPage(currentPage, 16)
+
     setPaginationEvents()
     createTemplate(data.news)
 })

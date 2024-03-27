@@ -1,6 +1,6 @@
 // FUNCTION THAT CREATES NEWS IFRAMES
 const setIframe = async(newsData) => {
-    const response = await fetch(`/api/v1/dados-noticias-locais/${newsData.title}`)
+    const response = await fetch(`/api/v1/dados-noticias-locais/${newsData.titulo}`)
     const foundNews = await response.json()
 
     const newsIframe = document.querySelector('#news-iframe')
@@ -17,25 +17,25 @@ const setIframe = async(newsData) => {
             </head>
             <body>
                 <section class="header-container">
-                    ${foundNews.date}
-                    ${foundNews.title}
-                    ${foundNews.subtitle}
+                    ${foundNews.data}
+                    ${foundNews.titulo}
+                    ${foundNews.subtitulo}
                 </section>
             
                 <section class="news-container">
                     <section class=image-container>
-                        ${foundNews.image}
-                        ${foundNews.newscaster}
-                        ${foundNews.from}
+                        ${foundNews.imagem}
+                        ${foundNews.jornalista}
+                        ${foundNews.fonte}
                     </section>
                     <section class="text-container">
-                        ${foundNews.text}
+                        ${foundNews.texto}
                     </section>
                 </section>
 
                 <section class="credits-container">
-                    ${foundNews.newscaster}
-                    ${foundNews.from}
+                    ${foundNews.jornalista}
+                    ${foundNews.fonte}
                 </section>
             </body>
         </html>
@@ -56,23 +56,23 @@ const setIframe = async(newsData) => {
 // FUNCTION THAT CREATES NEWS IMAGE
 const createNewsImage = (newsData) => {
     const image = document.createElement('img')
-    image.setAttribute('src', newsData.url)
+    image.setAttribute('src', newsData.imagem)
 
     return image
 }
 
 // FUNCTION THAT CREATES NEWS LINK
 const createNewsLink = (newsData) => {
-    if (newsData.external) {
+    if (newsData.externa === 'y') {
         const link = document.createElement('a')
-        link.setAttribute('href', newsData.external)
+        link.setAttribute('href', newsData.link)
         link.setAttribute('rel', 'external')
         link.setAttribute('target', '_blank')
 
         link.appendChild(createNewsImage(newsData))
 
         return link
-    } else {
+    } else if (newsData.externa === 'n') {
         const link = document.createElement('a')
         link.appendChild(createNewsImage(newsData))
 
@@ -83,7 +83,7 @@ const createNewsLink = (newsData) => {
 // FUNCTION THAT CREATES NEWS TITLE
 const createTitle = (newsData) => {
     const title = document.createElement('h1')
-    title.innerText = newsData.title
+    title.innerText = newsData.titulo
 
     return title
 }
@@ -91,7 +91,7 @@ const createTitle = (newsData) => {
 // FUNCTION THAT CREATES NEWS DATE
 const createDate = (newsData) => {
     const date = document.createElement('p')
-    date.innerHTML = `<i class="fa-regular fa-clock"></i> ${newsData.date}`
+    date.innerHTML = `<i class="fa-regular fa-clock"></i> ${newsData.data}`
 
     return date
 }
@@ -126,7 +126,7 @@ const createNews = (newsData, type) => {
         const mainNewsContainer = document.createElement('section')
         mainNewsContainer.classList.add('main-news', 'news')
 
-        if (!newsData.external) {
+        if (newsData.externa === 'n') {
             mainNewsContainer.classList.add('jubao-news')
             mainNewsContainer.addEventListener('click', () => {
                 setIframe(newsData)
@@ -140,7 +140,7 @@ const createNews = (newsData, type) => {
         const secondaryNewsContainer = document.createElement('section')
         secondaryNewsContainer.classList.add('secondary-news', 'news')
 
-        if (!newsData.external) {
+        if (newsData.externa === 'n') {
             secondaryNewsContainer.classList.add('jubao-news')
             secondaryNewsContainer.addEventListener('click', () => {
                 setIframe(newsData)
@@ -154,7 +154,7 @@ const createNews = (newsData, type) => {
         const tertiaryNewsContainer = document.createElement('section')
         tertiaryNewsContainer.classList.add('tertiary-news', 'news')
 
-        if (!newsData.external) {
+        if (newsData.externa === 'n') {
             tertiaryNewsContainer.classList.add('jubao-news')
             tertiaryNewsContainer.addEventListener('click', () => {
                 setIframe(newsData)
@@ -169,7 +169,7 @@ const createNews = (newsData, type) => {
         const news = document.createElement('section')
         news.classList.add('news')
 
-        if (!newsData.external) {
+        if (newsData.externa === 'n') {
             news.classList.add('jubao-news')
             news.addEventListener('click', () => {
                 setIframe(newsData)
@@ -207,9 +207,11 @@ const updateHtml = (news) => {
 // CODE INICIALIZATION EVENT
 window.addEventListener('load', () => {
     const newsApi = async() => {
-        const result = await fetch(`/api/v1/noticias/1/7`)
+        const limit = 7
+        const result = await fetch(`/api/v1/database/noticias/index?limit=${limit}&pagesize=7`)
         const data = await result.json()
-        const news = data.newsForPage
+        console.log(data)
+        const news = data.results
 
         updateHtml(news)
     }

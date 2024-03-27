@@ -11,6 +11,24 @@ class NoticiasRepository {
         }
     }
 
+    async getNewsIndex(connection, limit, pageSize) {
+        try {
+            const result = await connection.query('SELECT * FROM `noticias` ORDER BY id DESC LIMIT ?, ?', [parseInt(limit), parseInt(pageSize)]);
+            return result;
+        } catch (err) {
+            throw err;
+        }
+    }
+
+    async getTotalNews(connection) {
+        try {
+            const result = await connection.query('SELECT COUNT(*) as total FROM noticias');
+            return result;
+        } catch (err) {
+            throw err;
+        }
+    }
+
     // SEND METHOD
     async sendNews(connection, data) {
         try {
