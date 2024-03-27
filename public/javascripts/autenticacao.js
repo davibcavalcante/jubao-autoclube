@@ -34,11 +34,10 @@ const loggedIn = () => {
 
 // FUNCTION THAT CHECK IF SESSION IS VALID
 const checkSession = async () => {
-    const min = Math.ceil(1);
-    const max = Math.floor(100);
-    const noCacheNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-    const isAdmin = await fetch(`/api/v1/autenticacao/${noCacheNumber}`)
+    const isAdmin = await fetch(`/api/v1/autenticacao`)
+    
     console.log(isAdmin)
+
     if (isAdmin.ok) {
         loggedIn()
     } else {

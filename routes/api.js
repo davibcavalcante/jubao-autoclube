@@ -107,8 +107,9 @@ router.delete('/database/noticias/:id', authorization.authorizeUser, (req, res) 
 });
 
 // CHECK PRIVATE ROUTES
-router.get('/autenticacao/:cache', authorization.authorizeUser, (req, res) => {
-    res.status(200).json({ message: 'Usuário autorizado!', noCache: req.params.cache })
+router.get('/autenticacao', authorization.authorizeUser, (req, res) => {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+    res.status(200).json({ message: 'Usuário autorizado!', noCache: req.params.cache });
 });
 
 // REGISTRATION ROUTES
