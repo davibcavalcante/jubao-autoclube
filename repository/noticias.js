@@ -1,4 +1,4 @@
-class NoticiasController {
+class NoticiasRepository {
     // MÉTODOS DO CONTROLADOR => CONTROLLER METHODS
 
     // GET METHOD
@@ -42,4 +42,4 @@ class NoticiasController {
     }
 }
 
-module.exports = NoticiasController;
+module.exports = NoticiasRepository;

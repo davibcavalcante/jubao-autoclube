@@ -1,5 +1,5 @@
 const Database = require('../../../config/db-connect-usuarios');
-const UsersController = require('../../../repository/usuarios');
+const UsersRepository = require('../../../repository/usuarios');
 const config = require('../../../config.json')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -35,7 +35,7 @@ const checkLogin = async (user, pass, hash) => {
 
 class DatabaseUsuariosMiddlewares {
     constructor() {
-        this.usersController = new UsersController();
+        this.usersRepository = new UsersRepository();
     }
 
     async userLogin(req, res) {
@@ -44,7 +44,7 @@ class DatabaseUsuariosMiddlewares {
 
         try {
             await db.connect();
-            const userData = await this.usersController.getUser(db, data.user, 'user');
+            const userData = await this.usersRepository.getUser(db, data.user, 'user');
 
             const user = userData.length > 0 ? {
                 name: await userData[0].usuario,

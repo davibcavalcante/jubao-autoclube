@@ -1,9 +1,9 @@
 const Database = require('../../../config/db-connect-noticias');
-const NewsController = require('../../../repository/noticias');
+const NewsRepository = require('../../../repository/noticias');
 
 class DatabaseNoticiasMiddleware {
     constructor() {
-        this.newsController = new NewsController();
+        this.NewsRepository = new NewsRepository();
     }
 
     // GET METHOD
@@ -11,7 +11,7 @@ class DatabaseNoticiasMiddleware {
         const db = new Database();
         try {
             await db.connect();
-            const results = await this.newsController.getNews(db);
+            const results = await this.NewsRepository.getNews(db);
             res.status(200).json({ message: 'Notícias recebidas do Banco de Dados', results });
         } catch (err) {
             res.status(500).json({ message: 'Erro ao obter notícias do Banco de Dados', err });
@@ -25,7 +25,7 @@ class DatabaseNoticiasMiddleware {
         const db = new Database();
         try {
             await db.connect();
-            await this.newsController.sendNews(db, req);
+            await this.NewsRepository.sendNews(db, req);
             res.status(200).json({ message: 'Notícia enviada ao Banco de dados'})
         } catch (err) {
             res.status(500).json({ message: 'Erro ao enviar notícia ao Banco de Dados', err });
@@ -41,7 +41,7 @@ class DatabaseNoticiasMiddleware {
         const searchData = req.searchData;
         try {
             await db.connect();
-            await this.newsController.updateNews(db, {newData, searchData});
+            await this.NewsRepository.updateNews(db, {newData, searchData});
             res.status(200).json({ message: "Notícia alterada com sucesso!"});
         } catch (err) {
             res.status(500).json({ message: "Erro ao alterar dados do Banco de Dados!", err});
@@ -57,7 +57,7 @@ class DatabaseNoticiasMiddleware {
         const id = req.params.id;
         try {
             await db.connect();
-            await this.newsController.deleteNews(db, id);
+            await this.NewsRepository.deleteNews(db, id);
             res.status(200).json({ message: 'Notícia excluída com sucesso!' });
         } catch (err) {
             res.status(500).json({ message: 'Erro ao excluir notícia!', err })
