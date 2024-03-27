@@ -208,6 +208,18 @@ const updateAddPreview = (e) => {
     }
 }
 
+const resetUpdateForm = () => {
+    const elements = getElements().update
+
+    elements.titleInput.value = ''
+    elements.imageInput.value = ''
+    elements.linkInput.value = ''
+    elements.dayInput.value = ''
+    elements.monthSelect.value = ''
+    elements.yearInput.value = ''
+    elements.externalSelect.value = ''
+}
+
 // FUNCTION THAT FORMATTES NUMBERS LESS THAN 10
 const formatNumber = (number) => {
     if (number < 10 && number.length < 2) return `0${number}`
@@ -322,6 +334,9 @@ const selectNews = (container)  => {
         } else if (actionValue === 'delete') {
             deleteMode(container)
         }
+    } else if (newsSelected === container) {
+        newsSelected.classList.remove('news-selected')
+        resetUpdateForm()
     } else {
         newsSelected.classList.remove('news-selected')
         container.classList.add('news-selected')
