@@ -2,18 +2,19 @@ class NoticiasRepository {
     // MÉTODOS DO CONTROLADOR => CONTROLLER METHODS
 
     // GET METHOD
-    async getNews(connection) {
-        try {
-            const result = await connection.query('SELECT * FROM `noticias` WHERE 1');
-            return result;
-        } catch (err) {
-            throw err;
-        }
-    }
+    async getNews(connection, limitNews, pageSize) {
+        let query, values;
 
-    async getNewsIndex(connection, limit, pageSize) {
+        if (!isNaN(limitNews) && !isNaN(pageSize)) {
+            query = 'SELECT * FROM `noticias` ORDER BY id DESC LIMIT ?, ?'
+            values = [limitNews, pageSize]
+        } else {
+            query = 'SELECT * FROM `noticias` ORDER BY id DESC'
+            values = []
+        }
+        console.log(query)
         try {
-            const result = await connection.query('SELECT * FROM `noticias` ORDER BY id DESC LIMIT ?, ?', [parseInt(limit), parseInt(pageSize)]);
+            const result = await connection.query(query, values);
             return result;
         } catch (err) {
             throw err;

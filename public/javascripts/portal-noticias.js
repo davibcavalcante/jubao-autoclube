@@ -105,6 +105,34 @@ const setLink = (news, type) => {
     }
 }
 
+const loadingAnimation = (start) => {
+    const loading = document.querySelector('.loading-animation')
+    if (start) {
+        loading.classList.remove('hidden')
+    } else {
+        loading.classList.add('hidden')
+    }
+}
+
+// FUNCTION THAT CONTROLS NEWS STATE
+const newsState = () => {
+    let news = []
+    let totalPages = []
+
+    const getNewsState = () => {
+        return { news, totalPages }
+    }
+
+    const setNewsState = (setNews, setTotalPages) => {
+        news = setNews
+        totalPages = setTotalPages
+    }
+    
+    return { getNewsState, setNewsState }
+}
+
+const newsStateManager = newsState()
+
 // FUNCTION THAT CREATES NEWS
 const createNews = (news) => {
     const newsContainer = document.createElement('section')
@@ -124,6 +152,7 @@ const createNews = (news) => {
 
 // FUNCTION THAT CREATES NEWS TEMPLATE
 const createTemplate = (allNews, scroll = false) => {
+    loadingAnimation(false)
     const allNewsContainer = document.querySelector('#news-container')
     allNewsContainer.innerHTML = ''
     allNews.forEach((news) => {
@@ -143,22 +172,22 @@ const updatePage = async (goTo) => {
     const pageScreen = document.querySelector('.page')
     let pageNumber = Number(pageScreen.innerText)
 
-    const currentNewsData = await organizeNewsByPage(pageNumber, 16)
-    const totalPages = currentNewsData.totalPages
+    const totalPages = newsStateManager.getNewsState().totalPages
 
-    if (goTo === 'next') {
-        if (pageNumber + 1 > totalPages) return
-        pageNumber++
-        const data = await organizeNewsByPage(pageNumber, 16)
-        pageScreen.innerText = pageNumber
-        createTemplate(data.news, true)
-    } else if (goTo === 'prev') {
-        if (!(pageNumber > 1)) return
-        pageNumber--
-        const data = await organizeNewsByPage(pageNumber, 16)
-        pageScreen.innerText = pageNumber
-        createTemplate(data.news, true)
-    }
+    if ((goTo === 'next' && (pageNumber + 1) > totalPages) || (goTo === 'prev' && pageNumber <= 1)) return
+
+    if (goTo === 'next' && (pageNumber + 1) <= totalPages) pageNumber++
+
+    if (goTo === 'prev' && pageNumber > 1) pageNumber--
+
+    loadingAnimation(true)
+    document.querySelector('#news-container').innerHTML = ''
+    await getNewsPerPage(pageNumber, 16)
+    const news = newsStateManager.getNewsState().news
+
+    pageScreen.innerText = pageNumber
+
+    createTemplate(news, true)
 }
 
 // FUNCTION THAT TAKES CURRENT PAGE
@@ -189,30 +218,27 @@ const getTotalNews = async () => {
 }
 
 const getNewsPerPage = async (currentPage, pageSize) => {
-    const limit = (currentPage - 1) * pageSize
+    const limitNews = (currentPage - 1) * pageSize
 
-    const results = await fetch(`/api/v1/database/noticias/index?limit=${limit}&pagesize=${pageSize}`)
+    const results = await fetch(`/api/v1/database/noticias?limit=${limitNews}&pagesize=${pageSize}`)
     const data = await results.json()
 
-    return data.results
-}
-
-const organizeNewsByPage = async (currentPage, pageSize) => {
-    const news = await getNewsPerPage(currentPage, pageSize)
-
-    const totalNews = await getTotalNews()
-
+    const totalNews = data.totalNews[0].total
     const totalPages = Math.ceil(totalNews / pageSize)
 
-    return { news, totalPages }
+    const news = data.news
+
+    newsStateManager.setNewsState(news, totalPages)
 }
 
 // CODE INICIALIZATION EVENT
 window.addEventListener('load', async () => {
-    const strCurrentPage = getCurrentPage()
-    const currentPage = parseInt(strCurrentPage)
-    const data = await organizeNewsByPage(currentPage, 16)
+    const currentPage = parseInt(getCurrentPage())
+
+    await getNewsPerPage(currentPage, 16)
+
+    const news = newsStateManager.getNewsState().news
 
     setPaginationEvents()
-    createTemplate(data.news)
+    createTemplate(news)
 })

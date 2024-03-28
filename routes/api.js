@@ -94,10 +94,6 @@ router.get('/database/noticias', (req, res) => {
     databaseNoticias.getDatabaseNews(req, res);
 });
 
-router.get('/database/noticias/index', (req, res) => {
-    databaseNoticias.getDatabaseNewsIndex(req, res);
-});
-
 router.get('/database/noticias/count', (req, res) => {
     databaseNoticias.getDatabaseTotalNews(req, res);
 });

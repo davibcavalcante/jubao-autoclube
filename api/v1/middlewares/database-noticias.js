@@ -9,10 +9,15 @@ class DatabaseNoticiasMiddleware {
     // GET METHOD
     async getDatabaseNews(req, res) {
         const db = new Database();
+
+        const limitNews = parseInt(req.query.limit);
+        const pageSize = parseInt(req.query.pagesize);
+        
         try {
             await db.connect();
-            const results = await this.NewsRepository.getNews(db);
-            res.status(200).json({ message: 'Notícias recebidas do Banco de Dados', results });
+            const news = await this.NewsRepository.getNews(db, limitNews, pageSize);
+            const totalNews = !isNaN(limitNews) ? await this.NewsRepository.getTotalNews(db) : '';  
+            res.status(200).json({ message: 'Notícias recebidas do Banco de Dados', news, totalNews });
         } catch (err) {
             res.status(500).json({ message: 'Erro ao obter notícias do Banco de Dados', err });
         } finally {

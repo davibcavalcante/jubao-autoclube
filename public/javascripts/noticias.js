@@ -207,11 +207,11 @@ const updateHtml = (news) => {
 // CODE INICIALIZATION EVENT
 window.addEventListener('load', () => {
     const newsApi = async() => {
-        const limit = 7
-        const result = await fetch(`/api/v1/database/noticias/index?limit=${limit}&pagesize=7`)
+        const start = 0
+        const result = await fetch(`/api/v1/database/noticias?limit=${start}&pagesize=7`)
         const data = await result.json()
-        console.log(data)
-        const news = data.results
+
+        const news = data.news
 
         updateHtml(news)
     }

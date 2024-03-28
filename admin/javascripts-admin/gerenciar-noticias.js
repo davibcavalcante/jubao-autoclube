@@ -589,7 +589,7 @@ const getNews = async () => {
     const results = await fetch('/api/v1/database/noticias')
     const data = await results.json()
 
-    return data.results
+    return data.news
 }
 
 // FUNCTION THAT SETS LOADING ANIMATION

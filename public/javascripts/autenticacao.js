@@ -35,8 +35,6 @@ const loggedIn = () => {
 // FUNCTION THAT CHECK IF SESSION IS VALID
 const checkSession = async () => {
     const isAdmin = await fetch(`/api/v1/autenticacao`)
-    
-    console.log(isAdmin)
 
     if (isAdmin.ok) {
         loggedIn()
