@@ -9,18 +9,30 @@ const errorMessage = (method) => {
 }
 
 // FUNCTION THAT SET NEWS IFRAMES
-const setIframe = async(news) => {
-    const response = await fetch(`/api/v1//dados-noticias-locais/${news.title}`)
-    const foundNews = await response.json()
+const setIframe = async(newsData) => {
+
+    const formatText = () => {
+        const separateText = newsData.texto.split('[PARAGRAFO]')
+        const textInParagraph = separateText.map(item => `<p>${item}</p>`)
+
+        let texto = ''
+
+        textInParagraph.forEach((item) => {
+            console.log(item)
+            texto += item
+        })
+
+        return texto
+    }
 
     const newsIframe = document.querySelector('#news-iframe')
 
     if (newsIframe.classList.contains('hidden')) {
         newsIframe.classList.remove('hidden')
     }
-    
+
     const iframeContent = `
-            <html>
+        <html>
             <head>
                 <link rel="stylesheet" href="/stylesheets/iframe.css">
                 <script src="https://kit.fontawesome.com/3954e72066.js" crossorigin="anonymous"></script>
@@ -28,25 +40,25 @@ const setIframe = async(news) => {
             </head>
             <body>
                 <section class="header-container">
-                    ${foundNews.date}
-                    ${foundNews.title}
-                    ${foundNews.subtitle}
+                <p><i class="fa-regular fa-clock"></i> ${newsData.data}</p>
+                    <h1>${newsData.titulo}</h1>
+                    <h2>${newsData.subtitulo}</h2>
                 </section>
             
                 <section class="news-container">
                     <section class=image-container>
-                        ${foundNews.image}
-                        ${foundNews.newscaster}
-                        ${foundNews.from}
+                        <img src="${newsData.imagem}"></img>
+                        <p>${newsData.jornalista}</p>
+                        <p>${newsData.fonte}</p>
                     </section>
                     <section class="text-container">
-                        ${foundNews.text}
+                        ${formatText()}
                     </section>
                 </section>
 
                 <section class="credits-container">
-                    ${foundNews.newscaster}
-                    ${foundNews.from}
+                    <p>${newsData.jornalista}</p>
+                    <p>${newsData.fonte}</p>
                 </section>
             </body>
         </html>
@@ -181,11 +193,15 @@ const updatePage = async (goTo) => {
     if (goTo === 'prev' && pageNumber > 1) pageNumber--
 
     loadingAnimation(true)
+
     document.querySelector('#news-container').innerHTML = ''
+    const iframe = document.querySelector('#news-iframe')
+
+    !iframe.classList.contains('hidden') ? iframe.classList.add('hidden') : null
+    pageScreen.innerText = pageNumber
+    
     await getNewsPerPage(pageNumber, 16)
     const news = newsStateManager.getNewsState().news
-
-    pageScreen.innerText = pageNumber
 
     createTemplate(news, true)
 }

@@ -12,7 +12,7 @@ class NoticiasRepository {
             query = 'SELECT * FROM `noticias` ORDER BY id DESC'
             values = []
         }
-        console.log(query)
+
         try {
             const result = await connection.query(query, values);
             return result;
@@ -32,6 +32,7 @@ class NoticiasRepository {
 
     // SEND METHOD
     async sendNews(connection, data) {
+        console.log(data)
         try {
             const result = await connection.query('INSERT INTO `noticias` SET ?', data);
             return result;

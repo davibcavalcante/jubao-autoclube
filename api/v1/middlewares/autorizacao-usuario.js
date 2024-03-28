@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 const config = require('../../../config.json');
 
 module.exports.authorizeUser = async (req, res, next) => {
-    console.log('ok')
     try {
         const token = req.cookies.authToken;
         if (!token) {

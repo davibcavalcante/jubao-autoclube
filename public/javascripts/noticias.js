@@ -1,9 +1,22 @@
 // FUNCTION THAT CREATES NEWS IFRAMES
 const setIframe = async(newsData) => {
-    const response = await fetch(`/api/v1/dados-noticias-locais/${newsData.titulo}`)
-    const foundNews = await response.json()
+
+    const formatText = () => {
+        const separateText = newsData.texto.split('[PARAGRAFO]')
+        const textInParagraph = separateText.map(item => `<p>${item}</p>`)
+
+        let texto = ''
+
+        textInParagraph.forEach((item) => {
+            console.log(item)
+            texto += item
+        })
+
+        return texto
+    }
 
     const newsIframe = document.querySelector('#news-iframe')
+
     if (newsIframe.classList.contains('hidden')) {
         newsIframe.classList.remove('hidden')
     }
@@ -17,25 +30,25 @@ const setIframe = async(newsData) => {
             </head>
             <body>
                 <section class="header-container">
-                    ${foundNews.data}
-                    ${foundNews.titulo}
-                    ${foundNews.subtitulo}
+                <p><i class="fa-regular fa-clock"></i> ${newsData.data}</p>
+                    <h1>${newsData.titulo}</h1>
+                    <h2>${newsData.subtitulo}</h2>
                 </section>
             
                 <section class="news-container">
                     <section class=image-container>
-                        ${foundNews.imagem}
-                        ${foundNews.jornalista}
-                        ${foundNews.fonte}
+                        <img src="${newsData.imagem}"></img>
+                        <p>${newsData.jornalista}</p>
+                        <p>${newsData.fonte}</p>
                     </section>
                     <section class="text-container">
-                        ${foundNews.texto}
+                        ${formatText()}
                     </section>
                 </section>
 
                 <section class="credits-container">
-                    ${foundNews.jornalista}
-                    ${foundNews.fonte}
+                    <p>${newsData.jornalista}</p>
+                    <p>${newsData.fonte}</p>
                 </section>
             </body>
         </html>

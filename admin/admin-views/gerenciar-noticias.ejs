@@ -96,7 +96,7 @@
                 </section>
                 <section class="form-add-container">
                     <form id="add-form" autocomplete="off">
-                        <section class="image-form-container">
+                        <section class="image-form-container section-form-container">
                             <section class="input-container">
                                 <label for="image-add-input">Imagem:</label>
                                 <section class="flex-input-container">
@@ -106,21 +106,21 @@
                             </section>
                         </section>
                         
-                        <section class="title-form-container">
+                        <section class="title-form-container section-form-container">
                             <section class="input-container">
                                 <label for="title-add-input">Titulo:</label>
                                 <input type="text" name="title" id="title-add-input" placeholder="Digite o título da notícia" required>
                             </section>
                         </section>
 
-                        <section class="link-form-container">
+                        <section class="link-form-container section-form-container">
                             <section class="input-container">
                                 <label for="link-add-input">Link:</label>
                                 <input type="text" name="link" id="link-add-input" placeholder="Digite o link da notícia">
                             </section>
                         </section>
 
-                        <section class="date-form-container">
+                        <section class="date-form-container section-form-container">
                             <h1>Data:</h1>
                             <section class="containers">
                                 <section class="input-container day">
@@ -158,7 +158,7 @@
                             </section>
                         </section>
 
-                        <section class="external-form-container">
+                        <section class="external-form-container section-form-container">
                             <section class="input-container">
                                 <label for="external-add-select">Fonte externa:</label>
                                 <select name="external" id="external-add-select">
@@ -168,8 +168,48 @@
                                 </select>
                             </section>
                         </section>
+                        
+                        <section id="local-options-container" class="hidden">
+                            <section class="subtitle-form-container section-form-container">
+                                <section class="input-container">
+                                    <label for="subtitle-add-input">Subtitulo:</label>
+                                    <input type="text" name="subtitle" id="subtitle-add-input" placeholder="Digite o subtítulo da notícia">
+                                </section>
+                            </section>
+    
+                            <section class="newscaster-form-container section-form-container">
+                                <section class="input-container">
+                                    <label for="newscasters-add-input">Noticiadores:</label>
+                                    <input type="text" name="newscasters" id="newscaster-add-input" placeholder="Digite os noticiadores da notícia">
+                                </section>
+                            </section>
+    
+                            <section class="from-form-container section-form-container">
+                                <section class="input-container">
+                                    <label for="from-add-input">Fonte:</label>
+                                    <input type="text" name="from" id="from-add-input" placeholder="Digite a fonte da notícia">
+                                </section>
+                            </section>
+    
+                            <section class="text-form-container section-form-container" id="text-form-add-container">
+                                <h1>Texto:</h1>
+                                <section class="input-container">
+                                    <label for="text1-add-textarea">Parágrafo 1:</label>
+                                    <textarea name="text1" id="text1-add-textarea" cols="30" rows="10" placeholder="O seu parágrafo aqui" class="p-textarea"></textarea>
+                                </section>
+    
+                                <section class="controllers-btn-container">
+                                    <button type="button" id="add-paragraphs-btn">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                    <button type="button" id="remove-paragraphs-btn">
+                                        <i class="fa-solid fa-minus"></i>
+                                    </button>
+                                </section>
+                            </section>
+                        </section>
 
-                        <section class="buttons-form-container">
+                        <section class="buttons-form-container section-form-container">
                             <button type="submit" class="submit-btn">Enviar</button>
                             <button type="reset" class="reset-btn">Limpar</button>
                         </section>
@@ -216,14 +256,14 @@
                             </section>
                         </section>
                         <section class="update-informations-container hidden">
-                            <section class="title-form-container">
+                            <section class="title-form-container section-form-container">
                                 <section class="input-container">
                                     <label for="title-update-input">Titulo:</label>
                                     <input type="text" name="title" id="title-update-input" placeholder="Digite o título da notícia" required>
                                 </section>
                             </section>
     
-                            <section class="image-form-container">
+                            <section class="image-form-container section-form-container">
                                 <section class="input-container">
                                     <label for="image-update-input">Imagem:</label>
                                     <section class="flex-input-container">
@@ -233,14 +273,14 @@
                                 </section>
                             </section>
     
-                            <section class="link-form-container">
+                            <section class="link-form-container section-form-container">
                                 <section class="input-container">
                                     <label for="link-update-input">Link:</label>
                                     <input type="text" name="link" id="link-update-input" placeholder="Digite o link da notícia">
                                 </section>
                             </section>
     
-                            <section class="date-form-container">
+                            <section class="date-form-container section-form-container">
                                 <h1>Data:</h1>
                                 <section class="containers">
                                     <section class="input-container day">
@@ -278,7 +318,7 @@
                                 </section>
                             </section>
     
-                            <section class="external-form-container">
+                            <section class="external-form-container section-form-container">
                                 <section class="input-container">
                                     <label for="external-update-select">Fonte externa:</label>
                                     <select name="external" id="external-update-select">
@@ -288,8 +328,48 @@
                                     </select>
                                 </section>
                             </section>
+
+                            <section id="local-update-options-container" class="hidden">
+                                <section class="subtitle-form-container section-form-container">
+                                    <section class="input-container">
+                                        <label for="subtitle-update-input">Subtitulo:</label>
+                                        <input type="text" name="subtitle" id="subtitle-update-input" placeholder="Digite o subtítulo da notícia">
+                                    </section>
+                                </section>
+        
+                                <section class="newscaster-form-container section-form-container">
+                                    <section class="input-container">
+                                        <label for="newscasters-update-input">Noticiadores:</label>
+                                        <input type="text" name="newscasters" id="newscaster-update-input" placeholder="Digite os noticiadores da notícia">
+                                    </section>
+                                </section>
+        
+                                <section class="from-form-container section-form-container">
+                                    <section class="input-container">
+                                        <label for="from-update-input">Fonte:</label>
+                                        <input type="text" name="from" id="from-update-input" placeholder="Digite a fonte da notícia">
+                                    </section>
+                                </section>
+        
+                                <section class="text-form-container section-form-container" id="text-form-update-container">
+                                    <h1>Texto:</h1>
+                                    <section class="input-container">
+                                        <label for="text1-update-textarea">Parágrafo 1:</label>
+                                        <textarea name="text1" id="text1-update-textarea" cols="30" rows="10" placeholder="O seu parágrafo aqui" class="p-update-textarea"></textarea>
+                                    </section>
+        
+                                    <section class="controllers-btn-container">
+                                        <button type="button" id="add-up-paragraphs-btn">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </button>
+                                        <button type="button" id="remove-paragraphs-btn">
+                                            <i class="fa-solid fa-minus"></i>
+                                        </button>
+                                    </section>
+                                </section>
+                            </section>
     
-                            <section class="buttons-form-container">
+                            <section class="buttons-form-container section-form-container">
                                 <button type="submit" class="submit-btn">Atualizar</button>
                             </section>
                         </section>
@@ -315,7 +395,7 @@
                             Para remover a notícia é necessário digitar: <br> "<strong>REMOVER NOTÍCIA</strong>" <br> no campo abaixo
                         </p>
                     </section>
-                    <section class="buttons-form-container">
+                    <section class="buttons-form-container section-form-container">
                         <input type="text" id="confirm-input" placeholder="REMOVER NOTÍCIA" autocomplete="off">
                         <button id="delete-news-btn" class="submit-btn">Remover</button>
                     </section>

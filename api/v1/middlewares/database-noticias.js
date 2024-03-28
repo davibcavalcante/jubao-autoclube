@@ -25,21 +25,6 @@ class DatabaseNoticiasMiddleware {
         }
     }
 
-    async getDatabaseNewsIndex(req, res) {
-        const db = new Database();
-        const limit = req.query.limit;
-        const pageSize = req.query.pagesize;
-        try {
-            await db.connect();
-            const results = await this.NewsRepository.getNewsIndex(db, limit, pageSize);
-            res.status(200).json({ message: 'Notícias recebidas do Banco de Dados', results });
-        } catch (err) {
-            res.status(500).json({ message: 'Erro ao obter notícias do Banco de Dados', err });
-        } finally {
-            db.close();
-        }
-    }
-
     async getDatabaseTotalNews(req, res) {
         const db = new Database();
         try {

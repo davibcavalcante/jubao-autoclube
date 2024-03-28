@@ -6,9 +6,15 @@ const getElements = () => {
             linkInput: document.querySelector('#link-add-input'),
             dayInput: document.querySelector('#day-add-input'),
             yearInput: document.querySelector('#year-add-input'),
+            subtitleInput: document.querySelector('#subtitle-add-input'),
+            newscasterInput: document.querySelector('#newscaster-add-input'),
+            fromInput: document.querySelector('#from-add-input'),
             externalSelect: document.querySelector('#external-add-select'),
             monthSelect: document.querySelector('#month-add-select'),
             imageButton: document.querySelector('#image-add-check-btn'),
+            addParagraphsButton: document.querySelector('#add-paragraphs-btn'),
+            removeParagraphsButton: document.querySelector('#remove-paragraphs-btn'),
+            pTextareas: document.querySelectorAll('.p-textarea'),
         },
 
         update: {
@@ -17,11 +23,17 @@ const getElements = () => {
             yearInput: document.querySelector('#year-update-input'),
             linkInput: document.querySelector('#link-update-input'),
             imageInput: document.querySelector('#image-update-input'),
+            subtitleInput: document.querySelector('#subtitle-update-input'),
+            newscasterInput: document.querySelector('#newscaster-update-input'),
+            fromInput: document.querySelector('#from-update-input'),
             monthSelect: document.querySelector('#month-update-select'),
             externalSelect: document.querySelector('#external-update-select'),
             actionSelect: document.querySelector('#action-select'),
             imageButton: document.querySelector('#image-update-check-btn'),
             refreshNewsButton: document.querySelector('#refresh-news-btn'),
+            addParagraphsButton: document.querySelector('#add-up-paragraphs-btn'),
+            removeParagraphsButton: document.querySelector('#remove-paragraphs-btn'),
+            pTextareas: document.querySelectorAll('.p-update-textarea'),
         },
 
         delete: {
@@ -220,6 +232,76 @@ const resetUpdateForm = () => {
     elements.externalSelect.value = ''
 }
 
+const resetUpdateParagraphs = () => {
+    const elements = getElements().update
+
+    elements.pTextareas.forEach(item => {
+        if (item.id !== 'text1-update-textarea') {
+            item.parentNode.remove()
+        }
+    })
+}
+
+const createNewParagraph = (id, section, value = false) => {
+    const inputContainer = document.createElement('section')
+    inputContainer.classList.add('input-container')
+
+    const label = document.createElement('label')
+    label.setAttribute('for', `text${id}-${section}-textarea`)
+    label.innerText = `Parágrafo ${id}:`
+
+    const textarea = document.createElement('textarea')
+    textarea.id = `text${id}-${section}-textarea`
+    section === 'add' ? textarea.classList.add('p-textarea') : textarea.classList.add('p-update-textarea')
+    textarea.name = `text${id}`
+    textarea.rows = 10
+    textarea.cols = 30
+    textarea.placeholder = 'O seu parágrafo aqui'
+
+    if (value) textarea.value = value
+
+    inputContainer.appendChild(label)
+    inputContainer.appendChild(textarea)
+
+    return inputContainer
+}
+
+const addNewParagraph = () => {
+    const textContainer = document.querySelector('#text-form-add-container')
+    const paragraphs = textContainer.querySelectorAll('.input-container')
+    const numParagraphs = paragraphs.length
+
+    const id = numParagraphs + 1
+    const index = numParagraphs - 1
+
+    const newParagraph = createNewParagraph(id, 'add')
+
+    paragraphs[index].insertAdjacentElement('afterend', newParagraph)
+}
+
+const removeParagraph = () => {
+    const textContainer = document.querySelector('#text-form-add-container')
+    const paragraphs = textContainer.querySelectorAll('.input-container')
+    const numParagraphs = paragraphs.length
+
+    if (numParagraphs <= 1) return
+
+    const index = numParagraphs - 1
+
+    paragraphs[index].remove()
+}
+
+const setNewsTypeMode = (e) => {
+    const localNewsOptions = document.querySelector('#local-options-container')
+    const selectValue = e.target.value
+
+    if (selectValue === 'y' && !localNewsOptions.classList.contains('hidden')) {
+        localNewsOptions.classList.add('hidden')
+    } else if (selectValue === 'n' && localNewsOptions.classList.contains('hidden')) {
+        localNewsOptions.classList.remove('hidden')
+    }
+}
+
 // FUNCTION THAT FORMATTES NUMBERS LESS THAN 10
 const formatNumber = (number) => {
     if (number < 10 && number.length < 2) return `0${number}`
@@ -260,6 +342,7 @@ const deleteMode = (newsSelected) => {
 }
 
 const updateMode = (newsSelected) => {
+    resetUpdateParagraphs()
     const elements = getElements().update
     const newsId = newsSelected.id.split('-')[1]
 
@@ -270,20 +353,65 @@ const updateMode = (newsSelected) => {
     const newsMonth = document.querySelector(`#date-preview-${newsId}`).innerText.split(' ')[2]
     const newsYear = document.querySelector(`#date-preview-${newsId}`).innerText.split(' ')[3]
 
+    const newsSubtitle = document.querySelector(`#subtitle-preview-${newsId}`) || ''
+    const newsNewscaster = document.querySelector(`#newscaster-preview-${newsId}`) || ''
+    const newsFrom = document.querySelector(`#from-preview-${newsId}`) || ''
+    const newsText = document.querySelector(`#text-preview-${newsId}`) || ''
+
     elements.titleInput.value = newsTitle
     elements.imageInput.value = newsImage
     elements.linkInput.value = newsLink
     elements.dayInput.value = newsDay
     elements.monthSelect.value = newsMonth
     elements.yearInput.value = newsYear
+
     newsLink.length > 0 ? elements.externalSelect.value = 'y' : elements.externalSelect.value = 'n'
+    
+    const localUpdateOptions = document.querySelector('#local-update-options-container')
+
+    if (elements.externalSelect.value === 'n') {
+        if (localUpdateOptions.classList.contains('hidden')) {
+            localUpdateOptions.classList.remove('hidden')
+        }
+
+        const separateText = newsText.innerText.split('[PARAGRAFO]')
+        console.log(separateText)
+        const textUpdateContainer = document.querySelector('#text-form-update-container')
+
+        separateText.forEach((item, index) => {
+            const inputContainers = textUpdateContainer.querySelectorAll('.input-container')
+
+            if (index !== 0) {
+                const lastIndex = inputContainers.length - 1
+                const id = index + 1
+                const newInputContainer = createNewParagraph(id, 'update', separateText[index])
+
+                inputContainers[lastIndex].insertAdjacentElement('afterend', newInputContainer)
+            }
+
+            inputContainers[0].querySelector('#text1-update-textarea').value = separateText[0]
+        })
+
+        elements.subtitleInput.value = newsSubtitle.innerText
+        elements.newscasterInput.value = newsNewscaster.innerText
+        elements.fromInput.value = newsFrom.innerText
+        
+    } else if (elements.externalSelect.value === 'y') {
+        if (!localUpdateOptions.classList.contains('hidden')) {
+            localUpdateOptions.classList.add('hidden')
+        }
+    }
 
     newsUpdateStateManager.setNewsState({
         titulo: newsTitle, 
         data: `${newsDay} ${newsMonth} ${newsYear}`,  
         imagem: newsImage, 
         link: newsLink, 
-        externa: elements.externalSelect.value
+        externa: elements.externalSelect.value,
+        subtitulo: newsSubtitle.innerText,
+        jornalista: newsNewscaster.innerText,
+        fonte: newsFrom.innerText,
+        texto: newsText.innerText
     })
 }
 
@@ -370,12 +498,22 @@ const validateForm = (method) => {
     const externalValue = elements.externalSelect.value
     const monthValue = elements.monthSelect.value
     const linkValue = elements.linkInput.value
+    const subtitleValue = elements.subtitleInput.value
+    const newscastersValue = elements.newscasterInput.value
+    const fromValue = elements.fromInput.value
+    const textareas = elements.pTextareas
 
     if (Number(elements.dayInput.value) > 31 || Number(elements.dayInput.value) < 1) {
         return {
             ok: false, message: 'Dia inválido, tente um valor entre 01 e 31.'
         }
     } 
+
+    if (monthValue === '') {
+        return {
+            ok: false, message: 'Não é possível atualizar a notícia sem o mês!'
+        }
+    }
 
     if (elements.yearInput.value.length !== 4) {
         return {
@@ -389,12 +527,6 @@ const validateForm = (method) => {
         }
     }
 
-    if (monthValue === '') {
-        return {
-            ok: false, message: 'Não é possível atualizar a notícia sem o mês!'
-        }
-    }
-
     if (externalValue === 'y' && linkValue === '') {
         return {
             ok: false, message: 'Notícias externas devem conter seu link de origem!'
@@ -405,6 +537,36 @@ const validateForm = (method) => {
         return {
             ok: false, message: 'Notícias locais não devem conter links!'
         }
+    }
+
+    if (externalValue === 'n') {
+        if (subtitleValue === '') {
+            return {
+                ok: false, message: 'Não é possível enviar uma notícia local sem subtítulo'
+            }
+        }
+
+        if (newscastersValue === '') {
+            return {
+                ok: false, message: 'Não é possível enviar uma notícia local sem noticiadores'
+            }
+        }
+
+        if (fromValue === '') {
+            return {
+                ok: false, message: 'Não é possível enviar uma notícia local sem a fonte'
+            }
+        }
+
+
+        for (let textarea of textareas) {
+            if (textarea.value === '') {
+                return {
+                    ok: false, message: 'Você não pode enviar um notícia local com parágrafo vazio. Se necessário, exclua-o'
+                }
+            }
+        }
+        
     }
 
     return { ok: true, message: 'Notícia enviada com sucesso!' }
@@ -464,6 +626,7 @@ const sendData = async (formData, method) => {
     if (method === 'POST') document.querySelector('#add-form').reset()
     if (method === 'PUT') {
         document.querySelector('#update-form').reset()
+        resetUpdateParagraphs()
         document.querySelector('#action-select').value = 'put'
     }
     setNewsOnUpdelPreview()
@@ -473,6 +636,8 @@ const sendData = async (formData, method) => {
 // FUNCTION THAT SUBMIT THE FORM
 const submitForm = (e, form, method) => {
     e.preventDefault()
+
+    const elements = getElements()
 
     const formIsValid = validateForm(method)
 
@@ -485,13 +650,27 @@ const submitForm = (e, form, method) => {
     let currentData
 
     if (method === 'PUT') {
-        currentData = newsUpdateStateManager.getNewsState({
+        const paramGetNewsState = {
             titulo: form.title.value,
             data: date,
             imagem: form.image.value, 
             link: form.link.value, 
-            externa: form.external.value
-        })
+            externa: form.external.value,
+            subtitulo: form.subtitle.value,
+            jornalista: form.newscasters.value,
+            fonte: form.from.value,
+            texto: ``
+        }
+
+        const updateTextareas = Array.from(elements.add.pTextareas)
+        const pUpdateLength = updateTextareas.length
+    
+        for (let i = 0; i < pUpdateLength; i++) {
+            const pText = updateTextareas[i].value
+            paramGetNewsState.texto += `${pText}[PARAGRAFO]`
+        }
+
+        currentData = newsUpdateStateManager.getNewsState(paramGetNewsState)
         currentData.searchData = {
             id: parseInt(document.querySelector('.news-selected').id.split('-')[1])
         }
@@ -504,7 +683,21 @@ const submitForm = (e, form, method) => {
         imagem: form.image.value,
         link: form.link.value,
         externa: form.external.value,
+        subtitulo: form.subtitle.value,
+        jornalista: form.newscasters.value,
+        fonte: form.from.value,
+        texto: ``
     } : currentData
+
+    if (method === 'POST') {
+        const addTextareas = Array.from(elements.add.pTextareas)
+        const pAddLength = addTextareas.length
+
+        for (let i = 0; i < pAddLength; i++) {
+            const pText = addTextareas[i].value
+            formData.texto += `${pText}[PARAGRAFO]`
+        }
+    }
 
     sendData(formData, method)
 }
@@ -568,6 +761,35 @@ const createImageNews = ({image, id}) => {
     return imageContainer
 }
 
+const createHiddenInfoNews = ({subtitle, newscaster, from, text, id}) => {
+    const sectionHiddenInfo = document.createElement('section')
+    sectionHiddenInfo.id = `information-${id}`
+    sectionHiddenInfo.classList.add('hidden')
+
+    const pSubtitle = document.createElement('p')
+    pSubtitle.innerText = subtitle
+    pSubtitle.id = `subtitle-preview-${id}`
+
+    const pNewscaster = document.createElement('p')
+    pNewscaster.innerText = newscaster
+    pNewscaster.id = `newscaster-preview-${id}`
+
+    const pFrom = document.createElement('p')
+    pFrom.innerText = from
+    pFrom.id = `from-preview-${id}`
+
+    const pText = document.createElement('p')
+    pText.innerText = text
+    pText.id = `text-preview-${id}`
+
+    sectionHiddenInfo.appendChild(pSubtitle)
+    sectionHiddenInfo.appendChild(pNewscaster)
+    sectionHiddenInfo.appendChild(pFrom)
+    sectionHiddenInfo.appendChild(pText)
+
+    return sectionHiddenInfo
+}
+
 const createNewsUpdelContainer = (news) => {
     const container = document.createElement('section')
     container.classList.add('news-updel-container')
@@ -576,6 +798,16 @@ const createNewsUpdelContainer = (news) => {
     container.appendChild(createImageNews({ image: news.imagem, id: news.id }))
     container.appendChild(createInfoNews({ title: news.titulo, date: news.data, id: news.id }))
     container.appendChild(createLinkNews({ link: news.link, id: news.id }))
+
+    if (news.externa === 'n') {
+        container.appendChild(createHiddenInfoNews({ 
+            subtitle: news.subtitulo, 
+            newscaster: news.jornalista,
+            from: news.fonte,
+            text: news.texto,
+            id: news.id 
+        }))
+    }
 
     container.addEventListener('dblclick', () => {
         selectNews(container)
@@ -623,6 +855,7 @@ const setEvents = () => {
     elements.add.yearInput.addEventListener('input', formatInputNumbersOnly)
     elements.add.imageButton.addEventListener('click', updateAddPreview)
     elements.add.monthSelect.addEventListener('change', updateAddPreview)
+    elements.add.externalSelect.addEventListener('change', setNewsTypeMode)
 
     document.querySelector('.fa-check').addEventListener('click', updateAddPreview)
 
@@ -640,6 +873,10 @@ const setEvents = () => {
 
     // REFRESH NEWS EVENTS
     elements.update.refreshNewsButton.addEventListener('click', setNewsOnUpdelPreview)
+
+    // ADD ADN REMOVE PARAGRAPHS EVENTS
+    elements.add.addParagraphsButton.addEventListener('click', addNewParagraph)
+    elements.add.removeParagraphsButton.addEventListener('click', removeParagraph)
 
     // FORM EVENTS
     const addForm = document.querySelector('#add-form')
