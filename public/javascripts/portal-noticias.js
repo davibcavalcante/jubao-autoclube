@@ -18,8 +18,7 @@ const setIframe = async(newsData) => {
         let texto = ''
 
         textInParagraph.forEach((item) => {
-            console.log(item)
-            texto += item
+            if (item !== '<p></p>') texto += item
         })
 
         return texto

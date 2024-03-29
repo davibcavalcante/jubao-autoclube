@@ -32,7 +32,7 @@ const getElements = () => {
             imageButton: document.querySelector('#image-update-check-btn'),
             refreshNewsButton: document.querySelector('#refresh-news-btn'),
             addParagraphsButton: document.querySelector('#add-up-paragraphs-btn'),
-            removeParagraphsButton: document.querySelector('#remove-paragraphs-btn'),
+            removeParagraphsButton: document.querySelector('#remove-up-paragraphs-btn'),
             pTextareas: document.querySelectorAll('.p-update-textarea'),
         },
 
@@ -67,7 +67,7 @@ const newsUpdateState = () => {
         let changedState = { newData: {} }
         for (let key in currentState) {
             if (currentState[key] !== savedState[key]) {
-                changedState.newData[key] = currentState[key]
+                changedState.newData[key] = currentState[key] !== '' && currentState[key] !== '[PARAGRAFO]' ? currentState[key] : undefined
             }
         }
         return changedState
@@ -75,7 +75,7 @@ const newsUpdateState = () => {
 
     const setNewsState = (currentState) => {
         for (let key in currentState) {
-            savedState[key] = currentState[key]
+            savedState[key] = currentState[key] !== '' && currentState[key] !== '[PARAGRAFO]' ? currentState[key] : undefined
         }
     }
 
@@ -232,14 +232,22 @@ const resetUpdateForm = () => {
     elements.externalSelect.value = ''
 }
 
-const resetUpdateParagraphs = () => {
-    const elements = getElements().update
+const resetParagraphs = (section) => {
+    let elements
+
+    if (section === 'add') {
+        elements = getElements().add
+    } else if (section === 'update') {
+        elements = getElements().update
+    }
 
     elements.pTextareas.forEach(item => {
-        if (item.id !== 'text1-update-textarea') {
+        if (item.id !== `text1-${section}-textarea`) {
             item.parentNode.remove()
         }
     })
+
+    document.querySelector(`#local-${section}-options-container`).classList.add('hidden')
 }
 
 const createNewParagraph = (id, section, value = false) => {
@@ -266,21 +274,21 @@ const createNewParagraph = (id, section, value = false) => {
     return inputContainer
 }
 
-const addNewParagraph = () => {
-    const textContainer = document.querySelector('#text-form-add-container')
+const addNewParagraph = (section) => {
+    const textContainer = document.querySelector(`#text-form-${section}-container`)
     const paragraphs = textContainer.querySelectorAll('.input-container')
     const numParagraphs = paragraphs.length
 
     const id = numParagraphs + 1
     const index = numParagraphs - 1
 
-    const newParagraph = createNewParagraph(id, 'add')
+    const newParagraph = createNewParagraph(id, section)
 
     paragraphs[index].insertAdjacentElement('afterend', newParagraph)
 }
 
-const removeParagraph = () => {
-    const textContainer = document.querySelector('#text-form-add-container')
+const removeParagraph = (section) => {
+    const textContainer = document.querySelector(`#text-form-${section}-container`)
     const paragraphs = textContainer.querySelectorAll('.input-container')
     const numParagraphs = paragraphs.length
 
@@ -292,7 +300,7 @@ const removeParagraph = () => {
 }
 
 const setNewsTypeMode = (e) => {
-    const localNewsOptions = document.querySelector('#local-options-container')
+    const localNewsOptions = document.querySelector('#local-add-options-container')
     const selectValue = e.target.value
 
     if (selectValue === 'y' && !localNewsOptions.classList.contains('hidden')) {
@@ -342,7 +350,7 @@ const deleteMode = (newsSelected) => {
 }
 
 const updateMode = (newsSelected) => {
-    resetUpdateParagraphs()
+    resetParagraphs('update')
     const elements = getElements().update
     const newsId = newsSelected.id.split('-')[1]
 
@@ -375,13 +383,12 @@ const updateMode = (newsSelected) => {
         }
 
         const separateText = newsText.innerText.split('[PARAGRAFO]')
-        console.log(separateText)
         const textUpdateContainer = document.querySelector('#text-form-update-container')
 
         separateText.forEach((item, index) => {
             const inputContainers = textUpdateContainer.querySelectorAll('.input-container')
 
-            if (index !== 0) {
+            if (index !== 0 && item !== '') {
                 const lastIndex = inputContainers.length - 1
                 const id = index + 1
                 const newInputContainer = createNewParagraph(id, 'update', separateText[index])
@@ -443,6 +450,7 @@ const setCurrentMode = (e) => {
 }
 
 const selectNews = (container)  => {
+    console.log(container)
     const newsSelected = document.querySelector('.news-selected')
     const actionValue = document.querySelector('#action-select').value
 
@@ -608,6 +616,7 @@ const deleteNews = async () => {
 
 // FUNCTION THAT SEND FORM DATA
 const sendData = async (formData, method) => {
+    console.log(formData)
     const result = await fetch('/api/v1/database/noticias', {
         method: method,
         headers: {
@@ -623,12 +632,15 @@ const sendData = async (formData, method) => {
 
     const data = await result.json()
 
-    if (method === 'POST') document.querySelector('#add-form').reset()
-    if (method === 'PUT') {
+    if (method === 'POST') {
+        document.querySelector('#add-form').reset()
+        resetParagraphs('add')
+    } else if (method === 'PUT') {
         document.querySelector('#update-form').reset()
-        resetUpdateParagraphs()
+        resetParagraphs('update')
         document.querySelector('#action-select').value = 'put'
     }
+
     setNewsOnUpdelPreview()
     showsStatusMessage({ ok: true, message: data.message })
 }
@@ -662,7 +674,8 @@ const submitForm = (e, form, method) => {
             texto: ``
         }
 
-        const updateTextareas = Array.from(elements.add.pTextareas)
+        const updateTextareas = Array.from(elements.update.pTextareas)
+        console.log(updateTextareas)
         const pUpdateLength = updateTextareas.length
     
         for (let i = 0; i < pUpdateLength; i++) {
@@ -671,6 +684,13 @@ const submitForm = (e, form, method) => {
         }
 
         currentData = newsUpdateStateManager.getNewsState(paramGetNewsState)
+        
+        for (key in currentData.newData) {
+            if (currentData.newData[key] === undefined) {
+                delete currentData.newData[key]
+            }
+        }
+
         currentData.searchData = {
             id: parseInt(document.querySelector('.news-selected').id.split('-')[1])
         }
@@ -697,6 +717,10 @@ const submitForm = (e, form, method) => {
             const pText = addTextareas[i].value
             formData.texto += `${pText}[PARAGRAFO]`
         }
+    }
+
+    if (method === 'PUT' && Object.keys(formData.newData).length === 0) {
+        return showsStatusMessage({ ok: false, message: 'Não há nenhuma alteração a ser enviada' })
     }
 
     sendData(formData, method)
@@ -839,11 +863,29 @@ const setNewsOnUpdelPreview = async () => {
     setLoadingAnimation(true)
     const updelContainer = document.querySelector('#parent-news-container')
     const news = await getNews()
+    console.log(news)
     setLoadingAnimation(false)
     updelContainer.innerHTML = ''
     news.forEach(newsInfo => {
         updelContainer.appendChild(createNewsUpdelContainer(newsInfo))
     })
+}
+
+const changeCurrentMode = (e) => {
+    const elements = getElements().update
+    const external = e.target.value
+
+    const container = document.querySelector('#local-update-options-container')
+
+    if (external === 'n') {
+        container.classList.remove('hidden')
+    } else if (external === 'y') {
+        elements.subtitleInput.value = ''
+        elements.newscasterInput.value = ''
+        elements.fromInput.value = ''
+        elements.pTextareas[0].value = ''
+        resetParagraphs('update')
+    }
 }
 
 // FUNCTION THAT SET EVENTS
@@ -874,9 +916,25 @@ const setEvents = () => {
     // REFRESH NEWS EVENTS
     elements.update.refreshNewsButton.addEventListener('click', setNewsOnUpdelPreview)
 
-    // ADD ADN REMOVE PARAGRAPHS EVENTS
-    elements.add.addParagraphsButton.addEventListener('click', addNewParagraph)
-    elements.add.removeParagraphsButton.addEventListener('click', removeParagraph)
+    // ADD AND REMOVE PARAGRAPHS EVENTS
+    elements.add.addParagraphsButton.addEventListener('click', () => {
+        addNewParagraph('add')
+    })
+
+    elements.add.removeParagraphsButton.addEventListener('click', () => {
+        removeParagraph('add')
+    })
+
+    elements.update.addParagraphsButton.addEventListener('click', () => {
+        addNewParagraph('update')
+    })
+
+    elements.update.removeParagraphsButton.addEventListener('click', () => {
+        removeParagraph('update')
+    })
+
+    // CHANGE CHANGE CURRENT MODE [UPDATE | DELETE]
+    elements.update.externalSelect.addEventListener('change', changeCurrentMode)
 
     // FORM EVENTS
     const addForm = document.querySelector('#add-form')

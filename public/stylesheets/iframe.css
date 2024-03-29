@@ -55,7 +55,6 @@ h2 {
 
 .text-container p {
     font: normal 1em var(--main-font);
-    text-align: justify;
     line-height: 1.5em;
     hyphens: auto;
     margin: 15px 0;
