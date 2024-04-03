@@ -67,7 +67,7 @@ const newsUpdateState = () => {
         let changedState = { newData: {} }
         for (let key in currentState) {
             if (currentState[key] !== savedState[key]) {
-                changedState.newData[key] = currentState[key] !== '' && currentState[key] !== '[PARAGRAFO]' ? currentState[key] : undefined
+                changedState.newData[key] = currentState[key]
             }
         }
         return changedState
@@ -75,7 +75,7 @@ const newsUpdateState = () => {
 
     const setNewsState = (currentState) => {
         for (let key in currentState) {
-            savedState[key] = currentState[key] !== '' && currentState[key] !== '[PARAGRAFO]' ? currentState[key] : undefined
+            savedState[key] = currentState[key] !== undefined ? currentState[key] : ''
         }
     }
 
@@ -365,6 +365,7 @@ const updateMode = (newsSelected) => {
     const newsNewscaster = document.querySelector(`#newscaster-preview-${newsId}`) || ''
     const newsFrom = document.querySelector(`#from-preview-${newsId}`) || ''
     const newsText = document.querySelector(`#text-preview-${newsId}`) || ''
+    const newsExterna = document.querySelector(`#externa-preview-${newsId}`) || ''
 
     elements.titleInput.value = newsTitle
     elements.imageInput.value = newsImage
@@ -372,8 +373,7 @@ const updateMode = (newsSelected) => {
     elements.dayInput.value = newsDay
     elements.monthSelect.value = newsMonth
     elements.yearInput.value = newsYear
-
-    newsLink.length > 0 ? elements.externalSelect.value = 'y' : elements.externalSelect.value = 'n'
+    elements.externalSelect.value = newsExterna.innerText
     
     const localUpdateOptions = document.querySelector('#local-update-options-container')
 
@@ -450,7 +450,6 @@ const setCurrentMode = (e) => {
 }
 
 const selectNews = (container)  => {
-    console.log(container)
     const newsSelected = document.querySelector('.news-selected')
     const actionValue = document.querySelector('#action-select').value
 
@@ -616,7 +615,6 @@ const deleteNews = async () => {
 
 // FUNCTION THAT SEND FORM DATA
 const sendData = async (formData, method) => {
-    console.log(formData)
     const result = await fetch('/api/v1/database/noticias', {
         method: method,
         headers: {
@@ -646,6 +644,56 @@ const sendData = async (formData, method) => {
 }
 
 // FUNCTION THAT SUBMIT THE FORM
+const constructFormDataForPost = (form, date, elements) => {
+    const formData = {
+        id: '',
+        titulo: form.title.value,
+        data: date,
+        imagem: form.image.value,
+        link: form.link.value,
+        externa: form.external.value,
+        subtitulo: form.subtitle.value,
+        jornalista: form.newscasters.value,
+        fonte: form.from.value,
+        texto: ''
+    }
+
+    const addTextareas = Array.from(elements.add.pTextareas)
+    for (let i = 0; i < addTextareas.length; i++) {
+        const pText = addTextareas[i].value
+        formData.texto += `${pText}[PARAGRAFO]`
+    }
+
+    return formData
+}
+
+const constructFormDataForPut = (form, date, elements) => {
+    const getNewsStateParam = {
+        titulo: form.title.value,
+        data: date,
+        imagem: form.image.value,
+        link: form.link.value,
+        externa: form.external.value,
+        subtitulo: form.subtitle.value,
+        jornalista: form.newscasters.value,
+        fonte: form.from.value,
+        texto: ''
+    }
+
+    const updateTextareas = Array.from(elements.update.pTextareas)
+
+    for (let i = 0; i < updateTextareas.length; i++) {
+        const pText = updateTextareas[i].value
+        if (pText === '') break
+        getNewsStateParam.texto += `${pText}[PARAGRAFO]`
+    }
+
+    const formData = newsUpdateStateManager.getNewsState(getNewsStateParam)
+    formData.searchData = { id: parseInt(document.querySelector('.news-selected').id.split('-')[1]) }
+
+    return formData
+}
+
 const submitForm = (e, form, method) => {
     e.preventDefault()
 
@@ -658,65 +706,12 @@ const submitForm = (e, form, method) => {
     }
 
     const date = `${formatNumber(form.day.value)} ${form.month.value} ${form.year.value}`
-
-    let currentData
-
-    if (method === 'PUT') {
-        const paramGetNewsState = {
-            titulo: form.title.value,
-            data: date,
-            imagem: form.image.value, 
-            link: form.link.value, 
-            externa: form.external.value,
-            subtitulo: form.subtitle.value,
-            jornalista: form.newscasters.value,
-            fonte: form.from.value,
-            texto: ``
-        }
-
-        const updateTextareas = Array.from(elements.update.pTextareas)
-        console.log(updateTextareas)
-        const pUpdateLength = updateTextareas.length
-    
-        for (let i = 0; i < pUpdateLength; i++) {
-            const pText = updateTextareas[i].value
-            paramGetNewsState.texto += `${pText}[PARAGRAFO]`
-        }
-
-        currentData = newsUpdateStateManager.getNewsState(paramGetNewsState)
-        
-        for (key in currentData.newData) {
-            if (currentData.newData[key] === undefined) {
-                delete currentData.newData[key]
-            }
-        }
-
-        currentData.searchData = {
-            id: parseInt(document.querySelector('.news-selected').id.split('-')[1])
-        }
-    }
-
-    const formData = method === 'POST' ? {
-        id: '',
-        titulo: form.title.value,
-        data: date,
-        imagem: form.image.value,
-        link: form.link.value,
-        externa: form.external.value,
-        subtitulo: form.subtitle.value,
-        jornalista: form.newscasters.value,
-        fonte: form.from.value,
-        texto: ``
-    } : currentData
+    let formData = {}
 
     if (method === 'POST') {
-        const addTextareas = Array.from(elements.add.pTextareas)
-        const pAddLength = addTextareas.length
-
-        for (let i = 0; i < pAddLength; i++) {
-            const pText = addTextareas[i].value
-            formData.texto += `${pText}[PARAGRAFO]`
-        }
+        formData = constructFormDataForPost(form, date, elements)
+    } else if (method === 'PUT') {
+        formData = constructFormDataForPut(form, date, elements)
     }
 
     if (method === 'PUT' && Object.keys(formData.newData).length === 0) {
@@ -727,7 +722,16 @@ const submitForm = (e, form, method) => {
 }
 
 // DOM MANIPULATION
-const createLinkNews = ({link, id}) => {
+const createNewsExternal = ({external, id}) => {
+    const pExterna = document.createElement('p')
+    pExterna.innerText = external
+    pExterna.id = `externa-preview-${id}`
+
+    return pExterna
+}
+
+
+const createNewsLink = ({link, id}) => {
     const pLink = document.createElement('p')
     pLink.innerText = link
     pLink.id = `link-preview-${id}`
@@ -736,7 +740,7 @@ const createLinkNews = ({link, id}) => {
     return pLink
 }
 
-const createTitleNews = (title, id) => {
+const createNewsTitle = (title, id) => {
     const titleContainer = document.createElement('section')
     titleContainer.classList.add('title-news-updel-container')
 
@@ -749,7 +753,7 @@ const createTitleNews = (title, id) => {
     return titleContainer
 }
 
-const createDateNews = (date, id) => {
+const createNewsDate = (date, id) => {
     const dateContainer = document.createElement('section')
     dateContainer.classList.add('date-news-updel-container')
 
@@ -762,17 +766,17 @@ const createDateNews = (date, id) => {
     return dateContainer
 }
 
-const createInfoNews = ({title, date, id}) => {
+const createNewsInfo = ({title, date, id}) => {
     const infoContainer = document.createElement('section')
     infoContainer.classList.add('info-news-updel-container')
 
-    infoContainer.appendChild(createDateNews(date, id))
-    infoContainer.appendChild(createTitleNews(title, id))
+    infoContainer.appendChild(createNewsDate(date, id))
+    infoContainer.appendChild(createNewsTitle(title, id))
 
     return infoContainer
 }
 
-const createImageNews = ({image, id}) => {
+const createNewsImage = ({image, id}) => {
     const imageContainer = document.createElement('section')
     imageContainer.classList.add('image-news-updel-container')
 
@@ -819,9 +823,10 @@ const createNewsUpdelContainer = (news) => {
     container.classList.add('news-updel-container')
     container.id = `news-${news.id}`
 
-    container.appendChild(createImageNews({ image: news.imagem, id: news.id }))
-    container.appendChild(createInfoNews({ title: news.titulo, date: news.data, id: news.id }))
-    container.appendChild(createLinkNews({ link: news.link, id: news.id }))
+    container.appendChild(createNewsImage({ image: news.imagem, id: news.id }))
+    container.appendChild(createNewsInfo({ title: news.titulo, date: news.data, id: news.id }))
+    container.appendChild(createNewsLink({ link: news.link, id: news.id }))
+    container.appendChild(createNewsExternal({ external: news.externa, id: news.id }))
 
     if (news.externa === 'n') {
         container.appendChild(createHiddenInfoNews({ 
@@ -863,7 +868,6 @@ const setNewsOnUpdelPreview = async () => {
     setLoadingAnimation(true)
     const updelContainer = document.querySelector('#parent-news-container')
     const news = await getNews()
-    console.log(news)
     setLoadingAnimation(false)
     updelContainer.innerHTML = ''
     news.forEach(newsInfo => {
