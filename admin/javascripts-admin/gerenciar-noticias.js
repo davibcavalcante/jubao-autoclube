@@ -726,6 +726,7 @@ const createNewsExternal = ({external, id}) => {
     const pExterna = document.createElement('p')
     pExterna.innerText = external
     pExterna.id = `externa-preview-${id}`
+    pExterna.classList.add('hidden')
 
     return pExterna
 }
