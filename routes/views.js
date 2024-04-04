@@ -1,10 +1,12 @@
+// VIEWS ROUTES
 const express = require('express');
-const albumDataMiddlewares = require('../api/v1/middlewares/fotos')
-const rallyJubaoData = require('../api/v1/middlewares/dados-rally-jubao')
+
+const albumDataMiddlewares = require('../api/v1/middlewares/fotos');
+const rallyJubaoData = require('../api/v1/middlewares/dados-rally-jubao');
 
 const router = express.Router();
 
-/* GET users listing. */
+// REGISTRATION ROUTES
 router.get('/inscricao', (req, res, next) => {
   res.render("inscricao");
 });
@@ -21,43 +23,49 @@ router.get('/inscricao/:name', (req, res, next) => {
   }
 });
 
+// NEWS PORTAL ROUTES
 router.get('/portal-noticias', (req, res, next) => {
-  res.render('portal-noticias')
+  res.render('portal-noticias');
 })
 
+// ALBUMS ROUTES
 router.get('/albums', (req, res, next) => {
   res.render('albums');
 });
 
+// PHOTOS ROUTES
 router.get('/fotos/:year', (req, res, next) => {
   const albumOfYear = albumDataMiddlewares.getYear(req);
   res.render('fotos', { albumOfYear });
 });
 
+// CALENDAR ROUTES
 router.get('/calendario', (req, res, next) => {
   res.render('calendario')
 })
 
+// ABOUT US ROUTES
 router.get('/quem-somos', (req, res, next) => {
   res.render('quem-somos');
 });
 
+// TERMS ROUTES
 router.get('/termos', (req, res, next) => {
   res.render('termos');
 });
 
+// PRIVATE POLICY ROUTES
 router.get('/politica-privacidade', (req, res, next) => {
   res.render('politica-privacidade');
 });
 
-/* rota para criação/renovação do certificado
- *
-router.get('/.well-known/acme-challenge/EQz--x1I5SNkAGASOy4zZ-GBLhdQoH-JTkh2gKrpgX4', (req, res)=> {
-	res.status(200).send('EQz--x1I5SNkAGASOy4zZ-GBLhdQoH-JTkh2gKrpgX4.zq5Qx_7HaUo9hdCssqoT3BFqOKJhSu5j17lvkyH_fz8');
-})
+// LOGIN
+router.get('/login', (req, res, next) => {
+  res.set('Cache-Control', 'no-cache')
+  res.render('login');
+});
 
-*/
-
+// ROUTE OF INDEX
 router.get('/', (req, res, next) => {
   res.render('index', {
     cup: '6° RALLY DA APAE', 

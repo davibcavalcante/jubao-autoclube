@@ -1,3 +1,4 @@
+// FUNCTION THAT DEFINES MENU EVENTS
 const initMenuElements = () => {
     const button = document.querySelector('.menu-hamburguer')
     const menu = document.querySelector('.pages-list')
@@ -7,4 +8,7 @@ const initMenuElements = () => {
     })
 }
 
-initMenuElements()
+// CODE INICIALIZATION EVENT
+window.addEventListener('load', () => {
+    initMenuElements()
+})

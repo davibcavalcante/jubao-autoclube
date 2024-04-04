@@ -1,3 +1,4 @@
+// FUNCTION THAT DEFINES MORE INFORMATIONS EVENTS
 const initInfoElements = () => {
     const infoButton = document.querySelector('#info-btn')
     const moreInfo = document.querySelector('.more-info')
@@ -8,4 +9,7 @@ const initInfoElements = () => {
     })
 }
 
-initInfoElements()
+// CODE INICIALIZATION EVENT
+window.addEventListener('load', () => {
+    initInfoElements()
+})

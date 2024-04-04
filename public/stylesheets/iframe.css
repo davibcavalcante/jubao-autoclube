@@ -55,7 +55,6 @@ h2 {
 
 .text-container p {
     font: normal 1em var(--main-font);
-    text-align: justify;
     line-height: 1.5em;
     hyphens: auto;
     margin: 15px 0;
@@ -66,7 +65,7 @@ h2 {
 }
 
 .credits-container p {
-    font: italic normal .8em var(--main-font);
+    font: italic normal 1em var(--main-font);
     margin: 15px 0;
 }
 
@@ -109,7 +108,7 @@ h2 {
 
     .image-container p {
         display: block;
-        font: italic normal .8em var(--main-font);
+        font: italic normal 1em var(--main-font);
         margin: 15px 0;
     }
 

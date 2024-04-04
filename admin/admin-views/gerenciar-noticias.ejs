@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Somos o JubaoFe. Nós organizamos, informamos e apoiamos o crescimento do Rally, principalmente em Goiânia e região. Em nosso site temos inscrições para nosso rallys, galeria de fotos, notícias atualizadas, calendário geral com datas de diversos eventos no ano. Além de promovermos o PoeiraCast nosso podcast sobre esse esporte maravilhoso no Youtube">
+    <meta name="keywords" content="Rally, Rally do jubão, Inscrições Rallys, Calendário Rallys, Fotos Rallys">
+
+    <script src="https://kit.fontawesome.com/3954e72066.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="/imagens/desktop/favicon.ico" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets-admin/gerenciar-noticias.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+
+    <title>Rally do JubãoFe | Atualização de Notícias</title>
+</head>
+<body>
+    <header>
+        <section class="mobile-header">
+            <img src="/imagens/mobile/menu-hamburguer.png" alt="Ícone Menu Hamburguer" class="menu-hamburguer">
+            <a href="/">
+                <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube" class="logo-jubao">
+            </a>
+        </section>
+        <nav>
+            <section class="desktop-logo-container">
+                <a href="/" rel="prev" target="_self">
+                    <img src="/imagens/desktop/jubao-logo.png" alt="Logo JubãoFe Autoclube">
+                </a>
+            </section>
+            <ul class="pages-list">
+                <li>
+                    <a href="/inscricao" rel="next" target="_self">Inscrições</a>
+                </li>
+                <li>
+                    <a href="/portal-noticias" id="link-news">Notícias</a>
+                </li>
+                <li>
+                    <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
+                </li>
+                <li>
+                    <a href="/calendario" rel="next" target="_self">Calendário</a>
+                </li>
+                <li>
+                    <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
+                </li>
+                <section class="associations-container">
+                    <img src="/imagens/mobile/faugo-logo.png" alt="Logo da FAUGO" class="logo-faugo">
+                    <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube" class="logo-jubao">
+                    <img src="/imagens/mobile/cba.png" alt="Logo da CBA" class="logo-cba">
+                </section>
+            </ul>
+            <ul class="social-list">
+                <li>
+                    <a href="https://www.instagram.com/rallydojubao/" rel="external" target="_blank">
+                        <img src="/imagens/desktop/instagram-logo.png" alt="Logo dos Instagram">
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:jubaofe@gmail.com" rel="external" target="_blank">
+                        <img src="/imagens/desktop/email-logo.png" alt="Logo do Email">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/@JubaoFe" rel="external" target="_blank">
+                        <img src="/imagens/desktop/youtube-logo.png" alt="Logo do Youtube">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="message-container hidden" id="message-wrapper">
+        <section class="icon-container">
+            <img src="" id="icon-img">
+        </section>
+        <section class="status-container">
+            <p id="status-msg"></p>
+        </section>
+        <section class="button-msg-container">
+            <a href="#" rel="prev" target="_self" id="link-msg"></a>
+        </section>
+    </section>
+    
+    <main>
+        <section class="add-news-container">
+            <section class="wrapper add-form" id="form-add-wrapper">
+                <section class="title-container">
+                    <h1>Adicionar Nova Notícia</h1>
+                    <h2>Lembre-se de conferir como ficará a notícia na pré-visualização</h2>
+                </section>
+                <section class="form-add-container">
+                    <form id="add-form" autocomplete="off">
+                        <section class="image-form-container section-form-container">
+                            <section class="input-container">
+                                <label for="image-add-input">Imagem:</label>
+                                <section class="flex-input-container">
+                                    <input type="text" name="image" id="image-add-input" placeholder="Digite o link da imagem da notícia" required>
+                                    <button id="image-add-check-btn" type="button"><i class="fa-solid fa-check"></i></button>
+                                </section>
+                            </section>
+                        </section>
+                        
+                        <section class="title-form-container section-form-container">
+                            <section class="input-container">
+                                <label for="title-add-input">Titulo:</label>
+                                <input type="text" name="title" id="title-add-input" placeholder="Digite o título da notícia" required>
+                            </section>
+                        </section>
+
+                        <section class="link-form-container section-form-container">
+                            <section class="input-container">
+                                <label for="link-add-input">Link:</label>
+                                <input type="text" name="link" id="link-add-input" placeholder="Digite o link da notícia">
+                            </section>
+                        </section>
+
+                        <section class="date-form-container section-form-container">
+                            <h1>Data:</h1>
+                            <section class="containers">
+                                <section class="input-container day">
+                                    <section class="day-container">
+                                        <label for="day-add-input">Dia:</label>
+                                        <input type="text" name="day" id="day-add-input" placeholder="DD" maxlength="2" required>
+                                    </section>
+                                </section>
+                                <section class="input-container month">
+                                    <section class="month-container">
+                                        <label for="month-add-select">Mês</label>
+                                        <select name="month" id="month-add-select">
+                                            <option hidden selected disabled value="">SELECIONE</option>
+                                            <option value="Janeiro">JANEIRO</option>
+                                            <option value="Fevereiro">FEVEREIRO</option>
+                                            <option value="Março">MARÇO</option>
+                                            <option value="Abril">ABRIL</option>
+                                            <option value="Maio">MAIO</option>
+                                            <option value="Junho">JUNHO</option>
+                                            <option value="Julho">JULHO</option>
+                                            <option value="Agosto">AGOSTO</option>
+                                            <option value="Setembro">SETEMBRO</option>
+                                            <option value="Outubro">OUTUBRO</option>
+                                            <option value="Novembro">NOVEMBRO</option>
+                                            <option value="Dezembro">DEZEMBRO</option>
+                                        </select>
+                                    </section>
+                                </section>
+                                <section class="input-container year">
+                                    <section class="year-container">
+                                        <label for="year-add-input">Ano:</label>
+                                        <input type="text" name="year" id="year-add-input" placeholder="AAAA" maxlength="4" required>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+
+                        <section class="external-form-container section-form-container">
+                            <section class="input-container">
+                                <label for="external-add-select">Fonte externa:</label>
+                                <select name="external" id="external-add-select">
+                                    <option hidden selected disabled value="">SELECIONE</option>
+                                    <option value="y">SIM</option>
+                                    <option value="n">NÃO</option>
+                                </select>
+                            </section>
+                        </section>
+                        
+                        <section id="local-add-options-container" class="hidden">
+                            <section class="subtitle-form-container section-form-container">
+                                <section class="input-container">
+                                    <label for="subtitle-add-input">Subtitulo:</label>
+                                    <input type="text" name="subtitle" id="subtitle-add-input" placeholder="Digite o subtítulo da notícia">
+                                </section>
+                            </section>
+    
+                            <section class="newscaster-form-container section-form-container">
+                                <section class="input-container">
+                                    <label for="newscasters-add-input">Noticiadores:</label>
+                                    <input type="text" name="newscasters" id="newscaster-add-input" placeholder="Digite os noticiadores da notícia">
+                                </section>
+                            </section>
+    
+                            <section class="from-form-container section-form-container">
+                                <section class="input-container">
+                                    <label for="from-add-input">Fonte:</label>
+                                    <input type="text" name="from" id="from-add-input" placeholder="Digite a fonte da notícia">
+                                </section>
+                            </section>
+    
+                            <section class="text-form-container section-form-container" id="text-form-add-container">
+                                <h1>Texto:</h1>
+                                <section class="input-container">
+                                    <label for="text1-add-textarea">Parágrafo 1:</label>
+                                    <textarea name="text1" id="text1-add-textarea" cols="30" rows="10" placeholder="O seu parágrafo aqui" class="p-textarea"></textarea>
+                                </section>
+    
+                                <section class="controllers-btn-container">
+                                    <button type="button" id="add-paragraphs-btn">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                    <button type="button" id="remove-paragraphs-btn">
+                                        <i class="fa-solid fa-minus"></i>
+                                    </button>
+                                </section>
+                            </section>
+                        </section>
+
+                        <section class="buttons-form-container section-form-container">
+                            <button type="submit" class="submit-btn">Enviar</button>
+                            <button type="reset" class="reset-btn">Limpar</button>
+                        </section>
+                    </form>
+                </section>
+            </section>
+
+            <section class="wrapper add-preview" id="preview-add-wrapper">
+                <section class="preview-title-add-container">
+                    <h1>Pré visualização</h1>
+                </section>
+                <section class="news-add-container">
+                    <section class="image-news-add-container">
+                        <img src="/imagens/mobile/imagem-noticias-default.png" id="image-add-preview">
+                    </section>
+                    <section class="info-news-add-container">
+                        <section class="date-news-add-container">
+                            <p id="date-add-preview"><i class="fa-regular fa-clock"></i> 20 DEZEMBRO 2024</p>
+                        </section>
+                        <section class="title-news-add-container">
+                            <h1 id="title-add-preview">Seu título aqui</h1>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+
+        <section class="updel-news-container">
+            <section class="wrapper" id="updel-form-wrapper">
+                <section class="title-container">
+                    <h1>Atualizar ou Remover Notícias</h1>
+                    <h2>Tome cuidado ao atualizar ou remover uma notícia!</h2>
+                </section>
+                <section class="form-update-container">
+                    <form id="update-form" autocomplete="off">
+                        <section class="action-form-container">
+                            <section class="input-container">
+                                <label for="action-select">O que deseja fazer:</label>
+                                <select name="action" id="action-select">
+                                    <option hidden selected disabled value="">SELECIONE</option>
+                                    <option value="put">ATUALIZAR</option>
+                                    <option value="delete">REMOVER</option>
+                                </select>
+                            </section>
+                        </section>
+                        <section class="update-informations-container hidden">
+                            <section class="title-form-container section-form-container">
+                                <section class="input-container">
+                                    <label for="title-update-input">Titulo:</label>
+                                    <input type="text" name="title" id="title-update-input" placeholder="Digite o título da notícia" required>
+                                </section>
+                            </section>
+    
+                            <section class="image-form-container section-form-container">
+                                <section class="input-container">
+                                    <label for="image-update-input">Imagem:</label>
+                                    <section class="flex-input-container">
+                                        <input type="text" name="image" id="image-update-input" placeholder="Digite o link da imagem da notícia" required>
+                                        <button id="image-update-check-btn" type="button"><i class="fa-solid fa-check"></i></button>
+                                    </section>
+                                </section>
+                            </section>
+    
+                            <section class="link-form-container section-form-container">
+                                <section class="input-container">
+                                    <label for="link-update-input">Link:</label>
+                                    <input type="text" name="link" id="link-update-input" placeholder="Digite o link da notícia">
+                                </section>
+                            </section>
+    
+                            <section class="date-form-container section-form-container">
+                                <h1>Data:</h1>
+                                <section class="containers">
+                                    <section class="input-container day">
+                                        <section class="day-container">
+                                            <label for="day-update-input">Dia:</label>
+                                            <input type="text" name="day" id="day-update-input" placeholder="DD" maxlength="2" required>
+                                        </section>
+                                    </section>
+                                    <section class="input-container month">
+                                        <section class="month-container">
+                                            <label for="month-update-select">Mês</label>
+                                            <select name="month" id="month-update-select">
+                                                <option hidden selected disabled value="">SELECIONE</option>
+                                                <option value="Janeiro">JANEIRO</option>
+                                                <option value="Fevereiro">FEVEREIRO</option>
+                                                <option value="Março">MARÇO</option>
+                                                <option value="Abril">ABRIL</option>
+                                                <option value="Maio">MAIO</option>
+                                                <option value="Junho">JUNHO</option>
+                                                <option value="Julho">JULHO</option>
+                                                <option value="Agosto">AGOSTO</option>
+                                                <option value="Setembro">SETEMBRO</option>
+                                                <option value="Outubro">OUTUBRO</option>
+                                                <option value="Novembro">NOVEMBRO</option>
+                                                <option value="Dezembro">DEZEMBRO</option>
+                                            </select>
+                                        </section>
+                                    </section>
+                                    <section class="input-container year">
+                                        <section class="year-container">
+                                            <label for="year-update-input">Ano:</label>
+                                            <input type="text" name="year" id="year-update-input" placeholder="AAAA" maxlength="4" required>
+                                        </section>
+                                    </section>
+                                </section>
+                            </section>
+    
+                            <section class="external-form-container section-form-container">
+                                <section class="input-container">
+                                    <label for="external-update-select">Fonte externa:</label>
+                                    <select name="external" id="external-update-select">
+                                        <option hidden selected disabled value="">SELECIONE</option>
+                                        <option value="y">SIM</option>
+                                        <option value="n">NÃO</option>
+                                    </select>
+                                </section>
+                            </section>
+
+                            <section id="local-update-options-container" class="hidden">
+                                <section class="subtitle-form-container section-form-container">
+                                    <section class="input-container">
+                                        <label for="subtitle-update-input">Subtitulo:</label>
+                                        <input type="text" name="subtitle" id="subtitle-update-input" placeholder="Digite o subtítulo da notícia">
+                                    </section>
+                                </section>
+        
+                                <section class="newscaster-form-container section-form-container">
+                                    <section class="input-container">
+                                        <label for="newscasters-update-input">Noticiadores:</label>
+                                        <input type="text" name="newscasters" id="newscaster-update-input" placeholder="Digite os noticiadores da notícia">
+                                    </section>
+                                </section>
+        
+                                <section class="from-form-container section-form-container">
+                                    <section class="input-container">
+                                        <label for="from-update-input">Fonte:</label>
+                                        <input type="text" name="from" id="from-update-input" placeholder="Digite a fonte da notícia">
+                                    </section>
+                                </section>
+        
+                                <section class="text-form-container section-form-container" id="text-form-update-container">
+                                    <h1>Texto:</h1>
+                                    <section class="input-container">
+                                        <label for="text1-update-textarea">Parágrafo 1:</label>
+                                        <textarea name="text1" id="text1-update-textarea" cols="30" rows="10" placeholder="O seu parágrafo aqui" class="p-update-textarea"></textarea>
+                                    </section>
+        
+                                    <section class="controllers-btn-container">
+                                        <button type="button" id="add-up-paragraphs-btn">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </button>
+                                        <button type="button" id="remove-up-paragraphs-btn">
+                                            <i class="fa-solid fa-minus"></i>
+                                        </button>
+                                    </section>
+                                </section>
+                            </section>
+    
+                            <section class="buttons-form-container section-form-container">
+                                <button type="submit" class="submit-btn">Atualizar</button>
+                            </section>
+                        </section>
+                    </form>
+                </section>
+
+                <section class="delete-informations-container hidden">
+                    <section class="news-selected-container">
+                        <section class="image-news-selected-container">
+                            <img src="" id="image-selected-preview">
+                        </section>
+                        <section class="info-news-selected-container">
+                            <section class="date-news-selected-container">
+                                <p id="date-selected-preview"></p>
+                            </section>
+                            <section class="title-news-selected-container">
+                                <h1 id="title-selected-preview"></h1>
+                            </section>
+                        </section>
+                    </section>
+                    <section class="instruction-container">
+                        <p>
+                            Para remover a notícia é necessário digitar: <br> "<strong>REMOVER NOTÍCIA</strong>" <br> no campo abaixo
+                        </p>
+                    </section>
+                    <section class="buttons-form-container section-form-container">
+                        <input type="text" id="confirm-input" placeholder="REMOVER NOTÍCIA" autocomplete="off">
+                        <button id="delete-news-btn" class="submit-btn">Remover</button>
+                    </section>
+                </section>
+            </section>
+
+            <section class="wrapper updel-preview" id="preview-updel-wrapper">
+                <section class="preview-title-updel-container">
+                    <h1>Pré visualização</h1>
+                    <button id="refresh-news-btn"><i class="fa-solid fa-refresh"></i></button>
+                </section>
+                <section id="parent-news-container">
+
+                </section>
+            </section>
+            
+        </section>
+    </main>
+
+    <footer>
+        <section class="desktop-footer">
+            <section class="logo-container">
+                <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube">
+            </section>
+            <section class="contact-footer-container">
+                <h1>INFORMAÇÕES DE CONTATO:</h1>
+                <section class="info-contato">
+                    <p>
+                        TELEFONE: (62) 9 9133-6479 <br>
+                        CONTATO: jubaofe@gmail.com <br>
+                        INSTAGRAM: @rallydojubao
+                    </p>
+                </section>
+            </section>
+            <section class="mobile-terms-container">
+                <h1>Termos de Uso e Política de privacidade</h1>
+                <ul>
+                    <li>
+                        <a href="/termos" rel="next" target="_self">Termos de Uso</a>
+                    </li>
+                    <li>
+                        <a href="/politica-privacidade" rel="next" target="_self">Política de privacidade</a>
+                    </li>
+                    <li>
+                        <a href="#">Administração</a>
+                    </li>
+                </ul>
+            </section>
+            <section class="accesses-footer-container">
+                <h1>OUTROS ACESSOS:</h1>
+                <ul>
+                    <li>
+                        <a href="/inscricao" rel="next" target="_self">Inscrições</a>
+                    </li>
+                    <li>
+                        <a href="/portal-noticias" rel="next" target="_self">Notícias</a>
+                    </li>
+                    <li>
+                        <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
+                    </li>
+                    <li>
+                        <a href="/calendario" rel="next" target="_self">Calendário</a>
+                    </li>
+                    <li>
+                        <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
+                    </li>
+                    <li>
+                        <a href="/termos" rel="next" target="_self">Termos de uso</a>
+                    </li>
+                    <li>
+                        <a href="/politica-privacidade" rel="next" target="_self">Política de privacidade</a>
+                    </li>
+                    <li>
+                        <a href="#">Administração</a>
+                    </li>
+                </ul>
+            </section>
+            <section class="social-footer-container">
+                <h1>SIGA NOS:</h1>
+                <ul>
+                    <li>
+                        <a href="https://www.youtube.com/@JubaoFe" rel="external" target="_blank">
+                            <img src="/imagens/mobile/youtube-logo.png" alt="Ícone do Youtube">
+                            <span>Youtube</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:jubaofe@gmail.com">
+                            <img src="/imagens/mobile/email-logo.png" alt="Ícone do Email">
+                            <span>jubaofe@gmail.com</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/rallydojubao/" rel="external" target="_blank">
+                            <img src="/imagens/mobile/instagram-logo.png" alt="Ícone do Instagram">
+                            <span>Instagram</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <section class="associations-footer">
+                <img src="/imagens/desktop/cba.png" alt="Logo CBA">
+                <img src="/imagens/desktop/faugo-logo.png" alt="Logo FAUGO">
+            </section>
+        </section>
+        <p class="copy">
+            &copy; JubãoFe Autoclube Todos os Direitos Reservados <br>
+            Desenvolvido por <a href="https://davibcavalcante.github.io/my-profile" rel="external" target="_blank">Indigital</a>
+        </p>
+    </footer>
+
+    <script src="/javascripts/menu.js"></script>
+    <script src="/javascripts-admin/gerenciar-noticias.js"></script>
+</body>
+</html>

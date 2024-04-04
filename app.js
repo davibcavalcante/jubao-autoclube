@@ -5,7 +5,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const viewsRouters = require('./routes/views');
-const apiV1Router = require('./routes/api');
+const adminViewsRouters = require('./routes/admin-views');
+const apiV1Routers = require('./routes/api');
 const config = require('./config.json');
 
 const app = express();
@@ -14,12 +15,14 @@ process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 1;
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.set('adminViews', path.join(__dirname, 'admin', 'admin-views'));
 
 app.use(logger('dev'));
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'admin')));
 
 if (config.server.useHTTPS) {
   app.use((req, res, next) => {
@@ -32,8 +35,21 @@ if (config.server.useHTTPS) {
   });
 }
 
+app.use('/admin', (req, res, next) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  app.set('views', app.get('adminViews'));
+  next();
+});
+
+app.use('/admin', adminViewsRouters);
+
+app.use((req, res, next) => {
+  app.set('views', path.join(__dirname, 'views'));
+  next();
+});
+
 app.use('/', viewsRouters);
-app.use('/api/v1', apiV1Router);
+app.use('/api/v1', apiV1Routers);
 
 if (config.certRequest.enabled) {
   app.use(config.certRequest.requestRoute, (req, res) => {
@@ -42,12 +58,12 @@ if (config.certRequest.enabled) {
 }
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

@@ -1,12 +1,14 @@
-const messageError = (method) => {
-    const showsMessageErrorContainer = document.querySelector('.message-error-container')
+// FUNCTION THAT SHOWS ERROR MESSAGE
+const errorMessage = (method) => {
+    const showsErrorMessageContainer = document.querySelector('.message-error-container')
     if (method === 'remove') {
-        showsMessageErrorContainer.classList.remove('hidden')
-    } else if (method == 'add' && showsMessageErrorContainer.classList.contains('messa-error-container')){
-        showsMessageErrorContainer.classList.add('hidden')
+        showsErrorMessageContainer.classList.remove('hidden')
+    } else if (method == 'add' && showsErrorMessageContainer.classList.contains('messa-error-container')){
+        showsErrorMessageContainer.classList.add('hidden')
     }
 }
 
+// FUNCTION THAT OPEN AND CLOSE ORGANIZATION FILTERS CONTAINER
 const openCloseOrgsFilter = (containerCaret) => {
     const viewWidth = window.innerWidth
     if (viewWidth >= 768) return
@@ -20,13 +22,14 @@ const openCloseOrgsFilter = (containerCaret) => {
     }
 }
 
+// FUNCTION THAT FILTER EVENTS
 const filterEvents = async (data, method) => {
     const results = await fetch(`/api/v1/calendario/${data}/${method}`)
 
     if (!results.ok) {
-        messageError('remove')
+        errorMessage('remove')
     } else {
-        messageError('add')
+        errorMessage('add')
     }
 
     const events = await results.json()
@@ -38,11 +41,13 @@ const filterEvents = async (data, method) => {
     }
 }
 
+// FUNCTION THAT HIDES AND SHOWS ELEMENTS
 const hiddenAndShow = (hidden, show) => {
     hidden.classList.add('hidden')
     show.classList.remove('hidden')
 }
 
+// FUNCTION THAT DEFINES THE ORGANIZATION TO BE SELECTED
 const setOrgSelected = (orgsContainer, e) => {
     const oldOrgSelected = orgsContainer.querySelector('.selected')
     if (oldOrgSelected === null && e === undefined) {
@@ -59,6 +64,7 @@ const setOrgSelected = (orgsContainer, e) => {
     }
 }
 
+// FUNCTION THAT DEFINES THE MONTH TO BE SELECTED
 const setMonthSelected = (monthsContainer, month, e) => {
     const oldMonthSelected = monthsContainer.querySelector('.selected')
     if (oldMonthSelected === null && e === undefined) {
@@ -75,6 +81,7 @@ const setMonthSelected = (monthsContainer, month, e) => {
     }
 }
 
+// FUNCTION THAT DEFINES FILTER EVENTS
 const setFilterEvents = (month) => {
     const showOrgsButton = document.querySelector('.show-mobile')
     showOrgsButton.addEventListener('click', () => {
@@ -123,8 +130,7 @@ const setFilterEvents = (month) => {
     })
 }
 
-//
-
+// FUNCTION THAT GET THE CURRENT DATE
 const getCurrentDate = () => {
     const data = new Date()
     const currentMonth = data.getMonth()
@@ -133,6 +139,7 @@ const getCurrentDate = () => {
     return { currentMonth, currentYear }
 }
 
+// FUNCTION THAT FORMATS NUMBERS
 const formatNumber = (number) => {
     if (number < 10) {
         return `0${number}`
@@ -141,6 +148,7 @@ const formatNumber = (number) => {
     }
 }
 
+// FUNCTION THAT CREATE EVENTS
 const createEvents = (arrayRallys, dayContainer, c, method) => {
     const title = document.createElement('h1')
 
@@ -168,6 +176,7 @@ const createEvents = (arrayRallys, dayContainer, c, method) => {
     return { title, subTitle, paragraph }
 }
 
+// FUNCTION THAT PLACES EVENTS IN CALENDAR
 const loopOfEvents = (rallyFilter, method) => {
     const calendar = document.querySelector('.calendar-container')
     const eventsLength = rallyFilter.length
@@ -185,15 +194,16 @@ const loopOfEvents = (rallyFilter, method) => {
     }
 }
 
+// FUNCTION THAT CREATE CALENDAR
 const createCalendar = async () => {
     const currentMonth = getCurrentDate().currentMonth + 1
     const formattedMonth = formatNumber(currentMonth)
     const results = await fetch(`/api/v1/calendario/${formattedMonth}/month`)
 
     if (!results.ok) {
-        messageError('remove')
+        errorMessage('remove')
     } else {
-        messageError('add')
+        errorMessage('add')
     }
 
     const rallyOfMonth = await results.json()
@@ -202,6 +212,7 @@ const createCalendar = async () => {
     loopOfEvents(rallyOfMonth, 'month')
 }
 
+// CODE INICIALIZATION EVENT
 window.addEventListener('load', () => {
     createCalendar()
 })

@@ -1,0 +1,414 @@
+@font-face {
+    font-family: 'IntroHead';
+    src: url(../fonts/IntroRustG-Base2Line.otf) format(opentype);
+    font-weight: normal;
+}
+
+:root {
+    --background-color: #ffe8c6;
+    --main-color: #f25c05;
+    --main-color-low-fade: #f25c055b;
+    --main-color-high-fade: #f25c05c9;
+
+    --alternative-color: #140703;
+    --dull-color: #ffe8c6be;
+
+    --main-font: 'Montserrat', sans-serif;
+    --alternative-font: 'Poppins', sans-serif;
+    --title-font: 'IntroHead', sans-serif;
+}
+
+/* CONFIGURAÇÕES GERAIS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none !important;
+}
+
+body {
+    background: var(--background-color) url(../imagens/mobile/pattern-bg.jpg) no-repeat fixed center center;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+}
+
+body.opacity main:not(section.message-container, section.icon-container, section.button-msg-container) {
+    filter: brightness(.1) blur(1px);
+}
+
+main {
+    flex: 1;
+    background-color: var(--dull-color);
+    height: auto;
+    min-height: calc(100vh - 94px);
+}
+
+button {
+    transition: .3s;
+}
+
+button:active {
+    transform: scale(.9);
+}
+
+.news-selected {
+    filter: brightness(1.2) contrast(1.1);
+    border: 8px solid var(--main-color);
+}
+
+.message-container {
+    background-color: white;
+    width: calc(100% - 20px);
+    max-width: 600px;
+
+    border-radius: 8px;
+    box-shadow: 8px 12px 8px rgba(0, 0, 0, 0.1);
+
+    padding: 20px;
+    margin: 20px auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+.icon-container img {
+    display: block;
+    width: 70px;
+    margin: auto;
+}
+
+.status-container  p {
+    color: var(--main-color);
+    font: 500 1.2em var(--main-font);
+    text-align: center;
+}
+
+.button-msg-container {
+    width: 100%;
+}
+
+.button-msg-container a {
+    color: white;
+    font: 600 1.2em var(--alternative-font);
+    text-decoration: none;
+    text-align: center;
+    background-color: var(--main-color);
+
+    padding: 5px 0;
+    border: none;
+
+    box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.2);
+
+    display: block;
+    margin: auto;
+    width: 70%;
+}
+
+.wrapper {
+    background-color: white;
+    
+    border-radius: 8px;
+    box-shadow: 4px 8px 8px rgba(0, 0, 0, 0.1);
+
+    width: calc(100% - 20px);
+    max-width: 600px;
+
+    margin: 20px auto 0 auto;
+    padding: 20px 10px;
+}
+
+.add-form {
+    order: 2;
+}
+
+.add-preview {
+    order: 1;
+}
+
+.add-news-container, .updel-news-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.title-container {
+    margin-bottom: 30px;
+}
+
+.title-container h1, .preview-title-add-container h1, .preview-title-updel-container h1 {
+    color: var(--main-color);
+    font: normal 2em var(--alternative-font);
+    text-align: center;
+}
+
+.title-container h2 {
+    font: normal 1.2em var(--alternative-font);
+    text-align: center;
+}
+
+.section-form-container {
+    margin: 20px 0;
+}
+
+.input-container label {
+    font: normal 1.2em var(--main-font);
+
+    margin-bottom: 8px;
+    display: block;
+}
+
+.input-container input, .input-container textarea {
+    font-size: 1em;
+    border: 2px solid var(--alternative-color);
+    width: 100%;
+    padding: 10px;
+}
+
+.flex-input-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.flex-input-container button {
+    color: var(--main-color);
+    background-color: white;
+    font: normal 1em var(--main-font);
+
+    padding: 10px;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 8px 8px rgba(0, 0, 0, 0.08);
+}
+
+.date-form-container h1, .text-form-container h1 {
+    font: normal 2em var(--main-font);
+    margin-bottom: 10px;
+}
+
+.containers {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.containers .input-container input, .containers .input-container select, .external-form-container .input-container select, .action-form-container .input-container select {
+    font-size: 1.2em;
+    text-align: center;
+    border: 2px solid var(--alternative-color);
+
+    width: 100%;
+    height: 40px;
+    padding: 0;
+}
+
+.containers .input-container select, 
+.external-form-container .input-container select, 
+.action-form-container .input-container select {
+    text-align: left !important;
+}
+
+.containers .day {
+    width: 15%;
+}
+
+.containers .month {
+    width: 60%;
+}
+
+.containers .year {
+    width: 20%;
+}
+
+.text-form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.controllers-btn-container {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 10px;
+}
+
+.text-form-container button {
+    color: var(--main-color);
+    background-color: white;
+    font: bold 2em var(--alternative-font);
+    text-transform: uppercase;
+
+    box-shadow: 4px 8px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border: none;
+
+    margin: 15px 0;
+    width: 50px;
+    height: 50px;
+}
+
+.buttons-form-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.instruction-container {
+    margin: 15px 0;
+}
+
+.instruction-container p {
+    color: var(--main-color);
+    font: normal 1em var(--main-font);
+    text-align: center;
+}
+
+.buttons-form-container button, .buttons-form-container input {
+    font: 500 1.2em var(--alternative-font);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+
+    padding: 5px 0;
+
+    border-radius: 4px;
+    box-shadow: 4px 8px 8px rgba(0, 0, 0, 0.1);
+    width: 49%;
+}
+
+.buttons-form-container input {
+    padding: 5px 10px;
+    width: 50% !important;
+}
+
+.submit-btn, .reset-btn {
+    color: white;
+    background-color: var(--main-color);
+    border: 2px solid var(--main-color);
+}
+
+.news-add-container, .news-updel-container, .news-selected-container {
+    margin-top: 20px;
+
+    position: relative;
+}
+
+.image-news-add-container img, .image-news-updel-container img, .image-news-selected-container img {
+    width: 100%;
+}
+
+.info-news-add-container, .info-news-updel-container, .info-news-selected-container {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+
+    width: 100%;
+    padding: 5px;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.date-news-add-container p, .date-news-updel-container p, .date-news-selected-container p {
+    font: 300 .8em var(--main-font);
+    margin-bottom: 5px;
+}
+
+.title-news-add-container h1, .title-news-updel-container h1, .title-news-selected-container h1 {
+    font: normal 1em var(--main-font);
+}
+
+.updel-preview {
+    margin-bottom: 20px;
+    height: 798px;
+    overflow-y: auto;
+}
+
+.updel-preview::-webkit-scrollbar {
+    width: 10px;
+}
+
+.updel-preview::-webkit-scrollbar-track {
+    background-color: var(--alternative-color);
+    border-radius: 20px;
+}
+
+.updel-preview::-webkit-scrollbar-thumb {
+    background-color: var(--main-color);
+    border-radius: 20px;
+}
+
+.preview-title-updel-container button {
+    color: var(--main-color);
+    background-color: transparent;
+    font-size: 2em;
+
+    border: none;
+
+    margin: auto;
+    display: block;
+}
+
+.preview-title-updel-container button.active {
+    animation: loading .8s linear infinite;
+}
+
+@keyframes loading {
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+@media screen and (min-width: 992px) {
+    button {
+        cursor: pointer;
+    }
+
+    .flex-input-container button:hover, .text-form-container button:hover {
+        color: white;
+        background-color: var(--main-color);
+    }
+
+    .buttons-form-container .submit-btn:hover, .buttons-form-container .reset-btn:hover {
+        color: var(--main-color);
+        background-color: white;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    .wrapper {
+        margin: 20px 0;
+    }
+
+    .add-news-container, .updel-news-container {
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .add-form {
+        order: 1;
+    }
+
+    .add-preview {
+        order: 2;
+    }
+}

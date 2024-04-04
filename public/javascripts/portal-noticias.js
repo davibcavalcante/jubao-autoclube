@@ -1,24 +1,37 @@
-const messageError = (method) => {
-    const showsMessageErrorContainer = document.querySelector('.message-error-container')
+// FUNCTION THAT SHOWS ERROR MESSAGE
+const errorMessage = (method) => {
+    const showsErrorMessageContainer = document.querySelector('.message-error-container')
     if (method === 'remove') {
-        showsMessageErrorContainer.classList.remove('hidden')
-    } else if (method == 'add' && showsMessageErrorContainer.classList.contains('messa-error-container')){
-        showsMessageErrorContainer.classList.add('hidden')
+        showsErrorMessageContainer.classList.remove('hidden')
+    } else if (method == 'add' && showsErrorMessageContainer.classList.contains('messa-error-container')){
+        showsErrorMessageContainer.classList.add('hidden')
     }
 }
 
-const setIframe = async(news) => {
-    const response = await fetch(`/api/v1//dados-noticias-locais/${news.title}`)
-    const foundNews = await response.json()
+// FUNCTION THAT SET NEWS IFRAMES
+const setIframe = async(newsData) => {
+
+    const formatText = () => {
+        const separateText = newsData.texto.split('[PARAGRAFO]')
+        const textInParagraph = separateText.map(item => `<p>${item}</p>`)
+
+        let texto = ''
+
+        textInParagraph.forEach((item) => {
+            if (item !== '<p></p>') texto += item
+        })
+
+        return texto
+    }
 
     const newsIframe = document.querySelector('#news-iframe')
 
     if (newsIframe.classList.contains('hidden')) {
         newsIframe.classList.remove('hidden')
     }
-    
+
     const iframeContent = `
-            <html>
+        <html>
             <head>
                 <link rel="stylesheet" href="/stylesheets/iframe.css">
                 <script src="https://kit.fontawesome.com/3954e72066.js" crossorigin="anonymous"></script>
@@ -26,25 +39,25 @@ const setIframe = async(news) => {
             </head>
             <body>
                 <section class="header-container">
-                    ${foundNews.date}
-                    ${foundNews.title}
-                    ${foundNews.subtitle}
+                <p><i class="fa-regular fa-clock"></i> ${newsData.data}</p>
+                    <h1>${newsData.titulo}</h1>
+                    <h2>${newsData.subtitulo}</h2>
                 </section>
             
                 <section class="news-container">
                     <section class=image-container>
-                        ${foundNews.image}
-                        ${foundNews.newscaster}
-                        ${foundNews.from}
+                        <img src="${newsData.imagem}"></img>
+                        <p>${newsData.jornalista}</p>
+                        <p>${newsData.fonte}</p>
                     </section>
                     <section class="text-container">
-                        ${foundNews.text}
+                        ${formatText()}
                     </section>
                 </section>
 
                 <section class="credits-container">
-                    ${foundNews.newscaster}
-                    ${foundNews.from}
+                    <p>${newsData.jornalista}</p>
+                    <p>${newsData.fonte}</p>
                 </section>
             </body>
         </html>
@@ -62,11 +75,18 @@ const setIframe = async(news) => {
     newsIframe.contentDocument.close()
 }
 
+// FUNCTION THAT DEFINES NEWS IMAGE
 const setImage = (news) => {
     const image = document.createElement('img')
+<<<<<<< HEAD
     image.src = news.url
     
     if (!news.external) {
+=======
+    image.src = news.imagem
+    
+    if (news.externa === 'n') {
+>>>>>>> develop
         image.addEventListener('click', () => {
             setIframe(news)
         })
@@ -75,23 +95,24 @@ const setImage = (news) => {
     return image
 }
 
+// FUNCTION THAT DEFINES NEWS LINK
 const setLink = (news, type) => {
     const link = document.createElement('a')
     link.classList.add('info')
     if (type === 'external') {
-        link.href = news.external
+        link.href = news.link
         link.rel = 'external'
         link.target = '_blank'
 
         link.innerHTML = `
-            <p><i class="fa-regular fa-clock"></i> ${news.date}</p>
-            <h1>${news.title}</h1>
+            <p><i class="fa-regular fa-clock"></i> ${news.data}</p>
+            <h1>${news.titulo}</h1>
         ` 
         return link
     } else if (type === 'local') {
         link.innerHTML = `
-            <p><i class="fa-regular fa-clock"></i> ${news.date}</p>
-            <h1>${news.title}</h1>
+            <p><i class="fa-regular fa-clock"></i> ${news.data}</p>
+            <h1>${news.titulo}</h1>
         `
 
         link.addEventListener('click', () => {
@@ -101,11 +122,40 @@ const setLink = (news, type) => {
     }
 }
 
+const loadingAnimation = (start) => {
+    const loading = document.querySelector('.loading-animation')
+    if (start) {
+        loading.classList.remove('hidden')
+    } else {
+        loading.classList.add('hidden')
+    }
+}
+
+// FUNCTION THAT CONTROLS NEWS STATE
+const newsState = () => {
+    let news = []
+    let totalPages = []
+
+    const getNewsState = () => {
+        return { news, totalPages }
+    }
+
+    const setNewsState = (setNews, setTotalPages) => {
+        news = setNews
+        totalPages = setTotalPages
+    }
+    
+    return { getNewsState, setNewsState }
+}
+
+const newsStateManager = newsState()
+
+// FUNCTION THAT CREATES NEWS
 const createNews = (news) => {
     const newsContainer = document.createElement('section')
     newsContainer.classList.add('news')
 
-    if (news.external) {
+    if (news.externa === 'y') {
         newsContainer.appendChild(setImage(news))
         newsContainer.appendChild(setLink(news, 'external'))
     } else {
@@ -117,7 +167,9 @@ const createNews = (news) => {
     return newsContainer
 }
 
+// FUNCTION THAT CREATES NEWS TEMPLATE
 const createTemplate = (allNews, scroll = false) => {
+    loadingAnimation(false)
     const allNewsContainer = document.querySelector('#news-container')
     allNewsContainer.innerHTML = ''
     allNews.forEach((news) => {
@@ -132,33 +184,40 @@ const createTemplate = (allNews, scroll = false) => {
     }
 }
 
-const updatePage = async (method) => {
+// FUNCTION THAT UPDATES PAGES
+const updatePage = async (goTo) => {
     const pageScreen = document.querySelector('.page')
     let pageNumber = Number(pageScreen.innerText)
 
-    const data = await getNewsApi(pageNumber)
-    const totalPages = data.totalPages
+    const totalPages = newsStateManager.getNewsState().totalPages
 
-    if (method === 'next') {
-        if (pageNumber + 1 > totalPages) return
-        pageNumber++
-        const newsData = await getNewsApi(pageNumber)
-        pageScreen.innerText = pageNumber
-        createTemplate(newsData.news, true)
-    } else if (method === 'prev') {
-        if (!(pageNumber > 1)) return
-        pageNumber--
-        const newsData = await getNewsApi(pageNumber)
-        pageScreen.innerText = pageNumber
-        createTemplate(newsData.news, true)
-    }
+    if ((goTo === 'next' && (pageNumber + 1) > totalPages) || (goTo === 'prev' && pageNumber <= 1)) return
+
+    if (goTo === 'next' && (pageNumber + 1) <= totalPages) pageNumber++
+
+    if (goTo === 'prev' && pageNumber > 1) pageNumber--
+
+    loadingAnimation(true)
+
+    document.querySelector('#news-container').innerHTML = ''
+    const iframe = document.querySelector('#news-iframe')
+
+    !iframe.classList.contains('hidden') ? iframe.classList.add('hidden') : null
+    pageScreen.innerText = pageNumber
+    
+    await getNewsPerPage(pageNumber, 16)
+    const news = newsStateManager.getNewsState().news
+
+    createTemplate(news, true)
 }
 
+// FUNCTION THAT TAKES CURRENT PAGE
 const getCurrentPage = () => {
     const pageStr = document.querySelector('.page').innerText
     return pageStr
 }
 
+// FUNCTION THAT DEFINES PAGINATION EVENTS
 const setPaginationEvents = () => {
     const nextPageButton = document.querySelector('#next-page-btn')
     const prevPageButton = document.querySelector('#prev-page-btn')
@@ -172,32 +231,35 @@ const setPaginationEvents = () => {
     })
 }
 
-const getNewsApi = async (currentPage) => {
-    const pageSize = 16
-    const results = await fetch(`/api/v1/noticias/${currentPage}/${pageSize}`)
+const getTotalNews = async () => {
+    const result = await fetch('/api/v1/database/noticias/count')
+    const data = await result.json()
 
-    if (!results.ok) {
-        messageError('remove')
-        return
-    } else {
-        messageError('add')
-    }
-
-    const data = await results.json()
-
-    const news = data.newsForPage
-    const totalPages = data.totalPages
-
-    return {
-        news,
-        totalPages
-    }
+    return data.results[0].total
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-    const currentPage = getCurrentPage()
-    const data = await getNewsApi(currentPage)
-    
+const getNewsPerPage = async (currentPage, pageSize) => {
+    const limitNews = (currentPage - 1) * pageSize
+
+    const results = await fetch(`/api/v1/database/noticias?limit=${limitNews}&pagesize=${pageSize}`)
+    const data = await results.json()
+
+    const totalNews = data.totalNews[0].total
+    const totalPages = Math.ceil(totalNews / pageSize)
+
+    const news = data.news
+
+    newsStateManager.setNewsState(news, totalPages)
+}
+
+// CODE INICIALIZATION EVENT
+window.addEventListener('load', async () => {
+    const currentPage = parseInt(getCurrentPage())
+
+    await getNewsPerPage(currentPage, 16)
+
+    const news = newsStateManager.getNewsState().news
+
     setPaginationEvents()
-    createTemplate(data.news)
+    createTemplate(news)
 })

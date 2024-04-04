@@ -1,12 +1,14 @@
-const messageError = (method) => {
-    const showsMessageErrorContainer = document.querySelector('.message-error-container')
+// FUNCTION THAT SHOWS ERROR MESSAGE
+const errorMessage = (method) => {
+    const showsErrorMessageContainer = document.querySelector('.message-error-container')
     if (method === 'remove') {
-        showsMessageErrorContainer.classList.remove('hidden')
-    } else if (method == 'add' && showsMessageErrorContainer.classList.contains('messa-error-container')){
-        showsMessageErrorContainer.classList.add('hidden')
+        showsErrorMessageContainer.classList.remove('hidden')
+    } else if (method == 'add' && showsErrorMessageContainer.classList.contains('messa-error-container')){
+        showsErrorMessageContainer.classList.add('hidden')
     }
 }
 
+// FUNCTION THAT TURNS THE PAGE
 const backPageButton = () => {
     const backButton = document.querySelector('#back-to-albums-btn')
     backButton.addEventListener('click', () => {
@@ -14,6 +16,7 @@ const backPageButton = () => {
     })
 }
 
+// FUNCTION THAT ENABLES AND DISABLES THE LOADING ANIMATION
 const loadingAnimation = (action) => {
     const loadAnimation = document.querySelector('.loading-animation')
     if (action) {
@@ -24,6 +27,7 @@ const loadingAnimation = (action) => {
     }
 }
 
+// FUNCTION THAT TAKES IMAGES OUT OF FOCUS
 const setFocusOut = (e, images) => {
     const imageFocus = e.target
     
@@ -34,12 +38,12 @@ const setFocusOut = (e, images) => {
     })
 }
 
+// FUNCTION THAT RESETS THE FOCUS OF IMAGES
 const resetFocusOut = (images) => {
     images.forEach(image => image.classList.remove('focus-out'))
 }
 
-//
-
+// FUNCTION THAT UPDATE THE PAGE
 const updatePage = (pages, page, notFound = false, scroll = false) => {
     const photoContainer = document.querySelector('.photo-container')
     const photosPerPage = pages[page]
@@ -81,6 +85,7 @@ const updatePage = (pages, page, notFound = false, scroll = false) => {
     }
 }
 
+// FUNCTION THAT FILTER PHOTOS
 const filterPhotos = (dataPhotos) => {
     if (dataPhotos.stat === 'fail') {
         return updatePage({}, 0, true, false)
@@ -121,22 +126,26 @@ const filterPhotos = (dataPhotos) => {
     return updatePage(pages, page)
 }
 
+// FUNCTION THAT TAKES PHOTOS
 const getPhotos = async() => {
     const useYear = document.querySelector('#album-of-year').innerText
     const results = await fetch(`/api/v1/fotos/${useYear}`)
 
     if (!results.ok) {
-        messageError('remove')
+        errorMessage('remove')
         loadingAnimation(false)
         return
     } else {
-        messageError('add')
+        errorMessage('add')
     }
 
     const data = await results.json()
     return filterPhotos(data)
 }
 
-backPageButton()
-getPhotos()
-loadingAnimation(true)
+// CODE INICIALIZATION EVENT
+window.addEventListener('load', () => {
+    backPageButton()
+    getPhotos()
+    loadingAnimation(true)
+})

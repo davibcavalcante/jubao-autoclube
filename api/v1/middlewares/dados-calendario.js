@@ -1,3 +1,4 @@
+// CALENDAR DATA
 const allEvents = () => {
     return [
         {
@@ -416,6 +417,7 @@ const allEvents = () => {
     ]
 }
 
+// EVENT SEARCH FUNCTION
 module.exports.getEvents = (data, method) => {
     if (method === 'month') {
         const events = allEvents()

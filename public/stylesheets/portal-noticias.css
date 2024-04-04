@@ -136,6 +136,26 @@ main {
     cursor: pointer;
 }
 
+.loading-animation {
+    border-top: 5px solid var(--main-color-low-fade);
+    border-right: 5px solid var(--main-color);
+    border-left: 5px solid var(--main-color);
+    border-bottom: 5px solid var(--main-color);
+    border-radius: 50%;
+
+    width: 50px;
+    height: 50px;
+    margin: auto;
+
+    animation: loading .8s linear infinite;
+}
+
+@keyframes loading {
+    to {
+        transform: rotate(1turn);
+    }
+}
+
 .pagination-container {
     padding: 10px 0;
 
@@ -189,7 +209,7 @@ main {
 #news-iframe {
     width: 100%;
     height: auto;
-    min-height: 600px;
+    min-height: 800px;
     margin: 10px 0;
 }
 

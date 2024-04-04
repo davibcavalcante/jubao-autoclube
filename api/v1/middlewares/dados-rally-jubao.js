@@ -1,3 +1,4 @@
+// ONLY JUBÃOFE EVENTS
 const allEvents = () => {
     const description = {
         p1: `Bem-vindo ao mundo onde a coragem encontra a trilha empoeirada, e a busca pela vitória se torna um espetáculo de pura emoção. Imagine-se no volante de um veículo off-road, enfrentando terrenos desafiadores, cada curva uma oportunidade para provar sua destreza, cada reta um desafio para alcançar a velocidade máxima. Este não é apenas um torneio, é uma jornada que transcende os limites do possível.`,
@@ -142,6 +143,7 @@ const allEvents = () => {
     ]
 }
 
+// EVENTS SEARCH FUNCTION
 const searchEvents = (data, method) => {
     const events = allEvents()
 
@@ -154,10 +156,12 @@ const searchEvents = (data, method) => {
     }
 }
 
+// RETURN THE EVENTS
 module.exports.getEvents = () => {
     return allEvents()
 }
 
+// CHECK WHAT THE FILTER OPTION IS
 module.exports.getFilterEvents = (month, name) => {
     if (month) {
         return searchEvents(month, 'month')

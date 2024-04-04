@@ -1,8 +1,10 @@
-const showsMessageError = () => {
+// FUNCTION THAT SHOWS ERROR MESSAGE
+const showsErrorMessage = () => {
   const errorMessage = document.querySelector('.error-img')
   errorMessage.classList.remove('hidden')
 }
 
+// FUNCTION THAT HIDES ERROR MESSAGE
 const hideErrorMessage = () => {
   const errorMessage = document.querySelector('.error-img')
   if (!errorMessage.classList.contains('hidden')) {
@@ -10,6 +12,7 @@ const hideErrorMessage = () => {
   }
 }
 
+// FUNCTION THAT CHECKS IF THE EVENT HAS BEEN RELEASED
 const checkEventReleased = (eventData) => {
   if (eventData.ok) {
       return true
@@ -18,14 +21,17 @@ const checkEventReleased = (eventData) => {
   }
 }
 
+// FUNCTION THAT CLEANS CONTAINER
 const clearContainer = (container) => {
   container.innerHTML = ''
 }
 
+// FUNCTION THAT ADD CHILDREN ELEMENTS
 const appendChildElements = (parentElement, childElement) => {
   parentElement.appendChild(childElement)
 }
 
+// FUNCTION THAT TAKES THE REQUEST
 const getRequest = (month) => {
   if (month !== 'all') {
       return `/api/v1/rally-jubao/${month}`
@@ -34,12 +40,13 @@ const getRequest = (month) => {
   }
 }
 
+// FUNCTION THAT FILTERS EVENTS
 const filterEvents = async (month) => {
   const req = getRequest(month)
   const results = await fetch(req)
 
   if (!results.ok) {
-    showsMessageError()
+    showsErrorMessage()
   }
 
   const events = await results.json()
@@ -57,10 +64,11 @@ const filterEvents = async (month) => {
       })
   } else {
       clearContainer(calendarContainer)
-      showsMessageError()
+      showsErrorMessage()
   }
 }
 
+// FUNCTION THAT CHANGES FILTER OPTIONS
 const toggleSelected = (e) => {
   const target = e.target.parentNode
   const targetTitle = target.querySelector('h1').innerText
@@ -79,6 +87,7 @@ const toggleSelected = (e) => {
   
 }
 
+// FUNCTION THAT DEFINES THE FILTER EVENTS OF THE MONTH
 const setMonthEvents = () => {
   const arrayOptionContainers = document.querySelectorAll('.option-container')
 
@@ -87,6 +96,7 @@ const setMonthEvents = () => {
   })
 }
 
+// FUNCTION THAT CREATES CHILDREN ELEMENTS
 const createChildElement = (eventData, element) => {
   const container = document.createElement(element)
   if (element === 'h1') {
@@ -98,6 +108,7 @@ const createChildElement = (eventData, element) => {
   return container
 }
 
+// FUNCTION THAT CREATES THE INFORMATION CONTAINER
 const createInfoContainer = (eventData) => {
   const container = document.createElement('section')
   container.classList.add('rally-info-container')
@@ -111,6 +122,7 @@ const createInfoContainer = (eventData) => {
   return container
 }
 
+// FUNCTION THAT FORMATS THE RALLY NAME
 const formatNameRally = (eventData) => {
   const oldName = eventData.name
   const noSpecialChars = oldName.replace(/[^\w\sáéíóúâêîôûãõàèìòùäëïöüç]/gi, (match) => {
@@ -122,6 +134,7 @@ const formatNameRally = (eventData) => {
   return noSpaceName.toLowerCase()
 }
 
+// FUNCTION THAT CREATES THE EVENTS CONTAINER
 const createEventContainer = (eventData) => {
   const container = document.createElement('section')
   container.classList.add('event-container')
@@ -141,12 +154,13 @@ const createEventContainer = (eventData) => {
   return container
 }
 
+// FUNCTION THAT CREATES CALENDAR
 const createCalendar = async () => {
   const req = getRequest('all')
   const results = await fetch(req)
 
   if (!results.ok) {
-      showsMessageError()
+      showsErrorMessage()
   }
 
   const eventsData = await results.json()
@@ -170,10 +184,11 @@ const createCalendar = async () => {
       appendChildElements(calendarContainer, eventContainer)
     })
   } else {
-    showsMessageError()
+    showsErrorMessage()
   }
 }
 
+// CODE INCIALIZATION EVENT
 window.addEventListener('load', () => {
   createCalendar()
   setMonthEvents()

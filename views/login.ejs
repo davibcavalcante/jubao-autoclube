@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="pragma" content="no-cache" /> 
+    <meta http-equiv="expires" content="-1" />
+    <meta http-equiv="cache-control" content="no-cache"/>
     <meta name="description" content="Somos o JubaoFe. Nós organizamos, informamos e apoiamos o crescimento do Rally, principalmente em Goiânia e região. Em nosso site temos inscrições para nosso rallys, galeria de fotos, notícias atualizadas, calendário geral com datas de diversos eventos no ano. Além de promovermos o PoeiraCast nosso podcast sobre esse esporte maravilhoso no Youtube">
     <meta name="keywords" content="Rally, Rally do jubão, Inscrições Rallys, Calendário Rallys, Fotos Rallys">
 
@@ -14,22 +17,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/stylesheets/header.css">
-    <link rel="stylesheet" href="/stylesheets/calendario.css">
+    <link rel="stylesheet" href="/stylesheets/login.css">
     <link rel="stylesheet" href="/stylesheets/footer.css">
 
-    <title>Rally do JubãoFe | Calendário</title>
+    <title>Rally do JubãoFe | Login</title>
 </head>
 <body>
     <header>
         <section class="mobile-header">
             <img src="/imagens/mobile/menu-hamburguer.png" alt="Ícone Menu Hamburguer" class="menu-hamburguer">
-            <a href="/" rel="prev" target="_self">
+            <a href="/">
                 <img src="/imagens/mobile/jubao-logo.png" alt="Logo JubãoFe Autoclube" class="logo-jubao">
             </a>
         </section>
         <nav>
             <section class="desktop-logo-container">
-                <a href="/">
+                <a href="/" rel="prev" target="_self">
                     <img src="/imagens/desktop/jubao-logo.png" alt="Logo JubãoFe Autoclube">
                 </a>
             </section>
@@ -44,7 +47,7 @@
                     <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
                 </li>
                 <li>
-                    <a href="#" rel="next" target="_self">Calendário</a>
+                    <a href="/calendario" rel="next" target="_self">Calendário</a>
                 </li>
                 <li>
                     <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
@@ -75,161 +78,40 @@
         </nav>
     </header>
 
-    <section class="background-container">
-        <div class="low-fade">
-
-        </div>
-        <div class="high-fade">
-            <h1>CALENDÁRIO</h1>
-            <p>
-                Explore os doze meses deste calendário e mergulhe em uma jornada emocionante através das paisagens vibrantes e desafios empolgantes dos eventos automobilísticos organizados pelo JubaoFe Autoclube. Cada mês é uma oportunidade de vivenciar a paixão pela velocidade, a adrenalina das curvas sinuosas, a emoção dos saltos no terreno acidentado e a camaradagem entre os entusiastas do rally. De janeiro a dezembro, cada página deste calendário é uma homenagem à intensidade e à emoção que definem este esporte eletrizante. Prepare-se para ser envolvido pela poeira da pista e pelos momentos inesquecíveis capturados nestas imagens que celebram a essência do rally.
-            </p>
-        </div>
+    <section class="message-container hidden" id="message-wrapper">
+        <section class="icon-container">
+            <img src="" id="icon-img">
+        </section>
+        <section class="status-container">
+            <p id="status-msg"></p>
+        </section>
+        <section class="button-msg-container">
+            <a href="#" rel="prev" target="_self" id="link-msg"></a>
+        </section>
     </section>
 
     <main>
-        <section class="filters-container">
-            <label for="filter-select">Filtrar por:</label>
-            <select id="filter-select">
-                <option value="month" selected>MÊS</option>
-                <option value="org">ORGANIZAÇÃO</option>
-            </select>
-        </section>
-        <section class="options-container">
-            <section class="months-container">
-                <section id="m01" class="month-container">
-                    <h1>JAN</h1>
-                    <span class="cursor"></span>
-                </section>
-                <section id="m02" class="month-container">
-                    <h1>FEV</h1>
-                    <span class="cursor"></span>
-                </section>
-                <section id="m03" class="month-container">
-                    <h1>MAR</h1>
-                    <span class="cursor"></span>
-                </section>
-                <section id="m04" class="month-container">
-                    <h1>ABR</h1>
-                    <span class="cursor"></span>
-                </section>
-                <section id="m05" class="month-container">
-                    <h1>MAI</h1>
-                    <span class="cursor"></span>
-                </section>
-                <section id="m06" class="month-container">
-                    <h1>JUN</h1>
-                    <span class="cursor"></span>
-                </section>
-                <section id="m07" class="month-container">
-                    <h1>JUL</h1>
-                    <span class="cursor"></span>
-                </section>
-                <section id="m08" class="month-container">
-                    <h1>AGO</h1>
-                    <span class="cursor"></span>
-                </section>
-                <section id="m09" class="month-container">
-                    <h1>SET</h1>
-                    <span class="cursor"></span>
-                </section>
-                <section id="m10" class="month-container">
-                    <h1>OUT</h1>
-                    <span class="cursor"></span>
-                </section>
-                <section id="m11" class="month-container">
-                    <h1>NOV</h1>
-                    <span class="cursor"></span>
-                </section>
-                <section id="m12" class="month-container">
-                    <h1>DEZ</h1>
-                    <span class="cursor"></span>
-                </section>
+        <section class="wrapper" id="form-wrapper">
+            <section class="title-container">
+                <h1>Login</h1>
+                <h2>Bem vindo!</h2>
             </section>
-            <section class="orgs-container hidden">
-                <section class="show-mobile">
-                    <i class="fa-solid fa-caret-down"></i>
-                </section>
-                <section class="absolute-container">
-                    <section id="jubaofe" class="org-container">
-                        <h1>JUBÃOFE</h1>
-                        <span></span>
+            <section class="form-container">
+                <form id="form" autocomplete="off">
+                    <section class="input-container">
+                        <label for="user-input">Usuário:</label>
+                        <input type="text" name="user" id="user-input" placeholder="Digite o seu nome de usuário">
                     </section>
-    
-                    <section class="org-container">
-                        <h1>MITSUBISHI</h1>
-                        <span></span>
+                    <section class="input-container">
+                        <label for="password-input">Senha:</label>
+                        <input type="password" name="password" id="password-input" placeholder="Digite sua senha">
                     </section>
-    
-                    <section class="org-container">
-                        <h1>PAULISTA OFF-ROAD</h1>
-                        <span></span>
+                    <section class="button-container">
+                        <button type="submit" id="submit-btn">Login</button>
+                        <div class="loading-animation hidden" id="loading"></div>
                     </section>
-    
-                    <section class="org-container">
-                        <h1>TRANSPARANÁ</h1>
-                        <span></span>
-                    </section>
-    
-                    <section class="org-container">
-                        <h1>TRECHO 1</h1>
-                        <span></span>
-                    </section>
-    
-                    <section class="org-container">
-                        <h1>ACPN</h1>
-                        <span></span>
-                    </section>
-    
-                    <section class="org-container">
-                        <h1>BURITI RALLY</h1>
-                        <span></span>
-                    </section>
-    
-                    <section class="org-container">
-                        <h1>TCG RALLY</h1>
-                        <span></span>
-                    </section>
-    
-                    <section class="org-container">
-                        <h1>SC RACING</h1>
-                        <span></span>
-                    </section>
-    
-                    <section class="org-container">
-                        <h1>VCB</h1>
-                        <span></span>
-                    </section>
-    
-                    <section class="org-container">
-                        <h1>AGPN</h1>
-                        <span></span>
-                    </section>
-    
-                    <section class="org-container">
-                        <h1>CCA DE LEM</h1>
-                        <span></span>
-                    </section>
-    
-                    <section class="org-container">
-                        <h1>MARANHÃO RALLY</h1>
-                        <span></span>
-                    </section>
-    
-                    <section class="org-container">
-                        <h1>RADICAL PRODUÇÕES</h1>
-                        <span></span>
-                    </section>
-                </section>
-
+                </form>
             </section>
-        </section>
-
-        <section class="calendar-container">
-            
-        </section>
-        <section class="message-error-container hidden">
-            <img src="/imagens/mobile/not-found-error.png">
         </section>
     </main>
 
@@ -258,7 +140,7 @@
                         <a href="/politica-privacidade" rel="next" target="_self">Política de privacidade</a>
                     </li>
                     <li>
-                        <a href="/login" rel="next" target="_self">Administração</a>
+                        <a href="#">Administração</a>
                     </li>
                 </ul>
             </section>
@@ -275,7 +157,7 @@
                         <a href="/albums" rel="next" target="_self">Galeria de Fotos</a>
                     </li>
                     <li>
-                        <a href="#" rel="next" target="_self">Calendário</a>
+                        <a href="/calendario" rel="next" target="_self">Calendário</a>
                     </li>
                     <li>
                         <a href="/quem-somos" rel="next" target="_self">Quem Somos</a>
@@ -287,7 +169,7 @@
                         <a href="/politica-privacidade" rel="next" target="_self">Política de privacidade</a>
                     </li>
                     <li>
-                        <a href="/login" rel="next" target="_self">Administração</a>
+                        <a href="#">Administração</a>
                     </li>
                 </ul>
             </section>
@@ -325,7 +207,9 @@
         </p>
     </footer>
 
+
     <script src="/javascripts/menu.js"></script>
-    <script src="/javascripts/calendario.js"></script>
+    <script src="/javascripts/autenticacao.js"></script>
+    <script src="/javascripts/login.js"></script>
 </body>
 </html>

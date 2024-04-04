@@ -1,0 +1,126 @@
+@font-face {
+    font-family: 'IntroHead';
+    src: url(../fonts/IntroRustG-Base2Line.otf) format(opentype);
+    font-weight: normal;
+}
+
+:root {
+    --background-color: #ffe8c6;
+    --main-color: #f25c05;
+    --main-color-low-fade: #f25c055b;
+    --main-color-high-fade: #f25c05c9;
+
+    --alternative-color: #140703;
+    --dull-color: #ffe8c6be;
+
+    --main-font: 'Montserrat', sans-serif;
+    --alternative-font: 'Poppins', sans-serif;
+    --title-font: 'IntroHead', sans-serif;
+}
+
+/* CONFIGURAÇÕES GERAIS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none !important;
+}
+
+body {
+    background: var(--background-color) url(../imagens/mobile/pattern-bg.jpg) no-repeat fixed center center;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+}
+
+main {
+    background-color: var(--dull-color);
+
+    min-height: calc(100vh - 90px);
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    background-color: white;
+
+    border-radius: 8px;
+    box-shadow: 8px 8px 12px rgba(0, 0, 0, 0.1);
+
+    padding: 20px;
+    width: calc(100% - 40px);
+    max-width: 600px;
+}
+
+.wrapper ul {
+    list-style-type: none;
+}
+
+.title-container {
+    margin-bottom: 15px;
+}
+
+.title-container h1, .preview-title-add-container h1, .preview-title-updel-container h1 {
+    color: var(--main-color);
+    font: normal 2em var(--alternative-font);
+    text-align: center;
+}
+
+.title-container h2 {
+    font: normal 1.2em var(--alternative-font);
+    text-align: center;
+}
+
+.title-container i {
+    color: var(--main-color);
+    font-size: 3.5em;
+    text-align: center;
+
+    display: block;
+    margin-top: 15px;
+}
+
+.option-container {
+    background-color: var(--main-color);
+    text-decoration: none;
+    
+    padding: 10px;
+    box-shadow: 4px 8px 8px rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon-container {
+    color: white;
+    font-size: 2em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-container {
+    flex: 1;
+}
+
+.text-container p {
+    color: white;
+    font: normal 1.2em var(--alternative-font);
+
+    display: block;
+    width: 100%;
+}
+    
