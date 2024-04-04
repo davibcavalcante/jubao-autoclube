@@ -32,7 +32,6 @@ class NoticiasRepository {
 
     // SEND METHOD
     async sendNews(connection, data) {
-        console.log(data)
         try {
             const result = await connection.query('INSERT INTO `noticias` SET ?', data);
             return result;
