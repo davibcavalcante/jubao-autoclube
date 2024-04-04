@@ -89,6 +89,19 @@ header {
     width: 50px;
 }
 
+.warning-message-container {
+    color: white;
+    background-color: var(--main-color);
+
+    padding: 5px 10px;
+}
+
+.warning-message-container p {
+    font: 300 1.2em var(--main-font);
+    hyphens: auto;
+    line-height: 1.3em;
+}
+
 @media screen and (min-width: 1200px) {
     header nav {
         justify-content: space-evenly !important;
@@ -152,5 +165,9 @@ header {
 
     .pages-list a:hover {
         text-decoration: underline;
+    }
+
+    .warning-message-container {
+        padding: 5px 20px;
     }
 }
