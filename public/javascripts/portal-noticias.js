@@ -78,15 +78,9 @@ const setIframe = async(newsData) => {
 // FUNCTION THAT DEFINES NEWS IMAGE
 const setImage = (news) => {
     const image = document.createElement('img')
-<<<<<<< HEAD
-    image.src = news.url
-    
-    if (!news.external) {
-=======
     image.src = news.imagem
     
     if (news.externa === 'n') {
->>>>>>> develop
         image.addEventListener('click', () => {
             setIframe(news)
         })
