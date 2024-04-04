@@ -496,7 +496,7 @@ const selectNews = (container)  => {
 const validateForm = (method) => {
     let elements
 
-    if (method=== 'POST') {
+    if (method === 'POST') {
         elements = getElements().add
     } else if (method === 'PUT') {
         elements = getElements().update
@@ -730,7 +730,6 @@ const createNewsExternal = ({external, id}) => {
 
     return pExterna
 }
-
 
 const createNewsLink = ({link, id}) => {
     const pLink = document.createElement('p')
