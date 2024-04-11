@@ -43,7 +43,8 @@ module.exports.getVideos = async (req, res) => {
         const videoStatusMap = await checkVideosUploaded(videoIds, apiKey);
 
         const useVideos = videos.filter(video => videoStatusMap[video.resourceId.videoId] === 'processed').slice(0, 10);
-
+        
+        res.setHeader('Cache-Control', 'public, max-age=300');
         res.status(200).json(useVideos);
     } catch (error) {
         console.error('Erro ao obter vídeos:', error.message);

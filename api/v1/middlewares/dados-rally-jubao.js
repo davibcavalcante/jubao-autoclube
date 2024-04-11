@@ -48,7 +48,7 @@ const allEvents = () => {
             date: '07-04-2024',
             month: '04',
             local: 'Silvânia-GO',
-            ok: true,
+            ok: false,
             duration: "7:00h às 15:00h",
             categories: categories,
             values: {

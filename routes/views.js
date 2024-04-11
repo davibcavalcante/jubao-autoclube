@@ -68,16 +68,15 @@ router.get('/login', (req, res, next) => {
 // ROUTE OF INDEX
 router.get('/', (req, res, next) => {
   res.render('index', {
-    cup: '6° RALLY DA APAE', 
+    cup: '12° Rally do Jubão', 
     categories: {
       c1: 'INICIANTE',
       c2: 'LIGHT',
-      c3: 'SILVÂNIA',
-      c4: 'TURISTA',
-      c5: 'GRADUADO',
-      c6: 'MASTER'
+      c3: 'TURISTA',
+      c4: 'GRADUADO',
+      c5: 'MASTER'
     },
-    url: '/inscricao/Rally da APAE'
+    url: '/inscricao/12° Rally do Jubão'
   });
 });
 

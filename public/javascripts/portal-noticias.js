@@ -235,7 +235,7 @@ const getTotalNews = async () => {
 const getNewsPerPage = async (currentPage, pageSize) => {
     const limitNews = (currentPage - 1) * pageSize
 
-    const results = await fetch(`/api/v1/database/noticias?limit=${limitNews}&pagesize=${pageSize}`)
+    const results = await fetch(`/api/v1/database/noticias?limit=${limitNews}&pagesize=${pageSize}&cache=cache`)
     const data = await results.json()
 
     const totalNews = data.totalNews[0].total

@@ -5,12 +5,10 @@ const express = require('express');
 const inscricao = require('../api/v1/middlewares/inscricao');
 const youtube = require('../api/v1/middlewares/youtube');
 const fotos = require('../api/v1/middlewares/fotos');
+const rallyJubao = require('../api/v1/middlewares/dados-rally-jubao');
+const calendario = require('../api/v1/middlewares/dados-calendario');
 const noticias = require('../api/v1/middlewares/noticias');
-const noticiasLocais = require('../api/v1/middlewares/dados-noticias-locais');
-const rallyJubaoData = require('../api/v1/middlewares/dados-rally-jubao');
-const calendarioData = require('../api/v1/middlewares/dados-calendario');
-const databaseNoticias = require('../api/v1/middlewares/database-noticias');
-const login = require('../api/v1/middlewares/usuarios');
+const usuarios = require('../api/v1/middlewares/usuarios');
 
 // AUTH
 const authorization = require('../api/v1/middlewares/autorizacao-usuario');
@@ -44,70 +42,64 @@ router.get('/noticias/:page/:size', async (req, res) => {
     }
 });
 
-router.get('/dados-noticias-locais/:title', async (req, res) => {
-    try {
-        const newsTitle = req.params.title
-        const localNewsData = await noticiasLocais.localNews(newsTitle);
-        res.status(200).json(localNewsData);
-    } catch (error) {
-        console.log('Erro ao obter dados:', error.message);
-        res.status(500).json({erro: 'Erro interno do servidor'});
-    }
-});
-
 // EVENTS ROUTES
 router.get('/rally-jubao', (req, res) => {
     try {
-        const events = rallyJubaoData.getEvents()
-        res.status(200).json(events)
+        const events = rallyJubao.getEvents();
+        res.status(200).json(events);
     } catch (error) {
         console.log('Erro ao obter eventos:', error.message);
-        res.status(500).json({erro: 'Erro interno do servidor'})
+        res.status(500).json({erro: 'Erro interno do servidor'});
     }
 })
 
 router.get('/rally-jubao/:month', (req, res) => {
     try {
-        const month = req.params.month
-        const events = rallyJubaoData.getFilterEvents(month, false)
-        res.status(200).json(events)
+        const month = req.params.month;
+        const events = rallyJubao.getFilterEvents(month, false);
+        res.status(200).json(events);
     } catch (error) {
         console.log('Erro ao obter evento:', error.message);
-        res.status(500).json({erro: 'Erro interno do servidor'})
+        res.status(500).json({erro: 'Erro interno do servidor'});
     }
 })
 
 router.get('/calendario/:data/:method', (req, res) => {
     try {
-        const data = req.params.data
-        const method = req.params.method
-        const events = calendarioData.getEvents(data, method)
-        res.status(200).json(events)
+        const data = req.params.data;
+        const method = req.params.method;
+        const events = calendario.getEvents(data, method);
+        res.status(200).json(events);
     } catch (error) {
         console.log('Erro ao obter eventos:', error.message);
-        res.status(500).json({erro: 'Erro interno do servidor'})
+        res.status(500).json({erro: 'Erro interno do servidor'});
     }
 })
 
 // NEWS DATABASE ROUTES
 router.get('/database/noticias', (req, res) => {
-    databaseNoticias.getDatabaseNews(req, res);
+    if (req.query.cache === 'nocache') {
+        res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+    } else {
+        res.setHeader('Cache-Control', 'public, max-age=300');
+    }
+    noticias.getDatabaseNews(req, res);
 });
 
 router.get('/database/noticias/count', (req, res) => {
-    databaseNoticias.getDatabaseTotalNews(req, res);
+    noticias.getDatabaseTotalNews(req, res);
 });
 
 router.post('/database/noticias', authorization.authorizeUser, (req, res) => {
-    databaseNoticias.sendDatabaseNews(req.body, res);
+    noticias.sendDatabaseNews(req.body, res);
 });
 
 router.put('/database/noticias', authorization.authorizeUser, (req, res) => {
-    databaseNoticias.updateDatabaseNews(req.body, res)
+    noticias.updateDatabaseNews(req.body, res);
 })
 
 router.delete('/database/noticias/:id', authorization.authorizeUser, (req, res) => {
-    databaseNoticias.deleteDatabaseNews(req, res);
+    noticias.deleteDatabaseNews(req, res);
 });
 
 // CHECK PRIVATE ROUTES
@@ -121,7 +113,7 @@ router.post("/inscricao", inscricao.enviarEmailInscricao);
 
 // LOGIN
 router.post('/login', (req, res) => {
-    login.userLogin(req, res);
+    usuarios.userLogin(req, res);
 });
 
 module.exports = router;

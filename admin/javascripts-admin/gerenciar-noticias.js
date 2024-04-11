@@ -847,7 +847,7 @@ const createNewsUpdelContainer = (news) => {
 
 // FUNCTION THAT GET NEWS FROM DATABASE
 const getNews = async () => {
-    const results = await fetch('/api/v1/database/noticias')
+    const results = await fetch('/api/v1/database/noticias?cache=nocache')
     const data = await results.json()
 
     return data.news
