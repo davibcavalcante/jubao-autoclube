@@ -73,7 +73,7 @@ const allEvents = () => {
             date: '08-06-2024',
             month: '06',
             local: 'Goiânia',
-            ok: true,
+            ok: false,
             duration: "7:00h às 15:00h",
             categories: categories,
             values: {

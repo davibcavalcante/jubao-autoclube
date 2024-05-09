@@ -68,7 +68,7 @@ router.get('/login', (req, res, next) => {
 // ROUTE OF INDEX
 router.get('/', (req, res, next) => {
   res.render('index', {
-    cup: '12° Rally do Jubão', 
+    cup: '2° Rally das Crianças', 
     categories: {
       c1: 'INICIANTE',
       c2: 'LIGHT',
@@ -76,7 +76,7 @@ router.get('/', (req, res, next) => {
       c4: 'GRADUADO',
       c5: 'MASTER'
     },
-    url: '/inscricao/12° Rally do Jubão'
+    url: '/inscricao/2° Rally das Crianças'
   });
 });
 
