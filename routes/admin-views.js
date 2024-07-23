@@ -6,7 +6,11 @@ const router = express.Router();
 
 router.get('/gerenciar-noticias', authorization.authorizeUser, (req, res, next) => {
     res.render('gerenciar-noticias');
-})
+});
+
+router.get('/gerenciar-arquivos', authorization.authorizeUser, (req, res, next) => {
+    res.render('gerenciar-arquivos');
+});
 
 router.get('/', authorization.authorizeUser, (req, res, next) => {
     res.render('index-admin', { user: req.user});
