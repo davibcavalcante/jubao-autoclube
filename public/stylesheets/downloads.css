@@ -1,0 +1,162 @@
+@font-face {
+    font-family: 'IntroHead';
+    src: url(../fonts/IntroRustG-Base2Line.otf) format(opentype);
+    font-weight: normal;
+}
+
+:root {
+    --background-color: #ffe8c6;
+    --alternative-color: #140703;
+    --dull-color: #666666;
+    --background-album-color: #000000c2;
+    --background-album-color-opacity: #00000048;
+    --header-color: #FF945E;
+
+    --main-color: #f25c05;
+    --main-color-low-fade: #f25c055b;
+    --main-color-high-fade: #f25c05c9;
+
+    --main-font: 'Montserrat', sans-serif;
+    --alternative-font: 'Poppins', sans-serif;
+    --title-font: 'IntroHead', sans-serif;
+}
+
+/* CONFIGURAÇÕES GERAIS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hidden, .additional-info {
+    display: none;
+}
+
+body, html {
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.light-text {
+    font-weight: 300;
+}
+
+main {
+    position: relative;
+    background: var(--background-color) url(../imagens/albums/2014.jpg) no-repeat fixed center center;
+    background-size: cover;
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 12px 0;
+}
+
+main::after {
+    content: '';
+    position: absolute;
+
+    background-color: var(--alternative-color);
+    opacity: 10%;
+
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.archives-wrapper {
+    background-color: var(--main-color);
+
+    width: calc(100% - 20px);
+    max-width: 700px;
+
+    border-radius: 12px;
+    box-shadow: 4px 4px 8px solid black;
+
+    padding: 24px 16px;
+
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.archives-wrapper::before {
+    content: '';
+    position: absolute;
+    background-color: var(--main-color);
+    width: calc(100% - 15px);
+    height: calc(100% - 15px);
+    border-radius: 10px;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.archives-wrapper::after {
+    content: '';
+    position: absolute;
+    background-image: conic-gradient(var(--alternative-color) 45deg, transparent 90deg);
+    width: 500%;
+    height: 500%;
+
+    top: 25%;
+    left: 25%;
+
+    border-radius: 10px;
+
+    transform-origin: center;
+    transform: translate(-50%, -50%) rotate(0deg);
+    z-index: -2;
+    animation: rotate 5s linear infinite;
+}
+
+@keyframes rotate {
+    to {
+        transform: translate(-50%, -50%) rotate(1turn);
+    }
+}
+
+.archives-wrapper h1 {
+    color: white;
+    font-family: var(--main-font);
+    font-size: 2em;
+    text-transform: capitalize;
+    text-align: center;
+
+    margin-bottom: 24px;
+}
+
+.archives-wrapper ul {
+    list-style-type: none;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.archives-wrapper a {
+    color: var(--main-color);
+    font-family: var(--main-font);
+    font-size: 1.2em;
+    font-weight: bolder;
+    background-color: white;
+    padding: 12px 8px;
+
+    display: block;
+
+    border-radius: 12px;
+    box-shadow: 4px 4px 8px solid black;
+}
+
+@keyframes backanimated {
+    to {
+        transform: rotate(360deg);
+    }
+}

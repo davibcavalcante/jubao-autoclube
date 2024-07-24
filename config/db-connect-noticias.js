@@ -20,6 +20,7 @@ class Database {
             this.connection.connect((err) => {
                 if (err) {
                     reject(err);
+                    console.log(err)
                     return;
                 }
                 console.log("Conexão com o banco de dados feita com sucesso!")
