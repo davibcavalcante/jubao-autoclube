@@ -65,6 +65,10 @@ router.get('/login', (req, res, next) => {
   res.render('login');
 });
 
+router.get('/downloads', (req, res, next) => {
+  res.render('downloads');
+});
+
 // ROUTE OF INDEX
 router.get('/', (req, res, next) => {
   res.render('index', {
