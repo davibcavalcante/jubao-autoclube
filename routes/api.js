@@ -1,5 +1,9 @@
 // API V1 ROUTES
 const express = require('express');
+const multer = require('multer');
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 // MIDDLEWARES
 const inscricao = require('../api/v1/middlewares/inscricao');
@@ -9,6 +13,7 @@ const rallyJubao = require('../api/v1/middlewares/dados-rally-jubao');
 const calendario = require('../api/v1/middlewares/dados-calendario');
 const noticias = require('../api/v1/middlewares/noticias');
 const usuarios = require('../api/v1/middlewares/usuarios');
+const arquivos = require('../api/v1/middlewares/arquivos');
 
 // AUTH
 const authorization = require('../api/v1/middlewares/autorizacao-usuario');
@@ -114,6 +119,20 @@ router.post("/inscricao", inscricao.enviarEmailInscricao);
 // LOGIN
 router.post('/login', (req, res) => {
     usuarios.userLogin(req, res);
+});
+
+router.get('/download-arquivos', )
+
+router.post('/upload-arquivos', upload.array('files'), (req, res) => {
+    arquivos.upload(req, res);
+});
+
+router.get('/download/:fileName', (req, res) => {
+    arquivos.download(req, res);
+});
+
+router.get('/files', (req, res) => {
+    arquivos.getFiles(req, res);
 });
 
 module.exports = router;

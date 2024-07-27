@@ -21,6 +21,7 @@ const onServerListening = server => () => {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+  console.log('Servidor rodando na porta:', bind);
 }
 
 
