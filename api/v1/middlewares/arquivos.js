@@ -1,9 +1,4 @@
 const FileRepository = require('../../../repository/arquivos');
-const multer = require('multer');
-
-// Configuração do multer
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
 
 class Arquivos {
     constructor() {
@@ -14,7 +9,7 @@ class Arquivos {
         const files = req.files;
 
         if (!files || files.length === 0) {
-            return res.status(400).send({ error: 'Sem arquivos para enviar.' });
+            return res.status(400).json({ error: 'Sem arquivos para enviar.' });
         }
 
         try {
@@ -25,9 +20,9 @@ class Arquivos {
                 };
                 await this.filesRepository.upload(uploadFile.buffer, uploadFile.destination);
             }
-            res.status(200).send({ message: 'Arquivos enviados com sucesso!' });
+            res.status(200).json({ message: 'Arquivos enviados com sucesso!' });
         } catch (error) {
-            res.status(500).send({ error: 'Falha ao enviar os arquivos!' });
+            res.status(500).json({ error: 'Falha ao enviar os arquivos!' });
         }
     }
 
@@ -35,20 +30,25 @@ class Arquivos {
         const fileName = req.params.fileName;
 
         try {
-            const data = await this.filesRepository.download(`uploads/${fileName}`);
+            const file = await this.filesRepository.download(`uploads/${fileName}`);
+
             res.setHeader('Content-Disposition', `attachment; filename=${fileName}`);
-            res.send(data[0]);
+            res.setHeader('Content-Type', 'application/octet-stream');
+            res.setHeader('Content-Length', file.length);
+
+            res.send(file);
         } catch (error) {
-            res.status(500).send({ error: 'Error downloading file' });
+            console.error('Erro ao baixar o arquivo:', error);
+            res.status(500).send({ error: 'Erro ao baixar o arquivo' });
         }
     }
 
     async getFiles(req, res) {
         try {
             const files = await this.filesRepository.getFiles();
-            res.status(200).send(files);
+            res.status(200).json(files);
         } catch (error) {
-            res.status(500).send({ error: 'Error listing files' });
+            res.status(500).json({ error: 'Erro ao listar os arquivos' });
         }
     }
 }

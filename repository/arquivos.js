@@ -34,7 +34,8 @@ class FileRepository {
 
     async download(fileName) {
         const file = bucket.file(fileName);
-        return file.download();
+        const [buffer] = await file.download();
+        return buffer;
     }
 
     async getFiles() {

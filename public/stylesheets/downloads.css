@@ -50,6 +50,9 @@ main {
     background-size: cover;
     flex: 1;
 
+    height: auto;
+    min-height: calc(100vh - 94px);
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -141,7 +144,7 @@ main::after {
     gap: 12px;
 }
 
-.archives-wrapper a {
+.archives-wrapper li {
     color: var(--main-color);
     font-family: var(--main-font);
     font-size: 1.2em;
@@ -153,6 +156,8 @@ main::after {
 
     border-radius: 12px;
     box-shadow: 4px 4px 8px solid black;
+
+    cursor: pointer;
 }
 
 @keyframes backanimated {

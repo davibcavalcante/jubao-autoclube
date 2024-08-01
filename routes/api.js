@@ -121,10 +121,12 @@ router.post('/login', (req, res) => {
     usuarios.userLogin(req, res);
 });
 
-router.get('/download-arquivos', )
-
-router.post('/upload-arquivos', upload.array('files'), (req, res) => {
+router.post('/upload-arquivos', authorization.authorizeUser, upload.array('files'), (req, res) => {
     arquivos.upload(req, res);
+});
+
+router.get('/download-arquivos', (req, res) => {
+    arquivos.getFiles(req, res);
 });
 
 router.get('/download/:fileName', (req, res) => {
