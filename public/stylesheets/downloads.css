@@ -149,19 +149,16 @@ main::after {
     font-family: var(--main-font);
     font-size: 1.2em;
     font-weight: bolder;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
     background-color: white;
     padding: 12px 8px;
 
+    overflow: hidden;
     display: block;
 
     border-radius: 12px;
     box-shadow: 4px 4px 8px solid black;
 
     cursor: pointer;
-}
-
-@keyframes backanimated {
-    to {
-        transform: rotate(360deg);
-    }
 }
