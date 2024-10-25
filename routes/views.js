@@ -72,15 +72,16 @@ router.get('/downloads', (req, res, next) => {
 // ROUTE OF INDEX
 router.get('/', (req, res, next) => {
   res.render('index', {
-    cup: '2° Rally das Crianças', 
+    cup: 'Rally Day das Crianças', 
     categories: {
+      c0: 'RALLY DAY',
       c1: 'INICIANTE',
       c2: 'LIGHT',
       c3: 'TURISTA',
       c4: 'GRADUADO',
       c5: 'MASTER'
     },
-    url: '/inscricao/2° Rally das Crianças'
+    url: '/inscricao/Rally Day das Crianças'
   });
 });
 

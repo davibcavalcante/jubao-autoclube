@@ -69,6 +69,18 @@ router.get('/rally-jubao/:month', (req, res) => {
     }
 })
 
+router.get('/rally-jubao/name/:name', (req, res) => {
+    try {
+        console.log('ok')
+        const name = req.params.name;
+        const events = rallyJubao.getFilterEvents(false, name);
+        res.status(200).json(events);
+    } catch (error) {
+        console.log('Erro ao obter evento:', error.message);
+        res.status(500).json({erro: 'Erro interno do servidor'});
+    }
+})
+
 router.get('/calendario/:data/:method', (req, res) => {
     try {
         const data = req.params.data;

@@ -92,15 +92,15 @@ const allEvents = () => {
         },
 
         {
-            name: '2° Rally das Crianças',
+            name: 'Rally Day das Crianças',
             stage: '',
             description: description,
-            date: '12-10-2024',
+            date: '09 e 10-11-2024',
             month: '10',
             local: 'Goiânia',
             ok: true,
             duration: "7:00h às 15:00h",
-            categories: categories,
+            categories: {...categories, c3: 'RALLY DAY'},
             values: {
                 c1: {
                     l1: 'R$ 375,00 (ATÉ 3 PARTICIPANTES)',
@@ -151,6 +151,7 @@ const searchEvents = (data, method) => {
         const eventsFilter = events.filter((event) => event.month === data)
         return eventsFilter
     } else if (method === 'name') {
+        console.log(data)
         const eventsFilter = events.filter((event) => event.name === data)
         return eventsFilter
     }

@@ -605,7 +605,7 @@ const setEvents = () => {
 }
 
 // PONTO INICIAL || CODE INCIALIZATION EVENT
-window.addEventListener('load', (e) => {
+window.addEventListener('DOMContentLoaded', (e) => {
     const forms = getForms().forms
     enableDisableForms(e, forms)
     toggleSubmitButtons(forms.slice(2), ['disable', 'disable', 'enable'])
