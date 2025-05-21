@@ -50,12 +50,9 @@ app.use((req, res, next) => {
 
 app.use('/', viewsRouters);
 app.use('/api/v1', apiV1Routers);
-
-if (config.certRequest.enabled) {
-  app.use(config.certRequest.requestRoute, (req, res) => {
-    res.status(200).send(config.certRequest.challenge);
-  });
-}
+/*app.use('/.well-known/acme-challenge/6c5MWYXYAFuHeXKhgEmEJIwDu-PSaJqonCaWv4L-Prg', (req, res) => {
+	res.status(200).send("6c5MWYXYAFuHeXKhgEmEJIwDu-PSaJqonCaWv4L-Prg.zq5Qx_7HaUo9hdCssqoT3BFqOKJhSu5j17lvkyH_fz8");
+});*/
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
