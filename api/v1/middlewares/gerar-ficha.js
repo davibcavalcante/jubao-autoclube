@@ -164,15 +164,25 @@ module.exports.gerarFichaInscricaoPDF = async (data, images) => {
   `;
 
   // 6. Gerar o PDF
+  console.log('Lançando navegador...');
   const browser = await puppeteer.launch({
     headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });
-  const page = await browser.newPage();
-  await page.setContent(htmlWithStyles, { waitUntil: 'networkidle0' });
+  console.log('Navegador lançado');
 
+  const page = await browser.newPage();
+
+  console.log('Setando conteúdo HTML');
+  await page.setContent(htmlWithStyles, { waitUntil: 'networkidle0', timeout: 60000 });
+  console.log('Conteúdo HTML definido');
+
+  console.log('Gerando PDF');
   const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true });
+  console.log('PDF gerado');
+
   await browser.close();
+  console.log('Navegador fechado');
 
   return Buffer.from(pdfBuffer);
 };
@@ -220,15 +230,25 @@ module.exports.abrirFichaPDF = async (data, images) => {
   `;
 
   // 6. Gerar o PDF
+  console.log('Lançando navegador...');
   const browser = await puppeteer.launch({
     headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });
-  const page = await browser.newPage();
-  await page.setContent(htmlWithStyles, { waitUntil: 'networkidle0' });
+  console.log('Navegador lançado');
 
+  const page = await browser.newPage();
+
+  console.log('Setando conteúdo HTML');
+  await page.setContent(htmlWithStyles, { waitUntil: 'networkidle0', timeout: 60000 });
+  console.log('Conteúdo HTML definido');
+
+  console.log('Gerando PDF');
   const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true });
+  console.log('PDF gerado');
+
   await browser.close();
+  console.log('Navegador fechado');
 
   return Buffer.from(pdfBuffer);
 }
