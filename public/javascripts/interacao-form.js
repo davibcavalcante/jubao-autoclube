@@ -389,7 +389,7 @@ const changeParticipants = () => {
 
     let participantsValue = participantsSelect.value
 
-    if (categories.value === 'TURISMO' || categories.value === 'GRADUADO' || categories.value === 'MASTER') {
+    if (categories.value === 'GRADUADO' || categories.value === 'MASTER') {
         participantsValue = '2'
         participantsSelect.value = participantsValue
     }
@@ -588,20 +588,20 @@ const setEvents = () => {
         })
     })
 
-    // EVENTO DO BOTÃO QUE GERA O QRCODE || BUTTON EVENT THAT GENERATES THE QRCODE
-    const showQrCodeButton = document.querySelector('#show-qr-code-btn')
+    // // EVENTO DO BOTÃO QUE GERA O QRCODE || BUTTON EVENT THAT GENERATES THE QRCODE
+    // const showQrCodeButton = document.querySelector('#show-qr-code-btn')
 
-    showQrCodeButton.addEventListener('click', () => {
-        const qrCodeContainer = document.querySelector('.qr-code-container')
-        qrCodeContainer.classList.toggle('hidden')
-        showQrCodeButton.classList.toggle('active')
+    // showQrCodeButton.addEventListener('click', () => {
+    //     const qrCodeContainer = document.querySelector('.qr-code-container')
+    //     qrCodeContainer.classList.toggle('hidden')
+    //     showQrCodeButton.classList.toggle('active')
     
-        if (showQrCodeButton.classList.contains('active')) {
-            showQrCodeButton.innerText = 'LIMPAR QR CODE'
-        } else {
-            showQrCodeButton.innerText = 'GERAR QR CODE'
-        }
-    })
+    //     if (showQrCodeButton.classList.contains('active')) {
+    //         showQrCodeButton.innerText = 'LIMPAR QR CODE'
+    //     } else {
+    //         showQrCodeButton.innerText = 'GERAR QR CODE'
+    //     }
+    // })
 }
 
 // PONTO INICIAL || CODE INCIALIZATION EVENT

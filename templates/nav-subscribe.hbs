@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navegador</title>
+  <link rel="stylesheet" href="/stylesheets/pdf.css">
+</head>
+
+<body>
+  <section class="header-container">
+    <div class="log-container">
+      <img src="{{images.campeonato}}" alt="Campeonato Goiano de Rally">
+    </div>
+    <h1>FICHA DE INSCRIÇÃO - NAVEGADOR</h1>
+    <div class="log-container">
+      <img src="{{images.tv}}" alt="TV Sudoeste">
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="form-container">
+      <p class="label">NOME DA EQUIPE:</p>
+      <span class="line">{{team.name}}</span>
+    </div>
+  </section>
+
+  <section class="grid-container">
+    <p class="label">CATEGORIAS:</p>
+    <section class="category-container">
+      <div>
+        <p class="category">GRADUADO</p>
+        <div class="box {{#if (eq team.class 'GRADUADO')}}checked{{/if}}"></div>
+      </div>
+      <div class="bearer"></div>
+      <div>
+        <p class="category">TURISMO</p>
+        <div class="box {{#if (eq team.class 'TURISMO')}}checked{{/if}}"></div>
+      </div>
+      <div class="bearer"></div>
+      <div>
+        <p class="category">NOVATOS 4x4</p>
+        <div class="box {{#if (and (eq team.class 'NOVATO') (eq car.traction 't4x4'))}}checked{{/if}}"></div>
+      </div>
+      <div class="bearer"></div>
+      <div>
+        <p class="category">NOVATOS 4x2</p>
+        <div class="box {{#if (and (eq team.class 'NOVATO') (eq car.traction 't4x2'))}}checked{{/if}}"></div>
+      </div>
+      <div class="bearer"></div>
+    </section>
+    <section class="container-subscribe">
+      <div class="box-num-subscribe">
+        <p class="text-subscribe">N. INSCRIÇÃO</p>
+      </div>
+      <section class="num-subscribe">{{team.num_sub}}</section>
+    </section>
+  </section>
+
+  <section class="container">
+    <div class="form-container">
+      <p class="label">Nome do Navegador:</p>
+      <span class="line">{{navigator.name}}</span>
+    </div>
+
+    <section class="info-container">
+      <div class="date-container">
+        <p class="label">Data de nascimento:</p>
+        <span class="line">{{navigator.date}}</span>
+      </div>
+      <div class="rg-container">
+        <p class="label">RG/UF:</p>
+        <span class="line">{{navigator.rg}}</span>
+      </div>
+    </section>
+
+    <section class="info-container">
+      <div class="cpf-container">
+        <p class="label">CPF:</p>
+        <span class="line">{{navigator.cpf}}</span>
+      </div>
+      <div class="cnh-container">
+        <p class="label">CNH:</p>
+        <span class="line">{{navigator.cnh}}</span>
+      </div>
+    </section>
+
+    <div class="form-container">
+      <p class="label">Endereço:</p>
+      <span class="line">{{navigator.street}}, {{navigator.number}}</span>
+    </div>
+
+    <section class="info-container">
+      <div class="address-container">
+        <p class="label">Bairro:</p>
+        <span class="line">{{navigator.neighborhood}}</span>
+      </div>
+      <div class="address-container">
+        <p class="label">Cidade:</p>
+        <span class="line">{{navigator.city}}</span>
+      </div>
+      <div class="address-container">
+        <p class="label">UF:</p>
+        <span class="line">{{navigator.state}}</span>
+      </div>
+    </section>
+
+    <section class="info-container">
+      <div class="number-container">
+        <p class="label">Cel/Whatsapp:</p>
+        <span class="line">{{navigator.number}}</span>
+      </div>
+      <div class="email-container">
+        <p class="label">E-mail:</p>
+        <span class="line">{{navigator.email}}</span>
+      </div>
+    </section>
+
+    <section class="shirt-container">
+      <p>Tamanho da camiseta:</p>
+      <p class="label">
+        M <span class="box {{#if (eq pilot.shirt 'M')}}checked{{/if}}"></span>
+        G <span class="box {{#if (eq pilot.shirt 'G')}}checked{{/if}}"></span>
+        GG <span class="box {{#if (eq pilot.shirt 'GG')}}checked{{/if}}"></span>
+      </p>
+    </section>
+  </section>
+
+  <section class="statement-container">
+    <p>
+      DECLARAÇÃO DA PARTICIPANTE: Ao assinar esta ficha de inscrição, declaro possuir pleno entendimento de que estarei
+      participando de uma competição automobilística, desenvolvida como Rally de Regularidade, subordinada ao Código de
+      Trânsito
+      Brasileiro e ao Regulamento Geral da prova. Compreendo que o percurso da prova dar-se-á em estradas de terra, que
+      podem
+      apresentar obstáculos naturais, pedras, erosões, subidas e descidas em serras, além de passagens por mata-burros,
+      pontilhões, aterros estreitos, bem como do trânsito de outros veículos, estando ciente de que na minha
+      participação, poderei
+      responder individualmente ou coletivamente (por equipe) por danos materiais ou morais em caso de acidentes
+      causados a
+      terceiros ou por mim sofridos, quer sejam por minha conduta praticada culposa ou dolosamente, renunciando desde já
+      ao
+      direito de pleitear qualquer espécie de indenização dos promotores do evento, dos membros da equipe organizadora,
+      dos
+      patrocinadores e apoiadores. Por fim, declaro autorizada a utilização de minha imagem eletrônica e cinética para
+      os fins
+      promocionais, publicitários, jornalísticos ou de divulgação do evento, bem como transfiro aos promotores do evento
+      todos
+      aqueles denominados como direitos de arena, referentes as provas e outras atividades do evento.
+    </p>
+
+    <div class="statement-form-container">
+      <span class="box checked"></span>
+      <p class="statement-text">Concordo com o compartilhamento dos meus dados pessoais com os patrocinadores apoiadores
+        e realizadores da
+        prova, em observância à Lei Geral de Proteção de Dados e às demais normativas sobre proteção de dados pessoais
+        aplicáveis</p>
+    </div>
+  </section>
+
+  <section class="formal-container">
+    <div class="date-container">
+      <span class="city-line">
+        GOIANIA
+        <!-- AFTER CSS -> , -->
+      </span>
+      <span class="date-line">20</span>
+      <span class="date-line">05</span>
+      <span class="date-line">2025</span>
+    </div>
+
+    <div class="assign-container">
+      <span class="assing-line"></span>
+      <p>Assinatura do Navegador Inscrito</p>
+    </div>
+  </section>
+
+  <section class="subscribe-grid-container">
+    <div class="title-info">
+      RECIBO
+    </div>
+
+    <div class="money-info">
+      R$
+      <span class="rectangle">{{team.value}}</span>
+    </div>
+
+    <div class="cards-container">
+      <section class="container-subscribe">
+        <div class="box-num-subscribe">
+          <p class="text-subscribe">CATEGORIA</p>
+        </div>
+        <section class="num-subscribe">
+          {{team.class}}
+        </section>
+      </section>
+
+      <section class="container-subscribe">
+        <div class="box-num-subscribe">
+          <p class="text-subscribe">N. INSCRIÇÃO</p>
+        </div>
+        <section class="num-subscribe">
+          {{team.num_sub}}
+        </section>
+      </section>
+    </div>
+  </section>
+
+  <section class="get-payment-container">
+    <section class="form-container">
+      <p class="label">Recebemos de: </p>
+      <span class="line"></span>
+    </section>
+  </section>
+
+  <p>
+    Proveniente da inscrição na qualidade de piloto, para a participação na 1a. etapa do Campeonato
+    Goiano de Rally que será disputado no dia 07 de junho de 2025 em Jataí/Go.
+  </p>
+
+  <section class="formal-container">
+    <div class="date-container">
+      <span class="city-line">
+        GOIANIA
+      </span>
+      <span class="date-line">20</span>
+      <span class="date-line">05</span>
+      <span class="date-line">2025</span>
+    </div>
+
+    <div class="assign-container">
+      <span class="assing-line"></span>
+      <p>Assinatura do recebedor</p>
+    </div>
+  </section>
+</body>
+
+</html>

@@ -12,6 +12,10 @@ router.get('/gerenciar-arquivos', authorization.authorizeUser, (req, res, next) 
     res.render('gerenciar-arquivos');
 });
 
+router.get('/gerenciar-inscricoes', authorization.authorizeUser, (req, res, next) => {
+    res.render('gerenciar-inscricoes');
+});
+
 router.get('/', authorization.authorizeUser, (req, res, next) => {
     res.render('index-admin', { user: req.user});
 });

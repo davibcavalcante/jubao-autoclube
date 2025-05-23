@@ -81,7 +81,8 @@ span.input-error {
     margin-bottom: 10px;
 }
 
-.high-fade h1, .high-fade h2 {
+.high-fade h1,
+.high-fade h2 {
     font: normal 2em var(--title-font);
 }
 
@@ -139,7 +140,8 @@ span.input-error {
     position: relative;
 }
 
-.buttons-container button, .buttons-container a {
+.buttons-container button,
+.buttons-container a {
     color: white;
     background-color: transparent;
     font: normal clamp(.8em, 4vw, 1.2em) var(--alternative-font);
@@ -194,7 +196,8 @@ span.input-error {
     font: normal 1.5em var(--main-font);
 }
 
-.more-info p, .more-info li {
+.more-info p,
+.more-info li {
     font: normal 1em var(--main-font);
 }
 
@@ -244,24 +247,24 @@ span.input-error {
     gap: 15px;
 }
 
-.form-container > .form-slide-container {
+.form-container>.form-slide-container {
     transition: .5s ease;
     min-width: 100%;
 }
 
-.form-container.second-step > .form-slide-container {
+.form-container.second-step>.form-slide-container {
     transform: translateX(calc(-100% - 15px));
 }
 
-.form-container.third-step > .form-slide-container {
+.form-container.third-step>.form-slide-container {
     transform: translateX(calc((-100% * 2) - (15px * 2)));
 }
 
-.form-container.fourth-step > .form-slide-container {
+.form-container.fourth-step>.form-slide-container {
     transform: translateX(calc((-100% * 3) - (15px * 3)));
 }
 
-.form-container.fifth-step > .form-slide-container {
+.form-container.fifth-step>.form-slide-container {
     transform: translateX(calc((-100% * 4) - (15px * 4)));
 }
 
@@ -273,7 +276,8 @@ form.opacity {
     filter: brightness(.5);
 }
 
-form h1:not(.statement-container h1, .main-title-container h1), form h2:not(.statement-container h2) {
+form h1:not(.statement-container h1, .main-title-container h1),
+form h2:not(.statement-container h2) {
     color: white;
     font: 500 2em var(--main-font);
     text-transform: uppercase;
@@ -315,7 +319,6 @@ form h2:not(.statement-container h2) {
 .statement-container p {
     font: normal .9em var(--main-font);
     text-align: justify;
-    text-indent: 1em;
     hyphens: auto;
     margin-bottom: 10px;
 }
@@ -361,7 +364,8 @@ form h2:not(.statement-container h2) {
     outline: 2px solid var(--outline-error);
 }
 
-.input-container input, .input-container select {
+.input-container input,
+.input-container select {
     color: white;
     font-size: 1.2em;
     width: 100%;
@@ -381,7 +385,7 @@ form h2:not(.statement-container h2) {
     -webkit-box-shadow: 0 0 0px 1000px var(--alternative-color) inset;
 }
 
-.name-input.active ~ span {
+.name-input.active~span {
     background-color: #4F1E04 !important;
 }
 
@@ -606,17 +610,20 @@ form h2:not(.statement-container h2) {
         margin-top: 0 !important;
     }
 
-    .buttons-container button:hover, .buttons-container a:hover {
+    .buttons-container button:hover,
+    .buttons-container a:hover {
         color: var(--main-color);
         background-color: white;
     }
 }
 
 @media screen and (min-width: 992px) {
-    .next-step-btn, .prev-step-btn {
+
+    .next-step-btn,
+    .prev-step-btn {
         display: none;
     }
-    
+
     body {
         background: var(--background-color) url(../imagens/mobile/pattern-bg.jpg) no-repeat fixed center center;
         background-size: cover;
@@ -670,7 +677,10 @@ form h2:not(.statement-container h2) {
         border-bottom-right-radius: 10px;
     }
 
-    #pilot-form, #navigator-form, #aux1-form, #aux2-form {
+    #pilot-form,
+    #navigator-form,
+    #aux1-form,
+    #aux2-form {
         border-top: 1px solid white;
     }
 
@@ -679,7 +689,8 @@ form h2:not(.statement-container h2) {
         margin: 10px 0 25px 0;
     }
 
-    .team-container .placeholder.active, .car-container .placeholder.active {
+    .team-container .placeholder.active,
+    .car-container .placeholder.active {
         color: white;
         background-color: var(--outline-alternative-color);
         font-size: .7em;
@@ -687,20 +698,27 @@ form h2:not(.statement-container h2) {
         border-radius: 5px;
     }
 
-    .team-container input.active, .car-container input.active {
+    .team-container input.active,
+    .car-container input.active {
         outline-color: var(--outline-alternative-color);
     }
 
-    .select-desktop-container, 
-    .car-container, 
-    .pilot-container, 
-    .nav-container, 
-    .aux1-container, 
-    .aux2-container, 
+    .select-desktop-container,
+    .pilot-container,
+    .nav-container,
+    .aux1-container,
+    .aux2-container,
     .address-container {
         width: 100%;
         display: flex;
         justify-content: space-between;
+        gap: 8px;
+    }
+
+    .car-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
     }
 
     .statement-container {
@@ -726,7 +744,7 @@ form h2:not(.statement-container h2) {
 
     .input-desktop-container {
         min-height: 100%;
-        width: 49.5%;
+        width: 100%;
         display: flex;
         flex-direction: column;
     }
@@ -792,7 +810,7 @@ form h2:not(.statement-container h2) {
         cursor: pointer;
     }
 
-    .name-input.active ~ span {
+    .name-input.active~span {
         background-color: var(--alternative-color) !important;
     }
 }
