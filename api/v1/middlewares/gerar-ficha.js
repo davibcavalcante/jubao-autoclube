@@ -164,7 +164,10 @@ module.exports.gerarFichaInscricaoPDF = async (data, images) => {
   `;
 
   // 6. Gerar o PDF
-  const browser = await puppeteer.launch({ headless: 'new' });
+  const browser = await puppeteer.launch({
+    headless: 'new',
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
   const page = await browser.newPage();
   await page.setContent(htmlWithStyles, { waitUntil: 'networkidle0' });
 
@@ -217,7 +220,10 @@ module.exports.abrirFichaPDF = async (data, images) => {
   `;
 
   // 6. Gerar o PDF
-  const browser = await puppeteer.launch({ headless: 'new' });
+  const browser = await puppeteer.launch({
+    headless: 'new',
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
   const page = await browser.newPage();
   await page.setContent(htmlWithStyles, { waitUntil: 'networkidle0' });
 
