@@ -21,7 +21,7 @@ const showMessage = (message, buttonText, qtParticipants, silvania = false) => {
   if (buttonText === 'OK') {
     figure.src = '/imagens/mobile/checked.png'
     importantMessage.innerHTML = `Para confirmar a sua inscrição é necessário realizar o pagamento e enviar o comprovante via Email ou WhatsApp!`
-    contact.innerHTML = 'Email: jubaofe@gmail.com </br> (62) 9 8459-4447 | (62) 9 9675-1067'
+    contact.innerHTML = 'Contato: </br> Email: jubaofe@gmail.com </br> (62) 9 8459-4447 | (62) 9 9675-1067'
     payInfo.innerHTML = 'PIX - CNPJ: 29.482.407/0001-84 </br> M.A Ferreira – EFE, Nubank Ag. 0001, Conta 12427778-6'
     valueInfo.innerHTML = `R$ ${value.toFixed(2).toLocaleString('pt-br').replace('.', ',')}`
     if (silvania) {

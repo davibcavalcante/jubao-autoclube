@@ -11,7 +11,7 @@ const allEvents = () => {
   }
 
   const payments = {
-    email: 'jubaofe@gmail.com',
+    // email: 'jubaofe@gmail.com',
     cnpj: '29.482.407/0001-84'
   }
 
