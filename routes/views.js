@@ -76,14 +76,14 @@ router.get('/pdf', (req, res, next) => {
 // ROUTE OF INDEX
 router.get('/', (req, res, next) => {
   res.render('index', {
-    cup: 'Camepeonato Goiano de Rally', 
+    cup: 'Camepeonato Goiano de Rally Etapa Rio Verde', 
     categories: {
       c0: 'GRADUADO',
       c1: 'TURISMO',
       c2: 'NOVATOS 4x4',
       c3: 'NOVATOS 4x2'
     },
-    url: '/inscricao/Campeonato Goiano de Rally'
+    url: '/inscricao/Campeonato Goiano de Rally Etapa Rio Verde'
   });
 });
 
