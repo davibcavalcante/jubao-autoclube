@@ -46,7 +46,7 @@ const carregarInscricoes = async () => {
       li.className = "inscricao-item";
 
       const titulo = document.createElement("span");
-      titulo.textContent = `Ficha ${i + 1} — Equipe: ${inscricao.team.name}`;
+      titulo.textContent = `Ficha ${i + 1} — Equipe: ${inscricao.team.name} - ${inscricao.cup.cupName}`;
 
       const botao = document.createElement("button");
       botao.innerHTML = "🖨️";

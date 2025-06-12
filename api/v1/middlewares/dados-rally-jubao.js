@@ -17,16 +17,12 @@ const allEvents = () => {
 
   return [
     {
-      name: 'Campeonato Goiano de Rally',
+      name: 'Campeonato Goiano de Rally Etapa Rio Verde',
       stage: '',
-      description: {
-        p1: `Com reestreia marcada para os dias 06 e 07 de junho próximo, as cidades de Jataí e Serranópolis serão palco da abertura do Campeonato Goiano de Rally que na temporada 2025, receberá participantes em 04 categorias: Graduados, Turismo, Novatos 4x4 e 4x2.`,
-        p2: `As inscrições terão início no dia 22 de maio e serão oferecidas 60 vagas para equipes que deverão ser formadas de piloto, navegador e de seus acompanhantes.`,
-        p3: `O valor para a participação no evento recolhido a título de inscrição será de R$ 250,00 para o piloto e de R$ 250,00 para o navegador, constituindo o valor total de R$ 500,00 por equipe inscrita. Caso seja possível a participação de acompanhantes na categoria como tripulação, para os auxiliares denominados zequinhas ou docinhos o valor da inscrição individual será de R$ 180,00.`
-      },
-      date: '07/06/2025',
-      month: '06',
-      local: 'JATAÍ, GO',
+      description,
+      date: '05/09/2025',
+      month: '09',
+      local: 'RIO VERDE, GO',
       ok: true,
       duration: "7:00h às 15:00h",
       categories: categories,
@@ -34,7 +30,7 @@ const allEvents = () => {
         c1: {
           l1: 'R$ 250,00 (PILOTO) e R$ 250,00 (NAVEGADOR)',
           l2: 'ZEQUINHA ou DOCINHO ADICIONAL: R$ 180,00',
-          l3: 'DATA LIMITE: 05/06/2025'
+          l3: 'DATA LIMITE: 03/09/2025'
         },
       },
       payments: payments,
