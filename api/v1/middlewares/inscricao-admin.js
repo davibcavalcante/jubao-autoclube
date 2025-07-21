@@ -3,6 +3,7 @@ const InscricoesRepository = require('../../../repository/inscricoes');
 
 const mapInscricao = (inscricao) => {
   return {
+    obs: inscricao.cup_obs,
     cup: {
       cupName: inscricao.cup_name,
     },

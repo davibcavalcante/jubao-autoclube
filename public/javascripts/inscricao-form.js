@@ -109,6 +109,7 @@ const getFormData = () => {
     }
   }
 
+  data.obs = document.querySelector('#ins-obs').innerText;
   return data
 }
 

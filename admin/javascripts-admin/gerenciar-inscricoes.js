@@ -4,6 +4,7 @@ const imprimirFicha = async (inscricao) => {
     aux2: inscricao.aux2 || {},
     car: inscricao.car || {},
     cup: inscricao.cup || {},
+    obs: inscricao.obs || '',
     navigator: inscricao.navigator || {},
     pilot: inscricao.pilot || {},
     team: inscricao.team || {}

@@ -16,7 +16,8 @@ router.get('/inscricao/:name', (req, res, next) => {
     const rallyName = req.params.name
     const arrayRally = rallyJubaoData.getFilterEvents(false, rallyName)
     const rally = arrayRally[0]
-    res.render('inscricao-form', { rally })
+    res.render('inscricao-form', { rally, obs: `Proveniente da inscrição na qualidade de piloto, para a participação na 2a. etapa do Campeonato
+    Goiano de Rally que será disputado no dia 05 de Setembro de 2025 em Rio Verde/Go.` })
   } catch (error) {
     console.log('Erro ao obter rally:', error.message);
     res.status(500).json({erro: 'Erro interno do servidor'})

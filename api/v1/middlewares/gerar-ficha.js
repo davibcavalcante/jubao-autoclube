@@ -33,6 +33,7 @@ module.exports.gerarFichaInscricaoPDF = async (data, images) => {
   try {
     await inscricoesRepository.createInscricao(db, {
       cup_name: data.cup.cupName,
+      cup_obs: data.obs,
       team_name: data.team.name,
       team_class: data.team.class,
       participants: data.team.participants,
