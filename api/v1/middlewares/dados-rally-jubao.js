@@ -17,14 +17,14 @@ const allEvents = () => {
 
   return [
     {
-      name: 'Campeonato Goiano de Rally Etapa Rio Verde',
+      name: 'Campeonato Goiano de Rally Etapa São Luís Montes Belos',
       stage: '',
       description,
-      date: '05/09/2025',
-      month: '09',
-      local: 'RIO VERDE, GO',
+      date: '24/10/2025',
+      month: '10',
+      local: 'SÃO LUÍS, GO',
       ok: true,
-      duration: "7:00h às 15:00h",
+      duration: "",
       categories: categories,
       values: {
         c1: {

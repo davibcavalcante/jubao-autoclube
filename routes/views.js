@@ -16,8 +16,8 @@ router.get('/inscricao/:name', (req, res, next) => {
     const rallyName = req.params.name
     const arrayRally = rallyJubaoData.getFilterEvents(false, rallyName)
     const rally = arrayRally[0]
-    res.render('inscricao-form', { rally, obs: `Proveniente da inscrição na qualidade de piloto, para a participação na 2a. etapa do Campeonato
-    Goiano de Rally que será disputado no dia 05 de Setembro de 2025 em Rio Verde/Go.` })
+    res.render('inscricao-form', { rally, obs: `Proveniente da inscrição, para a participação na 3° etapa do Campeonato
+    Goiano de Rally que será disputado no dia 24 de Outubro de 2025 em São Luís/Go.` })
   } catch (error) {
     console.log('Erro ao obter rally:', error.message);
     res.status(500).json({erro: 'Erro interno do servidor'})
@@ -77,14 +77,14 @@ router.get('/pdf', (req, res, next) => {
 // ROUTE OF INDEX
 router.get('/', (req, res, next) => {
   res.render('index', {
-    cup: 'Camepeonato Goiano de Rally Etapa Rio Verde', 
+    cup: 'Campeonato Goiano de Rally Etapa São Luís Montes Belos', 
     categories: {
       c0: 'GRADUADO',
       c1: 'TURISMO',
       c2: 'NOVATOS 4x4',
       c3: 'NOVATOS 4x2'
     },
-    url: '/inscricao/Campeonato Goiano de Rally Etapa Rio Verde'
+    url: '/inscricao/Campeonato Goiano de Rally Etapa São Luís Montes Belos'
   });
 });
 
