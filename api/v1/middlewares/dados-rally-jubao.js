@@ -17,12 +17,12 @@ const allEvents = () => {
 
   return [
     {
-      name: 'Campeonato Goiano de Rally Etapa São Luís Montes Belos',
+      name: 'Campeonato Goiano de Rally Etapa Colinas do Sul',
       stage: '',
       description,
-      date: '24/10/2025',
-      month: '10',
-      local: 'SÃO LUÍS, GO',
+      date: '22/11/2025',
+      month: '11',
+      local: 'COLINAS DO SUL, GO',
       ok: true,
       duration: "",
       categories: categories,
