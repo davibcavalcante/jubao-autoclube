@@ -577,5 +577,6 @@ FodyWeavers.xsd
 # End of https://www.toptal.com/developers/gitignore/api/node,visualstudio,visualstudiocode,expressionengine
 
 config.json
+config.prod.json
 ambiente.js
 serviceAccount.json

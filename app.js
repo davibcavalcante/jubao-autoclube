@@ -27,10 +27,10 @@ app.use(express.static(path.join(__dirname, 'admin')));
 if (config.server.useHTTPS) {
   app.use((req, res, next) => {
     if (!req.secure) {
-        // Redireciona para HTTPS
-        res.redirect(`https://${req.headers.host}${req.url}`);
+      // Redireciona para HTTPS
+      res.redirect(`https://${req.headers.host}${req.url}`);
     } else {
-        next(); // Continue com a próxima rota
+      next(); // Continue com a próxima rota
     }
   });
 }
@@ -50,9 +50,12 @@ app.use((req, res, next) => {
 
 app.use('/', viewsRouters);
 app.use('/api/v1', apiV1Routers);
-/*app.use('/.well-known/acme-challenge/6c5MWYXYAFuHeXKhgEmEJIwDu-PSaJqonCaWv4L-Prg', (req, res) => {
-	res.status(200).send("6c5MWYXYAFuHeXKhgEmEJIwDu-PSaJqonCaWv4L-Prg.zq5Qx_7HaUo9hdCssqoT3BFqOKJhSu5j17lvkyH_fz8");
-});*/
+
+if (config.certRequest.enabled) {
+  app.use(config.certRequest.requestRoute, (req, res) => {
+    res.status(200).send(config.certRequest.challenge);
+  });
+}
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
